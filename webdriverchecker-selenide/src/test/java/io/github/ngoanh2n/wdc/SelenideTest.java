@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @since 2021-04-10
  */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class SeleniumTest {
+public class SelenideTest {
 
     @Test
     @Order(1)
