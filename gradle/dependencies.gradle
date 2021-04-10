@@ -3,10 +3,6 @@
  * @since 2021-04-09
  */
 dependencies {
-    implementation("org.slf4j:slf4j-api:${SLF4J_VERSION}")
-    implementation("com.google.guava:guava:${GOOGLE_GUAVA_VERSION}")
-
-    testImplementation("org.slf4j:slf4j-log4j12:${SLF4J_VERSION}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${JUNIT5_JUPITER_VERSION}")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:${JUNIT5_JUPITER_VERSION}")
 }
