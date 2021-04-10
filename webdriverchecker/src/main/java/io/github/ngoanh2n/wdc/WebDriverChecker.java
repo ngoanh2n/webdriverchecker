@@ -113,8 +113,8 @@ public abstract class WebDriverChecker {
     }
 
     private synchronized WebDriver driverService() {
-        ServiceLoader<DriverInstanceProvider> service = ServiceLoader.load(DriverInstanceProvider.class);
-        Iterator<DriverInstanceProvider> serviceLoaders = service.iterator();
+        ServiceLoader<WebDriverService> service = ServiceLoader.load(WebDriverService.class);
+        Iterator<WebDriverService> serviceLoaders = service.iterator();
 
         if (serviceLoaders.hasNext()) {
             return serviceLoaders.next().provide();
