@@ -5,3 +5,4 @@
 rootProject.name = "wdc"
 
 include "webdriverchecker"
+include "webdriverchecker-selenide"
