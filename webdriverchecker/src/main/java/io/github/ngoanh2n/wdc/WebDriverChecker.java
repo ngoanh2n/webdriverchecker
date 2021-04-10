@@ -6,4 +6,8 @@ package io.github.ngoanh2n.wdc;
  * @since 2021-04-10
  */
 public class WebDriverChecker {
+
+    public static boolean isChrome() {
+        return new ChromeDriverChecker().check();
+    }
 }
