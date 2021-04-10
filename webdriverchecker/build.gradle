@@ -1,0 +1,10 @@
+/**
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @since 2021-04-09
+ */
+group(property("group"))
+version(property("version"))
+description(property("baseDescription"))
+
+dependencies {
+}
