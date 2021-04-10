@@ -4,6 +4,7 @@
  */
 ext {
     SELENIUM_VERSION                =   "3.141.59"
+    SELENIDE_VERSION                =   "5.20.1"
     GOOGLE_GUAVA_VERSION            =   "30.1-jre"
     SLF4J_VERSION                   =   "1.7.30"
     JUNIT5_JUPITER_VERSION          =   "5.8.0-M1"
