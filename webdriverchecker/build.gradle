@@ -7,4 +7,5 @@ version(property("version"))
 description(property("baseDescription"))
 
 dependencies {
+    implementation("org.seleniumhq.selenium:selenium-java:${SELENIUM_VERSION}")
 }
