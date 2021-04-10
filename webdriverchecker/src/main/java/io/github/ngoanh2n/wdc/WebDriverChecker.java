@@ -1,5 +1,7 @@
 package io.github.ngoanh2n.wdc;
 
+import static io.github.ngoanh2n.wdc.DriverInstanceChecker.execute;
+
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 1.0.0
@@ -8,26 +10,26 @@ package io.github.ngoanh2n.wdc;
 public class WebDriverChecker {
 
     public static boolean isIE() {
-        return InstanceChecker.execute(new IEInstance());
+        return execute(new IEDriverInstance());
     }
 
     public static boolean isEdge() {
-        return InstanceChecker.execute(new EdgeInstance());
+        return execute(new EdgeDriverInstance());
     }
 
     public static boolean isOpera() {
-        return InstanceChecker.execute(new OperaInstance());
+        return execute(new OperaDriverInstance());
     }
 
     public static boolean isChrome() {
-        return InstanceChecker.execute(new ChromeInstance());
+        return execute(new ChromeDriverInstance());
     }
 
     public static boolean isSafari() {
-        return InstanceChecker.execute(new SafariInstance());
+        return execute(new SafariDriverInstance());
     }
 
     public static boolean isFirefox() {
-        return InstanceChecker.execute(new FirefoxInstance());
+        return execute(new FirefoxDriverInstance());
     }
 }

@@ -1,6 +1,5 @@
 package io.github.ngoanh2n.wdc;
 
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
 /**
@@ -9,7 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
  * @since 2021-04-10
  */
 @SuppressWarnings("SpellCheckingInspection")
-class EdgeInstance extends InstanceChecker<Boolean> {
+class EdgeDriverInstance extends DriverInstanceChecker<Boolean> {
 
     private static final String NAME = "msedge";
 

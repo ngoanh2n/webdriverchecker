@@ -12,7 +12,7 @@ import java.util.ServiceLoader;
  * @version 1.0.0
  * @since 2021-04-10
  */
-abstract class InstanceChecker<T> {
+abstract class DriverInstanceChecker<T> {
 
     protected abstract T check();
 
@@ -34,13 +34,13 @@ abstract class InstanceChecker<T> {
         return loadInstanceProvider().provide();
     }
 
-    static <T> T execute(InstanceChecker<T> instanceChecker) {
+    static <T> T execute(DriverInstanceChecker<T> instanceChecker) {
         return instanceChecker.check();
     }
 
-    private static synchronized InstanceProvider loadInstanceProvider() {
-        ServiceLoader<InstanceProvider> service = ServiceLoader.load(InstanceProvider.class);
-        Iterator<InstanceProvider> serviceLoaders = service.iterator();
+    private static synchronized DriverInstanceProvider loadInstanceProvider() {
+        ServiceLoader<DriverInstanceProvider> service = ServiceLoader.load(DriverInstanceProvider.class);
+        Iterator<DriverInstanceProvider> serviceLoaders = service.iterator();
 
         if (serviceLoaders.hasNext()) {
             return serviceLoaders.next();

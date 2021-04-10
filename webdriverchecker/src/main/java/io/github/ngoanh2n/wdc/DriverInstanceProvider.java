@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  * @version 1.0.0
  * @since 2021-04-10
  */
-public interface InstanceProvider {
+public interface DriverInstanceProvider {
 
     WebDriver provide();
 }
