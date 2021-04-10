@@ -8,26 +8,22 @@ package io.github.ngoanh2n.wdc;
 public class WebDriverChecker {
 
     public static boolean isEdge() {
-        return is(new EdgeDriverChecker());
+        return InstanceChecker.execute(new EdgeInstance());
     }
 
     public static boolean isOpera() {
-        return is(new OperaDriverChecker());
+        return InstanceChecker.execute(new OperaInstance());
     }
 
     public static boolean isChrome() {
-        return is(new ChromeDriverChecker());
+        return InstanceChecker.execute(new ChromeInstance());
     }
 
     public static boolean isFirefox() {
-        return is(new FirefoxDriverChecker());
+        return InstanceChecker.execute(new FirefoxInstance());
     }
 
     public static boolean isSafari() {
-        return is(new SafariDriverChecker());
-    }
-
-    private static boolean is(InstanceChecker<Boolean> ic) {
-        return ic.check();
+        return InstanceChecker.execute(new SafariInstance());
     }
 }

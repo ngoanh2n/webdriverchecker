@@ -7,7 +7,7 @@ import org.openqa.selenium.safari.SafariDriver;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class SafariDriverChecker extends InstanceChecker<Boolean> {
+class SafariInstance extends InstanceChecker<Boolean> {
 
     private static final String NAME = "safari";
 

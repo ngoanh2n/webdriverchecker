@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class FirefoxDriverChecker extends InstanceChecker<Boolean> {
+class FirefoxInstance extends InstanceChecker<Boolean> {
 
     private static final String NAME = "firefox";
 

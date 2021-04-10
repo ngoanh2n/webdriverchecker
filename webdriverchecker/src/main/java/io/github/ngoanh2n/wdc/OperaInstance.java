@@ -7,7 +7,7 @@ import org.openqa.selenium.opera.OperaDriver;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class OperaDriverChecker extends InstanceChecker<Boolean> {
+class OperaInstance extends InstanceChecker<Boolean> {
 
     private static final String NAME = "opera";
 
