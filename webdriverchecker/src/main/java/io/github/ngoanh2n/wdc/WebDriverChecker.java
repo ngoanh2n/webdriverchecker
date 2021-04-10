@@ -7,6 +7,10 @@ package io.github.ngoanh2n.wdc;
  */
 public class WebDriverChecker {
 
+    public static boolean isEdge() {
+        return is(new EdgeDriverChecker());
+    }
+
     public static boolean isChrome() {
         return is(new ChromeDriverChecker());
     }

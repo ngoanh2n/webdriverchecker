@@ -17,8 +17,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SeleniumTest {
 
     @Test
+    void isEdgeTest() {
+        openBrowser("edge");
+        assertTrue(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isFirefox());
+        assertFalse(WebDriverChecker.isSafari());
+    }
+
+    @Test
     void isChromeTest() {
         openBrowser("chrome");
+        assertFalse(WebDriverChecker.isEdge());
         assertTrue(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isFirefox());
         assertFalse(WebDriverChecker.isSafari());
@@ -27,6 +37,7 @@ public class SeleniumTest {
     @Test
     void isFirefoxTest() {
         openBrowser("firefox");
+        assertFalse(WebDriverChecker.isEdge());
         assertFalse(WebDriverChecker.isChrome());
         assertTrue(WebDriverChecker.isFirefox());
         assertFalse(WebDriverChecker.isSafari());
@@ -35,6 +46,7 @@ public class SeleniumTest {
     @Test
     void isSafariTest() {
         openBrowser("safari");
+        assertFalse(WebDriverChecker.isEdge());
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isFirefox());
         assertTrue(WebDriverChecker.isSafari());
