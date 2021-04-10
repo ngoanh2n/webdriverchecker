@@ -31,10 +31,14 @@ abstract class InstanceChecker<T> {
     }
 
     protected WebDriver getDriver() {
-        return load().provide();
+        return loadInstanceProvider().provide();
     }
 
-    private static synchronized InstanceProvider load() {
+    static <T> T execute(InstanceChecker<T> instanceChecker) {
+        return instanceChecker.check();
+    }
+
+    private static synchronized InstanceProvider loadInstanceProvider() {
         ServiceLoader<InstanceProvider> service = ServiceLoader.load(InstanceProvider.class);
         Iterator<InstanceProvider> serviceLoaders = service.iterator();
 

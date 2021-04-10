@@ -9,7 +9,7 @@ import org.openqa.selenium.edge.EdgeDriver;
  * @since 2021-04-10
  */
 @SuppressWarnings("SpellCheckingInspection")
-class EdgeDriverChecker extends InstanceChecker<Boolean> {
+class EdgeInstance extends InstanceChecker<Boolean> {
 
     private static final String NAME = "msedge";
 
