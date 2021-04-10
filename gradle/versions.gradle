@@ -3,8 +3,8 @@
  * @since 2021-04-09
  */
 ext {
+    SELENIUM_VERSION                =   "3.141.59"
     GOOGLE_GUAVA_VERSION            =   "30.1-jre"
     SLF4J_VERSION                   =   "1.7.30"
     JUNIT5_JUPITER_VERSION          =   "5.8.0-M1"
-    JUNIT5_PLATFORM_VERSION         =   "1.8.0-M1"
 }
