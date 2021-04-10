@@ -8,6 +8,14 @@ package io.github.ngoanh2n.wdc;
 public class WebDriverChecker {
 
     public static boolean isChrome() {
-        return new ChromeDriverChecker().check();
+        return is(new ChromeDriverChecker());
+    }
+
+    public static boolean isFirefox() {
+        return is(new FirefoxDriverChecker());
+    }
+
+    private static boolean is(InstanceChecker<Boolean> ic) {
+        return ic.check();
     }
 }
