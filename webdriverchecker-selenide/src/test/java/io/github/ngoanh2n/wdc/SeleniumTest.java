@@ -1,10 +1,12 @@
 package io.github.ngoanh2n.wdc;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -16,11 +18,20 @@ public class SeleniumTest {
 
     @Test
     void isChromeTest() {
+        openWithBrowser("chrome");
         assertTrue(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isFirefox());
     }
 
-    @BeforeEach
-    void openDriver() {
+    @Test
+    void isFirefoxTest() {
+        openWithBrowser("firefox");
+        assertFalse(WebDriverChecker.isChrome());
+        assertTrue(WebDriverChecker.isFirefox());
+    }
+
+    private void openWithBrowser(String name) {
+        Configuration.browser = name;
         open("https://github.com");
     }
 
