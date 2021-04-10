@@ -7,7 +7,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class IEInstance extends InstanceChecker<Boolean> {
+class IEDriverInstance extends DriverInstanceChecker<Boolean> {
 
     private static final String NAME = "internet explorer";
 

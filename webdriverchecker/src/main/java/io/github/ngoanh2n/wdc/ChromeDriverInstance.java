@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class ChromeInstance extends InstanceChecker<Boolean> {
+class ChromeDriverInstance extends DriverInstanceChecker<Boolean> {
 
     private static final String NAME = "chrome";
 

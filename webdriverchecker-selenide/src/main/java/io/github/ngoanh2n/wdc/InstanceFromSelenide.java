@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
  * @version 1.0.0
  * @since 2021-04-10
  */
-public class InstanceFromSelenide implements InstanceProvider {
+public class InstanceFromSelenide implements DriverInstanceProvider {
 
     @Override
     public WebDriver provide() {
