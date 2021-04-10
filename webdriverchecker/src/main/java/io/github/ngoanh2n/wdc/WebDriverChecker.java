@@ -1,35 +1,125 @@
 package io.github.ngoanh2n.wdc;
 
-import static io.github.ngoanh2n.wdc.DriverInstanceChecker.execute;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.util.EnumMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.ServiceLoader;
+
+import static io.github.ngoanh2n.wdc.WDCType.*;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 1.0.0
  * @since 2021-04-10
  */
-public class WebDriverChecker {
+public abstract class WebDriverChecker {
 
     public static boolean isIE() {
-        return execute(new IEDriverInstance());
+        instances.putIfAbsent(IE, new IEDriverChecker());
+        return execute(instances.get(IE));
     }
 
     public static boolean isEdge() {
-        return execute(new EdgeDriverInstance());
+        instances.putIfAbsent(EDGE, new EdgeDriverChecker());
+        return execute(instances.get(EDGE));
     }
 
     public static boolean isOpera() {
-        return execute(new OperaDriverInstance());
+        instances.putIfAbsent(OPERA, new OperaDriverChecker());
+        return execute(instances.get(OPERA));
     }
 
     public static boolean isChrome() {
-        return execute(new ChromeDriverInstance());
+        instances.putIfAbsent(CHROME, new ChromeDriverChecker());
+        return execute(instances.get(CHROME));
     }
 
     public static boolean isSafari() {
-        return execute(new SafariDriverInstance());
+        instances.putIfAbsent(SAFARI, new SafariDriverChecker());
+        return execute(instances.get(SAFARI));
     }
 
     public static boolean isFirefox() {
-        return execute(new FirefoxDriverInstance());
+        instances.putIfAbsent(FIREFOX, new FirefoxDriverChecker());
+        return execute(instances.get(FIREFOX));
+    }
+
+    public static boolean isIE(WebDriver driver) {
+        instances.putIfAbsent(IE, new IEDriverChecker());
+        return execute(instances.get(IE).driver(driver));
+    }
+
+    public static boolean isEdge(WebDriver driver) {
+        instances.putIfAbsent(EDGE, new EdgeDriverChecker());
+        return execute(instances.get(EDGE).driver(driver));
+    }
+
+    public static boolean isOpera(WebDriver driver) {
+        instances.putIfAbsent(OPERA, new OperaDriverChecker());
+        return execute(instances.get(OPERA).driver(driver));
+    }
+
+    public static boolean isChrome(WebDriver driver) {
+        instances.putIfAbsent(CHROME, new ChromeDriverChecker());
+        return execute(instances.get(CHROME).driver(driver));
+    }
+
+    public static boolean isSafari(WebDriver driver) {
+        instances.putIfAbsent(SAFARI, new SafariDriverChecker());
+        return execute(instances.get(SAFARI).driver(driver));
+    }
+
+    public static boolean isFirefox(WebDriver driver) {
+        instances.putIfAbsent(FIREFOX, new FirefoxDriverChecker());
+        return execute(instances.get(FIREFOX).driver(driver));
+    }
+
+    private static boolean execute(WebDriverChecker checker) {
+        return checker.check();
+    }
+
+    // ------------
+
+    protected WebDriver driver;
+    protected static Map<WDCType, WebDriverChecker> instances = new EnumMap<>(WDCType.class);
+
+    protected abstract boolean check();
+
+    protected WebDriverChecker driver(WebDriver driver) {
+        this.driver = driver;
+        return this;
+    }
+
+    protected String driverName() {
+        Capabilities caps = capabilities();
+        return caps.getBrowserName().toLowerCase();
+    }
+
+    protected Capabilities capabilities() {
+        return remoteDriver().getCapabilities();
+    }
+
+    protected RemoteWebDriver remoteDriver() {
+        WebDriver driver = driver();
+        return ((RemoteWebDriver) driver);
+    }
+
+    protected WebDriver driver() {
+        return driver != null ? driver : driverService();
+    }
+
+    private synchronized WebDriver driverService() {
+        ServiceLoader<DriverInstanceProvider> service = ServiceLoader.load(DriverInstanceProvider.class);
+        Iterator<DriverInstanceProvider> serviceLoaders = service.iterator();
+
+        if (serviceLoaders.hasNext()) {
+            return serviceLoaders.next().provide();
+        } else {
+            throw new IllegalStateException("No implementation of WebDriverService provided");
+        }
     }
 }
