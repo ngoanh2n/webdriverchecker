@@ -11,6 +11,10 @@ public class WebDriverChecker {
         return is(new EdgeDriverChecker());
     }
 
+    public static boolean isOpera() {
+        return is(new OperaDriverChecker());
+    }
+
     public static boolean isChrome() {
         return is(new ChromeDriverChecker());
     }
