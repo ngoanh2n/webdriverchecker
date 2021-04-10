@@ -7,5 +7,6 @@ version(property("version"))
 description(property("selenideDescription"))
 
 dependencies {
+    implementation project(":webdriverchecker")
     implementation("com.codeborne:selenide:${SELENIDE_VERSION}")
 }
