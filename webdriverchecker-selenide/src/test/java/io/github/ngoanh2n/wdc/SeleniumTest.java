@@ -20,6 +20,17 @@ public class SeleniumTest {
     void isEdgeTest() {
         openBrowser("edge");
         assertTrue(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
+        assertFalse(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isFirefox());
+        assertFalse(WebDriverChecker.isSafari());
+    }
+
+    @Test
+    void isOperaTest() {
+        openBrowser("opera");
+        assertFalse(WebDriverChecker.isEdge());
+        assertTrue(WebDriverChecker.isOpera());
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isFirefox());
         assertFalse(WebDriverChecker.isSafari());
@@ -29,6 +40,7 @@ public class SeleniumTest {
     void isChromeTest() {
         openBrowser("chrome");
         assertFalse(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
         assertTrue(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isFirefox());
         assertFalse(WebDriverChecker.isSafari());
@@ -38,6 +50,7 @@ public class SeleniumTest {
     void isFirefoxTest() {
         openBrowser("firefox");
         assertFalse(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
         assertFalse(WebDriverChecker.isChrome());
         assertTrue(WebDriverChecker.isFirefox());
         assertFalse(WebDriverChecker.isSafari());
@@ -47,6 +60,7 @@ public class SeleniumTest {
     void isSafariTest() {
         openBrowser("safari");
         assertFalse(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isFirefox());
         assertTrue(WebDriverChecker.isSafari());
