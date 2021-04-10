@@ -18,21 +18,31 @@ public class SeleniumTest {
 
     @Test
     void isChromeTest() {
-        openWithBrowser("chrome");
+        openBrowser("chrome");
         assertTrue(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isFirefox());
+        assertFalse(WebDriverChecker.isSafari());
     }
 
     @Test
     void isFirefoxTest() {
-        openWithBrowser("firefox");
+        openBrowser("firefox");
         assertFalse(WebDriverChecker.isChrome());
         assertTrue(WebDriverChecker.isFirefox());
+        assertFalse(WebDriverChecker.isSafari());
     }
 
-    private void openWithBrowser(String name) {
+    @Test
+    void isSafariTest() {
+        openBrowser("safari");
+        assertFalse(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isFirefox());
+        assertTrue(WebDriverChecker.isSafari());
+    }
+
+    private void openBrowser(String name) {
         Configuration.browser = name;
-        open("https://github.com");
+        open();
     }
 
     @BeforeEach

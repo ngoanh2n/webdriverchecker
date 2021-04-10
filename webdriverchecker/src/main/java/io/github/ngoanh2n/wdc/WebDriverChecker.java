@@ -15,6 +15,10 @@ public class WebDriverChecker {
         return is(new FirefoxDriverChecker());
     }
 
+    public static boolean isSafari() {
+        return is(new SafariDriverChecker());
+    }
+
     private static boolean is(InstanceChecker<Boolean> ic) {
         return ic.check();
     }
