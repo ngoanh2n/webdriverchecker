@@ -14,6 +14,7 @@ enum WDCType {
     SAFARI("safari", "safari"),
     FIREFOX("firefox", "firefox"),
     IE("ie", "internet explorer"),
+    MOBILE_IOS("ios", "ios"),
     MOBILE_ANDROID("android", "android");
 
     private final String typeName;
