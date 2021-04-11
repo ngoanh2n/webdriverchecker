@@ -18,6 +18,6 @@ class IOSDriverChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return browserName().equals(MOBILE_IOS.browserName()) || driver() instanceof IOSDriver;
+        return browserName().equals(MOBILE_IOS.getName()) || driver() instanceof IOSDriver;
     }
 }
