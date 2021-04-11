@@ -18,6 +18,6 @@ class AndroidDriverChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return browserName().equals(MOBILE_ANDROID.browserName()) || driver() instanceof AndroidDriver;
+        return browserName().equals(MOBILE_ANDROID.getName()) || driver() instanceof AndroidDriver;
     }
 }
