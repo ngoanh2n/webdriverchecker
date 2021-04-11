@@ -13,6 +13,6 @@ class FirefoxDriverChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return driverName().equals(FIREFOX.driverName()) || driver() instanceof FirefoxDriver;
+        return browserName().equals(FIREFOX.browserName()) || driver() instanceof FirefoxDriver;
     }
 }

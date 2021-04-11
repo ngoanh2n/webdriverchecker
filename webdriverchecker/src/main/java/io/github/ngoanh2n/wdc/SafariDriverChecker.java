@@ -13,6 +13,6 @@ class SafariDriverChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return driverName().equals(SAFARI.driverName()) || driver() instanceof SafariDriver;
+        return browserName().equals(SAFARI.browserName()) || driver() instanceof SafariDriver;
     }
 }

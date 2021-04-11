@@ -99,7 +99,7 @@ public abstract class WebDriverChecker {
         return this;
     }
 
-    protected String driverName() {
+    protected String browserName() {
         Capabilities caps = capabilities();
         return caps.getBrowserName().toLowerCase();
     }

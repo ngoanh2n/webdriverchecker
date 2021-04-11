@@ -13,13 +13,13 @@ import static io.github.ngoanh2n.wdc.WDCType.MOBILE_ANDROID;
 class AndroidDriverChecker extends WebDriverChecker {
 
     @Override
-    protected String driverName() {
+    protected String browserName() {
         Capabilities caps = capabilities();
         return caps.getCapability("platformName").toString().toLowerCase();
     }
 
     @Override
     public boolean check() {
-        return driverName().equals(MOBILE_ANDROID.driverName()) || driver() instanceof AndroidDriver;
+        return browserName().equals(MOBILE_ANDROID.browserName()) || driver() instanceof AndroidDriver;
     }
 }
