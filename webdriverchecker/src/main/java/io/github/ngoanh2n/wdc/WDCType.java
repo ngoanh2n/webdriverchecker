@@ -15,7 +15,8 @@ enum WDCType {
     FIREFOX("firefox", "firefox"),
     IE("ie", "internet explorer"),
     MOBILE_IOS("ios", "ios"),
-    MOBILE_ANDROID("android", "android");
+    MOBILE_ANDROID("android", "android"),
+    MOBILE_NATIVE("native", "native");
 
     private final String typeName;
     private final String browserName;

@@ -4,10 +4,7 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.util.EnumMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.ServiceLoader;
+import java.util.*;
 
 import static io.github.ngoanh2n.wdc.WDCType.*;
 
@@ -48,6 +45,25 @@ public abstract class WebDriverChecker {
         return execute(instances.get(FIREFOX));
     }
 
+    public static boolean isIOS() {
+        instances.putIfAbsent(MOBILE_IOS, new IOSDriverChecker());
+        return execute(instances.get(MOBILE_IOS));
+    }
+
+    public static boolean isAndroid() {
+        instances.putIfAbsent(MOBILE_ANDROID, new AndroidDriverChecker());
+        return execute(instances.get(MOBILE_ANDROID));
+    }
+
+    public static boolean isMobile() {
+        return isIOS() || isAndroid();
+    }
+
+    public static boolean isMobileNative() {
+        instances.putIfAbsent(MOBILE_NATIVE, new NativeDriverChecker());
+        return isMobile() && execute(instances.get(MOBILE_NATIVE));
+    }
+
     public static boolean isIE(WebDriver driver) {
         instances.putIfAbsent(IE, new IEDriverChecker());
         return execute(instances.get(IE).driver(driver));
@@ -78,19 +94,9 @@ public abstract class WebDriverChecker {
         return execute(instances.get(FIREFOX).driver(driver));
     }
 
-    public static boolean isIOS() {
-        instances.putIfAbsent(MOBILE_IOS, new IOSDriverChecker());
-        return execute(instances.get(MOBILE_IOS));
-    }
-
     public static boolean isIOS(WebDriver driver) {
         instances.putIfAbsent(MOBILE_IOS, new IOSDriverChecker());
         return execute(instances.get(MOBILE_IOS).driver(driver));
-    }
-
-    public static boolean isAndroid() {
-        instances.putIfAbsent(MOBILE_ANDROID, new AndroidDriverChecker());
-        return execute(instances.get(MOBILE_ANDROID));
     }
 
     public static boolean isAndroid(WebDriver driver) {
@@ -98,8 +104,17 @@ public abstract class WebDriverChecker {
         return execute(instances.get(MOBILE_ANDROID).driver(driver));
     }
 
-    private static boolean execute(WebDriverChecker checker) {
-        return checker.check();
+    public static boolean isMobile(WebDriver driver) {
+        return isIOS(driver) || isAndroid(driver);
+    }
+
+    public static boolean isMobileNative(WebDriver driver) {
+        instances.putIfAbsent(MOBILE_NATIVE, new NativeDriverChecker());
+        return isMobile(driver) && execute(instances.get(MOBILE_NATIVE).driver(driver));
+    }
+
+    static boolean execute(WebDriverChecker wdc) {
+        return wdc.check();
     }
 
     // ------------
@@ -130,6 +145,11 @@ public abstract class WebDriverChecker {
 
     protected WebDriver driver() {
         return driver != null ? driver : driverService();
+    }
+
+    String capability(String name) {
+        Object capability = capabilities().getCapability(name);
+        return String.valueOf(Optional.ofNullable(capability).orElse(""));
     }
 
     private synchronized WebDriver driverService() {
