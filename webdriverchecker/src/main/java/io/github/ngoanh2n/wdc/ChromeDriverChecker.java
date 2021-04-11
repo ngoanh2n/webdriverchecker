@@ -13,6 +13,6 @@ class ChromeDriverChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return driverName().equals(CHROME.driverName()) || driver() instanceof ChromeDriver;
+        return browserName().equals(CHROME.browserName()) || driver() instanceof ChromeDriver;
     }
 }

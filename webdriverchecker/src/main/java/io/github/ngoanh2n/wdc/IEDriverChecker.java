@@ -13,6 +13,6 @@ class IEDriverChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return driverName().equals(IE.driverName()) || driver() instanceof InternetExplorerDriver;
+        return browserName().equals(IE.browserName()) || driver() instanceof InternetExplorerDriver;
     }
 }

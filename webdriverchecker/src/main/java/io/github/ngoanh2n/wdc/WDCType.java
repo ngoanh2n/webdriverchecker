@@ -17,18 +17,18 @@ enum WDCType {
     MOBILE_ANDROID("android", "android");
 
     private final String typeName;
-    private final String driverName;
+    private final String browserName;
 
-    WDCType(String typeName, String driverName) {
+    WDCType(String typeName, String browserName) {
         this.typeName = typeName;
-        this.driverName = driverName;
+        this.browserName = browserName;
     }
 
     String typeName() {
         return typeName;
     }
 
-    String driverName() {
-        return driverName;
+    String browserName() {
+        return browserName;
     }
 }
