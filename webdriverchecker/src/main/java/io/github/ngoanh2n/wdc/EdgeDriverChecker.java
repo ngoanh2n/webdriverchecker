@@ -13,6 +13,6 @@ class EdgeDriverChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return browserName().equals(EDGE.getName()) || driver() instanceof EdgeDriver;
+        return getBrowserName().equals(EDGE.getName()) || getDriver() instanceof EdgeDriver;
     }
 }

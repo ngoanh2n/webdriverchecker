@@ -13,6 +13,6 @@ class OperaDriverChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return browserName().equals(OPERA.getName()) || driver() instanceof OperaDriver;
+        return getBrowserName().equals(OPERA.getName()) || getDriver() instanceof OperaDriver;
     }
 }

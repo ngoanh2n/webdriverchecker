@@ -12,12 +12,12 @@ import static io.github.ngoanh2n.wdc.WDCType.MOBILE_IOS;
 class IOSDriverChecker extends WebDriverChecker {
 
     @Override
-    protected String browserName() {
-        return capability("platformName").toLowerCase();
+    protected String getBrowserName() {
+        return getCapability("platformName").toLowerCase();
     }
 
     @Override
     public boolean check() {
-        return browserName().equals(MOBILE_IOS.getName()) || driver() instanceof IOSDriver;
+        return getBrowserName().equals(MOBILE_IOS.getName()) || getDriver() instanceof IOSDriver;
     }
 }

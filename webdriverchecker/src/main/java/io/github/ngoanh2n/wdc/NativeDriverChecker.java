@@ -9,6 +9,6 @@ class NativeDriverChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return !capability("app").isEmpty();
+        return !getCapability("app").isEmpty();
     }
 }
