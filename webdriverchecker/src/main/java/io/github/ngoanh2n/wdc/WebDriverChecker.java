@@ -78,7 +78,22 @@ public abstract class WebDriverChecker {
         return execute(instances.get(FIREFOX).driver(driver));
     }
 
-    public static boolean isMobileAndroid(WebDriver driver) {
+    public static boolean isIOS() {
+        instances.putIfAbsent(MOBILE_IOS, new IOSDriverChecker());
+        return execute(instances.get(MOBILE_IOS));
+    }
+
+    public static boolean isIOS(WebDriver driver) {
+        instances.putIfAbsent(MOBILE_IOS, new IOSDriverChecker());
+        return execute(instances.get(MOBILE_IOS).driver(driver));
+    }
+
+    public static boolean isAndroid() {
+        instances.putIfAbsent(MOBILE_ANDROID, new AndroidDriverChecker());
+        return execute(instances.get(MOBILE_ANDROID));
+    }
+
+    public static boolean isAndroid(WebDriver driver) {
         instances.putIfAbsent(MOBILE_ANDROID, new AndroidDriverChecker());
         return execute(instances.get(MOBILE_ANDROID).driver(driver));
     }
