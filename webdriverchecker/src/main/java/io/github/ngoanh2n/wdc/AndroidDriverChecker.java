@@ -1,7 +1,6 @@
 package io.github.ngoanh2n.wdc;
 
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.Capabilities;
 
 import static io.github.ngoanh2n.wdc.WDCType.MOBILE_ANDROID;
 
@@ -14,8 +13,7 @@ class AndroidDriverChecker extends WebDriverChecker {
 
     @Override
     protected String browserName() {
-        Capabilities caps = capabilities();
-        return caps.getCapability("platformName").toString().toLowerCase();
+        return capability("platformName").toLowerCase();
     }
 
     @Override
