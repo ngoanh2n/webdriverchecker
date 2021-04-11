@@ -13,7 +13,8 @@ enum WDCType {
     CHROME("chrome", "chrome"),
     SAFARI("safari", "safari"),
     FIREFOX("firefox", "firefox"),
-    IE("ie", "internet explorer");
+    IE("ie", "internet explorer"),
+    MOBILE_ANDROID("android", "android");
 
     private final String typeName;
     private final String driverName;
