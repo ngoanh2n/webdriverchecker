@@ -66,42 +66,42 @@ public abstract class WebDriverChecker {
 
     public static boolean isIE(WebDriver driver) {
         instances.putIfAbsent(IE, new IEDriverChecker());
-        return execute(instances.get(IE).driver(driver));
+        return execute(instances.get(IE).useDriver(driver));
     }
 
     public static boolean isEdge(WebDriver driver) {
         instances.putIfAbsent(EDGE, new EdgeDriverChecker());
-        return execute(instances.get(EDGE).driver(driver));
+        return execute(instances.get(EDGE).useDriver(driver));
     }
 
     public static boolean isOpera(WebDriver driver) {
         instances.putIfAbsent(OPERA, new OperaDriverChecker());
-        return execute(instances.get(OPERA).driver(driver));
+        return execute(instances.get(OPERA).useDriver(driver));
     }
 
     public static boolean isChrome(WebDriver driver) {
         instances.putIfAbsent(CHROME, new ChromeDriverChecker());
-        return execute(instances.get(CHROME).driver(driver));
+        return execute(instances.get(CHROME).useDriver(driver));
     }
 
     public static boolean isSafari(WebDriver driver) {
         instances.putIfAbsent(SAFARI, new SafariDriverChecker());
-        return execute(instances.get(SAFARI).driver(driver));
+        return execute(instances.get(SAFARI).useDriver(driver));
     }
 
     public static boolean isFirefox(WebDriver driver) {
         instances.putIfAbsent(FIREFOX, new FirefoxDriverChecker());
-        return execute(instances.get(FIREFOX).driver(driver));
+        return execute(instances.get(FIREFOX).useDriver(driver));
     }
 
     public static boolean isIOS(WebDriver driver) {
         instances.putIfAbsent(MOBILE_IOS, new IOSDriverChecker());
-        return execute(instances.get(MOBILE_IOS).driver(driver));
+        return execute(instances.get(MOBILE_IOS).useDriver(driver));
     }
 
     public static boolean isAndroid(WebDriver driver) {
         instances.putIfAbsent(MOBILE_ANDROID, new AndroidDriverChecker());
-        return execute(instances.get(MOBILE_ANDROID).driver(driver));
+        return execute(instances.get(MOBILE_ANDROID).useDriver(driver));
     }
 
     public static boolean isMobile(WebDriver driver) {
@@ -110,7 +110,7 @@ public abstract class WebDriverChecker {
 
     public static boolean isMobileNative(WebDriver driver) {
         instances.putIfAbsent(MOBILE_NATIVE, new NativeDriverChecker());
-        return isMobile(driver) && execute(instances.get(MOBILE_NATIVE).driver(driver));
+        return isMobile(driver) && execute(instances.get(MOBILE_NATIVE).useDriver(driver));
     }
 
     static boolean execute(WebDriverChecker wdc) {
@@ -124,31 +124,31 @@ public abstract class WebDriverChecker {
 
     protected abstract boolean check();
 
-    protected WebDriverChecker driver(WebDriver driver) {
+    protected WebDriverChecker useDriver(WebDriver driver) {
         this.driver = driver;
         return this;
     }
 
-    protected String browserName() {
-        Capabilities caps = capabilities();
+    protected String getBrowserName() {
+        Capabilities caps = getCapabilities();
         return caps.getBrowserName().toLowerCase();
     }
 
-    protected Capabilities capabilities() {
-        return remoteDriver().getCapabilities();
+    protected Capabilities getCapabilities() {
+        return getRemoteDriver().getCapabilities();
     }
 
-    protected RemoteWebDriver remoteDriver() {
-        WebDriver driver = driver();
+    protected RemoteWebDriver getRemoteDriver() {
+        WebDriver driver = getDriver();
         return ((RemoteWebDriver) driver);
     }
 
-    protected WebDriver driver() {
+    protected WebDriver getDriver() {
         return driver != null ? driver : driverService();
     }
 
-    String capability(String name) {
-        Object capability = capabilities().getCapability(name);
+    String getCapability(String name) {
+        Object capability = getCapabilities().getCapability(name);
         return String.valueOf(Optional.ofNullable(capability).orElse(""));
     }
 
