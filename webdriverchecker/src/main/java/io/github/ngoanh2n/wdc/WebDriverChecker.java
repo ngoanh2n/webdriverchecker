@@ -55,6 +55,10 @@ public abstract class WebDriverChecker {
         return execute(MOBILE_APP, new MobileAppChecker());
     }
 
+    public static boolean isEdgeLegacy() {
+        return execute(EDGE_LEGACY, new EdgeLegacyChecker());
+    }
+
     // ------------
 
     public static boolean isIE(WebDriver wd) {
@@ -95,6 +99,10 @@ public abstract class WebDriverChecker {
 
     public static boolean isMobileApp(WebDriver wd) {
         return execute(MOBILE_APP, new MobileAppChecker(), wd);
+    }
+
+    public static boolean isEdgeLegacy(WebDriver wd) {
+        return execute(EDGE_LEGACY, new EdgeLegacyChecker(), wd);
     }
 
     // ------------

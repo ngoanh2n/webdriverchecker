@@ -8,26 +8,30 @@ package io.github.ngoanh2n.wdc;
 @SuppressWarnings("SpellCheckingInspection")
 enum WDCType {
 
+    // Browsers
     EDGE("msedge"),
     OPERA("opera"),
     SAFARI("safari"),
     CHROME("chrome"),
     FIREFOX("firefox"),
     IE("internetexplorer"),
+    EDGE_LEGACY("microsoftedge"),
 
+    // Platforms
     IOS("ios"),
     ANDROID("android"),
 
+    // Indentifiers
     MOBILE("mobile"),
     MOBILE_APP("mobileapp");
 
-    private final String browserName;
+    private final String name;
 
-    WDCType(String browserName) {
-        this.browserName = browserName;
+    WDCType(String name) {
+        this.name = name;
     }
 
     String getName() {
-        return browserName;
+        return name;
     }
 }
