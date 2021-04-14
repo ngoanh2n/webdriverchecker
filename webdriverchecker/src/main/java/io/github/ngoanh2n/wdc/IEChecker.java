@@ -9,7 +9,7 @@ import static io.github.ngoanh2n.wdc.WDCType.IE;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class IEDriverChecker extends WebDriverChecker {
+class IEChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {

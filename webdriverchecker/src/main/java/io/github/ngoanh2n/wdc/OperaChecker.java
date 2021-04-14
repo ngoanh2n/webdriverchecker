@@ -9,7 +9,7 @@ import static io.github.ngoanh2n.wdc.WDCType.OPERA;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class OperaDriverChecker extends WebDriverChecker {
+class OperaChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
