@@ -9,7 +9,7 @@ import static io.github.ngoanh2n.wdc.WDCType.CHROME;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class ChromeDriverChecker extends WebDriverChecker {
+class ChromeChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {

@@ -5,10 +5,10 @@ package io.github.ngoanh2n.wdc;
  * @version 1.0.0
  * @since 2021-04-11
  */
-class NativeDriverChecker extends WebDriverChecker {
+class MobileChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {
-        return !getCapability("app").isEmpty();
+        return execute(new IOSChecker()) || execute(new AndroidChecker());
     }
 }

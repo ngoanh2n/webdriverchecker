@@ -9,7 +9,7 @@ import static io.github.ngoanh2n.wdc.WDCType.EDGE;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class EdgeDriverChecker extends WebDriverChecker {
+class EdgeChecker extends WebDriverChecker {
 
     @Override
     public boolean check() {

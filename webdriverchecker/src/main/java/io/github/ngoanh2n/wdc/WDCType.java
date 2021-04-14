@@ -10,13 +10,16 @@ enum WDCType {
 
     EDGE("msedge"),
     OPERA("opera"),
-    CHROME("chrome"),
     SAFARI("safari"),
+    CHROME("chrome"),
     FIREFOX("firefox"),
-    IE("internet explorer"),
-    MOBILE_IOS("ios"),
-    MOBILE_ANDROID("android"),
-    MOBILE_NATIVE("native");
+    IE("internetexplorer"),
+
+    IOS("ios"),
+    ANDROID("android"),
+
+    MOBILE("mobile"),
+    MOBILE_APP("mobileapp");
 
     private final String browserName;
 
