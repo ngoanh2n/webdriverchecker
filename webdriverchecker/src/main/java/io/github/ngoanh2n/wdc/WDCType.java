@@ -18,13 +18,14 @@ enum WDCType {
     EDGE_LEGACY("microsoftedge"),
 
     // Platforms
-    IOS("ios"),
-    ANDROID("android"),
+    MOBILE_IOS("ios"),
+    MOBILE_ANDROID("android"),
 
     // Indentifiers
     MOBILE("mobile"),
     MOBILE_APP("mobileapp"),
     MOBILE_SAFARI("mobilesafari"),
+    MOBILE_CHROME("mobilechrome"),
     FIREFOX_LEGACY("firefoxlegacy");
 
     private final String name;
