@@ -19,7 +19,7 @@ public class SelenideTest {
     @Test
     @Order(1)
     void isIETest() {
-        openDriver("internet explorer");
+        openDriver("ie");
 
         assertTrue(WebDriverChecker.isIE());
         assertFalse(WebDriverChecker.isEdge());
@@ -32,9 +32,12 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isFirefoxLegacy());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isAndroid());
+        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSSafari());
+
+        assertFalse(WebDriverChecker.isAndroid());
         assertFalse(WebDriverChecker.isAndroidChrome());
+
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
@@ -56,9 +59,12 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isFirefoxLegacy());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isAndroid());
+        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSSafari());
+
+        assertFalse(WebDriverChecker.isAndroid());
         assertFalse(WebDriverChecker.isAndroidChrome());
+
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
@@ -80,9 +86,12 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isFirefoxLegacy());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isAndroid());
+        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSSafari());
+
+        assertFalse(WebDriverChecker.isAndroid());
         assertFalse(WebDriverChecker.isAndroidChrome());
+
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
@@ -104,9 +113,12 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isFirefoxLegacy());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isAndroid());
+        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSSafari());
+
+        assertFalse(WebDriverChecker.isAndroid());
         assertFalse(WebDriverChecker.isAndroidChrome());
+
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
@@ -128,9 +140,12 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isFirefoxLegacy());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isAndroid());
+        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSSafari());
+
+        assertFalse(WebDriverChecker.isAndroid());
         assertFalse(WebDriverChecker.isAndroidChrome());
+
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
@@ -152,9 +167,12 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isFirefoxLegacy());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isAndroid());
+        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSSafari());
+
+        assertFalse(WebDriverChecker.isAndroid());
         assertFalse(WebDriverChecker.isAndroidChrome());
+
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());

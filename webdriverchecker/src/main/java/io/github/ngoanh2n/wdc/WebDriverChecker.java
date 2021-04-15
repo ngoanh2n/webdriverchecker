@@ -16,125 +16,133 @@ import static io.github.ngoanh2n.wdc.WDCType.*;
 public abstract class WebDriverChecker {
 
     public static boolean isIE() {
-        return execute(IE, new IE());
+        return is(IE, new IE());
     }
 
     public static boolean isEdge() {
-        return execute(EDGE, new Edge());
+        return is(EDGE, new Edge());
     }
 
     public static boolean isOpera() {
-        return execute(OPERA, new Opera());
+        return is(OPERA, new Opera());
     }
 
     public static boolean isSafari() {
-        return execute(SAFARI, new Safari());
+        return is(SAFARI, new Safari());
     }
 
     public static boolean isChrome() {
-        return execute(CHROME, new Chrome());
+        return is(CHROME, new Chrome());
     }
 
     public static boolean isFirefox() {
-        return execute(FIREFOX, new Firefox());
+        return is(FIREFOX, new Firefox());
     }
 
     public static boolean isEdgeLegacy() {
-        return execute(EDGE_LEGACY, new EdgeLegacy());
+        return is(EDGE_LEGACY, new EdgeLegacy());
     }
 
     public static boolean isFirefoxLegacy() {
-        return execute(FIREFOX_LEGACY, new FirefoxLegacy());
+        return is(FIREFOX_LEGACY, new FirefoxLegacy());
     }
 
     public static boolean isIOS() {
-        return execute(IOS, new IOS());
+        return is(IOS, new IOS());
     }
 
-    public static boolean isAndroid() {
-        return execute(ANDROID, new Android());
+    public static boolean isIOSApp() {
+        return is(IOS_APP, new IOSApp());
     }
 
     public static boolean isIOSSafari() {
-        return execute(IOS_SAFARI, new IOSSafari());
+        return is(IOS_SAFARI, new IOSSafari());
+    }
+
+    public static boolean isAndroid() {
+        return is(ANDROID, new Android());
     }
 
     public static boolean isAndroidChrome() {
-        return execute(ANDROID_CHROME, new AndroidChrome());
+        return is(ANDROID_CHROME, new AndroidChrome());
     }
 
     public static boolean isMobile() {
-        return execute(MOBILE, new Mobile());
+        return is(MOBILE, new Mobile());
     }
 
     public static boolean isMobileApp() {
-        return execute(MOBILE_APP, new MobileApp());
+        return is(MOBILE_APP, new MobileApp());
     }
 
     public static boolean isWindowsApp() {
-        return execute(WINDOWS, new WindowsApp());
+        return is(WINDOWS, new WindowsApp());
     }
 
     // ------------
 
     public static boolean isIE(WebDriver wd) {
-        return execute(IE, new IE(), wd);
+        return is(IE, new IE(), wd);
     }
 
     public static boolean isEdge(WebDriver wd) {
-        return execute(EDGE, new Edge(), wd);
+        return is(EDGE, new Edge(), wd);
     }
 
     public static boolean isOpera(WebDriver wd) {
-        return execute(OPERA, new Opera(), wd);
+        return is(OPERA, new Opera(), wd);
     }
 
     public static boolean isSafari(WebDriver wd) {
-        return execute(SAFARI, new Safari(), wd);
+        return is(SAFARI, new Safari(), wd);
     }
 
     public static boolean isChrome(WebDriver wd) {
-        return execute(CHROME, new Chrome(), wd);
+        return is(CHROME, new Chrome(), wd);
     }
 
     public static boolean isFirefox(WebDriver wd) {
-        return execute(FIREFOX, new Firefox(), wd);
+        return is(FIREFOX, new Firefox(), wd);
     }
 
     public static boolean isEdgeLegacy(WebDriver wd) {
-        return execute(EDGE_LEGACY, new EdgeLegacy(), wd);
+        return is(EDGE_LEGACY, new EdgeLegacy(), wd);
     }
 
     public static boolean isFirefoxLegacy(WebDriver wd) {
-        return execute(FIREFOX_LEGACY, new FirefoxLegacy(), wd);
+        return is(FIREFOX_LEGACY, new FirefoxLegacy(), wd);
     }
 
     public static boolean isIOS(WebDriver wd) {
-        return execute(IOS, new IOS(), wd);
+        return is(IOS, new IOS(), wd);
     }
 
-    public static boolean isAndroid(WebDriver wd) {
-        return execute(ANDROID, new Android(), wd);
+    public static boolean isIOSApp(WebDriver wd) {
+        return is(IOS_APP, new IOSApp(), wd);
     }
 
     public static boolean isIOSSafari(WebDriver wd) {
-        return execute(IOS_SAFARI, new IOSSafari(), wd);
+        return is(IOS_SAFARI, new IOSSafari(), wd);
+    }
+
+    public static boolean isAndroid(WebDriver wd) {
+        return is(ANDROID, new Android(), wd);
     }
 
     public static boolean isAndroidChrome(WebDriver wd) {
-        return execute(ANDROID_CHROME, new AndroidChrome(), wd);
+        return is(ANDROID_CHROME, new AndroidChrome(), wd);
     }
 
     public static boolean isMobile(WebDriver wd) {
-        return execute(MOBILE, new Mobile(), wd);
+        return is(MOBILE, new Mobile(), wd);
     }
 
     public static boolean isMobileApp(WebDriver wd) {
-        return execute(MOBILE_APP, new MobileApp(), wd);
+        return is(MOBILE_APP, new MobileApp(), wd);
     }
 
     public static boolean isWindowsApp(WebDriver wd) {
-        return execute(WINDOWS, new WindowsApp(), wd);
+        return is(WINDOWS, new WindowsApp(), wd);
     }
 
     // ------------
@@ -199,7 +207,7 @@ public abstract class WebDriverChecker {
 
         @Override
         public boolean check() {
-            return execute(FIREFOX, new Firefox()) && getBrowserVersion() < 48;
+            return is(FIREFOX, new Firefox()) && getBrowserVersion() < 48;
         }
     }
 
@@ -211,6 +219,22 @@ public abstract class WebDriverChecker {
         }
     }
 
+    private static class IOSApp extends WebDriverChecker {
+
+        @Override
+        public boolean check() {
+            return is(IOS, new IOS()) && (!getCapability("app").isEmpty() || getBrowserName().isEmpty());
+        }
+    }
+
+    private static class IOSSafari extends WebDriverChecker {
+
+        @Override
+        public boolean check() {
+            return is(IOS, new IOS()) && is(SAFARI, new Safari());
+        }
+    }
+
     private static class Android extends WebDriverChecker {
 
         @Override
@@ -219,19 +243,11 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class IOSSafari extends WebDriverChecker {
-
-        @Override
-        public boolean check() {
-            return execute(IOS, new IOS()) && execute(SAFARI, new Safari());
-        }
-    }
-
     private static class AndroidChrome extends WebDriverChecker {
 
         @Override
         public boolean check() {
-            return execute(ANDROID, new Android()) && execute(CHROME, new Chrome());
+            return is(ANDROID, new Android()) && is(CHROME, new Chrome());
         }
     }
 
@@ -239,7 +255,7 @@ public abstract class WebDriverChecker {
 
         @Override
         public boolean check() {
-            return execute(IOS, new IOS()) || execute(ANDROID, new Android());
+            return is(IOS, new IOS()) || is(ANDROID, new Android());
         }
     }
 
@@ -250,10 +266,10 @@ public abstract class WebDriverChecker {
             if (!getCapability("app").isEmpty()) {
                 return true;
             }
-            if (execute(IOS, new IOS())) {
+            if (is(IOS, new IOS())) {
                 return getBrowserName().isEmpty();
             }
-            if (execute(ANDROID, new Android())) {
+            if (is(ANDROID, new Android())) {
                 String appPackage = getCapability("appPackage");
                 return getBrowserName().isEmpty() || !appPackage.equals("com.android.chrome");
             }
@@ -271,18 +287,18 @@ public abstract class WebDriverChecker {
 
     // ------------
 
-    static boolean execute(WebDriverChecker wdc) {
+    static boolean is(WebDriverChecker wdc) {
         return wdc.check();
     }
 
-    static boolean execute(WDCType type, WebDriverChecker wdc) {
+    static boolean is(WDCType type, WebDriverChecker wdc) {
         instances.putIfAbsent(type, wdc);
-        return execute(instances.get(type));
+        return is(instances.get(type));
     }
 
-    static boolean execute(WDCType type, WebDriverChecker wdc, WebDriver wd) {
+    static boolean is(WDCType type, WebDriverChecker wdc, WebDriver wd) {
         instances.putIfAbsent(type, wdc);
-        return execute(instances.get(type).useDriver(wd));
+        return is(instances.get(type).useDriver(wd));
     }
 
     // ------------
@@ -290,6 +306,7 @@ public abstract class WebDriverChecker {
     protected WebDriver driver;
     protected static Map<WDCType, WebDriverChecker> instances = new EnumMap<>(WDCType.class);
 
+    // ------------
     protected abstract boolean check();
 
     protected WebDriverChecker useDriver(WebDriver driver) {
@@ -326,12 +343,12 @@ public abstract class WebDriverChecker {
         return driver != null ? driver : getServedDriver();
     }
 
-    String getCapability(String name) {
+    protected String getCapability(String name) {
         Object capability = getCapabilities().getCapability(name);
         return String.valueOf(Optional.ofNullable(capability).orElse(""));
     }
 
-    synchronized WebDriver getServedDriver() {
+    protected synchronized WebDriver getServedDriver() {
         ServiceLoader<WebDriverService> service = ServiceLoader.load(WebDriverService.class);
         Iterator<WebDriverService> serviceLoaders = service.iterator();
 
