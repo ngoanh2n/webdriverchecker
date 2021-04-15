@@ -18,23 +18,24 @@ enum WDCType {
     EDGE_LEGACY("microsoftedge"),
 
     // Platforms
-    MOBILE_IOS("ios"),
-    MOBILE_ANDROID("android"),
+    IOS("ios"),
+    ANDROID("android"),
+    WINDOWS("windows"),
 
     // Indentifiers
     MOBILE("mobile"),
     MOBILE_APP("mobileapp"),
-    MOBILE_SAFARI("mobilesafari"),
-    MOBILE_CHROME("mobilechrome"),
+    IOS_SAFARI("mobilesafari"),
+    ANDROID_CHROME("mobilechrome"),
     FIREFOX_LEGACY("firefoxlegacy");
 
-    private final String name;
+    private final String value;
 
-    WDCType(String name) {
-        this.name = name;
+    WDCType(String value) {
+        this.value = value;
     }
 
-    String getName() {
-        return name;
+    String getValue() {
+        return value;
     }
 }
