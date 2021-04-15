@@ -24,6 +24,7 @@ enum WDCType {
     // Indentifiers
     MOBILE("mobile"),
     MOBILE_APP("mobileapp"),
+    MOBILE_SAFARI("mobilesafari"),
     FIREFOX_LEGACY("firefoxlegacy");
 
     private final String name;
