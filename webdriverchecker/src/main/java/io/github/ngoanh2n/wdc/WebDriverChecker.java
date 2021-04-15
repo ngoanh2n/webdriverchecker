@@ -63,6 +63,10 @@ public abstract class WebDriverChecker {
         return is(ANDROID, new Android());
     }
 
+    public static boolean isAndroidApp() {
+        return is(ANDROID_APP, new AndroidApp());
+    }
+
     public static boolean isAndroidChrome() {
         return is(ANDROID_CHROME, new AndroidChrome());
     }
@@ -127,6 +131,10 @@ public abstract class WebDriverChecker {
 
     public static boolean isAndroid(WebDriver wd) {
         return is(ANDROID, new Android(), wd);
+    }
+
+    public static boolean isAndroidApp(WebDriver wd) {
+        return is(ANDROID_APP, new AndroidApp(), wd);
     }
 
     public static boolean isAndroidChrome(WebDriver wd) {
@@ -223,7 +231,13 @@ public abstract class WebDriverChecker {
 
         @Override
         public boolean check() {
-            return is(IOS, new IOS()) && (!getCapability("app").isEmpty() || getBrowserName().isEmpty());
+            if (is(IOS, new IOS())) {
+                if (!getCapability("app").isEmpty()) {
+                    return true;
+                }
+                return getBrowserName().isEmpty();
+            }
+            return false;
         }
     }
 
@@ -240,6 +254,21 @@ public abstract class WebDriverChecker {
         @Override
         public boolean check() {
             return getPlatformName().equals(ANDROID.getValue());
+        }
+    }
+
+    private static class AndroidApp extends WebDriverChecker {
+
+        @Override
+        public boolean check() {
+            if (is(ANDROID, new Android())) {
+                if (!getCapability("app").isEmpty()) {
+                    return true;
+                }
+                String appPackage = getCapability("appPackage");
+                return getBrowserName().isEmpty() || !appPackage.equals("com.android.chrome");
+            }
+            return false;
         }
     }
 
@@ -263,17 +292,7 @@ public abstract class WebDriverChecker {
 
         @Override
         public boolean check() {
-            if (!getCapability("app").isEmpty()) {
-                return true;
-            }
-            if (is(IOS, new IOS())) {
-                return getBrowserName().isEmpty();
-            }
-            if (is(ANDROID, new Android())) {
-                String appPackage = getCapability("appPackage");
-                return getBrowserName().isEmpty() || !appPackage.equals("com.android.chrome");
-            }
-            return false;
+            return is(IOS_APP, new IOSApp()) || is(ANDROID_APP, new AndroidApp());
         }
     }
 

@@ -23,11 +23,12 @@ enum WDCType {
     WINDOWS("windows"),
 
     // Indentifiers
-    MOBILE("mobile"),
     IOS_APP("iosapp"),
+    IOS_SAFARI("iossafari"),
+    ANDROID_APP("androidapp"),
+    ANDROID_CHROME("androidchrome"),
+    MOBILE("mobile"),
     MOBILE_APP("mobileapp"),
-    IOS_SAFARI("mobilesafari"),
-    ANDROID_CHROME("mobilechrome"),
     FIREFOX_LEGACY("firefoxlegacy");
 
     private final String value;
