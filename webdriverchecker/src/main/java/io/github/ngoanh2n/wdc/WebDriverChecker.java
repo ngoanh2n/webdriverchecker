@@ -47,14 +47,6 @@ public abstract class WebDriverChecker {
         return execute(FIREFOX_LEGACY, new FirefoxLegacy());
     }
 
-    public static boolean isIOS() {
-        return execute(IOS, new IOS());
-    }
-
-    public static boolean isAndroid() {
-        return execute(ANDROID, new Android());
-    }
-
     public static boolean isMobile() {
         return execute(MOBILE, new Mobile());
     }
@@ -63,8 +55,20 @@ public abstract class WebDriverChecker {
         return execute(MOBILE_APP, new MobileApp());
     }
 
+    public static boolean isMobileIOS() {
+        return execute(MOBILE_IOS, new MobileIOS());
+    }
+
+    public static boolean isMobileAndroid() {
+        return execute(MOBILE_ANDROID, new MobileAndroid());
+    }
+
     public static boolean isMobileSafari() {
         return execute(MOBILE_SAFARI, new MobileSafari());
+    }
+
+    public static boolean isMobileChrome() {
+        return execute(MOBILE_CHROME, new MobileChrome());
     }
 
     // ------------
@@ -101,14 +105,6 @@ public abstract class WebDriverChecker {
         return execute(FIREFOX_LEGACY, new FirefoxLegacy(), wd);
     }
 
-    public static boolean isIOS(WebDriver wd) {
-        return execute(IOS, new IOS(), wd);
-    }
-
-    public static boolean isAndroid(WebDriver wd) {
-        return execute(ANDROID, new Android(), wd);
-    }
-
     public static boolean isMobile(WebDriver wd) {
         return execute(MOBILE, new Mobile(), wd);
     }
@@ -117,8 +113,20 @@ public abstract class WebDriverChecker {
         return execute(MOBILE_APP, new MobileApp(), wd);
     }
 
+    public static boolean isMobileIOS(WebDriver wd) {
+        return execute(MOBILE_IOS, new MobileIOS(), wd);
+    }
+
+    public static boolean isMobileAndroid(WebDriver wd) {
+        return execute(MOBILE_ANDROID, new MobileAndroid(), wd);
+    }
+
     public static boolean isMobileSafari(WebDriver wd) {
         return execute(MOBILE_SAFARI, new MobileSafari(), wd);
+    }
+
+    public static boolean isMobileChrome(WebDriver wd) {
+        return execute(MOBILE_CHROME, new MobileChrome(), wd);
     }
 
     // ------------
@@ -187,27 +195,11 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class IOS extends WebDriverChecker {
-
-        @Override
-        public boolean check() {
-            return getCapability("platformName").equals(IOS.getName());
-        }
-    }
-
-    private static class Android extends WebDriverChecker {
-
-        @Override
-        public boolean check() {
-            return getCapability("platformName").equals(ANDROID.getName());
-        }
-    }
-
     private static class Mobile extends WebDriverChecker {
 
         @Override
         public boolean check() {
-            return execute(IOS, new IOS()) || execute(ANDROID, new Android());
+            return execute(MOBILE_IOS, new MobileIOS()) || execute(MOBILE_ANDROID, new MobileAndroid());
         }
     }
 
@@ -218,10 +210,10 @@ public abstract class WebDriverChecker {
             if (!getCapability("app").isEmpty()) {
                 return true;
             }
-            if (execute(IOS, new IOS())) {
+            if (execute(MOBILE_IOS, new MobileIOS())) {
                 return getBrowserName().isEmpty();
             }
-            if (execute(ANDROID, new Android())) {
+            if (execute(MOBILE_ANDROID, new MobileAndroid())) {
                 String appPackage = getCapability("appPackage");
                 return getBrowserName().isEmpty() || !appPackage.equals("com.android.chrome");
             }
@@ -229,11 +221,35 @@ public abstract class WebDriverChecker {
         }
     }
 
+    private static class MobileIOS extends WebDriverChecker {
+
+        @Override
+        public boolean check() {
+            return getCapability("platformName").equals(MOBILE_IOS.getName());
+        }
+    }
+
+    private static class MobileAndroid extends WebDriverChecker {
+
+        @Override
+        public boolean check() {
+            return getCapability("platformName").equals(MOBILE_ANDROID.getName());
+        }
+    }
+
     private static class MobileSafari extends WebDriverChecker {
 
         @Override
         public boolean check() {
-            return execute(IOS, new IOS()) && getBrowserName().equals(SAFARI.getName());
+            return execute(MOBILE_IOS, new MobileIOS()) && execute(SAFARI, new Safari());
+        }
+    }
+
+    private static class MobileChrome extends WebDriverChecker {
+
+        @Override
+        public boolean check() {
+            return execute(MOBILE_ANDROID, new MobileAndroid()) && execute(CHROME, new Chrome());
         }
     }
 
