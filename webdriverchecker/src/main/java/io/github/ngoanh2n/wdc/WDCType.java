@@ -24,6 +24,7 @@ enum WDCType {
 
     // Indentifiers
     MOBILE("mobile"),
+    IOS_APP("iosapp"),
     MOBILE_APP("mobileapp"),
     IOS_SAFARI("mobilesafari"),
     ANDROID_CHROME("mobilechrome"),
