@@ -2,7 +2,10 @@ package io.github.ngoanh2n.wdc;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.CommandExecutor;
+import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.service.DriverCommandExecutor;
 
 import java.util.*;
 
@@ -83,6 +86,10 @@ public abstract class WebDriverChecker {
         return is(WINDOWS, new WindowsApp());
     }
 
+    public static boolean isRemote() {
+        return is(REMOTE, new Remote());
+    }
+
     // ------------
 
     public static boolean isIE(WebDriver wd) {
@@ -151,6 +158,10 @@ public abstract class WebDriverChecker {
 
     public static boolean isWindowsApp(WebDriver wd) {
         return is(WINDOWS, new WindowsApp(), wd);
+    }
+
+    public static boolean isRemote(WebDriver wd) {
+        return is(REMOTE, new Remote(), wd);
     }
 
     // ------------
@@ -304,6 +315,20 @@ public abstract class WebDriverChecker {
         }
     }
 
+    private static class Remote extends WebDriverChecker {
+
+        @Override
+        public boolean check() {
+            RemoteWebDriver driver = getRemoteDriver();
+            CommandExecutor command = driver.getCommandExecutor();
+
+            if (command instanceof HttpCommandExecutor) {
+                return (!(command instanceof DriverCommandExecutor));
+            }
+            return false;
+        }
+    }
+
     // ------------
 
     static boolean is(WebDriverChecker wdc) {
@@ -334,19 +359,15 @@ public abstract class WebDriverChecker {
     }
 
     protected String getPlatformName() {
-        Capabilities caps = getCapabilities();
-        return caps.getPlatform().name().toLowerCase();
+        return getCapability("platformName").toLowerCase();
     }
 
     protected String getBrowserName() {
-        Capabilities caps = getCapabilities();
-        return caps.getBrowserName().replaceAll("\\s+", "").toLowerCase();
+        return getCapability("browserName").toLowerCase();
     }
 
     protected double getBrowserVersion() {
-        Capabilities caps = getCapabilities();
-        String[] byPoints = caps.getVersion().split("\\.");
-        return Double.parseDouble(byPoints[0]);
+        return Double.parseDouble(getCapability("browserVersion").split("\\.")[0]);
     }
 
     protected Capabilities getCapabilities() {

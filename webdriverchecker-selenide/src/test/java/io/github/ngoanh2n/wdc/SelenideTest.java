@@ -42,6 +42,8 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
+
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -70,6 +72,8 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
+
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -98,6 +102,8 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
+
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -126,6 +132,8 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
+
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -154,6 +162,8 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
+
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -182,6 +192,8 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
+
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     private void openDriver(String name) {
