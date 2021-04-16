@@ -12,6 +12,10 @@ public class WDFromSelenide implements WebDriverService {
 
     @Override
     public WebDriver provide() {
-        return WebDriverRunner.getWebDriver();
+        try {
+            return WebDriverRunner.getWebDriver();
+        } catch (IllegalStateException ignored) {
+            return null;
+        }
     }
 }
