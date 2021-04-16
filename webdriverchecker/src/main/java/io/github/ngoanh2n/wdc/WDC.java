@@ -6,7 +6,7 @@ package io.github.ngoanh2n.wdc;
  * @since 2021-04-10
  */
 @SuppressWarnings("SpellCheckingInspection")
-enum WDCType {
+enum WDC {
 
     // Browsers
     EDGE("msedge"),
@@ -20,22 +20,11 @@ enum WDCType {
     // Platforms
     IOS("ios"),
     ANDROID("android"),
-    WINDOWS("windows"),
-
-    // Indentifiers
-    ALIVE("alive"),
-    REMOTE("remote"),
-    MOBILE("mobile"),
-    IOS_APP("iosapp"),
-    IOS_SAFARI("iossafari"),
-    MOBILE_APP("mobileapp"),
-    ANDROID_APP("androidapp"),
-    ANDROID_CHROME("androidchrome"),
-    FIREFOX_LEGACY("firefoxlegacy");
+    WINDOWS("windows");
 
     private final String value;
 
-    WDCType(String value) {
+    WDC(String value) {
         this.value = value;
     }
 
