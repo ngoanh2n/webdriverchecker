@@ -86,6 +86,10 @@ public abstract class WebDriverChecker {
         return is(WINDOWS, new WindowsApp());
     }
 
+    public static boolean isAlive() {
+        return is(ALIVE, new Alive());
+    }
+
     public static boolean isRemote() {
         return is(REMOTE, new Remote());
     }
@@ -158,6 +162,10 @@ public abstract class WebDriverChecker {
 
     public static boolean isWindowsApp(WebDriver wd) {
         return is(WINDOWS, new WindowsApp(), wd);
+    }
+
+    public static boolean isAlive(WebDriver wd) {
+        return is(ALIVE, new Alive(), wd);
     }
 
     public static boolean isRemote(WebDriver wd) {
@@ -312,6 +320,15 @@ public abstract class WebDriverChecker {
         @Override
         public boolean check() {
             return getPlatformName().equals(WINDOWS.getValue()) && getBrowserName().isEmpty();
+        }
+    }
+
+    private static class Alive extends WebDriverChecker {
+
+        @Override
+        public boolean check() {
+            if (getDriver() == null) return false;
+            return getRemoteDriver().getSessionId() != null;
         }
     }
 
