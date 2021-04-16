@@ -23,6 +23,7 @@ enum WDCType {
     WINDOWS("windows"),
 
     // Indentifiers
+    ALIVE("alive"),
     REMOTE("remote"),
     MOBILE("mobile"),
     IOS_APP("iosapp"),
