@@ -9,5 +9,5 @@ import org.openqa.selenium.WebDriver;
  */
 public interface WebDriverService {
 
-    WebDriver provide();
+    WebDriver serve();
 }

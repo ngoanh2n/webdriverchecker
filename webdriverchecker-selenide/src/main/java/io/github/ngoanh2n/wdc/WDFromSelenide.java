@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 public class WDFromSelenide implements WebDriverService {
 
     @Override
-    public WebDriver provide() {
+    public WebDriver serve() {
         try {
             return WebDriverRunner.getWebDriver();
         } catch (IllegalStateException ignored) {
