@@ -6,7 +6,7 @@ package io.github.ngoanh2n.wdc;
  * @since 2021-04-10
  */
 @SuppressWarnings("SpellCheckingInspection")
-enum WDC {
+enum WDCBrowser {
 
     // Browsers
     EDGE("msedge"),
@@ -22,13 +22,13 @@ enum WDC {
     ANDROID("android"),
     WINDOWS("windows");
 
-    private final String value;
+    private final String name;
 
-    WDC(String value) {
-        this.value = value;
+    WDCBrowser(String name) {
+        this.name = name;
     }
 
-    String getValue() {
-        return value;
+    String getName() {
+        return name;
     }
 }

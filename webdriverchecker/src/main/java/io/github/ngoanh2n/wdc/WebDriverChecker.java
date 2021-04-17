@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
-import static io.github.ngoanh2n.wdc.WDC.*;
+import static io.github.ngoanh2n.wdc.WDCBrowser.*;
 import static java.util.ServiceLoader.load;
 
 /**
@@ -204,7 +204,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getBrowserName(args).equals(IE.getValue());
+            return getBrowserName(args).equals(IE.getName());
         }
     }
 
@@ -212,7 +212,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getBrowserName(args).equals(EDGE.getValue());
+            return getBrowserName(args).equals(EDGE.getName());
         }
     }
 
@@ -220,7 +220,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getBrowserName(args).equals(OPERA.getValue());
+            return getBrowserName(args).equals(OPERA.getName());
         }
     }
 
@@ -228,7 +228,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getBrowserName(args).equals(SAFARI.getValue());
+            return getBrowserName(args).equals(SAFARI.getName());
         }
     }
 
@@ -236,7 +236,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getBrowserName(args).equals(CHROME.getValue());
+            return getBrowserName(args).equals(CHROME.getName());
         }
     }
 
@@ -244,7 +244,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getBrowserName(args).equals(FIREFOX.getValue());
+            return getBrowserName(args).equals(FIREFOX.getName());
         }
     }
 
@@ -252,7 +252,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getBrowserName(args).equals(EDGE_LEGACY.getValue());
+            return getBrowserName(args).equals(EDGE_LEGACY.getName());
         }
     }
 
@@ -268,7 +268,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getPlatformName(args).equals(IOS.getValue());
+            return getPlatformName(args).equals(IOS.getName());
         }
     }
 
@@ -298,7 +298,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getPlatformName(args).equals(ANDROID.getValue());
+            return getPlatformName(args).equals(ANDROID.getName());
         }
     }
 
@@ -345,7 +345,7 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getPlatformName(args).equals(WINDOWS.getValue()) && getBrowserName(args).isEmpty();
+            return getPlatformName(args).equals(WINDOWS.getName()) && getBrowserName(args).isEmpty();
         }
     }
 
@@ -356,11 +356,13 @@ public abstract class WebDriverChecker {
     // ------------
 
     protected String getPlatformName(Object... args) {
-        return getCapability("platformName", args).toLowerCase();
+        String value = getCapability("platformName", args);
+        return value.toLowerCase();
     }
 
     protected String getBrowserName(Object... args) {
-        return getCapability("browserName", args).toLowerCase();
+        String value = getCapability("browserName", args);
+        return value.replaceAll("\\s+", "").toLowerCase();
     }
 
     protected double getBrowserVersion(Object... args) {
@@ -406,11 +408,11 @@ public abstract class WebDriverChecker {
     }
 
     protected synchronized WebDriver getProvidedDriver(Object wd) {
-        Object driver = Optional
+        Object value = Optional
                 .ofNullable(wd)
                 .orElseThrow(WDCException.NullWDPassedByArgument::new);
-        if (driver instanceof WebDriver) {
-            return (WebDriver) driver;
+        if (value instanceof WebDriver) {
+            return (WebDriver) value;
         } else {
             throw new WDCException.NoneWDPassedByArgument();
         }
