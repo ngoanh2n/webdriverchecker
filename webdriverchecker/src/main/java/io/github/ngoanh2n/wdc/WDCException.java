@@ -1,5 +1,7 @@
 package io.github.ngoanh2n.wdc;
 
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 
 /**
@@ -16,35 +18,36 @@ public class WDCException extends WebDriverException {
     public final static class NoSuchWDServiceProvided extends WDCException {
 
         NoSuchWDServiceProvided() {
-            super("No implementation of WebDriverService provided.");
+            super(String.format("No implementation of %s provided.", WebDriverService.class.getName()));
         }
     }
 
     public final static class NullWDPassedByArgument extends WDCException {
 
         NullWDPassedByArgument() {
-            super("The passed WebDriver by argument is null.");
+            super(String.format("The passed %s by argument is null.", WebDriver.class.getSimpleName()));
         }
     }
 
     public final static class NoneWDPassedByArgument extends WDCException {
 
         NoneWDPassedByArgument() {
-            super("The passed WebDriver by argument is not a implementation.");
+            super(String.format("The passed %s by argument is not a implementation.", WebDriver.class.getSimpleName()));
         }
     }
 
     public final static class NoSuchCapabilitiesImplemented extends WDCException {
 
         NoSuchCapabilitiesImplemented() {
-            super("No Capabilities of WebDriver implemented.");
+            super(String.format("No %s of %s implemented.", Capabilities.class.getSimpleName(), WebDriver.class.getSimpleName()));
+
         }
     }
 
     public final static class NoSuchWDSession extends WDCException {
 
         NoSuchWDSession() {
-            super("WedDriver session is not created or closed");
+            super(String.format("%s session is not created or closed.", WebDriver.class.getSimpleName()));
         }
     }
 }
