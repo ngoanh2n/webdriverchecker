@@ -15,7 +15,7 @@ public class WDFromSelenide implements WebDriverService {
         try {
             return WebDriverRunner.getWebDriver();
         } catch (IllegalStateException ignored) {
-            return null;
+            throw new WDCException.NoSuchWDSession();
         }
     }
 }

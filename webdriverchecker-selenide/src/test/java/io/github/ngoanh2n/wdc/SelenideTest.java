@@ -5,8 +5,7 @@ import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -20,6 +19,9 @@ public class SelenideTest {
     @Order(1)
     void isIETest() {
         openDriver("ie");
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
 
         assertTrue(WebDriverChecker.isIE());
         assertFalse(WebDriverChecker.isEdge());
@@ -42,15 +44,15 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
     @Order(2)
     void isEdgeTest() {
         openDriver("edge");
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
         assertTrue(WebDriverChecker.isEdge());
@@ -73,15 +75,15 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
     @Order(3)
     void isOperaTest() {
         openDriver("opera");
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
         assertFalse(WebDriverChecker.isEdge());
@@ -104,15 +106,15 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
     @Order(4)
     void isChromeTest() {
         openDriver("chrome");
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
         assertFalse(WebDriverChecker.isEdge());
@@ -135,15 +137,15 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
     @Order(5)
     void isSafariTest() {
         openDriver("safari");
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
         assertFalse(WebDriverChecker.isEdge());
@@ -166,15 +168,15 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
     @Order(6)
     void isFirefoxTest() {
         openDriver("firefox");
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
         assertFalse(WebDriverChecker.isEdge());
@@ -197,9 +199,6 @@ public class SelenideTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isWindowsApp());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     private void openDriver(String name) {
@@ -210,6 +209,6 @@ public class SelenideTest {
     @AfterEach
     void closeDriver() {
         closeWebDriver();
-        assertFalse(WebDriverChecker.isAlive());
+        assertThrows(WDCException.NoSuchWDSession.class, WebDriverChecker::isAlive);
     }
 }
