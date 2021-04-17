@@ -7,7 +7,5 @@ version(property("version"))
 description(property("baseDescription"))
 
 dependencies {
-    implementation("org.seleniumhq.selenium:selenium-java:${SELENIUM_VERSION}")
-    implementation("io.appium:java-client:${APPIUM_VERSION}")
-    testImplementation("io.github.bonigarcia:webdrivermanager:${WDM_VERSION}")
+    compileOnly("org.seleniumhq.selenium:selenium-remote-driver:${SELENIUM_VERSION}")
 }
