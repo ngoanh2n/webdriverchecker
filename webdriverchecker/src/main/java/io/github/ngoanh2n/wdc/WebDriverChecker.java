@@ -22,156 +22,346 @@ import static java.util.ServiceLoader.load;
  */
 public abstract class WebDriverChecker {
 
+    /**
+     * Check whether the current {@linkplain WebDriver} is not quit
+     *
+     * @return true if running
+     */
     public static boolean isAlive() {
         return WebDriverChecker.is(new Alive());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} is remote
+     *
+     * @return true if remote
+     */
     public static boolean isRemote() {
         return WebDriverChecker.is(new Remote());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code IE}
+     *
+     * @return true if {@code IE}
+     */
     public static boolean isIE() {
         return WebDriverChecker.is(new IE());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Edge}
+     *
+     * @return true if {@code Edge}
+     */
     public static boolean isEdge() {
         return WebDriverChecker.is(new Edge());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Opera}
+     *
+     * @return true if {@code Opera}
+     */
     public static boolean isOpera() {
         return WebDriverChecker.is(new Opera());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Safari}
+     *
+     * @return true if {@code Safari}
+     */
     public static boolean isSafari() {
         return WebDriverChecker.is(new Safari());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Chrome}
+     *
+     * @return true if {@code Chrome}
+     */
     public static boolean isChrome() {
         return WebDriverChecker.is(new Chrome());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Firefox}
+     *
+     * @return true if {@code Firefox}
+     */
     public static boolean isFirefox() {
         return WebDriverChecker.is(new Firefox());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Legacy Edge (Edge HTML)}
+     *
+     * @return true if {@code Legacy Edge}
+     */
     public static boolean isEdgeLegacy() {
         return WebDriverChecker.is(new EdgeLegacy());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Legacy Firefox (lower than version 48)}
+     *
+     * @return true if {@code Legacy Firefox}
+     */
     public static boolean isFirefoxLegacy() {
         return WebDriverChecker.is(new FirefoxLegacy());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code IOS}
+     *
+     * @return true if {@code IOS}
+     */
     public static boolean isIOS() {
         return WebDriverChecker.is(new IOS());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Native application} on {@code IOS}
+     *
+     * @return true if {@code Native application} on {@code IOS}
+     */
     public static boolean isIOSApp() {
         return WebDriverChecker.is(new IOSApp());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Safari} on {@code IOS}
+     *
+     * @return true if {@code Safari} on {@code IOS}
+     */
     public static boolean isIOSSafari() {
         return WebDriverChecker.is(new IOSSafari());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Android}
+     *
+     * @return true if {@code Android}
+     */
     public static boolean isAndroid() {
         return WebDriverChecker.is(new Android());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Native application} on {@code Android}
+     *
+     * @return true if {@code Native application} on {@code Android}
+     */
     public static boolean isAndroidApp() {
         return WebDriverChecker.is(new AndroidApp());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Chrome} on {@code Android}
+     *
+     * @return true if {@code Chrome} on {@code Android}
+     */
     public static boolean isAndroidChrome() {
         return WebDriverChecker.is(new AndroidChrome());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code IOS} or {@code Android}
+     *
+     * @return true if {@code IOS} or {@code Android}
+     */
     public static boolean isMobile() {
         return WebDriverChecker.is(new Mobile());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Native application} on {@code IOS} or {@code Android}
+     *
+     * @return true if {@code Native application} on {@code IOS} or {@code Android}
+     */
     public static boolean isMobileApp() {
         return WebDriverChecker.is(new MobileApp());
     }
 
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Windows application}
+     *
+     * @return true if {@code Windows application}
+     */
     public static boolean isWindowsApp() {
         return WebDriverChecker.is(new WindowsApp());
     }
 
     // ------------
 
+    /**
+     * Check whether {@linkplain WebDriver} is not quit
+     *
+     * @return true if running
+     */
     public static boolean isAlive(WebDriver wd) {
         return WebDriverChecker.is(new Alive(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} is remote
+     *
+     * @return true if remote
+     */
     public static boolean isRemote(WebDriver wd) {
         return WebDriverChecker.is(new Remote(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code IE}
+     *
+     * @return true if {@code IE}
+     */
     public static boolean isIE(WebDriver wd) {
         return WebDriverChecker.is(new IE(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Edge}
+     *
+     * @return true if {@code Edge}
+     */
     public static boolean isEdge(WebDriver wd) {
         return WebDriverChecker.is(new Edge(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Opera}
+     *
+     * @return true if {@code Opera}
+     */
     public static boolean isOpera(WebDriver wd) {
         return WebDriverChecker.is(new Opera(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Safari}
+     *
+     * @return true if {@code Safari}
+     */
     public static boolean isSafari(WebDriver wd) {
         return WebDriverChecker.is(new Safari(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Chrome}
+     *
+     * @return true if {@code Chrome}
+     */
     public static boolean isChrome(WebDriver wd) {
         return WebDriverChecker.is(new Chrome(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Firefox}
+     *
+     * @return true if {@code Firefox}
+     */
     public static boolean isFirefox(WebDriver wd) {
         return WebDriverChecker.is(new Firefox(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Legacy Edge (Edge HTML)}
+     *
+     * @return true if {@code Legacy Edge}
+     */
     public static boolean isEdgeLegacy(WebDriver wd) {
         return WebDriverChecker.is(new EdgeLegacy(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Legacy Firefox (lower than version 48)}
+     *
+     * @return true if {@code Legacy Firefox}
+     */
     public static boolean isFirefoxLegacy(WebDriver wd) {
         return WebDriverChecker.is(new FirefoxLegacy(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code IOS}
+     *
+     * @return true if {@code IOS}
+     */
     public static boolean isIOS(WebDriver wd) {
         return WebDriverChecker.is(new IOS(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code IOS}
+     *
+     * @return true if {@code Native application} on {@code IOS}
+     */
     public static boolean isIOSApp(WebDriver wd) {
         return WebDriverChecker.is(new IOSApp(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Safari} on {@code IOS}
+     *
+     * @return true if {@code Safari} on {@code IOS}
+     */
     public static boolean isIOSSafari(WebDriver wd) {
         return WebDriverChecker.is(new IOSSafari(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Android}
+     *
+     * @return true if {@code Android}
+     */
     public static boolean isAndroid(WebDriver wd) {
         return WebDriverChecker.is(new Android(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code Android}
+     *
+     * @return true if {@code Native application} on {@code Android}
+     */
     public static boolean isAndroidApp(WebDriver wd) {
         return WebDriverChecker.is(new AndroidApp(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Chrome} on {@code Android}
+     *
+     * @return true if {@code Chrome} on {@code Android}
+     */
     public static boolean isAndroidChrome(WebDriver wd) {
         return WebDriverChecker.is(new AndroidChrome(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code IOS} or {@code Android}
+     *
+     * @return true if {@code IOS} or {@code Android}
+     */
     public static boolean isMobile(WebDriver wd) {
         return WebDriverChecker.is(new Mobile(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code IOS} or {@code Android}
+     *
+     * @return true if {@code Native application} on {@code IOS} or {@code Android}
+     */
     public static boolean isMobileApp(WebDriver wd) {
         return WebDriverChecker.is(new MobileApp(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Windows application}
+     *
+     * @return true if {@code Windows application}
+     */
     public static boolean isWindowsApp(WebDriver wd) {
         return WebDriverChecker.is(new WindowsApp(), wd);
     }
