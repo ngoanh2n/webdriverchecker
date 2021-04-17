@@ -1,6 +1,7 @@
 package io.github.ngoanh2n.wdc;
 
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CommandExecutor;
 import org.openqa.selenium.remote.HttpCommandExecutor;
@@ -12,6 +13,7 @@ import java.util.Optional;
 import java.util.ServiceLoader;
 
 import static io.github.ngoanh2n.wdc.WDC.*;
+import static java.util.ServiceLoader.load;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -19,6 +21,14 @@ import static io.github.ngoanh2n.wdc.WDC.*;
  * @since 2021-04-10
  */
 public abstract class WebDriverChecker {
+
+    public static boolean isAlive() {
+        return WebDriverChecker.is(new Alive());
+    }
+
+    public static boolean isRemote() {
+        return WebDriverChecker.is(new Remote());
+    }
 
     public static boolean isIE() {
         return WebDriverChecker.is(new IE());
@@ -88,15 +98,15 @@ public abstract class WebDriverChecker {
         return WebDriverChecker.is(new WindowsApp());
     }
 
-    public static boolean isAlive() {
-        return WebDriverChecker.is(new Alive());
-    }
-
-    public static boolean isRemote() {
-        return WebDriverChecker.is(new Remote());
-    }
-
     // ------------
+
+    public static boolean isAlive(WebDriver wd) {
+        return WebDriverChecker.is(new Alive(), wd);
+    }
+
+    public static boolean isRemote(WebDriver wd) {
+        return WebDriverChecker.is(new Remote(), wd);
+    }
 
     public static boolean isIE(WebDriver wd) {
         return WebDriverChecker.is(new IE(), wd);
@@ -166,15 +176,29 @@ public abstract class WebDriverChecker {
         return WebDriverChecker.is(new WindowsApp(), wd);
     }
 
-    public static boolean isAlive(WebDriver wd) {
-        return WebDriverChecker.is(new Alive(), wd);
-    }
-
-    public static boolean isRemote(WebDriver wd) {
-        return WebDriverChecker.is(new Remote(), wd);
-    }
-
     // ------------
+
+    private static class Alive extends WebDriverChecker {
+
+        @Override
+        protected boolean execute(Object... args) {
+            return getRemoteDriver(args).getSessionId() != null;
+        }
+    }
+
+    private static class Remote extends WebDriverChecker {
+
+        @Override
+        protected boolean execute(Object... args) {
+            RemoteWebDriver driver = getRemoteDriver(args);
+            CommandExecutor command = driver.getCommandExecutor();
+
+            if (command instanceof HttpCommandExecutor) {
+                return (!(command instanceof DriverCommandExecutor));
+            }
+            return false;
+        }
+    }
 
     private static class IE extends WebDriverChecker {
 
@@ -325,29 +349,6 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class Alive extends WebDriverChecker {
-
-        @Override
-        protected boolean execute(Object... args) {
-            if (getDriver(args) == null) return false;
-            return getRemoteDriver(args).getSessionId() != null;
-        }
-    }
-
-    private static class Remote extends WebDriverChecker {
-
-        @Override
-        protected boolean execute(Object... args) {
-            RemoteWebDriver driver = getRemoteDriver(args);
-            CommandExecutor command = driver.getCommandExecutor();
-
-            if (command instanceof HttpCommandExecutor) {
-                return (!(command instanceof DriverCommandExecutor));
-            }
-            return false;
-        }
-    }
-
     // ------------
 
     protected abstract boolean execute(Object[] args);
@@ -373,7 +374,12 @@ public abstract class WebDriverChecker {
     }
 
     protected Capabilities getCapabilities(Object... args) {
-        return getRemoteDriver(args).getCapabilities();
+        WebDriver driver = getDriver(args);
+        if (driver instanceof HasCapabilities) {
+            return ((HasCapabilities) driver).getCapabilities();
+        } else {
+            throw new WDCException.NoSuchCapabilitiesImplemented();
+        }
     }
 
     protected RemoteWebDriver getRemoteDriver(Object... args) {
@@ -381,23 +387,43 @@ public abstract class WebDriverChecker {
     }
 
     protected WebDriver getDriver(Object... args) {
-        return args.length == 0 ? getProvidedDriver() : (WebDriver) args[0];
+        if (args.length == 0) {
+            return getServedDriver();
+        } else {
+            return getProvidedDriver(args[0]);
+        }
     }
 
-    protected synchronized WebDriver getProvidedDriver() {
-        ServiceLoader<WebDriverService> service = ServiceLoader.load(WebDriverService.class);
+    protected synchronized WebDriver getServedDriver() {
+        ServiceLoader<WebDriverService> service = load(WebDriverService.class);
         Iterator<WebDriverService> serviceLoaders = service.iterator();
 
         if (serviceLoaders.hasNext()) {
             return serviceLoaders.next().provide();
         } else {
-            throw new IllegalStateException("No implementation of WebDriverService provided");
+            throw new WDCException.NoSuchWDServiceProvided();
+        }
+    }
+
+    protected synchronized WebDriver getProvidedDriver(Object wd) {
+        Object driver = Optional
+                .ofNullable(wd)
+                .orElseThrow(WDCException.NullWDPassedByArgument::new);
+        if (driver instanceof WebDriver) {
+            return (WebDriver) driver;
+        } else {
+            throw new WDCException.NoneWDPassedByArgument();
         }
     }
 
     // ------------
 
     protected static boolean is(WebDriverChecker wdc, Object... args) {
+        if (!(wdc instanceof Alive)) {
+            if (!is(new Alive(), args)) {
+                throw new WDCException.NoSuchWDSession();
+            }
+        }
         return wdc.execute(args);
     }
 }
