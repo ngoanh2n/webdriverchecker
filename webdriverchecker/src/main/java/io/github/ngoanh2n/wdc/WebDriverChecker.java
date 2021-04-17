@@ -399,7 +399,7 @@ public abstract class WebDriverChecker {
         Iterator<WebDriverService> serviceLoaders = service.iterator();
 
         if (serviceLoaders.hasNext()) {
-            return serviceLoaders.next().provide();
+            return serviceLoaders.next().serve();
         } else {
             throw new WDCException.NoSuchWDServiceProvided();
         }
