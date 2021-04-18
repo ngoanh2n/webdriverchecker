@@ -11,42 +11,50 @@ import org.openqa.selenium.WebDriverException;
  */
 public class WDCException extends WebDriverException {
 
-    public WDCException(String cause) {
+    public WDCException(String message) {
+        super(message);
+    }
+
+    public WDCException(Throwable cause) {
         super(cause);
     }
 
-    public final static class NoSuchWDServiceProvided extends WDCException {
+    public WDCException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-        NoSuchWDServiceProvided() {
-            super(String.format("No implementation of %s provided.", WebDriverService.class.getName()));
+    public static class NoSuchServiceWD extends WDCException {
+
+        public NoSuchServiceWD() {
+            super(String.format("No implementation of %s.", WebDriverService.class.getName()));
         }
     }
 
-    public final static class NullWDPassedByArgument extends WDCException {
+    public static class NullArgumentWD extends WDCException {
 
-        NullWDPassedByArgument() {
-            super(String.format("The passed %s by argument is null.", WebDriver.class.getSimpleName()));
+        public NullArgumentWD() {
+            super(String.format("%s passed by argument is null.", WebDriver.class.getSimpleName()));
         }
     }
 
-    public final static class NoneWDPassedByArgument extends WDCException {
+    public static class NoneArgumentWD extends WDCException {
 
-        NoneWDPassedByArgument() {
-            super(String.format("The passed %s by argument is not a implementation.", WebDriver.class.getSimpleName()));
+        public NoneArgumentWD() {
+            super(String.format("%s passed by argument is not a implementation.", WebDriver.class.getSimpleName()));
         }
     }
 
-    public final static class NoSuchCapabilitiesImplemented extends WDCException {
+    public static class NoSuchCapabilities extends WDCException {
 
-        NoSuchCapabilitiesImplemented() {
-            super(String.format("No %s of %s implemented.", Capabilities.class.getSimpleName(), WebDriver.class.getSimpleName()));
+        public NoSuchCapabilities() {
+            super(String.format("%s is not implemented %s.", WebDriver.class.getSimpleName(), Capabilities.class.getSimpleName()));
 
         }
     }
 
-    public final static class NoSuchWDSession extends WDCException {
+    public static class NoSuchWDSession extends WDCException {
 
-        NoSuchWDSession() {
+        public NoSuchWDSession() {
             super(String.format("%s session is not created or closed.", WebDriver.class.getSimpleName()));
         }
     }
