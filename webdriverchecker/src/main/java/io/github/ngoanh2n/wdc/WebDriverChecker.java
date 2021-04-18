@@ -570,7 +570,7 @@ public abstract class WebDriverChecker {
         if (driver instanceof HasCapabilities) {
             return ((HasCapabilities) driver).getCapabilities();
         } else {
-            throw new WDCException.NoSuchCapabilitiesImplemented();
+            throw new WDCException.NoSuchCapabilities();
         }
     }
 
@@ -580,31 +580,31 @@ public abstract class WebDriverChecker {
 
     protected WebDriver getDriver(Object... args) {
         if (args.length == 0) {
-            return getServedDriver();
+            return getServiceDriver();
         } else {
-            return getProvidedDriver(args[0]);
+            return getArgumentDriver(args[0]);
         }
     }
 
-    protected synchronized WebDriver getServedDriver() {
+    protected WebDriver getServiceDriver() {
         ServiceLoader<WebDriverService> service = load(WebDriverService.class);
         Iterator<WebDriverService> serviceLoaders = service.iterator();
 
         if (serviceLoaders.hasNext()) {
             return serviceLoaders.next().serve();
         } else {
-            throw new WDCException.NoSuchWDServiceProvided();
+            throw new WDCException.NoSuchServiceWD();
         }
     }
 
-    protected synchronized WebDriver getProvidedDriver(Object wd) {
+    protected WebDriver getArgumentDriver(Object wd) {
         Object value = Optional
                 .ofNullable(wd)
-                .orElseThrow(WDCException.NullWDPassedByArgument::new);
+                .orElseThrow(WDCException.NullArgumentWD::new);
         if (value instanceof WebDriver) {
             return (WebDriver) value;
         } else {
-            throw new WDCException.NoneWDPassedByArgument();
+            throw new WDCException.NoneArgumentWD();
         }
     }
 
