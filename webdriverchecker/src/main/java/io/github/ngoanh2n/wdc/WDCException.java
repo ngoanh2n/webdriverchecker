@@ -15,18 +15,17 @@ public class WDCException extends WebDriverException {
         super(message);
     }
 
-    public WDCException(Throwable cause) {
-        super(cause);
-    }
-
-    public WDCException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
     public static class NoSuchServiceWD extends WDCException {
 
         public NoSuchServiceWD() {
             super(String.format("No implementation of %s.", WebDriverService.class.getName()));
+        }
+    }
+
+    public static class NoSuchArgumentWD extends WDCException {
+
+        public NoSuchArgumentWD() {
+            super(String.format("No %s by argument", WebDriver.class.getSimpleName()));
         }
     }
 
