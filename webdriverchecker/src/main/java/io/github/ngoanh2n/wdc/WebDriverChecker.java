@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.ServiceLoader;
 
 import static io.github.ngoanh2n.wdc.WDCBrowser.*;
+import static io.github.ngoanh2n.wdc.WDCException.NullArgumentWD;
 import static java.util.ServiceLoader.load;
 
 /**
@@ -368,19 +369,19 @@ public abstract class WebDriverChecker {
 
     // ------------
 
-    private static class Alive extends WebDriverChecker {
+    public static class Alive extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getRemoteDriver(args).getSessionId() != null;
+            return getDriverRemote(args).getSessionId() != null;
         }
     }
 
-    private static class Remote extends WebDriverChecker {
+    public static class Remote extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            RemoteWebDriver driver = getRemoteDriver(args);
+            RemoteWebDriver driver = getDriverRemote(args);
             CommandExecutor command = driver.getCommandExecutor();
 
             if (command instanceof HttpCommandExecutor) {
@@ -390,7 +391,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class IE extends WebDriverChecker {
+    public static class IE extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -398,7 +399,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class Edge extends WebDriverChecker {
+    public static class Edge extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -406,7 +407,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class Opera extends WebDriverChecker {
+    public static class Opera extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -414,7 +415,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class Safari extends WebDriverChecker {
+    public static class Safari extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -422,7 +423,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class Chrome extends WebDriverChecker {
+    public static class Chrome extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -430,7 +431,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class Firefox extends WebDriverChecker {
+    public static class Firefox extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -438,7 +439,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class EdgeLegacy extends WebDriverChecker {
+    public static class EdgeLegacy extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -446,7 +447,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class FirefoxLegacy extends WebDriverChecker {
+    public static class FirefoxLegacy extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -454,7 +455,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class IOS extends WebDriverChecker {
+    public static class IOS extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -462,7 +463,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class IOSApp extends WebDriverChecker {
+    public static class IOSApp extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -476,7 +477,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class IOSSafari extends WebDriverChecker {
+    public static class IOSSafari extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -484,7 +485,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class Android extends WebDriverChecker {
+    public static class Android extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -492,7 +493,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class AndroidApp extends WebDriverChecker {
+    public static class AndroidApp extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -507,7 +508,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class AndroidChrome extends WebDriverChecker {
+    public static class AndroidChrome extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -515,7 +516,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class Mobile extends WebDriverChecker {
+    public static class Mobile extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -523,7 +524,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class MobileApp extends WebDriverChecker {
+    public static class MobileApp extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -531,7 +532,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    private static class WindowsApp extends WebDriverChecker {
+    public static class WindowsApp extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -574,19 +575,17 @@ public abstract class WebDriverChecker {
         }
     }
 
-    protected RemoteWebDriver getRemoteDriver(Object... args) {
-        return ((RemoteWebDriver) getDriver(args));
-    }
+    // ------------
 
     protected WebDriver getDriver(Object... args) {
         if (args.length == 0) {
-            return getServiceDriver();
+            return getDriverService();
         } else {
-            return getArgumentDriver(args[0]);
+            return getDriverArgument(args);
         }
     }
 
-    protected WebDriver getServiceDriver() {
+    protected WebDriver getDriverService() {
         ServiceLoader<WebDriverService> service = load(WebDriverService.class);
         Iterator<WebDriverService> serviceLoaders = service.iterator();
 
@@ -597,15 +596,22 @@ public abstract class WebDriverChecker {
         }
     }
 
-    protected WebDriver getArgumentDriver(Object wd) {
-        Object value = Optional
-                .ofNullable(wd)
-                .orElseThrow(WDCException.NullArgumentWD::new);
-        if (value instanceof WebDriver) {
-            return (WebDriver) value;
+    protected WebDriver getDriverArgument(Object... args) {
+        if (args.length == 0) {
+            throw new WDCException.NoSuchArgumentWD();
         } else {
-            throw new WDCException.NoneArgumentWD();
+            Object value = Optional.ofNullable(args[0])
+                    .orElseThrow(NullArgumentWD::new);
+            if (value instanceof WebDriver) {
+                return (WebDriver) value;
+            } else {
+                throw new WDCException.NoneArgumentWD();
+            }
         }
+    }
+
+    protected RemoteWebDriver getDriverRemote(Object... args) {
+        return ((RemoteWebDriver) getDriver(args));
     }
 
     // ------------
