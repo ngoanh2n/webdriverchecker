@@ -13,7 +13,6 @@ import java.util.Optional;
 import java.util.ServiceLoader;
 
 import static io.github.ngoanh2n.wdc.WDCBrowser.*;
-import static io.github.ngoanh2n.wdc.WDCException.NullArgumentWD;
 import static java.util.ServiceLoader.load;
 
 /**
@@ -101,7 +100,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy() {
-        return WebDriverChecker.is(new EdgeLegacy());
+        return WebDriverChecker.is(new LegacyEdge());
     }
 
     /**
@@ -110,7 +109,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy() {
-        return WebDriverChecker.is(new FirefoxLegacy());
+        return WebDriverChecker.is(new LegacyFirefox());
     }
 
     /**
@@ -183,6 +182,15 @@ public abstract class WebDriverChecker {
      */
     public static boolean isMobileApp() {
         return WebDriverChecker.is(new MobileApp());
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
+     *
+     * @return true if {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
+     */
+    public static boolean isMobileWeb() {
+        return WebDriverChecker.is(new MobileBrowser());
     }
 
     /**
@@ -274,7 +282,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy(WebDriver wd) {
-        return WebDriverChecker.is(new EdgeLegacy(), wd);
+        return WebDriverChecker.is(new LegacyEdge(), wd);
     }
 
     /**
@@ -283,7 +291,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy(WebDriver wd) {
-        return WebDriverChecker.is(new FirefoxLegacy(), wd);
+        return WebDriverChecker.is(new LegacyFirefox(), wd);
     }
 
     /**
@@ -356,6 +364,15 @@ public abstract class WebDriverChecker {
      */
     public static boolean isMobileApp(WebDriver wd) {
         return WebDriverChecker.is(new MobileApp(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
+     *
+     * @return true if {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
+     */
+    public static boolean isMobileWeb(WebDriver wd) {
+        return WebDriverChecker.is(new MobileBrowser(), wd);
     }
 
     /**
@@ -439,7 +456,9 @@ public abstract class WebDriverChecker {
         }
     }
 
-    public static class EdgeLegacy extends WebDriverChecker {
+    // ------------
+
+    public static class LegacyEdge extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
@@ -447,13 +466,15 @@ public abstract class WebDriverChecker {
         }
     }
 
-    public static class FirefoxLegacy extends WebDriverChecker {
+    public static class LegacyFirefox extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
             return is(new Firefox(), args) && getBrowserVersion(args) < 48;
         }
     }
+
+    // ------------
 
     public static class IOS extends WebDriverChecker {
 
@@ -468,10 +489,7 @@ public abstract class WebDriverChecker {
         @Override
         protected boolean execute(Object... args) {
             if (is(new IOS(), args)) {
-                if (!getCapability("app", args).isEmpty()) {
-                    return true;
-                }
-                return getBrowserName(args).isEmpty();
+                return is(new ExistedApp(), args) || !is(new ExistedBrowser(), args);
             }
             return false;
         }
@@ -485,6 +503,8 @@ public abstract class WebDriverChecker {
         }
     }
 
+    // ------------
+
     public static class Android extends WebDriverChecker {
 
         @Override
@@ -497,12 +517,8 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            if (is(new Android())) {
-                if (!getCapability("app", args).isEmpty()) {
-                    return true;
-                }
-                String appPackage = getCapability("appPackage", args);
-                return getBrowserName(args).isEmpty() || !appPackage.equals("com.android.chrome");
+            if (is(new Android(), args)) {
+                return is(new ExistedApp(), args) || !is(new ExistedBrowser(), args);
             }
             return false;
         }
@@ -515,6 +531,8 @@ public abstract class WebDriverChecker {
             return is(new Android(), args) && is(new Chrome(), args);
         }
     }
+
+    // ------------
 
     public static class Mobile extends WebDriverChecker {
 
@@ -532,11 +550,39 @@ public abstract class WebDriverChecker {
         }
     }
 
+    public static class MobileBrowser extends WebDriverChecker {
+
+        @Override
+        protected boolean execute(Object... args) {
+            return is(new IOSSafari(), args) || is(new AndroidChrome(), args);
+        }
+    }
+
+    // ------------
+
     public static class WindowsApp extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getPlatformName(args).equals(WINDOWS.getName()) && getBrowserName(args).isEmpty();
+            return getPlatformName(args).equals(WINDOWS.getName()) && !is(new ExistedBrowser(), args);
+        }
+    }
+
+    // ------------
+
+    public static class ExistedApp extends WebDriverChecker {
+
+        @Override
+        protected boolean execute(Object[] args) {
+            return !getCapability("app", args).isEmpty();
+        }
+    }
+
+    public static class ExistedBrowser extends WebDriverChecker {
+
+        @Override
+        protected boolean execute(Object[] args) {
+            return !getBrowserName(args).isEmpty();
         }
     }
 
@@ -601,7 +647,7 @@ public abstract class WebDriverChecker {
             throw new WDCException.NoSuchArgumentWD();
         } else {
             Object value = Optional.ofNullable(args[0])
-                    .orElseThrow(NullArgumentWD::new);
+                    .orElseThrow(WDCException.NullArgumentWD::new);
             if (value instanceof WebDriver) {
                 return (WebDriver) value;
             } else {
