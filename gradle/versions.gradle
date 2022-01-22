@@ -5,5 +5,5 @@
 ext {
     SELENIUM_VERSION                =   "3.141.59"
     SELENIDE_VERSION                =   "5.25.0"
-    JUNIT5_JUPITER_VERSION          =   "5.8.0-M1"
+    JUNIT5_JUPITER_VERSION          =   "5.8.2"
 }
