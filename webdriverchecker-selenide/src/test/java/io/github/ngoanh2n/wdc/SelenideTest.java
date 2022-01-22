@@ -1,10 +1,9 @@
 package io.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.*;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -203,12 +202,12 @@ public class SelenideTest {
 
     private void openDriver(String name) {
         Configuration.browser = name;
-        open();
+        Selenide.open();
     }
 
     @AfterEach
     void closeDriver() {
-        closeWebDriver();
+        Selenide.closeWebDriver();
         assertThrows(WDCException.NoSuchWDSession.class, WebDriverChecker::isAlive);
     }
 }
