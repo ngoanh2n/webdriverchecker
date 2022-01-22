@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
-import static io.github.ngoanh2n.wdc.WDCBrowser.*;
+import static io.github.ngoanh2n.wdc.WebDriverChecker.Type.*;
 import static java.util.ServiceLoader.load;
 
 /**
@@ -113,27 +113,27 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code IOS}
+     * Check whether the current {@linkplain WebDriver} for {@code iOS}
      *
-     * @return true if {@code IOS}
+     * @return true if {@code iOS}
      */
     public static boolean isIOS() {
         return WebDriverChecker.is(new IOS());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Native application} on {@code IOS}
+     * Check whether the current {@linkplain WebDriver} for {@code Native application} on {@code iOS}
      *
-     * @return true if {@code Native application} on {@code IOS}
+     * @return true if {@code Native application} on {@code iOS}
      */
     public static boolean isIOSApp() {
         return WebDriverChecker.is(new IOSApp());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Safari} on {@code IOS}
+     * Check whether the current {@linkplain WebDriver} for {@code Safari} on {@code iOS}
      *
-     * @return true if {@code Safari} on {@code IOS}
+     * @return true if {@code Safari} on {@code iOS}
      */
     public static boolean isIOSSafari() {
         return WebDriverChecker.is(new IOSSafari());
@@ -167,9 +167,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code IOS} or {@code Android}
+     * Check whether the current {@linkplain WebDriver} for {@code iOS} or {@code Android}
      *
-     * @return true if {@code IOS} or {@code Android}
+     * @return true if {@code iOS} or {@code Android}
      */
     public static boolean isMobile() {
         return WebDriverChecker.is(new Mobile());
@@ -295,27 +295,27 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code IOS}
+     * Check whether {@linkplain WebDriver} for {@code iOS}
      *
-     * @return true if {@code IOS}
+     * @return true if {@code iOS}
      */
     public static boolean isIOS(WebDriver wd) {
         return WebDriverChecker.is(new IOS(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code IOS}
+     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code iOS}
      *
-     * @return true if {@code Native application} on {@code IOS}
+     * @return true if {@code Native application} on {@code iOS}
      */
     public static boolean isIOSApp(WebDriver wd) {
         return WebDriverChecker.is(new IOSApp(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Safari} on {@code IOS}
+     * Check whether {@linkplain WebDriver} for {@code Safari} on {@code iOS}
      *
-     * @return true if {@code Safari} on {@code IOS}
+     * @return true if {@code Safari} on {@code iOS}
      */
     public static boolean isIOSSafari(WebDriver wd) {
         return WebDriverChecker.is(new IOSSafari(), wd);
@@ -358,9 +358,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code IOS} or {@code Android}
+     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code iOS} or {@code Android}
      *
-     * @return true if {@code Native application} on {@code IOS} or {@code Android}
+     * @return true if {@code Native application} on {@code iOS} or {@code Android}
      */
     public static boolean isMobileApp(WebDriver wd) {
         return WebDriverChecker.is(new MobileApp(), wd);
@@ -386,11 +386,125 @@ public abstract class WebDriverChecker {
 
     // ------------
 
+    protected static boolean is(WebDriverChecker wdc, Object... args) {
+        if (!(wdc instanceof Alive)) {
+            if (!is(new Alive(), args)) {
+                throw new WDCException.NoSuchWDSession();
+            }
+        }
+        return wdc.execute(args);
+    }
+
+    // ------------
+
+    protected abstract boolean execute(Object[] args);
+
+    // ------------
+
+    protected String getPlatformName(Object... args) {
+        String value = getCapability("platformName", args);
+        return value.toLowerCase();
+    }
+
+    protected String getBrowserName(Object... args) {
+        String value = getCapability("browserName", args);
+        return value.replaceAll("\\s+", "").toLowerCase();
+    }
+
+    protected double getBrowserVersion(Object... args) {
+        String value = getCapability("browserVersion", args);
+        return Double.parseDouble(value.split("\\.")[0]);
+    }
+
+    protected String getCapability(String name, Object... args) {
+        Object value = getCapabilities(args).getCapability(name);
+        return String.valueOf(Optional.ofNullable(value).orElse(""));
+    }
+
+    protected Capabilities getCapabilities(Object... args) {
+        WebDriver wd = getWD(args);
+        if (wd instanceof HasCapabilities) {
+            return ((HasCapabilities) wd).getCapabilities();
+        } else {
+            throw new WDCException.NoSuchCapabilities();
+        }
+    }
+
+    // ------------
+
+    protected WebDriver getWD(Object... args) {
+        if (args.length == 0) {
+            return getServiceWD();
+        } else {
+            return getArgumentWD(args);
+        }
+    }
+
+    protected WebDriver getServiceWD() {
+        ServiceLoader<WebDriverService> service = load(WebDriverService.class);
+        Iterator<WebDriverService> serviceLoaders = service.iterator();
+
+        if (serviceLoaders.hasNext()) {
+            return serviceLoaders.next().serve();
+        } else {
+            throw new WDCException.NoSuchServiceWD();
+        }
+    }
+
+    protected WebDriver getArgumentWD(Object... args) {
+        if (args.length == 0) {
+            throw new WDCException.NoSuchArgumentWD();
+        } else {
+            Object value = Optional.ofNullable(args[0])
+                    .orElseThrow(WDCException.NullArgumentWD::new);
+            if (value instanceof WebDriver) {
+                return (WebDriver) value;
+            } else {
+                throw new WDCException.NoneArgumentWD();
+            }
+        }
+    }
+
+    protected RemoteWebDriver getRemoteWD(Object... args) {
+        return ((RemoteWebDriver) getWD(args));
+    }
+
+    // ------------------------------------
+
+    protected enum Type {
+
+        // Browsers
+        EDGE("msedge"),
+        OPERA("opera"),
+        SAFARI("safari"),
+        CHROME("chrome"),
+        FIREFOX("firefox"),
+        IE("internetexplorer"),
+        EDGE_LEGACY("microsoftedge"),
+
+        // Platforms
+        IOS("ios"),
+        ANDROID("android"),
+        WINDOWS("windows");
+
+        private final String name;
+
+        Type(String name) {
+            this.name = name;
+        }
+
+        String getName() {
+            return name;
+        }
+    }
+
+    // ------------------------------------
+
     public static class Alive extends WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            return getDriverRemote(args).getSessionId() != null;
+            return getRemoteWD(args).getSessionId() != null;
         }
     }
 
@@ -398,8 +512,8 @@ public abstract class WebDriverChecker {
 
         @Override
         protected boolean execute(Object... args) {
-            RemoteWebDriver driver = getDriverRemote(args);
-            CommandExecutor command = driver.getCommandExecutor();
+            RemoteWebDriver wd = getRemoteWD(args);
+            CommandExecutor command = wd.getCommandExecutor();
 
             if (command instanceof HttpCommandExecutor) {
                 return (!(command instanceof DriverCommandExecutor));
@@ -456,7 +570,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    // ------------
+    // ------------------------------------
 
     public static class LegacyEdge extends WebDriverChecker {
 
@@ -474,7 +588,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    // ------------
+    // ------------------------------------
 
     public static class IOS extends WebDriverChecker {
 
@@ -503,7 +617,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    // ------------
+    // ------------------------------------
 
     public static class Android extends WebDriverChecker {
 
@@ -532,7 +646,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    // ------------
+    // ------------------------------------
 
     public static class Mobile extends WebDriverChecker {
 
@@ -558,8 +672,6 @@ public abstract class WebDriverChecker {
         }
     }
 
-    // ------------
-
     public static class WindowsApp extends WebDriverChecker {
 
         @Override
@@ -568,7 +680,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    // ------------
+    // ------------------------------------
 
     public static class ExistedApp extends WebDriverChecker {
 
@@ -584,90 +696,5 @@ public abstract class WebDriverChecker {
         protected boolean execute(Object[] args) {
             return !getBrowserName(args).isEmpty();
         }
-    }
-
-    // ------------
-
-    protected abstract boolean execute(Object[] args);
-
-    // ------------
-
-    protected String getPlatformName(Object... args) {
-        String value = getCapability("platformName", args);
-        return value.toLowerCase();
-    }
-
-    protected String getBrowserName(Object... args) {
-        String value = getCapability("browserName", args);
-        return value.replaceAll("\\s+", "").toLowerCase();
-    }
-
-    protected double getBrowserVersion(Object... args) {
-        String value = getCapability("browserVersion", args);
-        return Double.parseDouble(value.split("\\.")[0]);
-    }
-
-    protected String getCapability(String name, Object... args) {
-        Object value = getCapabilities(args).getCapability(name);
-        return String.valueOf(Optional.ofNullable(value).orElse(""));
-    }
-
-    protected Capabilities getCapabilities(Object... args) {
-        WebDriver driver = getDriver(args);
-        if (driver instanceof HasCapabilities) {
-            return ((HasCapabilities) driver).getCapabilities();
-        } else {
-            throw new WDCException.NoSuchCapabilities();
-        }
-    }
-
-    // ------------
-
-    protected WebDriver getDriver(Object... args) {
-        if (args.length == 0) {
-            return getDriverService();
-        } else {
-            return getDriverArgument(args);
-        }
-    }
-
-    protected WebDriver getDriverService() {
-        ServiceLoader<WebDriverService> service = load(WebDriverService.class);
-        Iterator<WebDriverService> serviceLoaders = service.iterator();
-
-        if (serviceLoaders.hasNext()) {
-            return serviceLoaders.next().serve();
-        } else {
-            throw new WDCException.NoSuchServiceWD();
-        }
-    }
-
-    protected WebDriver getDriverArgument(Object... args) {
-        if (args.length == 0) {
-            throw new WDCException.NoSuchArgumentWD();
-        } else {
-            Object value = Optional.ofNullable(args[0])
-                    .orElseThrow(WDCException.NullArgumentWD::new);
-            if (value instanceof WebDriver) {
-                return (WebDriver) value;
-            } else {
-                throw new WDCException.NoneArgumentWD();
-            }
-        }
-    }
-
-    protected RemoteWebDriver getDriverRemote(Object... args) {
-        return ((RemoteWebDriver) getDriver(args));
-    }
-
-    // ------------
-
-    protected static boolean is(WebDriverChecker wdc, Object... args) {
-        if (!(wdc instanceof Alive)) {
-            if (!is(new Alive(), args)) {
-                throw new WDCException.NoSuchWDSession();
-            }
-        }
-        return wdc.execute(args);
     }
 }
