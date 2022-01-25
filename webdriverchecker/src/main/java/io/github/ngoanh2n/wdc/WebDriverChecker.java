@@ -11,6 +11,7 @@ import java.util.ServiceLoader;
 
 import static io.github.ngoanh2n.wdc.Appium.*;
 import static io.github.ngoanh2n.wdc.Selenium.*;
+import static io.github.ngoanh2n.wdc.WDCException.*;
 import static java.util.ServiceLoader.load;
 
 /**
@@ -387,7 +388,7 @@ public abstract class WebDriverChecker {
     protected static boolean whether(WebDriverChecker wdc, Object... args) {
         if (!(wdc instanceof Alive)) {
             if (!whether(new Alive(), args)) {
-                throw new WDCException.NoSuchWDSession();
+                throw new NoSuchWDSession();
             }
         }
         return wdc.check(args);
@@ -421,50 +422,45 @@ public abstract class WebDriverChecker {
 
     protected Capabilities getCapabilities(Object... args) {
         WebDriver wd = getWD(args);
-        if (wd instanceof HasCapabilities) {
-            return ((HasCapabilities) wd).getCapabilities();
-        } else {
-            throw new WDCException.NoSuchCapabilities();
+        if (!(wd instanceof HasCapabilities)) {
+            throw new NoSuchCapabilities();
         }
+        return ((HasCapabilities) wd).getCapabilities();
     }
 
     // ------------
 
-    protected RemoteWebDriver getRemoteWD(Object... args) {
-        return ((RemoteWebDriver) getWD(args));
-    }
-
     protected WebDriver getWD(Object... args) {
         if (args.length == 0) {
             return getServiceWD();
-        } else {
-            return getArgumentWD(args);
         }
+        return getArgumentWD(args);
     }
 
     protected WebDriver getServiceWD() {
         ServiceLoader<WebDriverService> service = load(WebDriverService.class);
         Iterator<WebDriverService> serviceLoaders = service.iterator();
 
-        if (serviceLoaders.hasNext()) {
-            return serviceLoaders.next().serve();
-        } else {
-            throw new WDCException.NoSuchServiceWD();
+        if (!serviceLoaders.hasNext()) {
+            throw new NoSuchServiceWD();
         }
+        return serviceLoaders.next().serve();
     }
 
     protected WebDriver getArgumentWD(Object... args) {
-        if (args.length == 0) {
-            throw new WDCException.NoSuchArgumentWD();
-        } else {
+        if (args.length != 0) {
             Object value = Optional
                     .ofNullable(args[0])
-                    .orElseThrow(WDCException.NullArgumentWD::new);
+                    .orElseThrow(NullArgumentWD::new);
             if (value instanceof WebDriver) {
                 return (WebDriver) value;
-            } else {
-                throw new WDCException.NoneArgumentWD();
             }
+            throw new NoneArgumentWD();
         }
+        throw new NoSuchArgumentWD();
+    }
+
+    protected RemoteWebDriver getRemoteWD(Object... args) {
+        return ((RemoteWebDriver) getWD(args));
     }
 }
