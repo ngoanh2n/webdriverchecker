@@ -12,7 +12,7 @@ modifyPom {
         name "webdriverchecker"
         inceptionYear "2021"
         url "https://github.com/ngoanh2n/webdriverchecker"
-        description "Check Selenium WebDriver is running for Java"
+        description "Check instance of WebDriver for multiple browsers and platforms"
 
         scm {
             url "http://github.com/ngoanh2n/webdriverchecker/tree/master"

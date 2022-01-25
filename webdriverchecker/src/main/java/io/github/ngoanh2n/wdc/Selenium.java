@@ -35,10 +35,10 @@ class Selenium {
         @Override
         protected boolean check(Object... args) {
             RemoteWebDriver wd = getRemoteWD(args);
-            CommandExecutor command = wd.getCommandExecutor();
+            CommandExecutor cmd = wd.getCommandExecutor();
 
-            if (command instanceof HttpCommandExecutor) {
-                return (!(command instanceof DriverCommandExecutor));
+            if (cmd instanceof HttpCommandExecutor) {
+                return !(cmd instanceof DriverCommandExecutor);
             }
             return false;
         }
