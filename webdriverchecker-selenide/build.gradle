@@ -4,7 +4,7 @@
  */
 group(property("group"))
 version(property("version"))
-description(property("selenideDescription"))
+description(property("selenideDescription") as String)
 
 dependencies {
     implementation project(":webdriverchecker")

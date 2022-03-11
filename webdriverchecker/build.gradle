@@ -4,7 +4,7 @@
  */
 group(property("group"))
 version(property("version"))
-description(property("baseDescription"))
+description(property("baseDescription") as String)
 
 dependencies {
     compileOnly("org.seleniumhq.selenium:selenium-remote-driver:${SELENIUM_VERSION}")
