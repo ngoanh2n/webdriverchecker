@@ -1,3 +1,5 @@
+import java.nio.charset.StandardCharsets
+
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @since 2021-04-09
@@ -12,7 +14,7 @@ tasks.withType(Test) {
         events "passed", "skipped", "failed"
     }
 
-    systemProperty("file.encoding", ENCODING)
+    systemProperty("file.encoding", StandardCharsets.UTF_8.name())
     systemProperty("junit.jupiter.extensions.autodetection.enabled", "true")
 
     ignoreFailures = true
