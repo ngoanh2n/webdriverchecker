@@ -1,4 +1,4 @@
-package io.github.ngoanh2n.wdc;
+package com.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;

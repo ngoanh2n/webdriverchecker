@@ -1,4 +1,4 @@
-package io.github.ngoanh2n.wdc;
+package com.github.ngoanh2n.wdc;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
