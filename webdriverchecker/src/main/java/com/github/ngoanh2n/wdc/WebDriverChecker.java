@@ -1,4 +1,4 @@
-package io.github.ngoanh2n.wdc;
+package com.github.ngoanh2n.wdc;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
@@ -9,9 +9,8 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
-import static io.github.ngoanh2n.wdc.Appium.*;
-import static io.github.ngoanh2n.wdc.Selenium.*;
-import static io.github.ngoanh2n.wdc.WDCException.*;
+import static com.github.ngoanh2n.wdc.Appium.*;
+import static com.github.ngoanh2n.wdc.WDCException.*;
 import static java.util.ServiceLoader.load;
 
 /**
@@ -27,7 +26,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive() {
-        return WebDriverChecker.whether(new Alive());
+        return WebDriverChecker.whether(new Selenium.Alive());
     }
 
     /**
@@ -36,7 +35,7 @@ public abstract class WebDriverChecker {
      * @return true if remote
      */
     public static boolean isRemote() {
-        return WebDriverChecker.whether(new Remote());
+        return WebDriverChecker.whether(new Selenium.Remote());
     }
 
     /**
@@ -45,7 +44,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code IE}
      */
     public static boolean isIE() {
-        return WebDriverChecker.whether(new IE());
+        return WebDriverChecker.whether(new Selenium.IE());
     }
 
     /**
@@ -54,7 +53,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Edge}
      */
     public static boolean isEdge() {
-        return WebDriverChecker.whether(new Edge());
+        return WebDriverChecker.whether(new Selenium.Edge());
     }
 
     /**
@@ -63,7 +62,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Opera}
      */
     public static boolean isOpera() {
-        return WebDriverChecker.whether(new Opera());
+        return WebDriverChecker.whether(new Selenium.Opera());
     }
 
     /**
@@ -72,7 +71,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari}
      */
     public static boolean isSafari() {
-        return WebDriverChecker.whether(new Safari());
+        return WebDriverChecker.whether(new Selenium.Safari());
     }
 
     /**
@@ -81,7 +80,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome}
      */
     public static boolean isChrome() {
-        return WebDriverChecker.whether(new Chrome());
+        return WebDriverChecker.whether(new Selenium.Chrome());
     }
 
     /**
@@ -90,7 +89,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Firefox}
      */
     public static boolean isFirefox() {
-        return WebDriverChecker.whether(new Firefox());
+        return WebDriverChecker.whether(new Selenium.Firefox());
     }
 
     /**
@@ -99,7 +98,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy() {
-        return WebDriverChecker.whether(new LegacyEdge());
+        return WebDriverChecker.whether(new Selenium.LegacyEdge());
     }
 
     /**
@@ -108,7 +107,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy() {
-        return WebDriverChecker.whether(new LegacyFirefox());
+        return WebDriverChecker.whether(new Selenium.LegacyFirefox());
     }
 
     /**
@@ -209,7 +208,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive(WebDriver wd) {
-        return WebDriverChecker.whether(new Alive(), wd);
+        return WebDriverChecker.whether(new Selenium.Alive(), wd);
     }
 
     /**
@@ -218,7 +217,7 @@ public abstract class WebDriverChecker {
      * @return true if remote
      */
     public static boolean isRemote(WebDriver wd) {
-        return WebDriverChecker.whether(new Remote(), wd);
+        return WebDriverChecker.whether(new Selenium.Remote(), wd);
     }
 
     /**
@@ -227,7 +226,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code IE}
      */
     public static boolean isIE(WebDriver wd) {
-        return WebDriverChecker.whether(new IE(), wd);
+        return WebDriverChecker.whether(new Selenium.IE(), wd);
     }
 
     /**
@@ -236,7 +235,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Edge}
      */
     public static boolean isEdge(WebDriver wd) {
-        return WebDriverChecker.whether(new Edge(), wd);
+        return WebDriverChecker.whether(new Selenium.Edge(), wd);
     }
 
     /**
@@ -245,7 +244,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Opera}
      */
     public static boolean isOpera(WebDriver wd) {
-        return WebDriverChecker.whether(new Opera(), wd);
+        return WebDriverChecker.whether(new Selenium.Opera(), wd);
     }
 
     /**
@@ -254,7 +253,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari}
      */
     public static boolean isSafari(WebDriver wd) {
-        return WebDriverChecker.whether(new Safari(), wd);
+        return WebDriverChecker.whether(new Selenium.Safari(), wd);
     }
 
     /**
@@ -263,7 +262,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome}
      */
     public static boolean isChrome(WebDriver wd) {
-        return WebDriverChecker.whether(new Chrome(), wd);
+        return WebDriverChecker.whether(new Selenium.Chrome(), wd);
     }
 
     /**
@@ -272,7 +271,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Firefox}
      */
     public static boolean isFirefox(WebDriver wd) {
-        return WebDriverChecker.whether(new Firefox(), wd);
+        return WebDriverChecker.whether(new Selenium.Firefox(), wd);
     }
 
     /**
@@ -281,7 +280,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy(WebDriver wd) {
-        return WebDriverChecker.whether(new LegacyEdge(), wd);
+        return WebDriverChecker.whether(new Selenium.LegacyEdge(), wd);
     }
 
     /**
@@ -290,7 +289,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy(WebDriver wd) {
-        return WebDriverChecker.whether(new LegacyFirefox(), wd);
+        return WebDriverChecker.whether(new Selenium.LegacyFirefox(), wd);
     }
 
     /**
@@ -386,8 +385,8 @@ public abstract class WebDriverChecker {
     // ------------
 
     protected static boolean whether(WebDriverChecker wdc, Object... args) {
-        if (!(wdc instanceof Alive)) {
-            if (!whether(new Alive(), args)) {
+        if (!(wdc instanceof Selenium.Alive)) {
+            if (!whether(new Selenium.Alive(), args)) {
                 throw new NoSuchWDSession();
             }
         }

@@ -1,7 +1,7 @@
-package io.github.ngoanh2n.wdc;
+package com.github.ngoanh2n.wdc;
 
-import static io.github.ngoanh2n.wdc.Selenium.*;
-import static io.github.ngoanh2n.wdc.WDCType.*;
+import static com.github.ngoanh2n.wdc.WDCType.*;
+import static com.github.ngoanh2n.wdc.Selenium.*;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)

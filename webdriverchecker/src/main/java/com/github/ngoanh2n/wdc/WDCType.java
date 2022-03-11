@@ -1,4 +1,4 @@
-package io.github.ngoanh2n.wdc;
+package com.github.ngoanh2n.wdc;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
