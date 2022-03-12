@@ -1,10 +1,11 @@
-import java.nio.charset.StandardCharsets
-
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @since 2021-04-09
  */
 allprojects {
+    group(property("prj.groupId"))
+    version(property("prj.version"))
+
     repositories {
         mavenCentral()
         maven { url("https://plugins.gradle.org/m2/") }
@@ -13,14 +14,11 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: "java"
     apply plugin: "idea"
+    apply plugin: "java"
 
     apply from: rootProject.file("gradle/testing.gradle")
+    apply from: rootProject.file("gradle/compiling.gradle")
+    apply from: rootProject.file("gradle/publishing.gradle")
     apply from: rootProject.file("gradle/dependencies.gradle")
-
-    [compileJava, compileTestJava]*.sourceCompatibility = 1.8
-    [compileJava, compileTestJava]*.targetCompatibility = 1.8
-    [compileJava, compileTestJava]*.options.collect { options -> options.debug = true }
-    [compileJava, compileTestJava]*.options.collect { options -> options.encoding = "UTF-8" }
 }
