@@ -22,5 +22,5 @@ subprojects {
     [compileJava, compileTestJava]*.sourceCompatibility = 1.8
     [compileJava, compileTestJava]*.targetCompatibility = 1.8
     [compileJava, compileTestJava]*.options.collect { options -> options.debug = true }
-    [compileJava, compileTestJava]*.options.collect { options -> options.encoding = StandardCharsets.UTF_8.name() }
+    [compileJava, compileTestJava]*.options.collect { options -> options.encoding = "UTF-8" }
 }
