@@ -2,10 +2,6 @@
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @since 2021-04-10
  */
-group(property("group"))
-version(property("version"))
-description(property("selenideDescription") as String)
-
 dependencies {
     implementation(project(":webdriverchecker"))
     implementation("com.codeborne:selenide:${SELENIDE_VERSION}")
