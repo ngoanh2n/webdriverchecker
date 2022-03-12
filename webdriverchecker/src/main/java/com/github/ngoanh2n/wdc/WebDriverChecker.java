@@ -204,6 +204,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} is not quit
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if running
      */
     public static boolean isAlive(WebDriver wd) {
@@ -213,6 +214,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} is remote
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if remote
      */
     public static boolean isRemote(WebDriver wd) {
@@ -222,6 +224,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code IE}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code IE}
      */
     public static boolean isIE(WebDriver wd) {
@@ -231,6 +234,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Edge}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Edge}
      */
     public static boolean isEdge(WebDriver wd) {
@@ -240,6 +244,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Opera}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Opera}
      */
     public static boolean isOpera(WebDriver wd) {
@@ -249,6 +254,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Safari}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Safari}
      */
     public static boolean isSafari(WebDriver wd) {
@@ -258,6 +264,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Chrome}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Chrome}
      */
     public static boolean isChrome(WebDriver wd) {
@@ -267,6 +274,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Firefox}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Firefox}
      */
     public static boolean isFirefox(WebDriver wd) {
@@ -276,6 +284,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Legacy Edge (Edge HTML)}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy(WebDriver wd) {
@@ -285,6 +294,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Legacy Firefox (lower than version 48)}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy(WebDriver wd) {
@@ -294,6 +304,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code iOS}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code iOS}
      */
     public static boolean isIOS(WebDriver wd) {
@@ -303,6 +314,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Native application} on {@code iOS}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Native application} on {@code iOS}
      */
     public static boolean isIOSApp(WebDriver wd) {
@@ -312,6 +324,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Safari} on {@code iOS}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Safari} on {@code iOS}
      */
     public static boolean isIOSSafari(WebDriver wd) {
@@ -321,6 +334,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Android}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Android}
      */
     public static boolean isAndroid(WebDriver wd) {
@@ -330,6 +344,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Native application} on {@code Android}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Native application} on {@code Android}
      */
     public static boolean isAndroidApp(WebDriver wd) {
@@ -339,6 +354,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Chrome} on {@code Android}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Chrome} on {@code Android}
      */
     public static boolean isAndroidChrome(WebDriver wd) {
@@ -348,6 +364,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code IOS} or {@code Android}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code IOS} or {@code Android}
      */
     public static boolean isMobile(WebDriver wd) {
@@ -357,6 +374,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Native application} on {@code iOS} or {@code Android}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Native application} on {@code iOS} or {@code Android}
      */
     public static boolean isMobileApp(WebDriver wd) {
@@ -366,6 +384,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
      */
     public static boolean isMobileWeb(WebDriver wd) {
@@ -375,6 +394,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} for {@code Windows application}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Windows application}
      */
     public static boolean isWindowsApp(WebDriver wd) {
