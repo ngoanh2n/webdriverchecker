@@ -3,6 +3,5 @@
  * @since 2021-04-09
  */
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${JUNIT_JUPITER_VERSION}")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:${JUNIT_JUPITER_VERSION}")
+    testImplementation("org.junit.jupiter:junit-jupiter:${JUNIT_JUPITER_VERSION}")
 }
