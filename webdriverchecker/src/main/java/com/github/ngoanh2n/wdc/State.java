@@ -48,4 +48,20 @@ class State {
             return false;
         }
     }
+
+    static class App extends WebDriverChecker {
+
+        @Override
+        protected boolean check(Object... args) {
+            return !getCapability("app", args).isEmpty();
+        }
+    }
+
+    static class Browser extends WebDriverChecker {
+
+        @Override
+        protected boolean check(Object... args) {
+            return !getBrowserName(args).isEmpty();
+        }
+    }
 }
