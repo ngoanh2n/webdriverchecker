@@ -1,7 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
-import static com.github.ngoanh2n.wdc.WDCType.ANDROID;
-import static com.github.ngoanh2n.wdc.WDCType.IOS;
+import static com.github.ngoanh2n.wdc.WDCType.*;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -9,6 +8,30 @@ import static com.github.ngoanh2n.wdc.WDCType.IOS;
  * @since 2021-04-10
  */
 class Platform {
+
+    static class Linux extends WebDriverChecker {
+
+        @Override
+        protected boolean check(Object... args) {
+            return getPlatformName(args).equals(LINUX.getName());
+        }
+    }
+
+    static class Mac extends WebDriverChecker {
+
+        @Override
+        protected boolean check(Object... args) {
+            return getPlatformName(args).equals(MAC.getName());
+        }
+    }
+
+    static class Windows extends WebDriverChecker {
+
+        @Override
+        protected boolean check(Object... args) {
+            return getPlatformName(args).equals(WINDOWS.getName());
+        }
+    }
 
     static class IOS extends WebDriverChecker {
 
