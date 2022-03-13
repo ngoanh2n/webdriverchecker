@@ -4,7 +4,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -19,7 +20,6 @@ public class SelenideTest {
     void isIETest() {
         openDriver("ie");
 
-        assertTrue(WebDriverChecker.isAlive());
         assertFalse(WebDriverChecker.isRemote());
 
         assertTrue(WebDriverChecker.isIE());
@@ -50,7 +50,6 @@ public class SelenideTest {
     void isEdgeTest() {
         openDriver("edge");
 
-        assertTrue(WebDriverChecker.isAlive());
         assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
@@ -81,7 +80,6 @@ public class SelenideTest {
     void isOperaTest() {
         openDriver("opera");
 
-        assertTrue(WebDriverChecker.isAlive());
         assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
@@ -112,7 +110,6 @@ public class SelenideTest {
     void isChromeTest() {
         openDriver("chrome");
 
-        assertTrue(WebDriverChecker.isAlive());
         assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
@@ -143,7 +140,6 @@ public class SelenideTest {
     void isSafariTest() {
         openDriver("safari");
 
-        assertTrue(WebDriverChecker.isAlive());
         assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
@@ -174,7 +170,6 @@ public class SelenideTest {
     void isFirefoxTest() {
         openDriver("firefox");
 
-        assertTrue(WebDriverChecker.isAlive());
         assertFalse(WebDriverChecker.isRemote());
 
         assertFalse(WebDriverChecker.isIE());
@@ -208,6 +203,5 @@ public class SelenideTest {
     @AfterEach
     void closeDriver() {
         Selenide.closeWebDriver();
-        assertThrows(WDCException.NoSuchWDSession.class, WebDriverChecker::isAlive);
     }
 }

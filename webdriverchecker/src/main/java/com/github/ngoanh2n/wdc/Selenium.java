@@ -24,9 +24,26 @@ class Selenium {
 
     static class Alive extends WebDriverChecker {
 
+        private final boolean directed;
+
+        Alive() {
+            this(false);
+        }
+
+        Alive(boolean directed) {
+            this.directed = directed;
+        }
+
         @Override
         protected boolean check(Object... args) {
-            return getRemoteWD(args).getSessionId() != null;
+            try {
+                return getRemoteWD(args).getSessionId() != null;
+            } catch (WDCException.NoSuchWDSession exception) {
+                if (directed){
+                    return false;
+                }
+                throw exception;
+            }
         }
     }
 
