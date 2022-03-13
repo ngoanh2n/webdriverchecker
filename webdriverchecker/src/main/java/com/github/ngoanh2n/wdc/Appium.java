@@ -1,7 +1,7 @@
 package com.github.ngoanh2n.wdc;
 
-import static com.github.ngoanh2n.wdc.WDCType.*;
 import static com.github.ngoanh2n.wdc.Selenium.*;
+import static com.github.ngoanh2n.wdc.WDCType.*;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -13,7 +13,7 @@ class Appium {
     static class App extends WebDriverChecker {
 
         @Override
-        protected boolean check(Object[] args) {
+        protected boolean check(Object... args) {
             return !getCapability("app", args).isEmpty();
         }
     }
