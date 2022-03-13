@@ -43,7 +43,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code IE}
      */
     public static boolean isIE() {
-        return whether(new Selenium.IE());
+        return whether(new Browser.IE());
     }
 
     /**
@@ -52,7 +52,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Edge}
      */
     public static boolean isEdge() {
-        return whether(new Selenium.Edge());
+        return whether(new Browser.Edge());
     }
 
     /**
@@ -61,7 +61,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Opera}
      */
     public static boolean isOpera() {
-        return whether(new Selenium.Opera());
+        return whether(new Browser.Opera());
     }
 
     /**
@@ -70,7 +70,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari}
      */
     public static boolean isSafari() {
-        return whether(new Selenium.Safari());
+        return whether(new Browser.Safari());
     }
 
     /**
@@ -79,7 +79,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome}
      */
     public static boolean isChrome() {
-        return whether(new Selenium.Chrome());
+        return whether(new Browser.Chrome());
     }
 
     /**
@@ -88,7 +88,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Firefox}
      */
     public static boolean isFirefox() {
-        return whether(new Selenium.Firefox());
+        return whether(new Browser.Firefox());
     }
 
     /**
@@ -97,7 +97,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy() {
-        return whether(new Selenium.LegacyEdge());
+        return whether(new Browser.LegacyEdge());
     }
 
     /**
@@ -106,7 +106,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy() {
-        return whether(new Selenium.LegacyFirefox());
+        return whether(new Browser.LegacyFirefox());
     }
 
     /**
@@ -228,7 +228,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code IE}
      */
     public static boolean isIE(WebDriver wd) {
-        return whether(new Selenium.IE(), wd);
+        return whether(new Browser.IE(), wd);
     }
 
     /**
@@ -238,7 +238,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Edge}
      */
     public static boolean isEdge(WebDriver wd) {
-        return whether(new Selenium.Edge(), wd);
+        return whether(new Browser.Edge(), wd);
     }
 
     /**
@@ -248,7 +248,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Opera}
      */
     public static boolean isOpera(WebDriver wd) {
-        return whether(new Selenium.Opera(), wd);
+        return whether(new Browser.Opera(), wd);
     }
 
     /**
@@ -258,7 +258,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari}
      */
     public static boolean isSafari(WebDriver wd) {
-        return whether(new Selenium.Safari(), wd);
+        return whether(new Browser.Safari(), wd);
     }
 
     /**
@@ -268,7 +268,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome}
      */
     public static boolean isChrome(WebDriver wd) {
-        return whether(new Selenium.Chrome(), wd);
+        return whether(new Browser.Chrome(), wd);
     }
 
     /**
@@ -278,7 +278,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Firefox}
      */
     public static boolean isFirefox(WebDriver wd) {
-        return whether(new Selenium.Firefox(), wd);
+        return whether(new Browser.Firefox(), wd);
     }
 
     /**
@@ -288,7 +288,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy(WebDriver wd) {
-        return whether(new Selenium.LegacyEdge(), wd);
+        return whether(new Browser.LegacyEdge(), wd);
     }
 
     /**
@@ -298,7 +298,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy(WebDriver wd) {
-        return whether(new Selenium.LegacyFirefox(), wd);
+        return whether(new Browser.LegacyFirefox(), wd);
     }
 
     /**

@@ -1,10 +1,5 @@
 package com.github.ngoanh2n.wdc;
 
-import org.openqa.selenium.remote.CommandExecutor;
-import org.openqa.selenium.remote.HttpCommandExecutor;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.service.DriverCommandExecutor;
-
 import static com.github.ngoanh2n.wdc.WDCType.*;
 
 /**
@@ -12,9 +7,9 @@ import static com.github.ngoanh2n.wdc.WDCType.*;
  * @version 1.0.0
  * @since 2021-04-10
  */
-class Selenium {
+class Browser {
 
-    static class Browser extends WebDriverChecker {
+    static class HasBrowserName extends WebDriverChecker {
 
         @Override
         protected boolean check(Object... args) {

@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
-import static com.github.ngoanh2n.wdc.Selenium.*;
+import static com.github.ngoanh2n.wdc.Browser.*;
 import static com.github.ngoanh2n.wdc.WDCType.*;
 
 /**
@@ -33,7 +33,7 @@ class Appium {
         @Override
         protected boolean check(Object... args) {
             if (whether(new IOS(), args)) {
-                return whether(new App(), args) || !whether(new Browser(), args);
+                return whether(new App(), args) || !whether(new HasBrowserName(), args);
             }
             return false;
         }
@@ -62,7 +62,7 @@ class Appium {
         @Override
         protected boolean check(Object... args) {
             if (whether(new Android(), args)) {
-                return whether(new App(), args) || !whether(new Browser(), args);
+                return whether(new App(), args) || !whether(new HasBrowserName(), args);
             }
             return false;
         }
@@ -108,7 +108,7 @@ class Appium {
 
         @Override
         protected boolean check(Object... args) {
-            return !whether(new Browser(), args) && getPlatformName(args).equals(WINDOWS.getName());
+            return !whether(new HasBrowserName(), args) && getPlatformName(args).equals(WINDOWS.getName());
         }
     }
 }
