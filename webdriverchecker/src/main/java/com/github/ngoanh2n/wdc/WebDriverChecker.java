@@ -430,6 +430,9 @@ public abstract class WebDriverChecker {
 
     protected double getBrowserVersion(Object... args) {
         String value = getCapability("browserVersion", args);
+        if (value.isEmpty()) {
+            value = getCapability("version", args);
+        }
         return Double.parseDouble(value.split("\\.")[0]);
     }
 
