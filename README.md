@@ -55,10 +55,12 @@ WebDriverChecker.isChrome()
 WebDriverChecker.isSafari()
 WebDriverChecker.isFirefox()
 
+WebDriverChecker.isIOS()
 WebDriverChecker.isIOSApp()
 WebDriverChecker.isIOSWeb()
 WebDriverChecker.isIOSSafari()
 
+WebDriverChecker.isAndroid()
 WebDriverChecker.isAndroidApp()
 WebDriverChecker.isAndroidWeb()
 WebDriverChecker.isAndroidChrome()
@@ -67,11 +69,6 @@ WebDriverChecker.isMobile()
 WebDriverChecker.isMobileApp()
 WebDriverChecker.isMobileWeb()
 
-WebDriverChecker.isAlive()
-WebDriverChecker.isRemote()
-
-WebDriverChecker.isIOS()
-WebDriverChecker.isAndroid()
 WebDriverChecker.isMac()
 WebDriverChecker.isLinux()
 WebDriverChecker.isWindows()
@@ -79,4 +76,7 @@ WebDriverChecker.isWindows()
 WebDriverChecker.isWindowsApp()
 WebDriverChecker.isEdgeLegacy()
 WebDriverChecker.isFirefoxLegacy()
+
+WebDriverChecker.isAlive()
+WebDriverChecker.isRemote()
 ```
