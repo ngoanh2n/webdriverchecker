@@ -9,6 +9,11 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
+import static com.github.ngoanh2n.wdc.Browser.*;
+import static com.github.ngoanh2n.wdc.Combine.*;
+import static com.github.ngoanh2n.wdc.Platform.*;
+import static com.github.ngoanh2n.wdc.State.Alive;
+import static com.github.ngoanh2n.wdc.State.Remote;
 import static com.github.ngoanh2n.wdc.WDCException.*;
 import static java.util.ServiceLoader.load;
 
@@ -25,7 +30,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive() {
-        return is(new State.Alive(true));
+        return is(new Alive(true));
     }
 
     /**
@@ -34,7 +39,7 @@ public abstract class WebDriverChecker {
      * @return true if remote
      */
     public static boolean isRemote() {
-        return is(new State.Remote());
+        return is(new Remote());
     }
 
     /**
@@ -43,7 +48,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code IE}
      */
     public static boolean isIE() {
-        return is(new Browser.IE());
+        return is(new IE());
     }
 
     /**
@@ -52,7 +57,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Edge}
      */
     public static boolean isEdge() {
-        return is(new Browser.Edge());
+        return is(new Edge());
     }
 
     /**
@@ -61,7 +66,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Opera}
      */
     public static boolean isOpera() {
-        return is(new Browser.Opera());
+        return is(new Opera());
     }
 
     /**
@@ -70,7 +75,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari}
      */
     public static boolean isSafari() {
-        return is(new Browser.Safari());
+        return is(new Safari());
     }
 
     /**
@@ -79,7 +84,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome}
      */
     public static boolean isChrome() {
-        return is(new Browser.Chrome());
+        return is(new Chrome());
     }
 
     /**
@@ -88,7 +93,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Firefox}
      */
     public static boolean isFirefox() {
-        return is(new Browser.Firefox());
+        return is(new Firefox());
     }
 
     /**
@@ -97,7 +102,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy() {
-        return is(new Browser.LegacyEdge());
+        return is(new LegacyEdge());
     }
 
     /**
@@ -106,25 +111,61 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy() {
-        return is(new Browser.LegacyFirefox());
+        return is(new LegacyFirefox());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code iOS}
+     * Check whether the current {@linkplain WebDriver} on {@code Linux}
+     *
+     * @return true if {@code Linux}
+     */
+    public static boolean isLinux() {
+        return is(new Linux());
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} on {@code Mac}
+     *
+     * @return true if {@code Mac}
+     */
+    public static boolean isMac() {
+        return is(new Mac());
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} on {@code Windows}
+     *
+     * @return true if {@code Windows}
+     */
+    public static boolean isWindows() {
+        return is(new Windows());
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} on {@code iOS}
      *
      * @return true if {@code iOS}
      */
     public static boolean isIOS() {
-        return is(new Platform.IOS());
+        return is(new IOS());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Native application} on {@code iOS}
+     * Check whether the current {@linkplain WebDriver} for {@code Native App} on {@code iOS}
      *
-     * @return true if {@code Native application} on {@code iOS}
+     * @return true if {@code Native App} on {@code iOS}
      */
     public static boolean isIOSApp() {
-        return is(new Combine.IOSApp());
+        return is(new IOSApp());
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} for any {@code Browser} on {@code iOS}
+     *
+     * @return true if it was a {@code Browser} on {@code iOS}
+     */
+    public static boolean isIOSWeb() {
+        return is(new IOSWeb());
     }
 
     /**
@@ -133,7 +174,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari} on {@code iOS}
      */
     public static boolean isIOSSafari() {
-        return is(new Combine.IOSSafari());
+        return is(new IOSSafari());
     }
 
     /**
@@ -142,16 +183,25 @@ public abstract class WebDriverChecker {
      * @return true if {@code Android}
      */
     public static boolean isAndroid() {
-        return is(new Platform.Android());
+        return is(new Android());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Native application} on {@code Android}
+     * Check whether the current {@linkplain WebDriver} for {@code Native App} on {@code Android}
      *
-     * @return true if {@code Native application} on {@code Android}
+     * @return true if {@code Native App} on {@code Android}
      */
     public static boolean isAndroidApp() {
-        return is(new Combine.AndroidApp());
+        return is(new AndroidApp());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for any {@code Browser} on {@code Android}
+     *
+     * @return true if it was a {@code Browser} on {@code Android}
+     */
+    public static boolean isAndroidWeb() {
+        return is(new AndroidWeb());
     }
 
     /**
@@ -160,43 +210,43 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome} on {@code Android}
      */
     public static boolean isAndroidChrome() {
-        return is(new Combine.AndroidChrome());
+        return is(new AndroidChrome());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code iOS} or {@code Android}
+     * Check whether the current {@linkplain WebDriver} for {@code iOS}/{@code Android}
      *
-     * @return true if {@code iOS} or {@code Android}
+     * @return true if {@code iOS}/{@code Android}
      */
     public static boolean isMobile() {
-        return is(new Combine.Mobile());
+        return is(new Mobile());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Native application} on {@code IOS} or {@code Android}
+     * Check whether the current {@linkplain WebDriver} for {@code Native App} on {@code iOS}/{@code Android}
      *
-     * @return true if {@code Native application} on {@code IOS} or {@code Android}
+     * @return true if {@code Native App} on {@code iOS}/{@code Android}
      */
     public static boolean isMobileApp() {
-        return is(new Combine.MobileApp());
+        return is(new MobileApp());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
+     * Check whether the current {@linkplain WebDriver} for any {@code Browser} on {@code iOS}/{@code Android}
      *
-     * @return true if {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
+     * @return true if it was a {@code Browser} on {@code iOS}/{@code Android}
      */
     public static boolean isMobileWeb() {
-        return is(new Combine.MobileWeb());
+        return is(new MobileWeb());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Windows application}
+     * Check whether the current {@linkplain WebDriver} for {@code Windows App}
      *
-     * @return true if {@code Windows application}
+     * @return true if {@code Windows App}
      */
     public static boolean isWindowsApp() {
-        return is(new Combine.WindowsApp());
+        return is(new WindowsApp());
     }
 
     // ------------
@@ -208,7 +258,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive(WebDriver wd) {
-        return is(new State.Alive(true), wd);
+        return is(new Alive(true), wd);
     }
 
     /**
@@ -218,7 +268,7 @@ public abstract class WebDriverChecker {
      * @return true if remote
      */
     public static boolean isRemote(WebDriver wd) {
-        return is(new State.Remote(), wd);
+        return is(new Remote(), wd);
     }
 
     /**
@@ -228,7 +278,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code IE}
      */
     public static boolean isIE(WebDriver wd) {
-        return is(new Browser.IE(), wd);
+        return is(new IE(), wd);
     }
 
     /**
@@ -238,7 +288,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Edge}
      */
     public static boolean isEdge(WebDriver wd) {
-        return is(new Browser.Edge(), wd);
+        return is(new Edge(), wd);
     }
 
     /**
@@ -248,7 +298,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Opera}
      */
     public static boolean isOpera(WebDriver wd) {
-        return is(new Browser.Opera(), wd);
+        return is(new Opera(), wd);
     }
 
     /**
@@ -258,7 +308,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari}
      */
     public static boolean isSafari(WebDriver wd) {
-        return is(new Browser.Safari(), wd);
+        return is(new Safari(), wd);
     }
 
     /**
@@ -268,7 +318,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome}
      */
     public static boolean isChrome(WebDriver wd) {
-        return is(new Browser.Chrome(), wd);
+        return is(new Chrome(), wd);
     }
 
     /**
@@ -278,7 +328,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Firefox}
      */
     public static boolean isFirefox(WebDriver wd) {
-        return is(new Browser.Firefox(), wd);
+        return is(new Firefox(), wd);
     }
 
     /**
@@ -288,7 +338,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy(WebDriver wd) {
-        return is(new Browser.LegacyEdge(), wd);
+        return is(new LegacyEdge(), wd);
     }
 
     /**
@@ -298,7 +348,34 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy(WebDriver wd) {
-        return is(new Browser.LegacyFirefox(), wd);
+        return is(new LegacyFirefox(), wd);
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} on {@code Linux}
+     *
+     * @return true if {@code Linux}
+     */
+    public static boolean isLinux(WebDriver wd) {
+        return is(new Linux(), wd);
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} on {@code Mac}
+     *
+     * @return true if {@code Mac}
+     */
+    public static boolean isMac(WebDriver wd) {
+        return is(new Mac(), wd);
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} on {@code Windows}
+     *
+     * @return true if {@code Windows}
+     */
+    public static boolean isWindows(WebDriver wd) {
+        return is(new Windows(), wd);
     }
 
     /**
@@ -308,17 +385,27 @@ public abstract class WebDriverChecker {
      * @return true if {@code iOS}
      */
     public static boolean isIOS(WebDriver wd) {
-        return is(new Platform.IOS(), wd);
+        return is(new IOS(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code iOS}
+     * Check whether {@linkplain WebDriver} for {@code Native app} on {@code iOS}
      *
      * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Native application} on {@code iOS}
+     * @return true if {@code Native app} on {@code iOS}
      */
     public static boolean isIOSApp(WebDriver wd) {
-        return is(new Combine.IOSApp(), wd);
+        return is(new IOSApp(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for any {@code Browser} on {@code iOS}
+     *
+     * @param wd is the current {@linkplain WebDriver}
+     * @return true if it was a {@code Browser} on {@code iOS}
+     */
+    public static boolean isIOSWeb(WebDriver wd) {
+        return is(new IOSWeb(), wd);
     }
 
     /**
@@ -328,7 +415,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari} on {@code iOS}
      */
     public static boolean isIOSSafari(WebDriver wd) {
-        return is(new Combine.IOSSafari(), wd);
+        return is(new IOSSafari(), wd);
     }
 
     /**
@@ -338,17 +425,27 @@ public abstract class WebDriverChecker {
      * @return true if {@code Android}
      */
     public static boolean isAndroid(WebDriver wd) {
-        return is(new Platform.Android(), wd);
+        return is(new Android(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code Android}
+     * Check whether {@linkplain WebDriver} for {@code Native App} on {@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Native application} on {@code Android}
+     * @return true if {@code Native App} on {@code Android}
      */
     public static boolean isAndroidApp(WebDriver wd) {
-        return is(new Combine.AndroidApp(), wd);
+        return is(new AndroidApp(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for any {@code Browser} on {@code Android}
+     *
+     * @param wd is the current {@linkplain WebDriver}
+     * @return true if it was a {@code Browser} on {@code Android}
+     */
+    public static boolean isAndroidWeb(WebDriver wd) {
+        return is(new AndroidWeb(), wd);
     }
 
     /**
@@ -358,54 +455,54 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome} on {@code Android}
      */
     public static boolean isAndroidChrome(WebDriver wd) {
-        return is(new Combine.AndroidChrome(), wd);
+        return is(new AndroidChrome(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code IOS} or {@code Android}
+     * Check whether {@linkplain WebDriver} for {@code iOS}/{@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code IOS} or {@code Android}
+     * @return true if {@code iOS}/{@code Android}
      */
     public static boolean isMobile(WebDriver wd) {
-        return is(new Combine.Mobile(), wd);
+        return is(new Mobile(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Native application} on {@code iOS} or {@code Android}
+     * Check whether {@linkplain WebDriver} for {@code Native App} on {@code iOS}/{@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Native application} on {@code iOS} or {@code Android}
+     * @return true if {@code Native App} on {@code iOS}/{@code Android}
      */
     public static boolean isMobileApp(WebDriver wd) {
-        return is(new Combine.MobileApp(), wd);
+        return is(new MobileApp(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
+     * Check whether {@linkplain WebDriver} for any {@code Browser} on {@code iOS}/{@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
+     * @return true if it was a {@code Browser} on {@code iOS}/{@code Android}
      */
     public static boolean isMobileWeb(WebDriver wd) {
-        return is(new Combine.MobileWeb(), wd);
+        return is(new MobileWeb(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Windows application}
+     * Check whether {@linkplain WebDriver} for {@code Windows App}
      *
      * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Windows application}
+     * @return true if {@code Windows App}
      */
     public static boolean isWindowsApp(WebDriver wd) {
-        return is(new Combine.WindowsApp(), wd);
+        return is(new WindowsApp(), wd);
     }
 
     // ------------
 
     protected static boolean is(WebDriverChecker wdc, Object... args) {
-        if (!(wdc instanceof State.Alive)) {
-            if (!is(new State.Alive(), args)) {
+        if (!(wdc instanceof Alive)) {
+            if (!is(new Alive(), args)) {
                 throw new NoSuchWDSession();
             }
         }
