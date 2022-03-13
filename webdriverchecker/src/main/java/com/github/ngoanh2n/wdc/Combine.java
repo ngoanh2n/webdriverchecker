@@ -2,11 +2,9 @@ package com.github.ngoanh2n.wdc;
 
 import static com.github.ngoanh2n.wdc.Browser.Chrome;
 import static com.github.ngoanh2n.wdc.Browser.Safari;
-import static com.github.ngoanh2n.wdc.Platform.Android;
-import static com.github.ngoanh2n.wdc.Platform.IOS;
+import static com.github.ngoanh2n.wdc.Platform.*;
 import static com.github.ngoanh2n.wdc.State.App;
 import static com.github.ngoanh2n.wdc.State.Browser;
-import static com.github.ngoanh2n.wdc.WDCType.WINDOWS;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -21,6 +19,17 @@ class Combine {
         protected boolean check(Object... args) {
             if (is(new IOS(), args)) {
                 return is(new App(), args) || !is(new Browser(), args);
+            }
+            return false;
+        }
+    }
+
+    static class IOSWeb extends WebDriverChecker {
+
+        @Override
+        protected boolean check(Object... args) {
+            if (is(new IOS(), args)) {
+                return is(new Browser(), args);
             }
             return false;
         }
@@ -45,6 +54,17 @@ class Combine {
         protected boolean check(Object... args) {
             if (is(new Android(), args)) {
                 return is(new App(), args) || !is(new Browser(), args);
+            }
+            return false;
+        }
+    }
+
+    static class AndroidWeb extends WebDriverChecker {
+
+        @Override
+        protected boolean check(Object... args) {
+            if (is(new Android(), args)) {
+                return is(new Browser(), args);
             }
             return false;
         }
@@ -75,16 +95,15 @@ class Combine {
 
         @Override
         protected boolean check(Object... args) {
-            return is(new IOSApp(), args) || is(new AndroidApp(), args);
+            return is(new Mobile(), args) && is(new App(), args);
         }
     }
-
 
     static class MobileWeb extends WebDriverChecker {
 
         @Override
         protected boolean check(Object... args) {
-            return is(new IOSSafari(), args) || is(new AndroidChrome(), args);
+            return is(new Mobile(), args) && is(new Browser(), args);
         }
     }
 
@@ -94,7 +113,7 @@ class Combine {
 
         @Override
         protected boolean check(Object... args) {
-            return !is(new Browser(), args) && getPlatformName(args).equals(WINDOWS.getName());
+            return is(new Windows()) && is(new App());
         }
     }
 }
