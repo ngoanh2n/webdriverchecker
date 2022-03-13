@@ -17,7 +17,7 @@ class Selenium {
     static class Browser extends WebDriverChecker {
 
         @Override
-        protected boolean check(Object[] args) {
+        protected boolean check(Object... args) {
             return !getBrowserName(args).isEmpty();
         }
     }
@@ -39,9 +39,7 @@ class Selenium {
             try {
                 return getRemoteWD(args).getSessionId() != null;
             } catch (WDCException.NoSuchWDSession exception) {
-                if (directed){
-                    return false;
-                }
+                if (directed) return false;
                 throw exception;
             }
         }
