@@ -4,5 +4,5 @@
  */
 dependencies {
     implementation(project(":webdriverchecker"))
-    implementation("com.codeborne:selenide:${SELENIDE_VERSION}")
+    implementation("com.codeborne:selenide:${SELENIDE_VER}")
 }
