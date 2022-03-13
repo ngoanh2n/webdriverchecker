@@ -17,7 +17,7 @@ import org.openqa.selenium.WebDriver;
  *      package com.company.project.impl;
  *
  *      import org.openqa.selenium.WebDriver;
- *      import io.github.ngoanh2n.wdc.WebDriverService;
+ *      import com.github.ngoanh2n.wdc.WebDriverService;
  *
  *      public class MyWebDriverService implements WebDriverService {
  *
@@ -30,7 +30,7 @@ import org.openqa.selenium.WebDriver;
  *      <li>2. Create a provider configuration file:
  *      <ul>
  *          <li>Location: {@code resources/META-INF/services}
- *          <li>Name: {@code io.github.ngoanh2n.wdc.WebDriverService}
+ *          <li>Name: {@code com.github.ngoanh2n.wdc.WebDriverService}
  *          <li>Content: {@code com.company.project.impl.MyWebDriverService}
  *      </ul>
  * </ul>
