@@ -56,8 +56,8 @@ if (project.hasProperty("signing.keyId")) {
                 url project.version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
 
                 credentials {
-                    username = "${nexusUsername}"
-                    password = "${nexusPassword}"
+                    username = "${sonatypeUsername}"
+                    password = "${sonatypePassword}"
                 }
             }
         }
