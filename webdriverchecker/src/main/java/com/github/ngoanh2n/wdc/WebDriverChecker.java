@@ -25,7 +25,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive() {
-        return whether(new Selenium.Alive(true));
+        return whether(new State.Alive(true));
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class WebDriverChecker {
      * @return true if remote
      */
     public static boolean isRemote() {
-        return whether(new Selenium.Remote());
+        return whether(new State.Remote());
     }
 
     /**
@@ -208,7 +208,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive(WebDriver wd) {
-        return whether(new Selenium.Alive(true), wd);
+        return whether(new State.Alive(true), wd);
     }
 
     /**
@@ -218,7 +218,7 @@ public abstract class WebDriverChecker {
      * @return true if remote
      */
     public static boolean isRemote(WebDriver wd) {
-        return whether(new Selenium.Remote(), wd);
+        return whether(new State.Remote(), wd);
     }
 
     /**
@@ -404,8 +404,8 @@ public abstract class WebDriverChecker {
     // ------------
 
     protected static boolean whether(WebDriverChecker wdc, Object... args) {
-        if (!(wdc instanceof Selenium.Alive)) {
-            if (!whether(new Selenium.Alive(), args)) {
+        if (!(wdc instanceof State.Alive)) {
+            if (!whether(new State.Alive(), args)) {
                 throw new NoSuchWDSession();
             }
         }
