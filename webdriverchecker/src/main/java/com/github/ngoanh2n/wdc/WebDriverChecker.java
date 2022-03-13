@@ -25,7 +25,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive() {
-        return whether(new State.Alive(true));
+        return is(new State.Alive(true));
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class WebDriverChecker {
      * @return true if remote
      */
     public static boolean isRemote() {
-        return whether(new State.Remote());
+        return is(new State.Remote());
     }
 
     /**
@@ -43,7 +43,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code IE}
      */
     public static boolean isIE() {
-        return whether(new Browser.IE());
+        return is(new Browser.IE());
     }
 
     /**
@@ -52,7 +52,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Edge}
      */
     public static boolean isEdge() {
-        return whether(new Browser.Edge());
+        return is(new Browser.Edge());
     }
 
     /**
@@ -61,7 +61,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Opera}
      */
     public static boolean isOpera() {
-        return whether(new Browser.Opera());
+        return is(new Browser.Opera());
     }
 
     /**
@@ -70,7 +70,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari}
      */
     public static boolean isSafari() {
-        return whether(new Browser.Safari());
+        return is(new Browser.Safari());
     }
 
     /**
@@ -79,7 +79,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome}
      */
     public static boolean isChrome() {
-        return whether(new Browser.Chrome());
+        return is(new Browser.Chrome());
     }
 
     /**
@@ -88,7 +88,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Firefox}
      */
     public static boolean isFirefox() {
-        return whether(new Browser.Firefox());
+        return is(new Browser.Firefox());
     }
 
     /**
@@ -97,7 +97,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy() {
-        return whether(new Browser.LegacyEdge());
+        return is(new Browser.LegacyEdge());
     }
 
     /**
@@ -106,7 +106,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy() {
-        return whether(new Browser.LegacyFirefox());
+        return is(new Browser.LegacyFirefox());
     }
 
     /**
@@ -115,7 +115,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code iOS}
      */
     public static boolean isIOS() {
-        return whether(new Appium.IOS());
+        return is(new Platform.IOS());
     }
 
     /**
@@ -124,7 +124,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Native application} on {@code iOS}
      */
     public static boolean isIOSApp() {
-        return whether(new Appium.IOSApp());
+        return is(new Combine.IOSApp());
     }
 
     /**
@@ -133,7 +133,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari} on {@code iOS}
      */
     public static boolean isIOSSafari() {
-        return whether(new Appium.IOSSafari());
+        return is(new Combine.IOSSafari());
     }
 
     /**
@@ -142,7 +142,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Android}
      */
     public static boolean isAndroid() {
-        return whether(new Appium.Android());
+        return is(new Platform.Android());
     }
 
     /**
@@ -151,7 +151,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Native application} on {@code Android}
      */
     public static boolean isAndroidApp() {
-        return whether(new Appium.AndroidApp());
+        return is(new Combine.AndroidApp());
     }
 
     /**
@@ -160,7 +160,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome} on {@code Android}
      */
     public static boolean isAndroidChrome() {
-        return whether(new Appium.AndroidChrome());
+        return is(new Combine.AndroidChrome());
     }
 
     /**
@@ -169,7 +169,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code iOS} or {@code Android}
      */
     public static boolean isMobile() {
-        return whether(new Appium.Mobile());
+        return is(new Combine.Mobile());
     }
 
     /**
@@ -178,7 +178,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Native application} on {@code IOS} or {@code Android}
      */
     public static boolean isMobileApp() {
-        return whether(new Appium.MobileApp());
+        return is(new Combine.MobileApp());
     }
 
     /**
@@ -187,7 +187,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
      */
     public static boolean isMobileWeb() {
-        return whether(new Appium.MobileBrowser());
+        return is(new Combine.MobileWeb());
     }
 
     /**
@@ -196,7 +196,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Windows application}
      */
     public static boolean isWindowsApp() {
-        return whether(new Appium.WindowsApp());
+        return is(new Combine.WindowsApp());
     }
 
     // ------------
@@ -208,7 +208,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive(WebDriver wd) {
-        return whether(new State.Alive(true), wd);
+        return is(new State.Alive(true), wd);
     }
 
     /**
@@ -218,7 +218,7 @@ public abstract class WebDriverChecker {
      * @return true if remote
      */
     public static boolean isRemote(WebDriver wd) {
-        return whether(new State.Remote(), wd);
+        return is(new State.Remote(), wd);
     }
 
     /**
@@ -228,7 +228,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code IE}
      */
     public static boolean isIE(WebDriver wd) {
-        return whether(new Browser.IE(), wd);
+        return is(new Browser.IE(), wd);
     }
 
     /**
@@ -238,7 +238,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Edge}
      */
     public static boolean isEdge(WebDriver wd) {
-        return whether(new Browser.Edge(), wd);
+        return is(new Browser.Edge(), wd);
     }
 
     /**
@@ -248,7 +248,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Opera}
      */
     public static boolean isOpera(WebDriver wd) {
-        return whether(new Browser.Opera(), wd);
+        return is(new Browser.Opera(), wd);
     }
 
     /**
@@ -258,7 +258,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari}
      */
     public static boolean isSafari(WebDriver wd) {
-        return whether(new Browser.Safari(), wd);
+        return is(new Browser.Safari(), wd);
     }
 
     /**
@@ -268,7 +268,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome}
      */
     public static boolean isChrome(WebDriver wd) {
-        return whether(new Browser.Chrome(), wd);
+        return is(new Browser.Chrome(), wd);
     }
 
     /**
@@ -278,7 +278,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Firefox}
      */
     public static boolean isFirefox(WebDriver wd) {
-        return whether(new Browser.Firefox(), wd);
+        return is(new Browser.Firefox(), wd);
     }
 
     /**
@@ -288,7 +288,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Edge}
      */
     public static boolean isEdgeLegacy(WebDriver wd) {
-        return whether(new Browser.LegacyEdge(), wd);
+        return is(new Browser.LegacyEdge(), wd);
     }
 
     /**
@@ -298,7 +298,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Legacy Firefox}
      */
     public static boolean isFirefoxLegacy(WebDriver wd) {
-        return whether(new Browser.LegacyFirefox(), wd);
+        return is(new Browser.LegacyFirefox(), wd);
     }
 
     /**
@@ -308,7 +308,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code iOS}
      */
     public static boolean isIOS(WebDriver wd) {
-        return whether(new Appium.IOS(), wd);
+        return is(new Platform.IOS(), wd);
     }
 
     /**
@@ -318,7 +318,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Native application} on {@code iOS}
      */
     public static boolean isIOSApp(WebDriver wd) {
-        return whether(new Appium.IOSApp(), wd);
+        return is(new Combine.IOSApp(), wd);
     }
 
     /**
@@ -328,7 +328,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari} on {@code iOS}
      */
     public static boolean isIOSSafari(WebDriver wd) {
-        return whether(new Appium.IOSSafari(), wd);
+        return is(new Combine.IOSSafari(), wd);
     }
 
     /**
@@ -338,7 +338,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Android}
      */
     public static boolean isAndroid(WebDriver wd) {
-        return whether(new Appium.Android(), wd);
+        return is(new Platform.Android(), wd);
     }
 
     /**
@@ -348,7 +348,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Native application} on {@code Android}
      */
     public static boolean isAndroidApp(WebDriver wd) {
-        return whether(new Appium.AndroidApp(), wd);
+        return is(new Combine.AndroidApp(), wd);
     }
 
     /**
@@ -358,7 +358,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Chrome} on {@code Android}
      */
     public static boolean isAndroidChrome(WebDriver wd) {
-        return whether(new Appium.AndroidChrome(), wd);
+        return is(new Combine.AndroidChrome(), wd);
     }
 
     /**
@@ -368,7 +368,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code IOS} or {@code Android}
      */
     public static boolean isMobile(WebDriver wd) {
-        return whether(new Appium.Mobile(), wd);
+        return is(new Combine.Mobile(), wd);
     }
 
     /**
@@ -378,7 +378,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Native application} on {@code iOS} or {@code Android}
      */
     public static boolean isMobileApp(WebDriver wd) {
-        return whether(new Appium.MobileApp(), wd);
+        return is(new Combine.MobileApp(), wd);
     }
 
     /**
@@ -388,7 +388,7 @@ public abstract class WebDriverChecker {
      * @return true if {@code Safari} on {@code IOS} or {@code Chrome} {@code Android}
      */
     public static boolean isMobileWeb(WebDriver wd) {
-        return whether(new Appium.MobileBrowser(), wd);
+        return is(new Combine.MobileWeb(), wd);
     }
 
     /**
@@ -398,14 +398,14 @@ public abstract class WebDriverChecker {
      * @return true if {@code Windows application}
      */
     public static boolean isWindowsApp(WebDriver wd) {
-        return whether(new Appium.WindowsApp(), wd);
+        return is(new Combine.WindowsApp(), wd);
     }
 
     // ------------
 
-    protected static boolean whether(WebDriverChecker wdc, Object... args) {
+    protected static boolean is(WebDriverChecker wdc, Object... args) {
         if (!(wdc instanceof State.Alive)) {
-            if (!whether(new State.Alive(), args)) {
+            if (!is(new State.Alive(), args)) {
                 throw new NoSuchWDSession();
             }
         }

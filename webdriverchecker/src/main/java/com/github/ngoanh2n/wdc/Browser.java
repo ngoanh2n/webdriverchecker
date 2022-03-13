@@ -9,16 +9,6 @@ import static com.github.ngoanh2n.wdc.WDCType.*;
  */
 class Browser {
 
-    static class HasBrowserName extends WebDriverChecker {
-
-        @Override
-        protected boolean check(Object... args) {
-            return !getBrowserName(args).isEmpty();
-        }
-    }
-
-    // ------------------------------------
-
     static class IE extends WebDriverChecker {
 
         @Override
@@ -81,7 +71,7 @@ class Browser {
 
         @Override
         protected boolean check(Object... args) {
-            return getBrowserVersion(args) < 48 && whether(new Firefox(), args);
+            return getBrowserVersion(args) < 48 && is(new Firefox(), args);
         }
     }
 }
