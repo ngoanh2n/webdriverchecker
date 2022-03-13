@@ -5,7 +5,6 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/webdriverchecker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/webdriverchecker)
 [![GitHub release](https://img.shields.io/github/release/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/releases/)
 [![javadoc](https://javadoc.io/badge2/com.github.ngoanh2n/webdriverchecker/javadoc.svg)](https://javadoc.io/doc/com.github.ngoanh2n/webdriverchecker)
-[![Build Status](https://travis-ci.org/ngoanh2n/webdriverchecker.svg?branch=master)](https://travis-ci.org/ngoanh2n/webdriverchecker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 [![badge-jdk](https://img.shields.io/badge/jdk-8-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![GitHub contributors](https://img.shields.io/github/contributors/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/graphs/contributors/)
@@ -18,47 +17,33 @@
 ## Gradle Project
 Add dependency to `build.gradle`
 ```gradle
-dependencies {
-    testImplementation("com.github.ngoanh2n:webdriverchecker:1.0.0")
-}
+implementation("com.github.ngoanh2n:webdriverchecker:1.0.0")
 ```
 
 ## Maven Project
 Add dependency to `pom.xml`
 ```xml
-<dependencies>
-    [...]
-    <dependency>
-        <groupId>com.github.ngoanh2n</groupId>
-        <artifactId>webdriverchecker</artifactId>
-        <version>1.0.0</version>
-        <scope>test</scope>
-    </dependency>
-    [...]
-</dependencies>
+<dependency>
+    <groupId>com.github.ngoanh2n</groupId>
+    <artifactId>webdriverchecker</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 # WebDriverChecker for Selenide
 Add dependency to `build.gradle`
 ```gradle
-dependencies {
-    testImplementation("com.github.ngoanh2n:webdriverchecker-selenide:1.0.0")
-}
+implementation("com.github.ngoanh2n:webdriverchecker-selenide:1.0.0")
 ```
 
 ## Maven Project
 Add dependency to `pom.xml`
 ```xml
-<dependencies>
-    [...]
-    <dependency>
-        <groupId>com.github.ngoanh2n</groupId>
-        <artifactId>webdriverchecker-selenide</artifactId>
-        <version>1.0.0</version>
-        <scope>test</scope>
-    </dependency>
-    [...]
-</dependencies>
+<dependency>
+    <groupId>com.github.ngoanh2n</groupId>
+    <artifactId>webdriverchecker-selenide</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 # Usages
