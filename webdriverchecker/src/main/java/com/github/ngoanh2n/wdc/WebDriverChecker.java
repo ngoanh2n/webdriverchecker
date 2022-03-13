@@ -354,6 +354,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether the current {@linkplain WebDriver} on {@code Linux}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Linux}
      */
     public static boolean isLinux(WebDriver wd) {
@@ -363,6 +364,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether the current {@linkplain WebDriver} on {@code Mac}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Mac}
      */
     public static boolean isMac(WebDriver wd) {
@@ -372,6 +374,7 @@ public abstract class WebDriverChecker {
     /**
      * Check whether the current {@linkplain WebDriver} on {@code Windows}
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Windows}
      */
     public static boolean isWindows(WebDriver wd) {
