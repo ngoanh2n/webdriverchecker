@@ -31,6 +31,7 @@ Add dependency to `pom.xml`
 ```
 
 # WebDriverChecker for Selenide
+## Gradle Project
 Add dependency to `build.gradle`
 ```gradle
 implementation("com.github.ngoanh2n:webdriverchecker-selenide:1.0.0")
