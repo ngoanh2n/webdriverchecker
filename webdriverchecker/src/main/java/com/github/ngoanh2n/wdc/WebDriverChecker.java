@@ -25,7 +25,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive() {
-        return whether(new Selenium.Alive());
+        return whether(new Selenium.Alive(true));
     }
 
     /**
@@ -208,7 +208,7 @@ public abstract class WebDriverChecker {
      * @return true if running
      */
     public static boolean isAlive(WebDriver wd) {
-        return whether(new Selenium.Alive(), wd);
+        return whether(new Selenium.Alive(true), wd);
     }
 
     /**
