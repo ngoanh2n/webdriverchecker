@@ -19,6 +19,8 @@ enum WDCType {
 
     // Platforms
     IOS("ios"),
+    MAC("mac"),
+    LINUX("linux"),
     ANDROID("android"),
     WINDOWS("windows");
 
