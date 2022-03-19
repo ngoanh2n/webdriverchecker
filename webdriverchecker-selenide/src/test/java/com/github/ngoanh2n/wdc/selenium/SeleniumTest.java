@@ -1,5 +1,6 @@
-package com.github.ngoanh2n.wdc;
+package com.github.ngoanh2n.wdc.selenium;
 
+import com.github.ngoanh2n.wdc.WebDriverChecker;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
