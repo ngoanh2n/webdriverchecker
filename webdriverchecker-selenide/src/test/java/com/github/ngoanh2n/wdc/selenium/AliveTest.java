@@ -1,7 +1,9 @@
-package com.github.ngoanh2n.wdc;
+package com.github.ngoanh2n.wdc.selenium;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.github.ngoanh2n.wdc.WDCException;
+import com.github.ngoanh2n.wdc.WebDriverChecker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
