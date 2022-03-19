@@ -1,8 +1,5 @@
 package com.github.ngoanh2n.wdc;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +11,41 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @version 1.0.0
  * @since 2021-04-10
  */
-public class BrowserMacTest {
+public class SeleniumTest extends AbstractTest {
+
+    @Test
+    void isIE() {
+        openDriver("ie");
+
+        assertTrue(WebDriverChecker.isIE());
+        assertFalse(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
+        assertFalse(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isSafari());
+        assertFalse(WebDriverChecker.isFirefox());
+
+        assertFalse(WebDriverChecker.isIOS());
+        assertFalse(WebDriverChecker.isIOSApp());
+        assertFalse(WebDriverChecker.isIOSWeb());
+        assertFalse(WebDriverChecker.isIOSSafari());
+
+        assertFalse(WebDriverChecker.isAndroid());
+        assertFalse(WebDriverChecker.isAndroidApp());
+        assertFalse(WebDriverChecker.isAndroidWeb());
+        assertFalse(WebDriverChecker.isAndroidChrome());
+
+        assertFalse(WebDriverChecker.isMobile());
+        assertFalse(WebDriverChecker.isMobileApp());
+        assertFalse(WebDriverChecker.isMobileWeb());
+
+        assertFalse(WebDriverChecker.isMac());
+        assertFalse(WebDriverChecker.isLinux());
+        assertTrue(WebDriverChecker.isWindows());
+
+        assertFalse(WebDriverChecker.isWindowsApp());
+        assertFalse(WebDriverChecker.isEdgeLegacy());
+        assertFalse(WebDriverChecker.isFirefoxLegacy());
+    }
 
     @Test
     void isEdge() {
@@ -40,10 +71,6 @@ public class BrowserMacTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
-
-        assertTrue(WebDriverChecker.isMac());
-        assertFalse(WebDriverChecker.isLinux());
-        assertFalse(WebDriverChecker.isWindows());
 
         assertFalse(WebDriverChecker.isWindowsApp());
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -75,10 +102,6 @@ public class BrowserMacTest {
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
 
-        assertTrue(WebDriverChecker.isMac());
-        assertFalse(WebDriverChecker.isLinux());
-        assertFalse(WebDriverChecker.isWindows());
-
         assertFalse(WebDriverChecker.isWindowsApp());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -108,10 +131,6 @@ public class BrowserMacTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
-
-        assertTrue(WebDriverChecker.isMac());
-        assertFalse(WebDriverChecker.isLinux());
-        assertFalse(WebDriverChecker.isWindows());
 
         assertFalse(WebDriverChecker.isWindowsApp());
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -178,22 +197,8 @@ public class BrowserMacTest {
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
 
-        assertTrue(WebDriverChecker.isMac());
-        assertFalse(WebDriverChecker.isLinux());
-        assertFalse(WebDriverChecker.isWindows());
-
         assertFalse(WebDriverChecker.isWindowsApp());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
-    }
-
-    void openDriver(String name) {
-        Configuration.browser = name;
-        Selenide.open();
-    }
-
-    @AfterEach
-    void closeDriver() {
-        Selenide.closeWebDriver();
     }
 }
