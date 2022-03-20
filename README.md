@@ -70,14 +70,9 @@ WebDriverChecker.isMobile()
 WebDriverChecker.isMobileApp()
 WebDriverChecker.isMobileWeb()
 
-WebDriverChecker.isMac()
-WebDriverChecker.isLinux()
-WebDriverChecker.isWindows()
-
 WebDriverChecker.isWindowsApp()
 WebDriverChecker.isEdgeLegacy()
 WebDriverChecker.isFirefoxLegacy()
 
 WebDriverChecker.isAlive()
-WebDriverChecker.isRemote()
 ```
