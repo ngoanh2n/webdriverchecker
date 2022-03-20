@@ -39,10 +39,6 @@ public class SeleniumTest extends AbstractTest {
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
 
-        assertFalse(WebDriverChecker.isMac());
-        assertFalse(WebDriverChecker.isLinux());
-        assertTrue(WebDriverChecker.isWindows());
-
         assertFalse(WebDriverChecker.isWindowsApp());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -162,10 +158,6 @@ public class SeleniumTest extends AbstractTest {
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
-
-        assertTrue(WebDriverChecker.isMac());
-        assertFalse(WebDriverChecker.isLinux());
-        assertFalse(WebDriverChecker.isWindows());
 
         assertFalse(WebDriverChecker.isWindowsApp());
         assertFalse(WebDriverChecker.isEdgeLegacy());

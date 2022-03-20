@@ -11,9 +11,9 @@ import java.util.ServiceLoader;
 
 import static com.github.ngoanh2n.wdc.Browser.*;
 import static com.github.ngoanh2n.wdc.Combine.*;
-import static com.github.ngoanh2n.wdc.Platform.*;
+import static com.github.ngoanh2n.wdc.Platform.Android;
+import static com.github.ngoanh2n.wdc.Platform.IOS;
 import static com.github.ngoanh2n.wdc.State.Alive;
-import static com.github.ngoanh2n.wdc.State.Remote;
 import static com.github.ngoanh2n.wdc.WDCException.*;
 import static java.util.ServiceLoader.load;
 
@@ -31,15 +31,6 @@ public abstract class WebDriverChecker {
      */
     public static boolean isAlive() {
         return is(new Alive(true));
-    }
-
-    /**
-     * Check whether the current {@linkplain WebDriver} is remote
-     *
-     * @return true if remote
-     */
-    public static boolean isRemote() {
-        return is(new Remote());
     }
 
     /**
@@ -112,33 +103,6 @@ public abstract class WebDriverChecker {
      */
     public static boolean isFirefoxLegacy() {
         return is(new LegacyFirefox());
-    }
-
-    /**
-     * Check whether the current {@linkplain WebDriver} on {@code Linux}
-     *
-     * @return true if {@code Linux}
-     */
-    public static boolean isLinux() {
-        return is(new Linux());
-    }
-
-    /**
-     * Check whether the current {@linkplain WebDriver} on {@code Mac}
-     *
-     * @return true if {@code Mac}
-     */
-    public static boolean isMac() {
-        return is(new Mac());
-    }
-
-    /**
-     * Check whether the current {@linkplain WebDriver} on {@code Windows}
-     *
-     * @return true if {@code Windows}
-     */
-    public static boolean isWindows() {
-        return is(new Windows());
     }
 
     /**
@@ -262,16 +226,6 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} is remote
-     *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if remote
-     */
-    public static boolean isRemote(WebDriver wd) {
-        return is(new Remote(), wd);
-    }
-
-    /**
      * Check whether {@linkplain WebDriver} for {@code IE}
      *
      * @param wd is the current {@linkplain WebDriver}
@@ -349,36 +303,6 @@ public abstract class WebDriverChecker {
      */
     public static boolean isFirefoxLegacy(WebDriver wd) {
         return is(new LegacyFirefox(), wd);
-    }
-
-    /**
-     * Check whether the current {@linkplain WebDriver} on {@code Linux}
-     *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Linux}
-     */
-    public static boolean isLinux(WebDriver wd) {
-        return is(new Linux(), wd);
-    }
-
-    /**
-     * Check whether the current {@linkplain WebDriver} on {@code Mac}
-     *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Mac}
-     */
-    public static boolean isMac(WebDriver wd) {
-        return is(new Mac(), wd);
-    }
-
-    /**
-     * Check whether the current {@linkplain WebDriver} on {@code Windows}
-     *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Windows}
-     */
-    public static boolean isWindows(WebDriver wd) {
-        return is(new Windows(), wd);
     }
 
     /**
