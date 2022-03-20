@@ -457,6 +457,9 @@ public abstract class WebDriverChecker {
         if (value.isEmpty()) {
             value = getCapability("version", args);
         }
+        if (value.isEmpty()) {
+            return 0;
+        }
         return Double.parseDouble(value.split("\\.")[0]);
     }
 
