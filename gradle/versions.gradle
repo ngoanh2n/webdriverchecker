@@ -3,7 +3,7 @@
  * @since 2021-04-09
  */
 ext {
-    SELENIUM_VER                =   "3.141.59"
-    SELENIDE_VER                =   "5.25.0"
-    JUPITER_VER                 =   "5.8.2"
+    VERSION_SELENIUM                =   "3.141.59"
+    VERSION_SELENIDE                =   "5.25.0"
+    VERSION_JUNIT5_JUPITER          =   "5.8.2"
 }
