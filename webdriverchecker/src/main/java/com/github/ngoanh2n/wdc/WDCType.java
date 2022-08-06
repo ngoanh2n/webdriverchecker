@@ -9,20 +9,20 @@ package com.github.ngoanh2n.wdc;
 enum WDCType {
 
     // Browsers
+    CHROME("chrome"),
+    FIREFOX("firefox"),
     EDGE("msedge"),
     OPERA("opera"),
     SAFARI("safari"),
-    CHROME("chrome"),
-    FIREFOX("firefox"),
     IE("internetexplorer"),
     EDGE_LEGACY("microsoftedge"),
 
     // Platforms
-    IOS("ios"),
-    MAC("mac"),
+    MACOS("mac"),
     LINUX("linux"),
-    ANDROID("android"),
-    WINDOWS("windows");
+    WINDOWS("windows"),
+    IOS("ios"),
+    ANDROID("android");
 
     private final String name;
 

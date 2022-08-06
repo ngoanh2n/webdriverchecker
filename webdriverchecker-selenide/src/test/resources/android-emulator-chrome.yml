@@ -1,0 +1,10 @@
+platformName: Android
+deviceName: Android Enulator
+automationName: UiAutomator2
+newCommandTimeout: 180
+browserName: Chrome
+noReset: false
+adbExecTimeout: 15000
+resetKeyboard: true
+unicodeKeyboard: true
+autoGrantPermissions: true

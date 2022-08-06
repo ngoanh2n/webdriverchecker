@@ -1,0 +1,6 @@
+platformName: Android
+deviceName: Android Enulator
+automationName: UiAutomator2
+app: app/ApiDemos-debug.apk
+newCommandTimeout: 180
+appWaitDuration: 60000

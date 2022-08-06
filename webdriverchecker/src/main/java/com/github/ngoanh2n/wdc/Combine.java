@@ -13,23 +13,23 @@ import static com.github.ngoanh2n.wdc.State.Browser;
  */
 class Combine {
 
-    static class IOSApp extends WebDriverChecker {
-
-        @Override
-        protected boolean check(Object... args) {
-            if (is(new IOS(), args)) {
-                return is(new App(), args) || !is(new Browser(), args);
-            }
-            return false;
-        }
-    }
-
     static class IOSWeb extends WebDriverChecker {
 
         @Override
         protected boolean check(Object... args) {
             if (is(new IOS(), args)) {
                 return is(new Browser(), args);
+            }
+            return false;
+        }
+    }
+
+    static class IOSApp extends WebDriverChecker {
+
+        @Override
+        protected boolean check(Object... args) {
+            if (is(new IOS(), args)) {
+                return is(new App(), args) || !is(new Browser(), args);
             }
             return false;
         }
@@ -48,23 +48,23 @@ class Combine {
 
     // ------------------------------------
 
-    static class AndroidApp extends WebDriverChecker {
-
-        @Override
-        protected boolean check(Object... args) {
-            if (is(new Android(), args)) {
-                return is(new App(), args) || !is(new Browser(), args);
-            }
-            return false;
-        }
-    }
-
     static class AndroidWeb extends WebDriverChecker {
 
         @Override
         protected boolean check(Object... args) {
             if (is(new Android(), args)) {
                 return is(new Browser(), args);
+            }
+            return false;
+        }
+    }
+
+    static class AndroidApp extends WebDriverChecker {
+
+        @Override
+        protected boolean check(Object... args) {
+            if (is(new Android(), args)) {
+                return is(new App(), args) || !is(new Browser(), args);
             }
             return false;
         }
