@@ -1,0 +1,13 @@
+platformName: iOS
+deviceName: iPhone 11
+platformVersion: 15.5
+automationName: XCUITest
+newCommandTimeout: 180
+browserName: Safari
+noReset: false
+resetKeyboard: true
+unicodeKeyboard: true
+safariAllowPopups: true
+autoAcceptAlerts: true
+autoDismissAlerts: true
+startIWDP: true

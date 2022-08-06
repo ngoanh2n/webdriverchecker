@@ -21,7 +21,7 @@ class Platform {
 
         @Override
         protected boolean check(Object... args) {
-            return getPlatformName(args).equals(MAC.getName());
+            return getPlatformName(args).equals(MACOS.getName());
         }
     }
 
