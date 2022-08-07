@@ -1,0 +1,395 @@
+###
+### author: Ho Huu Ngoan (ngoanh2n@gmail.com)
+###
+version: 2.1
+
+parameters:
+  platform_windows: { type: string, default: windows }
+  platform_macos: { type: string, default: macos }
+  platform_linux: { type: string, default: linux }
+  target_chrome: { type: string, default: chrome }
+  target_firefox: { type: string, default: firefox }
+  target_edge: { type: string, default: edge }
+  target_opera: { type: string, default: opera }
+  target_safari: { type: string, default: safari }
+  target_ie: { type: string, default: ie }
+  target_ios_native: { type: string, default: ios-native }
+  target_ios_safari: { type: string, default: ios-safari }
+  target_android_native: { type: string, default: android-native }
+  target_android_chrome: { type: string, default: android-chrome }
+  caps_ios_native: { type: string, default: ios-simulator-native.yml }
+  caps_ios_safari: { type: string, default: ios-simulator-safari.yml }
+  caps_android_native: { type: string, default: android-emulator-native.yml }
+  caps_android_chrome: { type: string, default: android-emulator-chrome.yml }
+
+executors:
+  executor_windows:
+    machine:
+      image: windows-server-2022-gui:current
+    shell: bash.exe
+    resource_class: windows.medium
+    working_directory: ~/project
+    environment:
+      OS: <<pipeline.parameters.platform_windows>>
+  executor_macos:
+    macos:
+      xcode: 13.4.1
+    shell: /bin/bash
+    resource_class: medium
+    working_directory: ~/project
+    environment:
+      OS: <<pipeline.parameters.platform_macos>>
+  executor_linux:
+    machine:
+      image: android:202102-01
+    shell: /bin/bash
+    resource_class: medium
+    working_directory: ~/project
+    environment:
+      OS: <<pipeline.parameters.platform_linux>>
+
+commands:
+  env_prepare:
+    parameters:
+      target: { type: string, default: "" }
+    steps:
+      - checkout
+      - run:
+          name: Prepare environment
+          command: |
+            chmod +x gradlew
+            TARGET=<<parameters.target>>
+
+            if [[ "$OS" == "<<pipeline.parameters.platform_windows>>" ]];
+            then
+              choco feature enable -n allowGlobalConfirmation
+              choco install zip
+
+              case $TARGET in
+                <<pipeline.parameters.target_chrome>>) choco install googlechrome ;;
+                <<pipeline.parameters.target_firefox>>) choco install firefox ;;
+                <<pipeline.parameters.target_edge>>) choco install microsoft-edge ;;
+                <<pipeline.parameters.target_opera>>) choco install opera ;;
+              esac
+
+            elif [[ "$OS" == "<<pipeline.parameters.platform_macos>>" ]];
+            then
+              brew update
+              brew install zip
+
+              case $TARGET in
+                <<pipeline.parameters.target_chrome>>) brew install --cask google-chrome ;;
+                <<pipeline.parameters.target_firefox>>) brew install --cask firefox ;;
+                <<pipeline.parameters.target_edge>>) brew install --cask microsoft-edge ;;
+                <<pipeline.parameters.target_opera>>) brew install --cask opera ;;
+              esac
+
+            elif [[ "$OS" == "<<pipeline.parameters.platform_linux>>" ]];
+            then
+              sudo apt update
+              sudo apt install zip
+
+              case $TARGET in
+                <<pipeline.parameters.target_chrome>>)
+                  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+                  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+                  sudo apt update
+                  sudo apt install google-chrome-stable
+                ;;
+                <<pipeline.parameters.target_firefox>>)
+                  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
+                  sudo apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu focal main"
+                  sudo apt update
+                  sudo apt install firefox
+                ;;
+                <<pipeline.parameters.target_edge>>)
+                  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+                  sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+                  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+                  sudo rm microsoft.gpg
+                  sudo apt update
+                  sudo apt install microsoft-edge-stable
+                ;;
+              esac
+            fi
+
+            ### Appium
+            if [[ ($TARGET == ios-*) || ($TARGET == android-*) ]];
+            then
+              case $OS in
+                <<pipeline.parameters.platform_macos>>) brew install node ;;
+                <<pipeline.parameters.platform_linux>>) sudo apt install nodejs ;;
+              esac
+
+              npm install appium -g
+              npm install appium-doctor -g
+
+              case $OS in
+                <<pipeline.parameters.platform_macos>>)
+                  brew install carthage
+                  brew install ios-webkit-debug-proxy
+                  xcrun simctl list
+                ;;
+                <<pipeline.parameters.platform_linux>>)
+                  adb devices
+                ;;
+              esac
+
+              appium-doctor
+            fi
+  env_emulator:
+    steps:
+      - run:
+          name: Launch emulator
+          command: |
+            if [[ "$OS" == "<<pipeline.parameters.platform_linux>>" ]]; then
+              SYSTEM_IMAGES="system-images;android-29;default;x86"
+              sdkmanager "$SYSTEM_IMAGES"
+              echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
+              emulator -avd test -delay-adb -verbose -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+            fi
+          background: true
+  cache_store:
+    parameters:
+      target: { type: string, default: "" }
+    steps:
+      - save_cache:
+          name: Store Gradle cache
+          paths:
+            - ~/.gradle
+          key: gradle-{{checksum "build.gradle"}}
+  cache_restore:
+    parameters:
+      target: { type: string, default: "" }
+    steps:
+      - restore_cache:
+          name: Restore Gradle cache
+          key: gradle-{{checksum "build.gradle"}}
+  artifact_compress:
+    parameters:
+      target: { type: string, default: "" }
+    steps:
+      - run:
+          name: Compress JUnit report
+          command: |
+            cd webdriverchecker-selenide/build/reports
+            zip -r junit-report-<<parameters.target>>.zip tests/test/*
+  artifact_store:
+    parameters:
+      target: { type: string, default: "" }
+    steps:
+      - store_artifacts:
+          name: Store JUnit report
+          path: webdriverchecker-selenide/build/reports/junit-report-<<parameters.target>>.zip
+          destination: junit-report-<<parameters.target>>
+  test_execute:
+    parameters:
+      target: { type: string, default: "" }
+      browser: { type: string, default: "" }
+      options: { type: string, default: "" }
+      arguments: { type: string, default: "" }
+    steps:
+      - run:
+          name: Execute the test
+          command: |
+            GRADLE_OPTS="<<parameters.options>>"
+            VM_ARGS="-Dtarget=<<parameters.target>> -Dselenide.browser=<<parameters.browser>> <<parameters.arguments>>"
+            TEST_COMMAND="./gradlew clean test $GRADLE_OPTS $VM_ARGS"
+
+            echo Test command: $TEST_COMMAND
+            $TEST_COMMAND
+          when: always
+
+jobs:
+  web_windows:
+    executor: executor_windows
+    parameters:
+      target: { type: string }
+    steps:
+      - env_prepare:
+          target: <<parameters.target>>
+      - cache_restore
+      - test_execute:
+          target: <<parameters.target>>
+          browser: <<parameters.target>>
+          options: >-
+            --tests com.github.ngoanh2n.wdc.AliveTest
+            --tests com.github.ngoanh2n.wdc.SeleniumWebTest
+      - artifact_compress:
+          target: <<parameters.target>>
+      - artifact_store:
+          target: <<parameters.target>>
+      - cache_store
+  web_macos:
+    executor: executor_macos
+    parameters:
+      target: { type: string }
+    steps:
+      - env_prepare:
+          target: <<parameters.target>>
+      - cache_restore
+      - test_execute:
+          target: <<parameters.target>>
+          browser: <<parameters.target>>
+          options: >-
+            --tests com.github.ngoanh2n.wdc.AliveTest
+            --tests com.github.ngoanh2n.wdc.SeleniumWebTest
+      - artifact_compress:
+          target: <<parameters.target>>
+      - artifact_store:
+          target: <<parameters.target>>
+      - cache_store
+  web_linux:
+    executor: executor_linux
+    parameters:
+      target: { type: string }
+    steps:
+      - env_prepare:
+          target: <<parameters.target>>
+      - cache_restore
+      - test_execute:
+          target: <<parameters.target>>
+          browser: <<parameters.target>>
+          options: >-
+            --tests com.github.ngoanh2n.wdc.AliveTest
+            --tests com.github.ngoanh2n.wdc.SeleniumWebTest
+      - artifact_compress:
+          target: <<parameters.target>>
+      - artifact_store:
+          target: <<parameters.target>>
+      - cache_store
+  mobile_ios:
+    executor: executor_macos
+    parameters:
+      target: { type: string }
+      caps: { type: string }
+    steps:
+      - env_prepare:
+          target: <<parameters.target>>
+      - cache_restore:
+          target: <<parameters.target>>
+      - test_execute:
+          target: <<parameters.target>>
+          browser: com.github.ngoanh2n.wdc.AppiumDriverProvider
+          options: --tests com.github.ngoanh2n.wdc.*
+          arguments: -Dappium.capabilities=<<parameters.caps>>
+      - artifact_compress:
+          target: <<parameters.target>>
+      - artifact_store:
+          target: <<parameters.target>>
+      - cache_store:
+          target: <<parameters.target>>
+  mobile_android:
+    executor: executor_linux
+    parameters:
+      target: { type: string }
+      caps: { type: string }
+    steps:
+      - env_prepare:
+          target: <<parameters.target>>
+      - env_emulator
+      - cache_restore:
+          target: <<parameters.target>>
+      - test_execute:
+          target: <<parameters.target>>
+          browser: com.github.ngoanh2n.wdc.AppiumDriverProvider
+          options: --tests com.github.ngoanh2n.wdc.*
+          arguments: -Dappium.capabilities=<<parameters.caps>>
+      - artifact_compress:
+          target: <<parameters.target>>
+      - artifact_store:
+          target: <<parameters.target>>
+      - cache_store:
+          target: <<parameters.target>>
+
+workflows:
+  test_execution:
+    jobs:
+      - web_windows:
+          target: <<matrix.target>>
+          name: <<pipeline.parameters.platform_windows>>/<<matrix.target>>
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+          matrix:
+            parameters:
+              target: 
+                - <<pipeline.parameters.target_chrome>>
+                - <<pipeline.parameters.target_firefox>>
+                - <<pipeline.parameters.target_edge>>
+                - <<pipeline.parameters.target_opera>>
+      - web_macos:
+          target: <<matrix.target>>
+          name: <<pipeline.parameters.platform_macos>>/<<matrix.target>>
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+          matrix:
+            parameters:
+              target:
+                - <<pipeline.parameters.target_chrome>>
+                - <<pipeline.parameters.target_firefox>>
+                - <<pipeline.parameters.target_edge>>
+                - <<pipeline.parameters.target_opera>>
+      - web_linux:
+          target: <<matrix.target>>
+          name: <<pipeline.parameters.platform_linux>>/<<matrix.target>>
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+          matrix:
+            parameters:
+              target: 
+                - <<pipeline.parameters.target_chrome>>
+                - <<pipeline.parameters.target_firefox>>
+                - <<pipeline.parameters.target_edge>>
+      # - mobile_ios:
+      #     target: <<matrix.target>>
+      #     caps: <<matrix.caps>>
+      #     name: <<pipeline.parameters.platform_macos>>/<<matrix.target>>
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #           - develop
+      #     matrix:
+      #       parameters:
+      #         target:
+      #           - <<pipeline.parameters.target_ios_native>>
+      #           - <<pipeline.parameters.target_ios_safari>>
+      #         caps:
+      #           - <<pipeline.parameters.caps_ios_native>>
+      #           - <<pipeline.parameters.caps_ios_safari>>
+      #       exclude:
+      #         - target: <<pipeline.parameters.target_ios_native>>
+      #           caps: <<pipeline.parameters.caps_ios_safari>>
+      #         - target: <<pipeline.parameters.target_ios_safari>>
+      #           caps: <<pipeline.parameters.caps_ios_native>>
+      # - mobile_android:
+      #     target: <<matrix.target>>
+      #     caps: <<matrix.caps>>
+      #     name: <<pipeline.parameters.platform_linux>>/<<matrix.target>>
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #           - develop
+      #     matrix:
+      #       parameters:
+      #         target:
+      #           - <<pipeline.parameters.target_android_native>>
+      #           - <<pipeline.parameters.target_android_chrome>>
+      #         caps:
+      #           - <<pipeline.parameters.caps_android_native>>
+      #           - <<pipeline.parameters.caps_android_chrome>>
+      #       exclude:
+      #         - target: <<pipeline.parameters.target_android_native>>
+      #           caps: <<pipeline.parameters.caps_android_chrome>>
+      #         - target: <<pipeline.parameters.target_android_chrome>>
+      #           caps: <<pipeline.parameters.caps_android_native>>
