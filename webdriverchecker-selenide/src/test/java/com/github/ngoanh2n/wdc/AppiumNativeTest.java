@@ -25,7 +25,7 @@ public class AppiumNativeTest {
     }
 
     @Test
-    @ExecuteOnTarget("ios/native")
+    @ExecuteOnTarget("ios-native")
     void iosNative() {
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
@@ -54,7 +54,7 @@ public class AppiumNativeTest {
     }
 
     @Test
-    @ExecuteOnTarget("android/native")
+    @ExecuteOnTarget("android-native")
     void androidNative() {
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());

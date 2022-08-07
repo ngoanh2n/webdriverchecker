@@ -24,7 +24,7 @@ public class AppiumWebTest {
     }
 
     @Test
-    @ExecuteOnTarget("ios/safari")
+    @ExecuteOnTarget("ios-safari")
     void iosSafari() {
         assertFalse(WebDriverChecker.isChrome());
         assertTrue(WebDriverChecker.isSafari());
@@ -53,7 +53,7 @@ public class AppiumWebTest {
     }
 
     @Test
-    @ExecuteOnTarget("android/chrome")
+    @ExecuteOnTarget("android-chrome")
     void androidChrome() {
         assertTrue(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
