@@ -4,9 +4,9 @@
 version: 2.1
 
 parameters:
-  platform_windows: { type: string, default: windows }
-  platform_macos: { type: string, default: macos }
-  platform_linux: { type: string, default: linux }
+  os_windows: { type: string, default: windows }
+  os_macos: { type: string, default: macos }
+  os_linux: { type: string, default: linux }
   target_chrome: { type: string, default: chrome }
   target_firefox: { type: string, default: firefox }
   target_edge: { type: string, default: edge }
@@ -30,7 +30,7 @@ executors:
     resource_class: windows.medium
     working_directory: ~/project
     environment:
-      OS: <<pipeline.parameters.platform_windows>>
+      OS: <<pipeline.parameters.os_windows>>
   executor_macos:
     macos:
       xcode: 13.4.1
@@ -38,7 +38,7 @@ executors:
     resource_class: medium
     working_directory: ~/project
     environment:
-      OS: <<pipeline.parameters.platform_macos>>
+      OS: <<pipeline.parameters.os_macos>>
   executor_linux:
     machine:
       image: android:202102-01
@@ -46,7 +46,7 @@ executors:
     resource_class: medium
     working_directory: ~/project
     environment:
-      OS: <<pipeline.parameters.platform_linux>>
+      OS: <<pipeline.parameters.os_linux>>
 
 commands:
   env_prepare:
@@ -60,7 +60,7 @@ commands:
             chmod +x gradlew
             TARGET=<<parameters.target>>
 
-            if [[ "$OS" == "<<pipeline.parameters.platform_windows>>" ]];
+            if [[ "$OS" == "<<pipeline.parameters.os_windows>>" ]];
             then
               choco feature enable -n allowGlobalConfirmation
               choco install zip
@@ -72,7 +72,7 @@ commands:
                 <<pipeline.parameters.target_opera>>) choco install opera ;;
               esac
 
-            elif [[ "$OS" == "<<pipeline.parameters.platform_macos>>" ]];
+            elif [[ "$OS" == "<<pipeline.parameters.os_macos>>" ]];
             then
               brew update
               brew install zip
@@ -84,7 +84,7 @@ commands:
                 <<pipeline.parameters.target_opera>>) brew install --cask opera ;;
               esac
 
-            elif [[ "$OS" == "<<pipeline.parameters.platform_linux>>" ]];
+            elif [[ "$OS" == "<<pipeline.parameters.os_linux>>" ]];
             then
               sudo apt update
               sudo apt install zip
@@ -117,20 +117,20 @@ commands:
             if [[ ($TARGET == ios-*) || ($TARGET == android-*) ]];
             then
               case $OS in
-                <<pipeline.parameters.platform_macos>>) brew install node ;;
-                <<pipeline.parameters.platform_linux>>) sudo apt install nodejs ;;
+                <<pipeline.parameters.os_macos>>) brew install node ;;
+                <<pipeline.parameters.os_linux>>) sudo apt install nodejs ;;
               esac
 
               npm install appium -g
               npm install appium-doctor -g
 
               case $OS in
-                <<pipeline.parameters.platform_macos>>)
+                <<pipeline.parameters.os_macos>>)
                   brew install carthage
                   brew install ios-webkit-debug-proxy
                   xcrun simctl list
                 ;;
-                <<pipeline.parameters.platform_linux>>)
+                <<pipeline.parameters.os_linux>>)
                   adb devices
                 ;;
               esac
@@ -142,7 +142,7 @@ commands:
       - run:
           name: Launch emulator
           command: |
-            if [[ "$OS" == "<<pipeline.parameters.platform_linux>>" ]]; then
+            if [[ "$OS" == "<<pipeline.parameters.os_linux>>" ]]; then
               SYSTEM_IMAGES="system-images;android-29;default;x86"
               sdkmanager "$SYSTEM_IMAGES"
               echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
@@ -307,12 +307,11 @@ workflows:
     jobs:
       - web_windows:
           target: <<matrix.target>>
-          name: <<pipeline.parameters.platform_windows>>/<<matrix.target>>
+          name: <<pipeline.parameters.os_windows>>/<<matrix.target>>
           filters:
             branches:
               only:
                 - master
-                - develop
           matrix:
             parameters:
               target: 
@@ -322,12 +321,11 @@ workflows:
                 - <<pipeline.parameters.target_opera>>
       - web_macos:
           target: <<matrix.target>>
-          name: <<pipeline.parameters.platform_macos>>/<<matrix.target>>
+          name: <<pipeline.parameters.os_macos>>/<<matrix.target>>
           filters:
             branches:
               only:
                 - master
-                - develop
           matrix:
             parameters:
               target:
@@ -337,12 +335,11 @@ workflows:
                 - <<pipeline.parameters.target_opera>>
       - web_linux:
           target: <<matrix.target>>
-          name: <<pipeline.parameters.platform_linux>>/<<matrix.target>>
+          name: <<pipeline.parameters.os_linux>>/<<matrix.target>>
           filters:
             branches:
               only:
                 - master
-                - develop
           matrix:
             parameters:
               target: 
@@ -352,12 +349,11 @@ workflows:
       # - mobile_ios:
       #     target: <<matrix.target>>
       #     caps: <<matrix.caps>>
-      #     name: <<pipeline.parameters.platform_macos>>/<<matrix.target>>
+      #     name: <<pipeline.parameters.os_macos>>/<<matrix.target>>
       #     filters:
       #       branches:
       #         only:
       #           - master
-      #           - develop
       #     matrix:
       #       parameters:
       #         target:
@@ -374,12 +370,11 @@ workflows:
       # - mobile_android:
       #     target: <<matrix.target>>
       #     caps: <<matrix.caps>>
-      #     name: <<pipeline.parameters.platform_linux>>/<<matrix.target>>
+      #     name: <<pipeline.parameters.os_linux>>/<<matrix.target>>
       #     filters:
       #       branches:
       #         only:
       #           - master
-      #           - develop
       #     matrix:
       #       parameters:
       #         target:
