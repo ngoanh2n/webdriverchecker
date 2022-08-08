@@ -1,17 +1,13 @@
+[![GitHub forks](https://img.shields.io/github/forks/ngoanh2n/webdriverchecker.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/ngoanh2n/webdriverchecker/network/members/)
 [![GitHub stars](https://img.shields.io/github/stars/ngoanh2n/webdriverchecker.svg?style=social&label=Star&maxAge=2592000)](https://github.com/ngoanh2n/webdriverchecker/stargazers/)
 [![GitHub watchers](https://img.shields.io/github/watchers/ngoanh2n/webdriverchecker.svg?style=social&label=Watch&maxAge=2592000)](https://github.com/ngoanh2n/webdriverchecker/watchers/)
-[![GitHub forks](https://img.shields.io/github/forks/ngoanh2n/webdriverchecker.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/ngoanh2n/webdriverchecker/network/members/)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/webdriverchecker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/webdriverchecker)
-[![GitHub release](https://img.shields.io/github/release/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/releases/)
 [![javadoc](https://javadoc.io/badge2/com.github.ngoanh2n/webdriverchecker/javadoc.svg)](https://javadoc.io/doc/com.github.ngoanh2n/webdriverchecker)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
+[![GitHub release](https://img.shields.io/github/release/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/releases/)
 [![badge-jdk](https://img.shields.io/badge/jdk-8-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-[![GitHub contributors](https://img.shields.io/github/contributors/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/graphs/contributors/)
-[![GitHub issues](https://img.shields.io/github/issues/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/issues/)
-[![GitHub issues-closed](https://img.shields.io/github/issues-closed/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/issues?q=is%3Aissue+is%3Aclosed)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/pulls/)
-[![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/pulls?q=is%3Apulls+is%3Aclosed)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ngoanh2n/webdriverchecker/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ngoanh2n/webdriverchecker/tree/master)
 
 # WebDriverChecker
 ## Gradle Project
