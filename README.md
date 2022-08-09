@@ -7,7 +7,6 @@
 [![GitHub release](https://img.shields.io/github/release/ngoanh2n/webdriverchecker.svg)](https://github.com/ngoanh2n/webdriverchecker/releases/)
 [![badge-jdk](https://img.shields.io/badge/jdk-8-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ngoanh2n/webdriverchecker/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ngoanh2n/webdriverchecker/tree/master)
 
 # WebDriverChecker
 ## Gradle Project
