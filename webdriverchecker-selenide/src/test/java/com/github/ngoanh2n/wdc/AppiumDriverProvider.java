@@ -39,7 +39,7 @@ public class AppiumDriverProvider implements WebDriverProvider {
 
     private static Capabilities readAppiumCapabilities() {
         String capsFileName = System.getProperty("appium.capabilities");
-        Map<String, Object> map = YamlData.toMap(capsFileName);
+        Map<String, Object> map = YamlData.toMapFromResource(capsFileName);
         DesiredCapabilities caps = new DesiredCapabilities();
         map.forEach(caps::setCapability);
         logger.debug("Reading Capabilities");
