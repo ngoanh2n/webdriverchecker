@@ -49,7 +49,8 @@ public class AppiumDriverProvider implements WebDriverProvider {
     private static AppiumDriverLocalService startAppiumServer() {
         AppiumServiceBuilder builder = new AppiumServiceBuilder()
                 .withIPAddress("127.0.0.1")
-                .usingPort(4724);
+                .usingAnyFreePort()
+                .withArgument(() -> "--allow-insecure", "chromedriver_autodownload");
         AppiumDriverLocalService service = AppiumDriverLocalService.buildService(builder);
         Runtime.getRuntime().addShutdownHook(new StopAppiumServerThread(service));
 
