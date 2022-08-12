@@ -5,6 +5,8 @@
 dependencies {
     implementation(project(":webdriverchecker"))
     implementation("com.codeborne:selenide:${VERSION_SELENIDE}")
+
     testImplementation("io.appium:java-client:${VERSION_APPIUM}")
-    testImplementation("com.github.ngoanh2n:utilities:${VERSION_NGOANH2N_UTILITIES}")
+    testImplementation("org.slf4j:slf4j-log4j12:${VERSION_SLF4J}")
+    testImplementation("com.github.ngoanh2n:utilities:${VERSION_UTILITIES}")
 }
