@@ -1,5 +1,5 @@
 platformName: Android
-deviceName: Android Enulator
+deviceName: Android Emulator
 automationName: UiAutomator2
 newCommandTimeout: 180
 browserName: Chrome
