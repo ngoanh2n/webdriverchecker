@@ -4,9 +4,9 @@
 version: 2.1
 
 parameters:
-  os_windows: { type: string, default: windows }
   os_macos: { type: string, default: macos }
   os_linux: { type: string, default: linux }
+  os_windows: { type: string, default: windows }
   target_chrome: { type: string, default: chrome }
   target_firefox: { type: string, default: firefox }
   target_edge: { type: string, default: edge }
@@ -23,14 +23,6 @@ parameters:
   caps_android_chrome: { type: string, default: android-emulator-chrome.yml }
 
 executors:
-  executor_windows:
-    machine:
-      image: windows-server-2022-gui:current
-    shell: bash.exe
-    resource_class: windows.medium
-    working_directory: ~/project
-    environment:
-      OS: <<pipeline.parameters.os_windows>>
   executor_macos:
     macos:
       xcode: 13.4.1
@@ -47,6 +39,14 @@ executors:
     working_directory: ~/project
     environment:
       OS: <<pipeline.parameters.os_linux>>
+  executor_windows:
+    machine:
+      image: windows-server-2022-gui:current
+    shell: bash.exe
+    resource_class: windows.medium
+    working_directory: ~/project
+    environment:
+      OS: <<pipeline.parameters.os_windows>>
 
 commands:
   env_prepare:
@@ -59,20 +59,8 @@ commands:
           command: |
             chmod +x gradlew
             TARGET=<<parameters.target>>
-
-            if [[ "$OS" == "<<pipeline.parameters.os_windows>>" ]];
-            then
-              choco feature enable -n allowGlobalConfirmation
-              choco install zip
-
-              case $TARGET in
-                <<pipeline.parameters.target_chrome>>) choco install googlechrome ;;
-                <<pipeline.parameters.target_firefox>>) choco install firefox ;;
-                <<pipeline.parameters.target_edge>>) choco install microsoft-edge ;;
-                <<pipeline.parameters.target_opera>>) choco install opera ;;
-              esac
-
-            elif [[ "$OS" == "<<pipeline.parameters.os_macos>>" ]];
+            
+            if [[ "$OS" == "<<pipeline.parameters.os_macos>>" ]];
             then
               brew update
               brew install zip
@@ -110,6 +98,18 @@ commands:
                   sudo apt update
                   sudo apt install microsoft-edge-stable
                 ;;
+              esac
+
+            elif [[ "$OS" == "<<pipeline.parameters.os_windows>>" ]];
+            then
+              choco feature enable -n allowGlobalConfirmation
+              choco install zip
+
+              case $TARGET in
+                <<pipeline.parameters.target_chrome>>) choco install googlechrome ;;
+                <<pipeline.parameters.target_firefox>>) choco install firefox ;;
+                <<pipeline.parameters.target_edge>>) choco install microsoft-edge ;;
+                <<pipeline.parameters.target_opera>>) choco install opera ;;
               esac
             fi
 
@@ -201,29 +201,10 @@ commands:
           when: always
 
 jobs:
-  web_windows:
-    executor: executor_windows
-    parameters:
-      target: { type: string }
-    steps:
-      - env_prepare:
-          target: <<parameters.target>>
-      - cache_restore
-      - test_execute:
-          target: <<parameters.target>>
-          browser: <<parameters.target>>
-          options: >-
-            --tests com.github.ngoanh2n.wdc.AliveTest
-            --tests com.github.ngoanh2n.wdc.SeleniumWebTest
-      - artifact_compress:
-          target: <<parameters.target>>
-      - artifact_store:
-          target: <<parameters.target>>
-      - cache_store
   web_macos:
-    executor: executor_macos
     parameters:
       target: { type: string }
+    executor: executor_macos
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -240,9 +221,28 @@ jobs:
           target: <<parameters.target>>
       - cache_store
   web_linux:
-    executor: executor_linux
     parameters:
       target: { type: string }
+    executor: executor_linux
+    steps:
+      - env_prepare:
+          target: <<parameters.target>>
+      - cache_restore
+      - test_execute:
+          target: <<parameters.target>>
+          browser: <<parameters.target>>
+          options: >-
+            --tests com.github.ngoanh2n.wdc.AliveTest
+            --tests com.github.ngoanh2n.wdc.SeleniumWebTest
+      - artifact_compress:
+          target: <<parameters.target>>
+      - artifact_store:
+          target: <<parameters.target>>
+      - cache_store
+  web_windows:
+    parameters:
+      target: { type: string }
+    executor: executor_windows
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -259,10 +259,10 @@ jobs:
           target: <<parameters.target>>
       - cache_store
   mobile_ios:
-    executor: executor_macos
     parameters:
       target: { type: string }
       caps: { type: string }
+    executor: executor_macos
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -280,10 +280,10 @@ jobs:
       - cache_store:
           target: <<parameters.target>>
   mobile_android:
-    executor: executor_linux
     parameters:
       target: { type: string }
       caps: { type: string }
+    executor: executor_linux
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -305,22 +305,7 @@ jobs:
 workflows:
   test_execution:
     jobs:
-      - web_windows:
-          target: <<matrix.target>>
-          name: <<pipeline.parameters.os_windows>>/<<matrix.target>>
-          filters:
-            branches:
-              only:
-                - master
-          matrix:
-            parameters:
-              target: 
-                - <<pipeline.parameters.target_chrome>>
-                - <<pipeline.parameters.target_firefox>>
-                - <<pipeline.parameters.target_edge>>
-                - <<pipeline.parameters.target_opera>>
       - web_macos:
-          target: <<matrix.target>>
           name: <<pipeline.parameters.os_macos>>/<<matrix.target>>
           filters:
             branches:
@@ -334,7 +319,6 @@ workflows:
                 - <<pipeline.parameters.target_edge>>
                 - <<pipeline.parameters.target_opera>>
       - web_linux:
-          target: <<matrix.target>>
           name: <<pipeline.parameters.os_linux>>/<<matrix.target>>
           filters:
             branches:
@@ -346,45 +330,56 @@ workflows:
                 - <<pipeline.parameters.target_chrome>>
                 - <<pipeline.parameters.target_firefox>>
                 - <<pipeline.parameters.target_edge>>
-      # - mobile_ios:
-      #     target: <<matrix.target>>
-      #     caps: <<matrix.caps>>
-      #     name: <<pipeline.parameters.os_macos>>/<<matrix.target>>
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
-      #     matrix:
-      #       parameters:
-      #         target:
-      #           - <<pipeline.parameters.target_ios_native>>
-      #           - <<pipeline.parameters.target_ios_safari>>
-      #         caps:
-      #           - <<pipeline.parameters.caps_ios_native>>
-      #           - <<pipeline.parameters.caps_ios_safari>>
-      #       exclude:
-      #         - target: <<pipeline.parameters.target_ios_native>>
-      #           caps: <<pipeline.parameters.caps_ios_safari>>
-      #         - target: <<pipeline.parameters.target_ios_safari>>
-      #           caps: <<pipeline.parameters.caps_ios_native>>
-      # - mobile_android:
-      #     target: <<matrix.target>>
-      #     caps: <<matrix.caps>>
-      #     name: <<pipeline.parameters.os_linux>>/<<matrix.target>>
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
-      #     matrix:
-      #       parameters:
-      #         target:
-      #           - <<pipeline.parameters.target_android_native>>
-      #           - <<pipeline.parameters.target_android_chrome>>
-      #         caps:
-      #           - <<pipeline.parameters.caps_android_native>>
-      #           - <<pipeline.parameters.caps_android_chrome>>
-      #       exclude:
-      #         - target: <<pipeline.parameters.target_android_native>>
-      #           caps: <<pipeline.parameters.caps_android_chrome>>
-      #         - target: <<pipeline.parameters.target_android_chrome>>
-      #           caps: <<pipeline.parameters.caps_android_native>>
+      - web_windows:
+          name: <<pipeline.parameters.os_windows>>/<<matrix.target>>
+          filters:
+            branches:
+              only:
+                - master
+          matrix:
+            parameters:
+              target: 
+                - <<pipeline.parameters.target_chrome>>
+                - <<pipeline.parameters.target_firefox>>
+                - <<pipeline.parameters.target_edge>>
+                - <<pipeline.parameters.target_opera>>
+      - mobile_ios:
+          caps: <<matrix.caps>>
+          name: <<pipeline.parameters.os_macos>>/<<matrix.target>>
+          filters:
+            branches:
+              only:
+                - master
+          matrix:
+            parameters:
+              target:
+                - <<pipeline.parameters.target_ios_native>>
+                - <<pipeline.parameters.target_ios_safari>>
+              caps:
+                - <<pipeline.parameters.caps_ios_native>>
+                - <<pipeline.parameters.caps_ios_safari>>
+            exclude:
+              - target: <<pipeline.parameters.target_ios_native>>
+                caps: <<pipeline.parameters.caps_ios_safari>>
+              - target: <<pipeline.parameters.target_ios_safari>>
+                caps: <<pipeline.parameters.caps_ios_native>>
+      - mobile_android:
+          caps: <<matrix.caps>>
+          name: <<pipeline.parameters.os_linux>>/<<matrix.target>>
+          filters:
+            branches:
+              only:
+                - master
+          matrix:
+            parameters:
+              target:
+                - <<pipeline.parameters.target_android_native>>
+                - <<pipeline.parameters.target_android_chrome>>
+              caps:
+                - <<pipeline.parameters.caps_android_native>>
+                - <<pipeline.parameters.caps_android_chrome>>
+            exclude:
+              - target: <<pipeline.parameters.target_android_native>>
+                caps: <<pipeline.parameters.caps_android_chrome>>
+              - target: <<pipeline.parameters.target_android_chrome>>
+                caps: <<pipeline.parameters.caps_android_native>>
