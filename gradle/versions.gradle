@@ -7,5 +7,5 @@ ext {
     VERSION_SELENIDE                =   "5.25.0"
     VERSION_APPIUM                  =   "7.6.0"
     VERSION_JUNIT5_JUPITER          =   "5.8.2"
-    VERSION_NGOANH2N_UTILITIES      =   "2.2.0"
+    VERSION_NGOANH2N_UTILITIES      =   "2.3.0"
 }
