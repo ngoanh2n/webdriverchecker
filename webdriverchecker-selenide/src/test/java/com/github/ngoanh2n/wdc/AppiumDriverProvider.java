@@ -2,10 +2,12 @@ package com.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.WebDriverProvider;
 import com.github.ngoanh2n.YamlData;
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -28,12 +30,12 @@ public class AppiumDriverProvider implements WebDriverProvider {
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
         AppiumDriverLocalService service = startAppiumServer();
-        Capabilities capabilities = readAppiumCapabilities();
+        Capabilities caps = readAppiumCapabilities();
 
-        if (capabilities.getCapability("platformName").equals("iOS")) {
-            return new IOSDriver<>(service, capabilities);
+        if (caps.getCapability("platformName").equals("iOS")) {
+            return new IOSDriver(service, caps);
         } else {
-            return new AndroidDriver<>(service, capabilities);
+            return new AndroidDriver(service, caps);
         }
     }
 
@@ -42,6 +44,7 @@ public class AppiumDriverProvider implements WebDriverProvider {
         Map<String, Object> map = YamlData.toMapFromResource(capsFileName);
         DesiredCapabilities caps = new DesiredCapabilities();
         map.forEach(caps::setCapability);
+        caps.setCapability("appium:chromeOptions", ImmutableMap.of("w3c", false));
         logger.debug("Reading Capabilities");
         return caps;
     }
@@ -50,6 +53,7 @@ public class AppiumDriverProvider implements WebDriverProvider {
         AppiumServiceBuilder builder = new AppiumServiceBuilder()
                 .withIPAddress("127.0.0.1")
                 .usingAnyFreePort()
+                .withArgument(GeneralServerFlag.BASEPATH, "/wd/hub")
                 .withArgument(() -> "--allow-insecure", "chromedriver_autodownload");
         AppiumDriverLocalService service = AppiumDriverLocalService.buildService(builder);
         Runtime.getRuntime().addShutdownHook(new StopAppiumServerThread(service));

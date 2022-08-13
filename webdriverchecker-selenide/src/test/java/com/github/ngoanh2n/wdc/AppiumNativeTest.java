@@ -2,7 +2,9 @@ package com.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import com.github.ngoanh2n.ExecuteOnTarget;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -80,5 +82,10 @@ public class AppiumNativeTest {
         assertFalse(WebDriverChecker.isWindowsApp());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+    }
+
+    @AfterAll
+    static void cleanup() {
+        WebDriverRunner.getWebDriver().close();
     }
 }

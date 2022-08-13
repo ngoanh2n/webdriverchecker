@@ -2,7 +2,9 @@ package com.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import com.github.ngoanh2n.ExecuteOnTarget;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @since 2021-04-10
  */
 public class AppiumWebTest {
-
     @BeforeAll
     static void setup() {
         Configuration.timeout = 10 * 1000;
@@ -53,7 +54,7 @@ public class AppiumWebTest {
     }
 
     @Test
-    @ExecuteOnTarget("android-chrome")
+//    @ExecuteOnTarget("android-chrome")
     void androidChrome() {
         assertTrue(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
@@ -79,5 +80,10 @@ public class AppiumWebTest {
         assertFalse(WebDriverChecker.isWindowsApp());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+    }
+
+    @AfterAll
+    static void cleanup() {
+        WebDriverRunner.closeWebDriver();
     }
 }
