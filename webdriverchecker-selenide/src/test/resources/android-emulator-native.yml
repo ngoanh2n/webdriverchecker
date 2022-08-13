@@ -1,6 +1,7 @@
 platformName: Android
-deviceName: Android Enulator
+deviceName: Android Emulator
 automationName: UiAutomator2
 app: app/ApiDemos-debug.apk
 newCommandTimeout: 180
 appWaitDuration: 60000
+adbExecTimeout: 50000
