@@ -3,8 +3,6 @@ deviceName: Android Emulator
 automationName: UiAutomator2
 newCommandTimeout: 180
 browserName: Chrome
-noReset: true
+noReset: false
 adbExecTimeout: 15000
-resetKeyboard: true
-unicodeKeyboard: true
 autoGrantPermissions: true
