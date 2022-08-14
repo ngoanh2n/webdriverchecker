@@ -27,13 +27,13 @@ Add to `pom.xml`
 
 # WebDriverChecker for Selenide
 ## Gradle Project
-Add dependency to `build.gradle`
+Add to `build.gradle`
 ```gradle
 implementation("com.github.ngoanh2n:webdriverchecker-selenide:1.0.0")
 ```
 
 ## Maven Project
-Add dependency to `pom.xml`
+Add to `pom.xml`
 ```xml
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
