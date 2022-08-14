@@ -2,7 +2,6 @@ package com.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.WebDriverProvider;
 import com.github.ngoanh2n.YamlData;
-import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -45,7 +44,6 @@ public class AppiumDriverProvider implements WebDriverProvider {
         Map<String, Object> map = YamlData.toMapFromResource(capsFileName);
         DesiredCapabilities caps = new DesiredCapabilities();
         map.forEach(caps::setCapability);
-        caps.setCapability("appium:chromeOptions", ImmutableMap.of("w3c", false));
         logger.debug("Reading Capabilities");
         return caps;
     }
