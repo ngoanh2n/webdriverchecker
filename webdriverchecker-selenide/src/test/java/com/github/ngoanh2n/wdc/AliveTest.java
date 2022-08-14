@@ -1,9 +1,10 @@
 package com.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -13,19 +14,20 @@ import org.junit.jupiter.api.Test;
 public class AliveTest {
     @BeforeEach
     void setup() {
-        Assertions.assertFalse(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isAlive());
+
         Selenide.open();
-        Assertions.assertTrue(WebDriverChecker.isAlive());
+        assertTrue(WebDriverChecker.isAlive());
         Selenide.closeWebDriver();
     }
 
     @Test
     void usedDirected() {
-        Assertions.assertFalse(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isAlive());
     }
 
     @Test
     void usedUndirected() {
-        Assertions.assertThrows(WDCException.NoSuchWDSession.class, WebDriverChecker::isFirefox);
+        assertThrows(WDCException.NoSuchWDSession.class, WebDriverChecker::isFirefox);
     }
 }
