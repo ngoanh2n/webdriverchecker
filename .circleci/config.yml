@@ -17,10 +17,10 @@ parameters:
   target_ios_safari: { type: string, default: ios-safari }
   target_android_native: { type: string, default: android-native }
   target_android_chrome: { type: string, default: android-chrome }
-  caps_ios_native: { type: string, default: ios-simulator-native.yml }
-  caps_ios_safari: { type: string, default: ios-simulator-safari.yml }
-  caps_android_native: { type: string, default: android-emulator-native.yml }
-  caps_android_chrome: { type: string, default: android-emulator-chrome.yml }
+  caps_ios_native: { type: string, default: ios-native.yml }
+  caps_ios_safari: { type: string, default: ios-safari.yml }
+  caps_android_native: { type: string, default: android-native.yml }
+  caps_android_chrome: { type: string, default: android-chrome.yml }
 
 executors:
   executor_macos:
@@ -260,8 +260,8 @@ jobs:
       - cache_store
   mobile_ios:
     parameters:
-      target: { type: string }
       caps: { type: string }
+      target: { type: string }
     executor: executor_macos
     steps:
       - env_prepare:
@@ -281,8 +281,8 @@ jobs:
           target: <<parameters.target>>
   mobile_android:
     parameters:
-      target: { type: string }
       caps: { type: string }
+      target: { type: string }
     executor: executor_linux
     steps:
       - env_prepare:
@@ -344,7 +344,6 @@ workflows:
                 - <<pipeline.parameters.target_edge>>
                 - <<pipeline.parameters.target_opera>>
       - mobile_ios:
-          caps: <<matrix.caps>>
           name: <<pipeline.parameters.os_macos>>/<<matrix.target>>
           filters:
             branches:
@@ -352,19 +351,18 @@ workflows:
                 - master
           matrix:
             parameters:
-              target:
-                - <<pipeline.parameters.target_ios_native>>
-                - <<pipeline.parameters.target_ios_safari>>
               caps:
                 - <<pipeline.parameters.caps_ios_native>>
                 - <<pipeline.parameters.caps_ios_safari>>
+              target:
+                - <<pipeline.parameters.target_ios_native>>
+                - <<pipeline.parameters.target_ios_safari>>
             exclude:
-              - target: <<pipeline.parameters.target_ios_native>>
-                caps: <<pipeline.parameters.caps_ios_safari>>
-              - target: <<pipeline.parameters.target_ios_safari>>
-                caps: <<pipeline.parameters.caps_ios_native>>
+              - caps: <<pipeline.parameters.caps_ios_native>>
+                target: <<pipeline.parameters.target_ios_safari>>
+              - caps: <<pipeline.parameters.caps_ios_safari>>
+                target: <<pipeline.parameters.target_ios_native>>
       - mobile_android:
-          caps: <<matrix.caps>>
           name: <<pipeline.parameters.os_linux>>/<<matrix.target>>
           filters:
             branches:
@@ -372,14 +370,14 @@ workflows:
                 - master
           matrix:
             parameters:
-              target:
-                - <<pipeline.parameters.target_android_native>>
-                - <<pipeline.parameters.target_android_chrome>>
               caps:
                 - <<pipeline.parameters.caps_android_native>>
                 - <<pipeline.parameters.caps_android_chrome>>
+              target:
+                - <<pipeline.parameters.target_android_native>>
+                - <<pipeline.parameters.target_android_chrome>>
             exclude:
-              - target: <<pipeline.parameters.target_android_native>>
-                caps: <<pipeline.parameters.caps_android_chrome>>
-              - target: <<pipeline.parameters.target_android_chrome>>
-                caps: <<pipeline.parameters.caps_android_native>>
+              - caps: <<pipeline.parameters.caps_android_native>>
+                target: <<pipeline.parameters.target_android_chrome>>
+              - caps: <<pipeline.parameters.caps_android_chrome>>
+                target: <<pipeline.parameters.target_android_native>>
