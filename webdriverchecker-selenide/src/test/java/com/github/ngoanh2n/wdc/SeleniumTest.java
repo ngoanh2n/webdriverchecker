@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @since 2021-04-10
  */
 public class SeleniumTest {
-
     @BeforeEach
     void openDriver() {
         Configuration.timeout = 10 * 1000;

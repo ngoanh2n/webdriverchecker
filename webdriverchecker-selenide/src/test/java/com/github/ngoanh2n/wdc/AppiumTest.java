@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         "android-chrome"
 })
 public class AppiumTest {
-
     @BeforeEach
     void openDriver() {
         Configuration.timeout = 10 * 1000;
