@@ -137,6 +137,22 @@ commands:
 
               appium-doctor
             fi
+
+            ### Download tested apps
+            if [[ $TARGET == <<pipeline.parameters.target_ios_native>> ]];
+            then
+              curl -H 'Authorization: token $GH_ACCESS_TOKEN' \
+                -H 'Accept: application/vnd.github.v3.raw' \
+                -O \
+                -L https://api.github.com/repos/$GH_APP_PATH.zip
+            fi
+            if [[ $TARGET == <<pipeline.parameters.target_android_native>> ]];
+            then
+              curl -H 'Authorization: token $GH_ACCESS_TOKEN' \
+                -H 'Accept: application/vnd.github.v3.raw' \
+                -O \
+                -L https://api.github.com/repos/$GH_APP_PATH.apk
+            fi
   env_emulator:
     steps:
       - run:
@@ -215,10 +231,6 @@ jobs:
           options: >-
             --tests com.github.ngoanh2n.wdc.AliveTest
             --tests com.github.ngoanh2n.wdc.SeleniumTest
-      - artifact_compress:
-          target: <<parameters.target>>
-      - artifact_store:
-          target: <<parameters.target>>
       - cache_store
   web_linux:
     parameters:
@@ -234,10 +246,6 @@ jobs:
           options: >-
             --tests com.github.ngoanh2n.wdc.AliveTest
             --tests com.github.ngoanh2n.wdc.SeleniumTest
-      - artifact_compress:
-          target: <<parameters.target>>
-      - artifact_store:
-          target: <<parameters.target>>
       - cache_store
   web_windows:
     parameters:
@@ -253,10 +261,6 @@ jobs:
           options: >-
             --tests com.github.ngoanh2n.wdc.AliveTest
             --tests com.github.ngoanh2n.wdc.SeleniumTest
-      - artifact_compress:
-          target: <<parameters.target>>
-      - artifact_store:
-          target: <<parameters.target>>
       - cache_store
   mobile_ios:
     parameters:
@@ -273,10 +277,6 @@ jobs:
           browser: com.github.ngoanh2n.wdc.AppiumDriverProvider
           options: --tests com.github.ngoanh2n.wdc.*
           arguments: -Dappium.capabilities=<<parameters.caps>>
-      - artifact_compress:
-          target: <<parameters.target>>
-      - artifact_store:
-          target: <<parameters.target>>
       - cache_store:
           target: <<parameters.target>>
   mobile_android:
@@ -295,10 +295,6 @@ jobs:
           browser: com.github.ngoanh2n.wdc.AppiumDriverProvider
           options: --tests com.github.ngoanh2n.wdc.*
           arguments: -Dappium.capabilities=<<parameters.caps>>
-      - artifact_compress:
-          target: <<parameters.target>>
-      - artifact_store:
-          target: <<parameters.target>>
       - cache_store:
           target: <<parameters.target>>
 
