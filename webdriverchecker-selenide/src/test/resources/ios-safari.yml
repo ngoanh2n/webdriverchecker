@@ -1,10 +1,10 @@
 platformName: iOS
-platformVersion: "12.2"
+platformVersion: "15.4"
 deviceName: iPhone 11
 automationName: XCUITest
 newCommandTimeout: 180
 browserName: Safari
-noReset: false
+noReset: true
 resetKeyboard: true
 unicodeKeyboard: true
 safariAllowPopups: true

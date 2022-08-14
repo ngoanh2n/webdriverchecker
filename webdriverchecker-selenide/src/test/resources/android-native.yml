@@ -1,8 +1,8 @@
 platformName: Android
 deviceName: Android Emulator
 automationName: UiAutomator2
-app: app/ApiDemos-debug.apk
 newCommandTimeout: 180
+app: app/blursut.apk
 appWaitDuration: 60000
 adbExecTimeout: 50000
 autoGrantPermissions: true

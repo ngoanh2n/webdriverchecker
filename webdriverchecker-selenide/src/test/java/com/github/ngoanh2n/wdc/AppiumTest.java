@@ -75,7 +75,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isOpera());
         assertFalse(WebDriverChecker.isIE());
 
-        assertFalse(WebDriverChecker.isIOS());
+        assertTrue(WebDriverChecker.isIOS());
         assertFalse(WebDriverChecker.isIOSApp());
         assertTrue(WebDriverChecker.isIOSWeb());
         assertTrue(WebDriverChecker.isIOSSafari());
