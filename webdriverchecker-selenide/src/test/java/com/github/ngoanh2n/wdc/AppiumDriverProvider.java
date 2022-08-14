@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Map;
 
 /**
@@ -22,8 +23,8 @@ import java.util.Map;
  * @version 1.0.0
  * @since 2021-04-10
  */
+@ParametersAreNonnullByDefault
 public class AppiumDriverProvider implements WebDriverProvider {
-
     private static final Logger logger = LoggerFactory.getLogger(AppiumDriverProvider.class);
 
     @Nonnull
@@ -33,9 +34,9 @@ public class AppiumDriverProvider implements WebDriverProvider {
         Capabilities caps = readAppiumCapabilities();
 
         if (caps.getCapability("platformName").equals("iOS")) {
-            return new IOSDriver(service, caps);
+            return new IOSDriver<>(service, caps);
         } else {
-            return new AndroidDriver(service, caps);
+            return new AndroidDriver<>(service, caps);
         }
     }
 
@@ -75,7 +76,7 @@ public class AppiumDriverProvider implements WebDriverProvider {
 
         @Override
         public void run() {
-            if (service != null && service.isRunning()) {
+            if (service.isRunning()) {
                 service.stop();
                 logger.debug("Stopping Appium Server");
             }

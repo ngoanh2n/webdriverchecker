@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @version 1.0.0
  * @since 2021-04-10
  */
-public class SeleniumWebTest {
+public class SeleniumTest {
 
     @BeforeEach
     void openDriver() {

@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
  * @since 2021-04-10
  */
 public class AliveTest {
-
     @BeforeEach
     void setup() {
         Assertions.assertFalse(WebDriverChecker.isAlive());
