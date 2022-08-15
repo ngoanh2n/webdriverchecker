@@ -1,6 +1,7 @@
+### https://github.com/appium/appium-xcuitest-driver#capabilities
 platformName: iOS
-platformVersion: "15.4"
+platformVersion: "15.5"
 deviceName: iPhone 11
-automationName: XCUITest
+automationName: xcuitest
 newCommandTimeout: 180
 app: app/blursut.zip
