@@ -127,44 +127,59 @@ commands:
               case $OS in
                 <<pipeline.parameters.os_macos>>)
                   brew install carthage
-                  brew install ios-webkit-debug-proxy
-                  xcrun simctl list
+                  brew install ios-deploy
                 ;;
                 <<pipeline.parameters.os_linux>>)
                   adb devices
                 ;;
               esac
 
-              appium-doctor
-            fi
+              ### Download tested apps
+              if [[ $TARGET == *-native ]];
+              then
+                APP_EXTENSION=zip
+                APP_LOCATION=webdriverchecker-selenide/app
 
-            ### Download tested apps
-            if [[ $TARGET == <<pipeline.parameters.target_ios_native>> ]];
-            then
-              curl -H 'Authorization: token $GH_ACCESS_TOKEN' \
-                -H 'Accept: application/vnd.github.v3.raw' \
-                -O \
-                -L https://api.github.com/repos/$GH_APP_PATH.zip
-            fi
-            if [[ $TARGET == <<pipeline.parameters.target_android_native>> ]];
-            then
-              curl -H 'Authorization: token $GH_ACCESS_TOKEN' \
-                -H 'Accept: application/vnd.github.v3.raw' \
-                -O \
-                -L https://api.github.com/repos/$GH_APP_PATH.apk
+                mkdir -p $APP_LOCATION
+                cd $APP_LOCATION
+                
+                if [[ $TARGET == android-* ]];
+                then APP_EXTENSION=apk
+                fi
+
+                curl -H 'Authorization: token $GH_ACCESS_TOKEN' \
+                  -H 'Accept: application/vnd.github.v3.raw' \
+                  -O \
+                  -L https://api.github.com/repos/$GH_APP_PATH.$APP_EXTENSION
+                md5sum blursut.$APP_EXTENSION
+              fi
+
+              appium-doctor
             fi
   env_emulator:
     steps:
       - run:
-          name: Launch emulator
+          name: Create AVD
           command: |
-            if [[ "$OS" == "<<pipeline.parameters.os_linux>>" ]]; then
-              SYSTEM_IMAGES="system-images;android-29;default;x86"
+            if [[ "$OS" == "<<pipeline.parameters.os_linux>>" ]];
+            then
+              SYSTEM_IMAGES="system-images;android-28;google_apis;x86"
               sdkmanager "$SYSTEM_IMAGES"
               echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
+            fi
+      - run:
+          name: Launch emulator
+          command: |
+            if [[ "$OS" == "<<pipeline.parameters.os_linux>>" ]];
+            then
               emulator -avd test -delay-adb -verbose -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
             fi
           background: true
+      - run:
+          name: Wait for emulator
+          command: |
+            adb wait-for-device
+            adb devices
   cache_store:
     parameters:
       target: { type: string, default: "" }
@@ -229,8 +244,7 @@ jobs:
           target: <<parameters.target>>
           browser: <<parameters.target>>
           options: >-
-            --tests com.github.ngoanh2n.wdc.AliveTest
-            --tests com.github.ngoanh2n.wdc.SeleniumTest
+            --tests com.github.ngoanh2n.wdc.*
       - cache_store
   web_linux:
     parameters:
@@ -244,8 +258,7 @@ jobs:
           target: <<parameters.target>>
           browser: <<parameters.target>>
           options: >-
-            --tests com.github.ngoanh2n.wdc.AliveTest
-            --tests com.github.ngoanh2n.wdc.SeleniumTest
+            --tests com.github.ngoanh2n.wdc.*
       - cache_store
   web_windows:
     parameters:
@@ -259,8 +272,7 @@ jobs:
           target: <<parameters.target>>
           browser: <<parameters.target>>
           options: >-
-            --tests com.github.ngoanh2n.wdc.AliveTest
-            --tests com.github.ngoanh2n.wdc.SeleniumTest
+            --tests com.github.ngoanh2n.wdc.*
       - cache_store
   mobile_ios:
     parameters:
