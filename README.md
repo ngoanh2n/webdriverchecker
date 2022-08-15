@@ -12,7 +12,7 @@
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker:1.0.0")
+implementation("com.github.ngoanh2n:webdriverchecker:1.1.0")
 ```
 
 ## Maven Project
@@ -21,7 +21,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -29,7 +29,7 @@ Add to `pom.xml`
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker-selenide:1.0.0")
+implementation("com.github.ngoanh2n:webdriverchecker-selenide:1.1.0")
 ```
 
 ## Maven Project
@@ -38,7 +38,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker-selenide</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
