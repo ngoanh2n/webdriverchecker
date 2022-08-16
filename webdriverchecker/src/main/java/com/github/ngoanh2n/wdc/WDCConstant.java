@@ -22,4 +22,9 @@ class WDCConstant {
     final static String WINDOWS = "windows";
     final static String IOS = "ios";
     final static String ANDROID = "android";
+
+    // Capability Names
+    final static String APP = "ios";
+    final static String APP_PACKAGE = "appPackage";
+    final static String APP_ACTIVITY = "appActivity";
 }
