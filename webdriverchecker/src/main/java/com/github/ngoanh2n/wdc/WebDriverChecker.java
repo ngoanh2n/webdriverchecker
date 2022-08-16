@@ -5,9 +5,7 @@ import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.ServiceLoader;
+import java.util.*;
 
 import static com.github.ngoanh2n.wdc.Browser.*;
 import static com.github.ngoanh2n.wdc.Combine.*;
@@ -466,6 +464,14 @@ public abstract class WebDriverChecker {
     protected String getCapability(String name, Object... args) {
         Object value = getCapabilities(args).getCapability(name);
         return String.valueOf(Optional.ofNullable(value).orElse(""));
+    }
+
+    protected boolean hasCapability(String name, Object... args) {
+        List<String> names = new ArrayList<>(getCapabilities(args).getCapabilityNames());
+        for (String n : names) {
+            if (n.equalsIgnoreCase(name)) return true;
+        }
+        return false;
     }
 
     protected Capabilities getCapabilities(Object... args) {
