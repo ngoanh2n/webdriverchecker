@@ -12,9 +12,7 @@ import static com.github.ngoanh2n.wdc.State.Browser;
  * @since 2021-04-10
  */
 class Combine {
-
     static class IOSWeb extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             if (is(new IOS(), args)) {
@@ -25,18 +23,16 @@ class Combine {
     }
 
     static class IOSApp extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             if (is(new IOS(), args)) {
-                return is(new App(), args) || !is(new Browser(), args);
+                return is(new App(), args);
             }
             return false;
         }
     }
 
     static class IOSSafari extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             if (is(new IOS(), args)) {
@@ -49,7 +45,6 @@ class Combine {
     // ------------------------------------
 
     static class AndroidWeb extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             if (is(new Android(), args)) {
@@ -60,7 +55,6 @@ class Combine {
     }
 
     static class AndroidApp extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             if (is(new Android(), args)) {
@@ -71,7 +65,6 @@ class Combine {
     }
 
     static class AndroidChrome extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             if (is(new Android(), args)) {
@@ -84,7 +77,6 @@ class Combine {
     // ------------------------------------
 
     static class Mobile extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             return is(new IOS(), args) || is(new Android(), args);
@@ -92,7 +84,6 @@ class Combine {
     }
 
     static class MobileApp extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             return is(new Mobile(), args) && is(new App(), args);
@@ -100,7 +91,6 @@ class Combine {
     }
 
     static class MobileWeb extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             return is(new Mobile(), args) && is(new Browser(), args);
@@ -110,7 +100,6 @@ class Combine {
     // ------------------------------------
 
     static class WindowsApp extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             return is(new Windows()) && is(new App());
