@@ -48,7 +48,7 @@ class State {
         }
     }
 
-    static class App extends WebDriverChecker {
+    static class Native extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
             return hasCapability(APP, args)
