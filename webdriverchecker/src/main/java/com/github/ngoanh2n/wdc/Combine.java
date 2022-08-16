@@ -15,30 +15,21 @@ class Combine {
     static class IOSWeb extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            if (is(new IOS(), args)) {
-                return is(new Browser(), args);
-            }
-            return false;
+            return is(new IOS(), args) && is(new Browser(), args);
         }
     }
 
     static class IOSApp extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            if (is(new IOS(), args)) {
-                return is(new App(), args);
-            }
-            return false;
+            return is(new IOS(), args) && is(new App(), args);
         }
     }
 
     static class IOSSafari extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            if (is(new IOS(), args)) {
-                return is(new Safari(), args);
-            }
-            return false;
+            return is(new IOS(), args) && is(new Safari(), args);
         }
     }
 
@@ -47,30 +38,21 @@ class Combine {
     static class AndroidWeb extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            if (is(new Android(), args)) {
-                return is(new Browser(), args);
-            }
-            return false;
+            return is(new Android(), args) && is(new Browser(), args);
         }
     }
 
     static class AndroidApp extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            if (is(new Android(), args)) {
-                return is(new App(), args) || !is(new Browser(), args);
-            }
-            return false;
+            return is(new Android(), args) && is(new App(), args);
         }
     }
 
     static class AndroidChrome extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            if (is(new Android(), args)) {
-                return is(new Chrome(), args);
-            }
-            return false;
+            return is(new Android(), args) && is(new Chrome(), args);
         }
     }
 
