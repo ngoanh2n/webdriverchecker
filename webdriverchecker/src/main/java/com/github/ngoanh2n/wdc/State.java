@@ -60,7 +60,7 @@ class State {
     static class Browser extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return !getBrowserName(args).isEmpty();
+            return hasCapability(BROWSER_NAME, args);
         }
     }
 }
