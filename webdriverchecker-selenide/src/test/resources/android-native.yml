@@ -1,6 +1,5 @@
 ### https://github.com/appium/appium-uiautomator2-driver#capabilities
-platformName: Android
-deviceName: Android Emulator
+platformName: android
 automationName: uiautomator2
 newCommandTimeout: 180
 app: app/blursut.apk
