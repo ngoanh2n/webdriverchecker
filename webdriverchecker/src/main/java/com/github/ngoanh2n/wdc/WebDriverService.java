@@ -20,7 +20,6 @@ import org.openqa.selenium.WebDriver;
  *      import com.github.ngoanh2n.wdc.WebDriverService;
  *
  *      public class MyWebDriverService implements WebDriverService {
- *
  *          public WebDriver serve() {
  *              WebDriver driver = MyStaticDriver.getDriver();
  *              return driver;
@@ -40,6 +39,5 @@ import org.openqa.selenium.WebDriver;
  * @since 2021-04-10
  */
 public interface WebDriverService {
-
     WebDriver serve();
 }
