@@ -7,11 +7,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.*;
 
+import static com.github.ngoanh2n.wdc.Browser.IE;
 import static com.github.ngoanh2n.wdc.Browser.*;
 import static com.github.ngoanh2n.wdc.Combine.*;
 import static com.github.ngoanh2n.wdc.Platform.Android;
 import static com.github.ngoanh2n.wdc.Platform.IOS;
 import static com.github.ngoanh2n.wdc.State.Alive;
+import static com.github.ngoanh2n.wdc.WDCConstant.*;
 import static com.github.ngoanh2n.wdc.WDCException.*;
 import static java.util.ServiceLoader.load;
 
@@ -21,7 +23,6 @@ import static java.util.ServiceLoader.load;
  * @since 2021-04-10
  */
 public abstract class WebDriverChecker {
-
     /**
      * Check whether the current {@linkplain WebDriver} is not quit
      *
@@ -211,7 +212,7 @@ public abstract class WebDriverChecker {
         return is(new WindowsApp());
     }
 
-    // ------------
+    // ------------------------------------
 
     /**
      * Check whether {@linkplain WebDriver} is not quit
@@ -423,7 +424,7 @@ public abstract class WebDriverChecker {
         return is(new WindowsApp(), wd);
     }
 
-    // ------------
+    // ------------------------------------
 
     protected static boolean is(WebDriverChecker wdc, Object... args) {
         if (!(wdc instanceof Alive)) {
@@ -434,26 +435,26 @@ public abstract class WebDriverChecker {
         return wdc.check(args);
     }
 
-    // ------------
+    // ------------------------------------
 
     protected abstract boolean check(Object[] args);
 
-    // ------------
+    // ------------------------------------
 
     protected String getPlatformName(Object... args) {
-        String value = getCapability("platformName", args);
+        String value = getCapability(PLATFORM_NAME, args);
         return value.toLowerCase();
     }
 
     protected String getBrowserName(Object... args) {
-        String value = getCapability("browserName", args);
+        String value = getCapability(BROWSER_NAME, args);
         return value.replaceAll("\\s+", "").toLowerCase();
     }
 
     protected double getBrowserVersion(Object... args) {
-        String value = getCapability("browserVersion", args);
+        String value = getCapability(BROWSER_VERSION, args);
         if (value.isEmpty()) {
-            value = getCapability("version", args);
+            value = getCapability(VERSION, args);
         }
         if (value.isEmpty()) {
             return 0;
@@ -482,7 +483,7 @@ public abstract class WebDriverChecker {
         return ((HasCapabilities) wd).getCapabilities();
     }
 
-    // ------------
+    // ------------------------------------
 
     protected WebDriver getWD(Object... args) {
         if (args.length == 0) {
