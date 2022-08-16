@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
-import static com.github.ngoanh2n.wdc.WDCType.*;
+import static com.github.ngoanh2n.wdc.WDCConstant.*;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -8,44 +8,38 @@ import static com.github.ngoanh2n.wdc.WDCType.*;
  * @since 2021-04-10
  */
 class Platform {
-
     static class Linux extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
-            return getPlatformName(args).equals(LINUX.getName());
+            return getPlatformName(args).equals(LINUX);
         }
     }
 
-    static class Mac extends WebDriverChecker {
-
+    static class MacOS extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return getPlatformName(args).equals(MACOS.getName());
+            return getPlatformName(args).equals(MACOS);
         }
     }
 
     static class Windows extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
-            return getPlatformName(args).equals(WINDOWS.getName());
+            return getPlatformName(args).equals(WINDOWS);
         }
     }
 
     static class IOS extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
-            return getPlatformName(args).equals(IOS.getName());
+            return getPlatformName(args).equals(IOS);
         }
     }
 
     static class Android extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
-            return getPlatformName(args).equals(ANDROID.getName());
+            return getPlatformName(args).equals(ANDROID);
         }
     }
 }
