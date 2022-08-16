@@ -462,9 +462,9 @@ public abstract class WebDriverChecker {
         return Double.parseDouble(value.split("\\.")[0]);
     }
 
-    protected String getCapability(String name, Object... args) {
-        Object value = getCapabilities(args).getCapability(name);
-        return String.valueOf(Optional.ofNullable(value).orElse(""));
+    protected String getAppPackage(Object... args) {
+        String value = getCapability(APP_PACKAGE, args);
+        return value.toLowerCase();
     }
 
     protected boolean hasCapability(String name, Object... args) {
@@ -473,6 +473,15 @@ public abstract class WebDriverChecker {
             if (n.equalsIgnoreCase(name)) return true;
         }
         return false;
+    }
+
+    protected boolean isValidCapability(String name, Object... args) {
+        return !getCapability(name, args).isEmpty();
+    }
+
+    protected String getCapability(String name, Object... args) {
+        Object value = getCapabilities(args).getCapability(name);
+        return String.valueOf(Optional.ofNullable(value).orElse(""));
     }
 
     protected Capabilities getCapabilities(Object... args) {
