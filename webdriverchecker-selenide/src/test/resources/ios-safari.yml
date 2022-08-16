@@ -1,10 +1,10 @@
 ### https://github.com/appium/appium-xcuitest-driver#capabilities
-platformName: iOS
+platformName: ios
 platformVersion: "15.5"
 deviceName: iPhone 11
 automationName: xcuitest
 newCommandTimeout: 180
-browserName: Safari
+browserName: safari
 noReset: true
 safariAllowPopups: true
 autoAcceptAlerts: true

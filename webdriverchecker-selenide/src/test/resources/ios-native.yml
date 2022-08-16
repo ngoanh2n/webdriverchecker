@@ -1,5 +1,5 @@
 ### https://github.com/appium/appium-xcuitest-driver#capabilities
-platformName: iOS
+platformName: ios
 platformVersion: "15.5"
 deviceName: iPhone 11
 automationName: xcuitest
