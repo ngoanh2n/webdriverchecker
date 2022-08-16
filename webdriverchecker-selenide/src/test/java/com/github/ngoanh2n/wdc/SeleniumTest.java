@@ -39,20 +39,20 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isIE());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSWeb());
         assertFalse(WebDriverChecker.isIOSSafari());
+        assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidApp());
         assertFalse(WebDriverChecker.isAndroidWeb());
         assertFalse(WebDriverChecker.isAndroidChrome());
+        assertFalse(WebDriverChecker.isAndroidNative());
 
         assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isWindowsApp());
+        assertFalse(WebDriverChecker.isWindowsNative());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -68,20 +68,20 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isIE());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSWeb());
         assertFalse(WebDriverChecker.isIOSSafari());
+        assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidApp());
         assertFalse(WebDriverChecker.isAndroidWeb());
         assertFalse(WebDriverChecker.isAndroidChrome());
+        assertFalse(WebDriverChecker.isAndroidNative());
 
         assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isWindowsApp());
+        assertFalse(WebDriverChecker.isWindowsNative());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -97,20 +97,20 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isIE());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSWeb());
         assertFalse(WebDriverChecker.isIOSSafari());
+        assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidApp());
         assertFalse(WebDriverChecker.isAndroidWeb());
         assertFalse(WebDriverChecker.isAndroidChrome());
+        assertFalse(WebDriverChecker.isAndroidNative());
 
         assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isWindowsApp());
+        assertFalse(WebDriverChecker.isWindowsNative());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -126,20 +126,20 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isIE());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSWeb());
         assertFalse(WebDriverChecker.isIOSSafari());
+        assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidApp());
         assertFalse(WebDriverChecker.isAndroidWeb());
         assertFalse(WebDriverChecker.isAndroidChrome());
+        assertFalse(WebDriverChecker.isAndroidNative());
 
         assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isWindowsApp());
+        assertFalse(WebDriverChecker.isWindowsNative());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -155,20 +155,20 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isIE());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSWeb());
         assertFalse(WebDriverChecker.isIOSSafari());
+        assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidApp());
         assertFalse(WebDriverChecker.isAndroidWeb());
         assertFalse(WebDriverChecker.isAndroidChrome());
+        assertFalse(WebDriverChecker.isAndroidNative());
 
         assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isWindowsApp());
+        assertFalse(WebDriverChecker.isWindowsNative());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -184,20 +184,20 @@ public class SeleniumTest {
         assertTrue(WebDriverChecker.isIE());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSApp());
         assertFalse(WebDriverChecker.isIOSWeb());
         assertFalse(WebDriverChecker.isIOSSafari());
+        assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidApp());
         assertFalse(WebDriverChecker.isAndroidWeb());
         assertFalse(WebDriverChecker.isAndroidChrome());
+        assertFalse(WebDriverChecker.isAndroidNative());
 
         assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileApp());
         assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isWindowsApp());
+        assertFalse(WebDriverChecker.isWindowsNative());
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }

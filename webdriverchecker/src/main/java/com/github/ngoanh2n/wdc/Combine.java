@@ -3,8 +3,8 @@ package com.github.ngoanh2n.wdc;
 import static com.github.ngoanh2n.wdc.Browser.Chrome;
 import static com.github.ngoanh2n.wdc.Browser.Safari;
 import static com.github.ngoanh2n.wdc.Platform.*;
-import static com.github.ngoanh2n.wdc.State.App;
 import static com.github.ngoanh2n.wdc.State.Browser;
+import static com.github.ngoanh2n.wdc.State.Native;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -19,17 +19,17 @@ class Combine {
         }
     }
 
-    static class IOSApp extends WebDriverChecker {
-        @Override
-        protected boolean check(Object... args) {
-            return is(new IOS(), args) && is(new App(), args);
-        }
-    }
-
     static class IOSSafari extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
             return is(new IOS(), args) && is(new Safari(), args);
+        }
+    }
+
+    static class IOSNative extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            return is(new IOS(), args) && is(new Native(), args);
         }
     }
 
@@ -42,17 +42,17 @@ class Combine {
         }
     }
 
-    static class AndroidApp extends WebDriverChecker {
-        @Override
-        protected boolean check(Object... args) {
-            return is(new Android(), args) && is(new App(), args);
-        }
-    }
-
     static class AndroidChrome extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
             return is(new Android(), args) && is(new Chrome(), args);
+        }
+    }
+
+    static class AndroidNative extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            return is(new Android(), args) && is(new Native(), args);
         }
     }
 
@@ -65,13 +65,6 @@ class Combine {
         }
     }
 
-    static class MobileApp extends WebDriverChecker {
-        @Override
-        protected boolean check(Object... args) {
-            return is(new Mobile(), args) && is(new App(), args);
-        }
-    }
-
     static class MobileWeb extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
@@ -79,12 +72,19 @@ class Combine {
         }
     }
 
-    // ------------------------------------
-
-    static class WindowsApp extends WebDriverChecker {
+    static class MobileNative extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return is(new Windows()) && is(new App());
+            return is(new Mobile(), args) && is(new Native(), args);
+        }
+    }
+
+    // ------------------------------------
+
+    static class WindowsNative extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            return is(new Windows()) && is(new Native());
         }
     }
 }
