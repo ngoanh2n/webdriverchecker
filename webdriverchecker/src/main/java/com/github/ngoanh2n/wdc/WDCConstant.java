@@ -7,7 +7,7 @@ package com.github.ngoanh2n.wdc;
  */
 @SuppressWarnings("SpellCheckingInspection")
 class WDCConstant {
-    // Browsers
+    // Browser
     final static String CHROME = "chrome";
     final static String SAFARI = "safari";
     final static String FIREFOX = "firefox";
@@ -16,14 +16,14 @@ class WDCConstant {
     final static String IE = "internetexplorer";
     final static String EDGE_LEGACY = "microsoftedge";
 
-    // Platforms
+    // OS
     final static String MACOS = "mac";
     final static String LINUX = "linux";
     final static String WINDOWS = "windows";
     final static String IOS = "ios";
     final static String ANDROID = "android";
 
-    // Capability Names
+    // Capability
     final static String VERSION = "version";
     final static String BROWSER_NAME = "browserName";
     final static String BROWSER_VERSION = "browserVersion";
@@ -31,4 +31,7 @@ class WDCConstant {
     final static String APP = "app";
     final static String APP_PACKAGE = "appPackage";
     final static String APP_ACTIVITY = "appActivity";
+
+    // Package
+    final static String PKG_CHROME = "com.android.chrome";
 }

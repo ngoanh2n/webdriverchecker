@@ -5,6 +5,7 @@ import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.service.DriverCommandExecutor;
 
+import static com.github.ngoanh2n.wdc.Platform.Android;
 import static com.github.ngoanh2n.wdc.WDCConstant.*;
 
 /**
@@ -51,16 +52,23 @@ class State {
     static class Native extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return hasCapability(APP, args)
-                    || (hasCapability(APP_PACKAGE, args)
-                    && hasCapability(APP_ACTIVITY, args));
+            if (isValidCapability(APP, args)) {
+                return true;
+            }
+            if (isValidCapability(APP_PACKAGE, args)) {
+                if (is(new Android())) {
+                    return !getAppPackage(args).equals(PKG_CHROME);
+                }
+                return true;
+            }
+            return false;
         }
     }
 
     static class Browser extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return hasCapability(BROWSER_NAME, args);
+            return isValidCapability(BROWSER_NAME, args);
         }
     }
 }
