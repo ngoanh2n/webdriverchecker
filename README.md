@@ -12,7 +12,7 @@
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker:1.1.0")
+implementation("com.github.ngoanh2n:webdriverchecker:1.2.0")
 ```
 
 ## Maven Project
@@ -21,7 +21,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -29,7 +29,7 @@ Add to `pom.xml`
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker-selenide:1.1.0")
+implementation("com.github.ngoanh2n:webdriverchecker-selenide:1.2.0")
 ```
 
 ## Maven Project
@@ -38,34 +38,34 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker-selenide</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
 # Usages
 ```java
-WebDriverChecker.isIE()
-WebDriverChecker.isEdge()
-WebDriverChecker.isOpera()
 WebDriverChecker.isChrome()
 WebDriverChecker.isSafari()
 WebDriverChecker.isFirefox()
+WebDriverChecker.isEdge()
+WebDriverChecker.isOpera()
+WebDriverChecker.isIE()
 
 WebDriverChecker.isIOS()
-WebDriverChecker.isIOSApp()
 WebDriverChecker.isIOSWeb()
 WebDriverChecker.isIOSSafari()
+WebDriverChecker.isIOSNative()
 
 WebDriverChecker.isAndroid()
-WebDriverChecker.isAndroidApp()
 WebDriverChecker.isAndroidWeb()
 WebDriverChecker.isAndroidChrome()
+WebDriverChecker.isAndroidNative()
 
 WebDriverChecker.isMobile()
-WebDriverChecker.isMobileApp()
 WebDriverChecker.isMobileWeb()
+WebDriverChecker.isMobileNative()
 
-WebDriverChecker.isWindowsApp()
+WebDriverChecker.isWindowsNative()
 WebDriverChecker.isEdgeLegacy()
 WebDriverChecker.isFirefoxLegacy()
 
