@@ -288,7 +288,7 @@ jobs:
           target: <<parameters.target>>
           browser: com.github.ngoanh2n.wdc.AppiumDriverProvider
           options: --tests com.github.ngoanh2n.wdc.*
-          arguments: -Dappium.capabilities=<<parameters.caps>>
+          arguments: -Dngoanh2n.caps=<<parameters.caps>>
       - cache_store:
           target: <<parameters.target>>
   mobile_android:
@@ -306,7 +306,7 @@ jobs:
           target: <<parameters.target>>
           browser: com.github.ngoanh2n.wdc.AppiumDriverProvider
           options: --tests com.github.ngoanh2n.wdc.*
-          arguments: -Dappium.capabilities=<<parameters.caps>>
+          arguments: -Dngoanh2n.caps=<<parameters.caps>>
       - cache_store:
           target: <<parameters.target>>
 
