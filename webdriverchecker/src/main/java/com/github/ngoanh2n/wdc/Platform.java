@@ -8,17 +8,17 @@ import static com.github.ngoanh2n.wdc.WDCConstant.*;
  * @since 2021-04-10
  */
 class Platform {
-    static class Linux extends WebDriverChecker {
-        @Override
-        protected boolean check(Object... args) {
-            return getPlatformName(args).equals(LINUX);
-        }
-    }
-
     static class MacOS extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
             return getPlatformName(args).equals(MACOS);
+        }
+    }
+
+    static class Linux extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            return getPlatformName(args).equals(LINUX);
         }
     }
 
