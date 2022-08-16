@@ -5,15 +5,15 @@ import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.service.DriverCommandExecutor;
 
+import static com.github.ngoanh2n.wdc.WDCConstant.*;
+
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 1.0.0
  * @since 2021-04-10
  */
 class State {
-
     static class Alive extends WebDriverChecker {
-
         private final boolean directed;
 
         Alive() {
@@ -36,7 +36,6 @@ class State {
     }
 
     static class Remote extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             RemoteWebDriver wd = getRemoteWD(args);
@@ -50,15 +49,15 @@ class State {
     }
 
     static class App extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
-            return !getCapability("app", args).isEmpty();
+            return hasCapability(APP, args)
+                    || (hasCapability(APP_PACKAGE, args)
+                    && hasCapability(APP_ACTIVITY, args));
         }
     }
 
     static class Browser extends WebDriverChecker {
-
         @Override
         protected boolean check(Object... args) {
             return !getBrowserName(args).isEmpty();
