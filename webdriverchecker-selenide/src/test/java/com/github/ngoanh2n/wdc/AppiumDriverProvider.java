@@ -31,7 +31,7 @@ public class AppiumDriverProvider implements WebDriverProvider {
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
         AppiumDriverLocalService localService = startAppiumServer();
         Capabilities caps = readAppiumCapabilities();
-        return new AppiumDriver<>(localService, caps);
+        return new AppiumDriver(localService, caps);
     }
 
     private static Capabilities readAppiumCapabilities() {
