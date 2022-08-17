@@ -9,6 +9,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 # WebDriverChecker
+You are writing automation test scripts for multiple browsers such as:
+- Chrome, Safari.. on PC
+- Safari & native app on iOS
+- Chrome & native app on Android
+
+And somewhere, you have to check type of browser or platform to navigate your scripts.
+
+Use WebDriverChecker to make it more convenient!
+
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
