@@ -17,7 +17,7 @@ class WDCConstant {
     final static String EDGE_LEGACY = "microsoftedge";
 
     // OS
-    final static String MACOS = "mac";
+    final static String MAC = "mac";
     final static String LINUX = "linux";
     final static String WINDOWS = "windows";
     final static String IOS = "ios";
@@ -30,7 +30,6 @@ class WDCConstant {
     final static String PLATFORM_NAME = "platformName";
     final static String APP = "app";
     final static String APP_PACKAGE = "appPackage";
-    final static String APP_ACTIVITY = "appActivity";
 
     // Package
     final static String PKG_CHROME = "com.android.chrome";
