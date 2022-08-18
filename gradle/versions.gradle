@@ -3,7 +3,7 @@
  * @since 2021-04-09
  */
 ext {
-    VERSION_SELENIUM                =   "4.0.0"
+    VERSION_SELENIUM                =   "4.4.0"
     VERSION_SELENIDE                =   "6.0.0"
     VERSION_APPIUM                  =   "8.0.0"
     VERSION_SLF4J                   =   "1.7.36"
