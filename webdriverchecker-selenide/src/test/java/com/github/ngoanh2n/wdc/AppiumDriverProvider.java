@@ -28,7 +28,7 @@ public class AppiumDriverProvider implements WebDriverProvider {
 
     @Nonnull
     @Override
-    public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
+    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         AppiumDriverLocalService localService = startAppiumServer();
         Capabilities caps = readAppiumCapabilities();
         return new AppiumDriver(localService, caps);
