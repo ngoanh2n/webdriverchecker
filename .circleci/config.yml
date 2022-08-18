@@ -23,7 +23,7 @@ parameters:
   caps_android_chrome: { type: string, default: android-chrome.yml }
 
 executors:
-  executor_mac:
+  runner_mac:
     macos:
       xcode: 13.4.1
     shell: /bin/bash
@@ -31,7 +31,7 @@ executors:
     working_directory: ~/project
     environment:
       OS: <<pipeline.parameters.os_mac>>
-  executor_linux:
+  runner_linux:
     machine:
       image: android:202102-01
     shell: /bin/bash
@@ -39,7 +39,7 @@ executors:
     working_directory: ~/project
     environment:
       OS: <<pipeline.parameters.os_linux>>
-  executor_windows:
+  runner_windows:
     machine:
       image: windows-server-2022-gui:current
     shell: bash.exe
@@ -235,7 +235,7 @@ jobs:
   web_macos:
     parameters:
       target: { type: string }
-    executor: executor_mac
+    executor: runner_mac
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -249,7 +249,7 @@ jobs:
   web_linux:
     parameters:
       target: { type: string }
-    executor: executor_linux
+    executor: runner_linux
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -263,7 +263,7 @@ jobs:
   web_windows:
     parameters:
       target: { type: string }
-    executor: executor_windows
+    executor: runner_windows
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -278,7 +278,7 @@ jobs:
     parameters:
       caps: { type: string }
       target: { type: string }
-    executor: executor_mac
+    executor: runner_mac
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -295,7 +295,7 @@ jobs:
     parameters:
       caps: { type: string }
       target: { type: string }
-    executor: executor_linux
+    executor: runner_linux
     steps:
       - env_prepare:
           target: <<parameters.target>>
