@@ -4,7 +4,7 @@
 version: 2.1
 
 parameters:
-  os_macos: { type: string, default: macos }
+  os_mac: { type: string, default: macos }
   os_linux: { type: string, default: linux }
   os_windows: { type: string, default: windows }
   target_chrome: { type: string, default: chrome }
@@ -23,14 +23,14 @@ parameters:
   caps_android_chrome: { type: string, default: android-chrome.yml }
 
 executors:
-  executor_macos:
+  executor_mac:
     macos:
       xcode: 13.4.1
     shell: /bin/bash
     resource_class: medium
     working_directory: ~/project
     environment:
-      OS: <<pipeline.parameters.os_macos>>
+      OS: <<pipeline.parameters.os_mac>>
   executor_linux:
     machine:
       image: android:202102-01
@@ -60,7 +60,7 @@ commands:
             chmod +x gradlew
             TARGET=<<parameters.target>>
             
-            if [[ "$OS" == "<<pipeline.parameters.os_macos>>" ]];
+            if [[ "$OS" == "<<pipeline.parameters.os_mac>>" ]];
             then
               brew update
               brew install zip
@@ -117,7 +117,7 @@ commands:
             if [[ ($TARGET == ios-*) || ($TARGET == android-*) ]];
             then
               case $OS in
-                <<pipeline.parameters.os_macos>>) brew install node ;;
+                <<pipeline.parameters.os_mac>>) brew install node ;;
                 <<pipeline.parameters.os_linux>>) sudo apt install nodejs ;;
               esac
 
@@ -125,7 +125,7 @@ commands:
               npm install appium-doctor -g
 
               case $OS in
-                <<pipeline.parameters.os_macos>>)
+                <<pipeline.parameters.os_mac>>)
                   brew install carthage
                   brew install ios-deploy
                 ;;
@@ -235,7 +235,7 @@ jobs:
   web_macos:
     parameters:
       target: { type: string }
-    executor: executor_macos
+    executor: executor_mac
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -278,7 +278,7 @@ jobs:
     parameters:
       caps: { type: string }
       target: { type: string }
-    executor: executor_macos
+    executor: executor_mac
     steps:
       - env_prepare:
           target: <<parameters.target>>
@@ -314,7 +314,7 @@ workflows:
   test_execution:
     jobs:
       - web_macos:
-          name: <<pipeline.parameters.os_macos>>/<<matrix.target>>
+          name: <<pipeline.parameters.os_mac>>/<<matrix.target>>
           filters:
             branches:
               only:
@@ -352,7 +352,7 @@ workflows:
                 - <<pipeline.parameters.target_edge>>
                 - <<pipeline.parameters.target_opera>>
       - mobile_ios:
-          name: <<pipeline.parameters.os_macos>>/<<matrix.target>>
+          name: <<pipeline.parameters.os_mac>>/<<matrix.target>>
           filters:
             branches:
               only:
