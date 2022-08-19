@@ -25,6 +25,24 @@ import static java.util.ServiceLoader.load;
  */
 public abstract class WebDriverChecker {
     /**
+     * Check whether the current {@linkplain WebDriver} is not quit
+     *
+     * @return true if running
+     */
+    public static boolean isAlive() {
+        return is(new Alive(true));
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} is running remotely
+     *
+     * @return true if running remotely
+     */
+    public static boolean isRemote() {
+        return is(new Remote());
+    }
+
+    /**
      * Check whether the current {@linkplain WebDriver} for {@code Chrome}
      *
      * @return true if {@code Chrome}
@@ -142,7 +160,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for any {@code browser} on {@code Android}
+     * Check whether the current {@linkplain WebDriver} for any {@code browser} on {@code Android}
      *
      * @return true if it was a {@code browser} on {@code Android}
      */
@@ -196,6 +214,15 @@ public abstract class WebDriverChecker {
     }
 
     /**
+     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code Mac}
+     *
+     * @return true if {@code native app} on {@code Mac}
+     */
+    public static boolean isMacNative() {
+        return is(new MacNative());
+    }
+
+    /**
      * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code Windows}
      *
      * @return true if {@code native app} on {@code Windows}
@@ -204,28 +231,30 @@ public abstract class WebDriverChecker {
         return is(new WindowsNative());
     }
 
+    // ------------------------------------
+
     /**
      * Check whether the current {@linkplain WebDriver} is not quit
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if running
      */
-    public static boolean isAlive() {
-        return is(new Alive(true));
+    public static boolean isAlive(WebDriver wd) {
+        return is(new Alive(true), wd);
     }
 
     /**
      * Check whether the current {@linkplain WebDriver} is running remotely
      *
+     * @param wd is the current {@linkplain WebDriver}
      * @return true if running remotely
      */
-    public static boolean isRemote() {
-        return is(new Remote());
+    public static boolean isRemote(WebDriver wd) {
+        return is(new Remote(), wd);
     }
 
-    // ------------------------------------
-
     /**
-     * Check whether {@linkplain WebDriver} for {@code Chrome}
+     * Check whether the current {@linkplain WebDriver} for {@code Chrome}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Chrome}
@@ -235,7 +264,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Safari}
+     * Check whether the current {@linkplain WebDriver} for {@code Safari}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Safari}
@@ -245,7 +274,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Firefox}
+     * Check whether the current {@linkplain WebDriver} for {@code Firefox}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Firefox}
@@ -255,7 +284,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Edge}
+     * Check whether the current {@linkplain WebDriver} for {@code Edge}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Edge}
@@ -275,7 +304,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code IE}
+     * Check whether the current {@linkplain WebDriver} for {@code IE}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code IE}
@@ -285,7 +314,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code legacy Edge (Edge HTML)}
+     * Check whether the current {@linkplain WebDriver} for {@code legacy Edge (Edge HTML)}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code legacy Edge}
@@ -295,7 +324,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code legacy Firefox (lower than version 48)}
+     * Check whether the current {@linkplain WebDriver} for {@code legacy Firefox (lower than version 48)}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code legacy Firefox}
@@ -305,7 +334,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code iOS}
+     * Check whether the current {@linkplain WebDriver} for {@code iOS}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code iOS}
@@ -315,7 +344,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for any {@code browser} on {@code iOS}
+     * Check whether the current {@linkplain WebDriver} for any {@code browser} on {@code iOS}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if it was a {@code browser} on {@code iOS}
@@ -325,7 +354,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Safari} on {@code iOS}
+     * Check whether the current {@linkplain WebDriver} for {@code Safari} on {@code iOS}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Safari} on {@code iOS}
@@ -335,7 +364,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code native app} on {@code iOS}
+     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code iOS}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code native app} on {@code iOS}
@@ -345,7 +374,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Android}
+     * Check whether the current {@linkplain WebDriver} for {@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Android}
@@ -355,7 +384,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for any {@code browser} on {@code Android}
+     * Check whether the current {@linkplain WebDriver} for any {@code browser} on {@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if it was a {@code browser} on {@code Android}
@@ -365,7 +394,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Chrome} on {@code Android}
+     * Check whether the current {@linkplain WebDriver} for {@code Chrome} on {@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code Chrome} on {@code Android}
@@ -375,7 +404,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code native app} on {@code Android}
+     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code native app} on {@code Android}
@@ -385,7 +414,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code iOS}/{@code Android}
+     * Check whether the current {@linkplain WebDriver} for {@code iOS}/{@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code iOS}/{@code Android}
@@ -395,7 +424,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for any {@code browser} on {@code iOS}/{@code Android}
+     * Check whether the current {@linkplain WebDriver} for any {@code browser} on {@code iOS}/{@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if it was a {@code browser} on {@code iOS}/{@code Android}
@@ -405,7 +434,7 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code native app} on {@code iOS}/{@code Android}
+     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code iOS}/{@code Android}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code native app} on {@code iOS}/{@code Android}
@@ -415,33 +444,23 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code native app} on {@code Windows}
+     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code Mac}
+     *
+     * @param wd is the current {@linkplain WebDriver}
+     * @return true if {@code native app} on {@code Mac}
+     */
+    public static boolean isMacNative(WebDriver wd) {
+        return is(new MacNative(), wd);
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code Windows}
      *
      * @param wd is the current {@linkplain WebDriver}
      * @return true if {@code native app} on {@code Windows}
      */
     public static boolean isWindowsNative(WebDriver wd) {
         return is(new WindowsNative(), wd);
-    }
-
-    /**
-     * Check whether {@linkplain WebDriver} is not quit
-     *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if running
-     */
-    public static boolean isAlive(WebDriver wd) {
-        return is(new Alive(true), wd);
-    }
-
-    /**
-     * Check whether the current {@linkplain WebDriver} is running remotely
-     *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if running remotely
-     */
-    public static boolean isRemote(WebDriver wd) {
-        return is(new Remote(), wd);
     }
 
     // ------------------------------------

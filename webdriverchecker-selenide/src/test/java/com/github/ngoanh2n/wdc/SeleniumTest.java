@@ -4,7 +4,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.github.ngoanh2n.ExecuteOnTarget;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SeleniumTest {
     @BeforeEach
     void openDriver() {
-        Configuration.browser = "safari";
         Configuration.timeout = 10 * 1000;
         Configuration.pollingInterval = 500;
         Selenide.open();
@@ -33,6 +31,9 @@ public class SeleniumTest {
     @Test
     @ExecuteOnTarget("chrome")
     void isChrome() {
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
+
         assertTrue(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -54,18 +55,19 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertFalse(WebDriverChecker.isMacNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
-//    @ExecuteOnTarget("safari")
+    @ExecuteOnTarget("safari")
     void isSafari() {
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
+
         assertFalse(WebDriverChecker.isChrome());
         assertTrue(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -87,18 +89,19 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertFalse(WebDriverChecker.isMacNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
-//    @ExecuteOnTarget("firefox")
+    @ExecuteOnTarget("firefox")
     void isFirefox() {
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
+
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertTrue(WebDriverChecker.isFirefox());
@@ -120,18 +123,19 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertFalse(WebDriverChecker.isMacNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
     @ExecuteOnTarget("edge")
     void isEdge() {
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
+
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -153,18 +157,19 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertFalse(WebDriverChecker.isMacNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
     @ExecuteOnTarget("opera")
     void isOpera() {
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
+
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -186,18 +191,18 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertFalse(WebDriverChecker.isMacNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
     @ExecuteOnTarget("ie")
     void isIE() {
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -219,12 +224,10 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertFalse(WebDriverChecker.isMacNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
-
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
     }
 }
