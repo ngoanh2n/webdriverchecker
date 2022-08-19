@@ -13,6 +13,7 @@ import static com.github.ngoanh2n.wdc.Combine.*;
 import static com.github.ngoanh2n.wdc.Platform.Android;
 import static com.github.ngoanh2n.wdc.Platform.IOS;
 import static com.github.ngoanh2n.wdc.State.Alive;
+import static com.github.ngoanh2n.wdc.State.Remote;
 import static com.github.ngoanh2n.wdc.WDCConstant.*;
 import static com.github.ngoanh2n.wdc.WDCException.*;
 import static java.util.ServiceLoader.load;
@@ -23,15 +24,6 @@ import static java.util.ServiceLoader.load;
  * @since 2021-04-10
  */
 public abstract class WebDriverChecker {
-    /**
-     * Check whether the current {@linkplain WebDriver} is not quit
-     *
-     * @return true if running
-     */
-    public static boolean isAlive() {
-        return is(new Alive(true));
-    }
-
     /**
      * Check whether the current {@linkplain WebDriver} for {@code Chrome}
      *
@@ -212,17 +204,25 @@ public abstract class WebDriverChecker {
         return is(new WindowsNative());
     }
 
-    // ------------------------------------
-
     /**
-     * Check whether {@linkplain WebDriver} is not quit
+     * Check whether the current {@linkplain WebDriver} is not quit
      *
-     * @param wd is the current {@linkplain WebDriver}
      * @return true if running
      */
-    public static boolean isAlive(WebDriver wd) {
-        return is(new Alive(true), wd);
+    public static boolean isAlive() {
+        return is(new Alive(true));
     }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} is running remotely
+     *
+     * @return true if running remotely
+     */
+    public static boolean isRemote() {
+        return is(new Remote());
+    }
+
+    // ------------------------------------
 
     /**
      * Check whether {@linkplain WebDriver} for {@code Chrome}
@@ -422,6 +422,26 @@ public abstract class WebDriverChecker {
      */
     public static boolean isWindowsNative(WebDriver wd) {
         return is(new WindowsNative(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is not quit
+     *
+     * @param wd is the current {@linkplain WebDriver}
+     * @return true if running
+     */
+    public static boolean isAlive(WebDriver wd) {
+        return is(new Alive(true), wd);
+    }
+
+    /**
+     * Check whether the current {@linkplain WebDriver} is running remotely
+     *
+     * @param wd is the current {@linkplain WebDriver}
+     * @return true if running remotely
+     */
+    public static boolean isRemote(WebDriver wd) {
+        return is(new Remote(), wd);
     }
 
     // ------------------------------------
