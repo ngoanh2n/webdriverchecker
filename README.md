@@ -53,6 +53,9 @@ Add to `pom.xml`
 
 # Usages
 ```java
+WebDriverChecker.isAlive()
+WebDriverChecker.isRemote()
+
 WebDriverChecker.isChrome()
 WebDriverChecker.isSafari()
 WebDriverChecker.isFirefox()
@@ -74,9 +77,9 @@ WebDriverChecker.isMobile()
 WebDriverChecker.isMobileWeb()
 WebDriverChecker.isMobileNative()
 
+WebDriverChecker.isMacNative()
 WebDriverChecker.isWindowsNative()
+
 WebDriverChecker.isEdgeLegacy()
 WebDriverChecker.isFirefoxLegacy()
-
-WebDriverChecker.isAlive()
 ```
