@@ -61,8 +61,12 @@ public class AppiumTest {
         assertTrue(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -90,8 +94,12 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -119,8 +127,12 @@ public class AppiumTest {
         assertTrue(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -148,7 +160,11 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 }

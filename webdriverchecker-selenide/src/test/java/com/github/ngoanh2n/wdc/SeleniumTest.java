@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.github.ngoanh2n.ExecuteOnTarget;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SeleniumTest {
     @BeforeEach
     void openDriver() {
+        Configuration.browser = "safari";
         Configuration.timeout = 10 * 1000;
         Configuration.pollingInterval = 500;
         Selenide.open();
@@ -53,12 +55,16 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
-    @ExecuteOnTarget("safari")
+//    @ExecuteOnTarget("safari")
     void isSafari() {
         assertFalse(WebDriverChecker.isChrome());
         assertTrue(WebDriverChecker.isSafari());
@@ -82,12 +88,16 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
-    @ExecuteOnTarget("firefox")
+//    @ExecuteOnTarget("firefox")
     void isFirefox() {
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
@@ -111,8 +121,12 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -140,8 +154,12 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -169,8 +187,12 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 
     @Test
@@ -198,7 +220,11 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileNative());
 
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
     }
 }
