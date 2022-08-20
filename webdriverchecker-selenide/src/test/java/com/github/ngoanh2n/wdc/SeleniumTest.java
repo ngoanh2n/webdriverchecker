@@ -59,6 +59,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -95,6 +96,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -131,6 +133,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -167,6 +170,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -203,6 +207,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -238,6 +243,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());

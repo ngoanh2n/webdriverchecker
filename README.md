@@ -81,6 +81,7 @@ WebDriverChecker.isMacOSNative()
 WebDriverChecker.isWindowsNative()
 
 WebDriverChecker.isPC()
+WebDriverChecker.isPCWeb()
 
 WebDriverChecker.isEdgeLegacy()
 WebDriverChecker.isFirefoxLegacy()
