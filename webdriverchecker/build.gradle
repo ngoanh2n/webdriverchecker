@@ -3,5 +3,5 @@
  * @since 2021-04-09
  */
 dependencies {
-    compileOnly("org.seleniumhq.selenium:selenium-remote-driver:${VERSION_SELENIUM}")
+    implementation("org.seleniumhq.selenium:selenium-remote-driver:${VERSION_SELENIUM}")
 }
