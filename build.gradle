@@ -16,6 +16,7 @@ allprojects {
 subprojects {
     apply plugin: "idea"
     apply plugin: "java"
+    apply plugin: "java-library"
 
     apply from: rootProject.file("gradle/testing.gradle")
     apply from: rootProject.file("gradle/compiling.gradle")
