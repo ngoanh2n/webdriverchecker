@@ -219,9 +219,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for native app on Mac.
+     * Check whether {@linkplain WebDriver} for native app on macOS.
      *
-     * @return true if it's a native app on Mac
+     * @return true if it's a native app on macOS
      */
     public static boolean isMacOSNative() {
         return is(new MacOSNative());
@@ -454,10 +454,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for native app on Mac.
+     * Check whether {@linkplain WebDriver} for native app on macOS.
      *
      * @param wd is current {@linkplain WebDriver}
-     * @return true if it's a native app on Mac
+     * @return true if it's a native app on macOS
      */
     public static boolean isMacOSNative(WebDriver wd) {
         return is(new MacOSNative(), wd);
