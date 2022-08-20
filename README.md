@@ -9,10 +9,19 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 # WebDriverChecker
+You are writing automation test scripts for multiple browsers such as:
+- Chrome, Safari.. on PC
+- Safari & native app on iOS
+- Chrome & native app on Android
+
+And somewhere, you have to check type of browser or platform to navigate your scripts.
+
+Use WebDriverChecker to make it more convenient!
+
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker:1.2.0")
+implementation("com.github.ngoanh2n:webdriverchecker:1.3.0")
 ```
 
 ## Maven Project
@@ -21,7 +30,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
@@ -29,7 +38,7 @@ Add to `pom.xml`
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker-selenide:1.2.0")
+implementation("com.github.ngoanh2n:webdriverchecker-selenide:1.3.0")
 ```
 
 ## Maven Project
@@ -38,12 +47,14 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker-selenide</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
 # Usages
 ```java
+WebDriverChecker.isAlive()
+
 WebDriverChecker.isChrome()
 WebDriverChecker.isSafari()
 WebDriverChecker.isFirefox()
@@ -65,9 +76,13 @@ WebDriverChecker.isMobile()
 WebDriverChecker.isMobileWeb()
 WebDriverChecker.isMobileNative()
 
+WebDriverChecker.isPC()
+WebDriverChecker.isPCWeb()
+WebDriverChecker.isPCNative()
+
+WebDriverChecker.isMacOSNative()
 WebDriverChecker.isWindowsNative()
+
 WebDriverChecker.isEdgeLegacy()
 WebDriverChecker.isFirefoxLegacy()
-
-WebDriverChecker.isAlive()
 ```

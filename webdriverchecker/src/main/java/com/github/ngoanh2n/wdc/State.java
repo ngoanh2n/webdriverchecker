@@ -1,10 +1,5 @@
 package com.github.ngoanh2n.wdc;
 
-import org.openqa.selenium.remote.CommandExecutor;
-import org.openqa.selenium.remote.HttpCommandExecutor;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.service.DriverCommandExecutor;
-
 import static com.github.ngoanh2n.wdc.Platform.Android;
 import static com.github.ngoanh2n.wdc.WDCConstant.*;
 
@@ -33,19 +28,6 @@ class State {
                 if (directed) return false;
                 throw exception;
             }
-        }
-    }
-
-    static class Remote extends WebDriverChecker {
-        @Override
-        protected boolean check(Object... args) {
-            RemoteWebDriver wd = getRemoteWD(args);
-            CommandExecutor cmd = wd.getCommandExecutor();
-
-            if (cmd instanceof HttpCommandExecutor) {
-                return !(cmd instanceof DriverCommandExecutor);
-            }
-            return false;
         }
     }
 

@@ -31,6 +31,8 @@ public class SeleniumTest {
     @Test
     @ExecuteOnTarget("chrome")
     void isChrome() {
+        assertTrue(WebDriverChecker.isAlive());
+
         assertTrue(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -52,7 +54,13 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -60,6 +68,8 @@ public class SeleniumTest {
     @Test
     @ExecuteOnTarget("safari")
     void isSafari() {
+        assertTrue(WebDriverChecker.isAlive());
+
         assertFalse(WebDriverChecker.isChrome());
         assertTrue(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -81,7 +91,13 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -89,6 +105,8 @@ public class SeleniumTest {
     @Test
     @ExecuteOnTarget("firefox")
     void isFirefox() {
+        assertTrue(WebDriverChecker.isAlive());
+
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertTrue(WebDriverChecker.isFirefox());
@@ -110,7 +128,13 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -118,6 +142,8 @@ public class SeleniumTest {
     @Test
     @ExecuteOnTarget("edge")
     void isEdge() {
+        assertTrue(WebDriverChecker.isAlive());
+
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -139,7 +165,13 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -147,6 +179,8 @@ public class SeleniumTest {
     @Test
     @ExecuteOnTarget("opera")
     void isOpera() {
+        assertTrue(WebDriverChecker.isAlive());
+
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -168,7 +202,13 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
@@ -176,6 +216,8 @@ public class SeleniumTest {
     @Test
     @ExecuteOnTarget("ie")
     void isIE() {
+        assertTrue(WebDriverChecker.isAlive());
+
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
@@ -197,7 +239,13 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
+        assertTrue(WebDriverChecker.isPC());
+        assertTrue(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
+
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }

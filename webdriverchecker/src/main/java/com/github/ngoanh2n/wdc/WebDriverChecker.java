@@ -24,7 +24,7 @@ import static java.util.ServiceLoader.load;
  */
 public abstract class WebDriverChecker {
     /**
-     * Check whether the current {@linkplain WebDriver} is not quit
+     * Check whether {@linkplain WebDriver} is alive.
      *
      * @return true if running
      */
@@ -33,180 +33,222 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Chrome}
+     * Check whether {@linkplain WebDriver} for Chrome browser
+     * on any platform (Chrome on macOS, Linux, Windows, Android).
      *
-     * @return true if {@code Chrome}
+     * @return true if it's Chrome browser
      */
     public static boolean isChrome() {
         return is(new Chrome());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Safari}
+     * Check whether {@linkplain WebDriver} for Safari browser
+     * on any platform (Safari on macOS, iOS).
      *
-     * @return true if {@code Safari}
+     * @return true if it's Safari browser
      */
     public static boolean isSafari() {
         return is(new Safari());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Firefox}
+     * Check whether {@linkplain WebDriver} for Firefox browser
+     * on any platform (Firefox on macOS, Linux, Windows).
      *
-     * @return true if {@code Firefox}
+     * @return true if it's Firefox browser
      */
     public static boolean isFirefox() {
         return is(new Firefox());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Edge}
+     * Check whether {@linkplain WebDriver} for Edge browser
+     * on any platform (Edge on macOS, Linux, Windows).
      *
-     * @return true if {@code Edge}
+     * @return true if it's Edge browser
      */
     public static boolean isEdge() {
         return is(new Edge());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Opera}
+     * Check whether {@linkplain WebDriver} for Opera browser
+     * on any platform (Opera on macOS, Linux, Windows).
      *
-     * @return true if {@code Opera}
+     * @return true if it's Opera browser
      */
     public static boolean isOpera() {
         return is(new Opera());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code IE}
+     * Check whether {@linkplain WebDriver} for IE browser.
      *
-     * @return true if {@code IE}
+     * @return true if it's IE browser
      */
     public static boolean isIE() {
         return is(new IE());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code legacy Edge (Edge HTML)}
+     * Check whether {@linkplain WebDriver} for legacy Edge (Edge HTML) browser.
      *
-     * @return true if {@code legacy Edge}
+     * @return true if it's legacy Edge browser
      */
     public static boolean isEdgeLegacy() {
         return is(new LegacyEdge());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code legacy Firefox (lower than version 48)}
+     * Check whether {@linkplain WebDriver} for {@code legacy Firefox (lower than version 48)} browser.
      *
-     * @return true if {@code legacy Firefox}
+     * @return true if it's legacy Firefox browser
      */
     public static boolean isFirefoxLegacy() {
         return is(new LegacyFirefox());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} on {@code iOS}
+     * Check whether {@linkplain WebDriver} on iOS.
      *
-     * @return true if {@code iOS}
+     * @return true if it's iOS
      */
     public static boolean isIOS() {
         return is(new IOS());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for any {@code browser} on {@code iOS}
+     * Check whether {@linkplain WebDriver} for a browser on iOS.
      *
-     * @return true if it was a {@code browser} on {@code iOS}
+     * @return true if it's a browser on iOS
      */
     public static boolean isIOSWeb() {
         return is(new IOSWeb());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Safari} on {@code iOS}
+     * Check whether {@linkplain WebDriver} for Safari browser on iOS.
      *
-     * @return true if {@code Safari} on {@code iOS}
+     * @return true if it's Safari browser on iOS
      */
     public static boolean isIOSSafari() {
         return is(new IOSSafari());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code iOS}
+     * Check whether {@linkplain WebDriver} for native app on iOS.
      *
-     * @return true if {@code native app} on {@code iOS}
+     * @return true if it's a native app on iOS
      */
     public static boolean isIOSNative() {
         return is(new IOSNative());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Android}
+     * Check whether {@linkplain WebDriver} on Android.
      *
-     * @return true if {@code Android}
+     * @return true if it's Android
      */
     public static boolean isAndroid() {
         return is(new Android());
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for any {@code browser} on {@code Android}
+     * Check whether {@linkplain WebDriver} for a browser on Android.
      *
-     * @return true if it was a {@code browser} on {@code Android}
+     * @return true if it's a browser on Android
      */
     public static boolean isAndroidWeb() {
         return is(new AndroidWeb());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code Chrome} on {@code Android}
+     * Check whether {@linkplain WebDriver} for Chrome browser on Android.
      *
-     * @return true if {@code Chrome} on {@code Android}
+     * @return true if it's Chrome browser on Android
      */
     public static boolean isAndroidChrome() {
         return is(new AndroidChrome());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code Android}
+     * Check whether {@linkplain WebDriver} for native app on Android.
      *
-     * @return true if {@code native app} on {@code Android}
+     * @return true if it's a native app on Android
      */
     public static boolean isAndroidNative() {
         return is(new AndroidNative());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code iOS}/{@code Android}
+     * Check whether {@linkplain WebDriver} on iOS or Android.
      *
-     * @return true if {@code iOS}/{@code Android}
+     * @return true if it's iOS or Android
      */
     public static boolean isMobile() {
         return is(new Mobile());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for any {@code browser} on {@code iOS}/{@code Android}
+     * Check whether {@linkplain WebDriver} for a browser on iOS or Android.
      *
-     * @return true if it was a {@code browser} on {@code iOS}/{@code Android}
+     * @return true if it's a browser on iOS or Android
      */
     public static boolean isMobileWeb() {
         return is(new MobileWeb());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code iOS}/{@code Android}
+     * Check whether {@linkplain WebDriver} for native app on iOS or Android.
      *
-     * @return true if {@code native app} on {@code iOS}/{@code Android}
+     * @return true if it's a native app on iOS or Android
      */
     public static boolean isMobileNative() {
         return is(new MobileNative());
     }
 
     /**
-     * Check whether the current {@linkplain WebDriver} for {@code native app} on {@code Windows}
+     * Check whether {@linkplain WebDriver} on any a PC platform
+     * (a browser or native app on macOS, Linux or Windows).
      *
-     * @return true if {@code native app} on {@code Windows}
+     * @return true if it's PC platform
+     */
+    public static boolean isPC() {
+        return is(new PC());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for a browser on macOS, Linux or Windows.
+     *
+     * @return true if it's a browser on macOS, Linux or Windows
+     */
+    public static boolean isPCWeb() {
+        return is(new PCWeb());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for a native app on macOS or Windows.
+     *
+     * @return true if it's a native app on macOS or Windows
+     */
+    public static boolean isPCNative() {
+        return is(new PCNative());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for native app on macOS.
+     *
+     * @return true if it's a native app on macOS
+     */
+    public static boolean isMacOSNative() {
+        return is(new MacOSNative());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for native app on Windows.
+     *
+     * @return true if it's a native app on Windows
      */
     public static boolean isWindowsNative() {
         return is(new WindowsNative());
@@ -215,9 +257,9 @@ public abstract class WebDriverChecker {
     // ------------------------------------
 
     /**
-     * Check whether {@linkplain WebDriver} is not quit
+     * Check whether {@linkplain WebDriver} is alive.
      *
-     * @param wd is the current {@linkplain WebDriver}
+     * @param wd is current {@linkplain WebDriver}
      * @return true if running
      */
     public static boolean isAlive(WebDriver wd) {
@@ -225,200 +267,246 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Chrome}
+     * Check whether {@linkplain WebDriver} for Chrome browser
+     * on any platform (Chrome on macOS, Linux, Windows, Android).
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Chrome}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's Chrome browser
      */
     public static boolean isChrome(WebDriver wd) {
         return is(new Chrome(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Safari}
+     * Check whether {@linkplain WebDriver} for Safari browser
+     * on any platform (Safari on macOS, iOS).
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Safari}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's Safari browser
      */
     public static boolean isSafari(WebDriver wd) {
         return is(new Safari(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Firefox}
+     * Check whether {@linkplain WebDriver} for Firefox browser
+     * on any platform (Firefox on macOS, Linux, Windows).
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Firefox}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's Firefox browser
      */
     public static boolean isFirefox(WebDriver wd) {
         return is(new Firefox(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Edge}
+     * Check whether {@linkplain WebDriver} for Edge browser
+     * on any platform (Edge on macOS, Linux, Windows).
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Edge}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's Edge browser
      */
     public static boolean isEdge(WebDriver wd) {
         return is(new Edge(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Opera}
+     * Check whether {@linkplain WebDriver} for Opera browser
+     * on any platform (Opera on macOS, Linux, Windows).
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Opera}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's Opera browser
      */
     public static boolean isOpera(WebDriver wd) {
         return is(new Opera(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code IE}
+     * Check whether {@linkplain WebDriver} for IE browser.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code IE}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's IE browser
      */
     public static boolean isIE(WebDriver wd) {
         return is(new IE(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code legacy Edge (Edge HTML)}
+     * Check whether {@linkplain WebDriver} for legacy Edge (Edge HTML) browser.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code legacy Edge}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's legacy Edge browser
      */
     public static boolean isEdgeLegacy(WebDriver wd) {
         return is(new LegacyEdge(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code legacy Firefox (lower than version 48)}
+     * Check whether {@linkplain WebDriver} for {@code legacy Firefox (lower than version 48)} browser.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code legacy Firefox}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's legacy Firefox browser
      */
     public static boolean isFirefoxLegacy(WebDriver wd) {
         return is(new LegacyFirefox(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code iOS}
+     * Check whether {@linkplain WebDriver} on iOS.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code iOS}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's iOS
      */
     public static boolean isIOS(WebDriver wd) {
         return is(new IOS(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for any {@code browser} on {@code iOS}
+     * Check whether {@linkplain WebDriver} for a browser on iOS.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if it was a {@code browser} on {@code iOS}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a browser on iOS
      */
     public static boolean isIOSWeb(WebDriver wd) {
         return is(new IOSWeb(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Safari} on {@code iOS}
+     * Check whether {@linkplain WebDriver} for Safari browser on iOS.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Safari} on {@code iOS}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's Safari browser on iOS
      */
     public static boolean isIOSSafari(WebDriver wd) {
         return is(new IOSSafari(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code native app} on {@code iOS}
+     * Check whether {@linkplain WebDriver} for native app on iOS.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code native app} on {@code iOS}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a native app on iOS
      */
     public static boolean isIOSNative(WebDriver wd) {
         return is(new IOSNative(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Android}
+     * Check whether {@linkplain WebDriver} on Android.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Android}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's Android
      */
     public static boolean isAndroid(WebDriver wd) {
         return is(new Android(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for any {@code browser} on {@code Android}
+     * Check whether {@linkplain WebDriver} for a browser on Android.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if it was a {@code browser} on {@code Android}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a browser on Android
      */
     public static boolean isAndroidWeb(WebDriver wd) {
         return is(new AndroidWeb(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code Chrome} on {@code Android}
+     * Check whether {@linkplain WebDriver} for Chrome browser on Android.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code Chrome} on {@code Android}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's Chrome browser on Android
      */
     public static boolean isAndroidChrome(WebDriver wd) {
         return is(new AndroidChrome(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code native app} on {@code Android}
+     * Check whether {@linkplain WebDriver} for native app on Android.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code native app} on {@code Android}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a native app on Android
      */
     public static boolean isAndroidNative(WebDriver wd) {
         return is(new AndroidNative(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code iOS}/{@code Android}
+     * Check whether {@linkplain WebDriver} on iOS or Android.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code iOS}/{@code Android}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's iOS or Android
      */
     public static boolean isMobile(WebDriver wd) {
         return is(new Mobile(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for any {@code browser} on {@code iOS}/{@code Android}
+     * Check whether {@linkplain WebDriver} for a browser on iOS or Android.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if it was a {@code browser} on {@code iOS}/{@code Android}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a browser on iOS or Android
      */
     public static boolean isMobileWeb(WebDriver wd) {
         return is(new MobileWeb(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code native app} on {@code iOS}/{@code Android}
+     * Check whether {@linkplain WebDriver} for native app on iOS or Android.
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code native app} on {@code iOS}/{@code Android}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a native app on iOS or Android
      */
     public static boolean isMobileNative(WebDriver wd) {
         return is(new MobileNative(), wd);
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for {@code native app} on {@code Windows}
+     * Check whether {@linkplain WebDriver} on any a PC platform
+     * (a browser or native app on macOS, Linux or Windows).
      *
-     * @param wd is the current {@linkplain WebDriver}
-     * @return true if {@code native app} on {@code Windows}
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's PC platform
+     */
+    public static boolean isPC(WebDriver wd) {
+        return is(new PC(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for a browser on macOS, Linux or Windows.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a browser on macOS, Linux or Windows
+     */
+    public static boolean isPCWeb(WebDriver wd) {
+        return is(new PCWeb(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for a native app on macOS or Windows.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a native app on macOS or Windows
+     */
+    public static boolean isPCNative(WebDriver wd) {
+        return is(new PCNative(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for native app on macOS.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a native app on macOS
+     */
+    public static boolean isMacOSNative(WebDriver wd) {
+        return is(new MacOSNative(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for native app on Windows.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a native app on Windows
      */
     public static boolean isWindowsNative(WebDriver wd) {
         return is(new WindowsNative(), wd);
