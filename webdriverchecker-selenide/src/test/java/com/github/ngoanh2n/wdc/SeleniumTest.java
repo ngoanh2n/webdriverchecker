@@ -223,6 +223,7 @@ public class SeleniumTest {
     void isIE() {
         assertTrue(WebDriverChecker.isAlive());
         assertFalse(WebDriverChecker.isRemote());
+        
         assertFalse(WebDriverChecker.isChrome());
         assertFalse(WebDriverChecker.isSafari());
         assertFalse(WebDriverChecker.isFirefox());
