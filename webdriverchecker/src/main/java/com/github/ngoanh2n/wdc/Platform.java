@@ -8,10 +8,10 @@ import static com.github.ngoanh2n.wdc.WDCConstant.*;
  * @since 2021-04-10
  */
 class Platform {
-    static class Mac extends WebDriverChecker {
+    static class MacOS extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return getPlatformName(args).equals(MAC);
+            return getPlatformName(args).equals(MACOS);
         }
     }
 

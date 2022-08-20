@@ -17,7 +17,7 @@ class WDCConstant {
     final static String EDGE_LEGACY = "microsoftedge";
 
     // OS
-    final static String MAC = "mac";
+    final static String MACOS = "mac";
     final static String LINUX = "linux";
     final static String WINDOWS = "windows";
     final static String IOS = "ios";

@@ -65,7 +65,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertTrue(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -99,7 +99,7 @@ public class AppiumTest {
         assertTrue(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -133,7 +133,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertTrue(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -167,7 +167,7 @@ public class AppiumTest {
         assertTrue(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -201,7 +201,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertTrue(WebDriverChecker.isMacNative());
+        assertTrue(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());

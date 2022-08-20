@@ -81,10 +81,10 @@ class Combine {
 
     // ------------------------------------
 
-    static class MacNative extends WebDriverChecker {
+    static class MacOSNative extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return is(new Mac()) && is(new Native());
+            return is(new MacOS()) && is(new Native());
         }
     }
 
