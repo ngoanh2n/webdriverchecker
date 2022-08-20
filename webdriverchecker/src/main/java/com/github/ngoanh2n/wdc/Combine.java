@@ -110,4 +110,11 @@ class Combine {
             return is(new PC(), args) && is(new Browser(), args);
         }
     }
+
+    static class PCNative extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            return is(new PC(), args) && is(new Native(), args);
+        }
+    }
 }

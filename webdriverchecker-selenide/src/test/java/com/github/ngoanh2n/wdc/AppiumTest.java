@@ -65,11 +65,12 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertTrue(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
         assertFalse(WebDriverChecker.isPC());
         assertFalse(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
+        assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -102,11 +103,12 @@ public class AppiumTest {
         assertTrue(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
         assertFalse(WebDriverChecker.isPC());
         assertFalse(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
+        assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -139,11 +141,12 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertTrue(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
         assertFalse(WebDriverChecker.isPC());
         assertFalse(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
+        assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -176,19 +179,20 @@ public class AppiumTest {
         assertTrue(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
         assertFalse(WebDriverChecker.isPC());
         assertFalse(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
+        assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
 
     @Test
-    @ExecuteOnTarget("mac-native")
-    void macNative() {
+    @ExecuteOnTarget("macos-native")
+    void macOSNative() {
         assertTrue(WebDriverChecker.isAlive());
         assertFalse(WebDriverChecker.isRemote());
 
@@ -213,11 +217,12 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertTrue(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
         assertTrue(WebDriverChecker.isPC());
         assertFalse(WebDriverChecker.isPCWeb());
+        assertTrue(WebDriverChecker.isPCNative());
+
+        assertTrue(WebDriverChecker.isMacOSNative());
+        assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
