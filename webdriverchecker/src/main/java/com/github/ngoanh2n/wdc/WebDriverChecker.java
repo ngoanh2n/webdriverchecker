@@ -219,24 +219,6 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for native app on macOS.
-     *
-     * @return true if it's a native app on macOS
-     */
-    public static boolean isMacOSNative() {
-        return is(new MacOSNative());
-    }
-
-    /**
-     * Check whether {@linkplain WebDriver} for native app on Windows.
-     *
-     * @return true if it's a native app on Windows
-     */
-    public static boolean isWindowsNative() {
-        return is(new WindowsNative());
-    }
-
-    /**
      * Check whether {@linkplain WebDriver} on any a PC platform
      * (a browser or native app on macOS, Linux or Windows).
      *
@@ -253,6 +235,33 @@ public abstract class WebDriverChecker {
      */
     public static boolean isPCWeb() {
         return is(new PCWeb());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for a native app on macOS or Windows.
+     *
+     * @return true if it's a native app on macOS or Windows
+     */
+    public static boolean isPCNative() {
+        return is(new PCNative());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for native app on macOS.
+     *
+     * @return true if it's a native app on macOS
+     */
+    public static boolean isMacOSNative() {
+        return is(new MacOSNative());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for native app on Windows.
+     *
+     * @return true if it's a native app on Windows
+     */
+    public static boolean isWindowsNative() {
+        return is(new WindowsNative());
     }
 
     // ------------------------------------
@@ -473,26 +482,6 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@linkplain WebDriver} for native app on macOS.
-     *
-     * @param wd is current {@linkplain WebDriver}
-     * @return true if it's a native app on macOS
-     */
-    public static boolean isMacOSNative(WebDriver wd) {
-        return is(new MacOSNative(), wd);
-    }
-
-    /**
-     * Check whether {@linkplain WebDriver} for native app on Windows.
-     *
-     * @param wd is current {@linkplain WebDriver}
-     * @return true if it's a native app on Windows
-     */
-    public static boolean isWindowsNative(WebDriver wd) {
-        return is(new WindowsNative(), wd);
-    }
-
-    /**
      * Check whether {@linkplain WebDriver} on any a PC platform
      * (a browser or native app on macOS, Linux or Windows).
      *
@@ -510,7 +499,37 @@ public abstract class WebDriverChecker {
      * @return true if it's a browser on macOS, Linux or Windows
      */
     public static boolean isPCWeb(WebDriver wd) {
-        return is(new PCWeb());
+        return is(new PCWeb(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for a native app on macOS or Windows.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a native app on macOS or Windows
+     */
+    public static boolean isPCNative(WebDriver wd) {
+        return is(new PCNative(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for native app on macOS.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a native app on macOS
+     */
+    public static boolean isMacOSNative(WebDriver wd) {
+        return is(new MacOSNative(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for native app on Windows.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a native app on Windows
+     */
+    public static boolean isWindowsNative(WebDriver wd) {
+        return is(new WindowsNative(), wd);
     }
 
     // ------------------------------------
