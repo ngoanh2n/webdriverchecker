@@ -236,6 +236,16 @@ public abstract class WebDriverChecker {
         return is(new WindowsNative());
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} on any a PC platform
+     * (a browser or native app on macOS, Linux or Windows).
+     *
+     * @return true if it's PC platform
+     */
+    public static boolean isPC() {
+        return is(new PC());
+    }
+
     // ------------------------------------
 
     /**
@@ -471,6 +481,17 @@ public abstract class WebDriverChecker {
      */
     public static boolean isWindowsNative(WebDriver wd) {
         return is(new WindowsNative(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} on any a PC platform
+     * (a browser or native app on macOS, Linux or Windows).
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's PC platform
+     */
+    public static boolean isPC(WebDriver wd) {
+        return is(new PC(), wd);
     }
 
     // ------------------------------------

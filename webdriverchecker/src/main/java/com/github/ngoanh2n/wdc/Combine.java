@@ -84,14 +84,23 @@ class Combine {
     static class MacOSNative extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return is(new MacOS()) && is(new Native());
+            return is(new MacOS(), args) && is(new Native(), args);
         }
     }
 
     static class WindowsNative extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return is(new Windows()) && is(new Native());
+            return is(new Windows(), args) && is(new Native(), args);
+        }
+    }
+
+    // ------------------------------------
+
+    static class PC extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            return is(new MacOS(), args) || is(new Linux(), args) || is(new Windows(), args);
         }
     }
 }
