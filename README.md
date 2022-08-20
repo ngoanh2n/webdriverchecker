@@ -21,7 +21,7 @@ Use WebDriverChecker to make it more convenient!
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker:2.0.0")
+implementation("com.github.ngoanh2n:webdriverchecker:2.1.0")
 ```
 
 ## Maven Project
@@ -30,7 +30,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ Add to `pom.xml`
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker-selenide:2.0.0")
+implementation("com.github.ngoanh2n:webdriverchecker-selenide:2.1.0")
 ```
 
 ## Maven Project
@@ -47,7 +47,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker-selenide</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
 </dependency>
 ```
 
