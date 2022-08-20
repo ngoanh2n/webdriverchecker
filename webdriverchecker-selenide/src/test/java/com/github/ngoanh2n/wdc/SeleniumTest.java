@@ -55,7 +55,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -89,7 +89,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -123,7 +123,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -157,7 +157,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -191,7 +191,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
@@ -224,7 +224,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileWeb());
         assertFalse(WebDriverChecker.isMobileNative());
 
-        assertFalse(WebDriverChecker.isMacNative());
+        assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());

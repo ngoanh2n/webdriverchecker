@@ -77,7 +77,7 @@ WebDriverChecker.isMobile()
 WebDriverChecker.isMobileWeb()
 WebDriverChecker.isMobileNative()
 
-WebDriverChecker.isMacNative()
+WebDriverChecker.isMacOSNative()
 WebDriverChecker.isWindowsNative()
 
 WebDriverChecker.isEdgeLegacy()
