@@ -246,6 +246,15 @@ public abstract class WebDriverChecker {
         return is(new PC());
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} for a browser on macOS, Linux or Windows.
+     *
+     * @return true if it's a browser on macOS, Linux or Windows
+     */
+    public static boolean isPCWeb() {
+        return is(new PCWeb());
+    }
+
     // ------------------------------------
 
     /**
@@ -492,6 +501,16 @@ public abstract class WebDriverChecker {
      */
     public static boolean isPC(WebDriver wd) {
         return is(new PC(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} for a browser on macOS, Linux or Windows.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's a browser on macOS, Linux or Windows
+     */
+    public static boolean isPCWeb(WebDriver wd) {
+        return is(new PCWeb());
     }
 
     // ------------------------------------

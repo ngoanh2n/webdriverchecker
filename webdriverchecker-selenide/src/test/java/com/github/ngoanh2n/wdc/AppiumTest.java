@@ -69,6 +69,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isPC());
+        assertFalse(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -105,6 +106,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isPC());
+        assertFalse(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -141,6 +143,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isPC());
+        assertFalse(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -177,6 +180,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isPC());
+        assertFalse(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
@@ -213,6 +217,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertTrue(WebDriverChecker.isPC());
+        assertFalse(WebDriverChecker.isPCWeb());
 
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());

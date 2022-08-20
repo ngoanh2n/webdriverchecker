@@ -103,4 +103,11 @@ class Combine {
             return is(new MacOS(), args) || is(new Linux(), args) || is(new Windows(), args);
         }
     }
+
+    static class PCWeb extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            return is(new PC(), args) && is(new Browser(), args);
+        }
+    }
 }
