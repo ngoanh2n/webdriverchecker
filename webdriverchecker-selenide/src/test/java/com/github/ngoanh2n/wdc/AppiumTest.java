@@ -38,7 +38,9 @@ public class AppiumTest {
         //assertTrue(WebDriverChecker.isMobile());
 
         assertTrue(WebDriverChecker.isAlive());
+        assertTrue(WebDriverChecker.isLocal());
         assertTrue(WebDriverChecker.isRemote());
+        assertFalse(WebDriverChecker.isDocker());
         //assertFalse(WebDriverChecker.isBrowser());
         //assertFalse(WebDriverChecker.isNative());
 

@@ -34,7 +34,9 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobile());
 
         assertTrue(WebDriverChecker.isAlive());
+        assertTrue(WebDriverChecker.isLocal());
         assertFalse(WebDriverChecker.isRemote());
+        assertFalse(WebDriverChecker.isDocker());
         assertTrue(WebDriverChecker.isBrowser());
         assertFalse(WebDriverChecker.isNative());
 

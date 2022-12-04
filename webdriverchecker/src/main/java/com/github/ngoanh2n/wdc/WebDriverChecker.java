@@ -1,17 +1,27 @@
 package com.github.ngoanh2n.wdc;
 
+import com.github.ngoanh2n.Commons;
+import com.google.common.io.CharStreams;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.CommandExecutor;
+import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.TracedCommandExecutor;
 
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
 import static com.github.ngoanh2n.wdc.WDCEx.*;
 import static com.github.ngoanh2n.wdc.WDCType.*;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.ServiceLoader.load;
 
 /**
@@ -94,6 +104,15 @@ public abstract class WebDriverChecker {
     }
 
     /**
+     * Check whether {@linkplain WebDriver} is running locally.
+     *
+     * @return true if it's running locally
+     */
+    public static boolean isLocal() {
+        return is(new Local());
+    }
+
+    /**
      * Check whether {@linkplain WebDriver} is running remotely.
      * Client is connecting to cloud (BrowserStack, SauceLabs...), Selenium Grid, Appium Server.
      *
@@ -101,6 +120,15 @@ public abstract class WebDriverChecker {
      */
     public static boolean isRemote() {
         return is(new Remote());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running in local Docker.
+     *
+     * @return true if it's running in local Docker
+     */
+    public static boolean isDocker() {
+        return is(new Docker());
     }
 
     /**
@@ -372,6 +400,16 @@ public abstract class WebDriverChecker {
     }
 
     /**
+     * Check whether {@linkplain WebDriver} is running locally.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's running locally
+     */
+    public static boolean isLocal(WebDriver wd) {
+        return is(new Local(), wd);
+    }
+
+    /**
      * Check whether {@linkplain WebDriver} is running remotely.
      * Client is connecting to cloud (BrowserStack, SauceLabs...), Selenium Grid, Appium Server.
      *
@@ -380,6 +418,16 @@ public abstract class WebDriverChecker {
      */
     public static boolean isRemote(WebDriver wd) {
         return is(new Remote(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running in local Docker.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's running in local Docker
+     */
+    public static boolean isDocker(WebDriver wd) {
+        return is(new Docker(), wd);
     }
 
     /**
@@ -598,6 +646,25 @@ public abstract class WebDriverChecker {
         return wdc.check(args);
     }
 
+    protected static String[] runShell(String command) {
+        try {
+            String[] commandArgs = System.getProperty("os.name").contains("Windows")
+                    ? new String[]{"cmd.exe", "/c", command}
+                    : new String[]{"bash", "-c", command};
+            Process process = new ProcessBuilder(commandArgs)
+                    .directory(new File("."))
+                    .redirectErrorStream(false)
+                    .start();
+            process.waitFor();
+
+            InputStream is = process.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is, UTF_8);
+            return CharStreams.toString(isr).split("\r?\n|\r");
+        } catch (Exception e) {
+            return new String[]{};
+        }
+    }
+
     // ------------------------------------------------
 
     protected String getPlatformName(Object... args) {
@@ -639,6 +706,14 @@ public abstract class WebDriverChecker {
     protected String getAppPackage(Object... args) {
         String value = getCapability("appPackage", args);
         return value.toLowerCase();
+    }
+
+    protected URL getServerURL(Object... args) {
+        CommandExecutor ce = getWD(args).getCommandExecutor();
+        if (ce instanceof TracedCommandExecutor) {
+            ce = Commons.getPrivateField(TracedCommandExecutor.class, "delegate", ce);
+        }
+        return Commons.getPrivateField(HttpCommandExecutor.class, "remoteServer", ce);
     }
 
     protected String getCapability(String name, Object... args) {
