@@ -299,6 +299,15 @@ public abstract class WebDriverChecker {
     }
 
     /**
+     * Check whether {@linkplain WebDriver} is running on iOS simulator.
+     *
+     * @return true if it's running on iOS virtual device
+     */
+    public static boolean isIOSVirtual() {
+        return is(new IOSVirtual());
+    }
+
+    /**
      * Check whether {@linkplain WebDriver} for a browser on Android.
      *
      * @return true if it's a browser on Android
@@ -317,6 +326,15 @@ public abstract class WebDriverChecker {
     }
 
     /**
+     * Check whether {@linkplain WebDriver} is running on Android emulator.
+     *
+     * @return true if it's running on Android virtual device
+     */
+    public static boolean isAndroidVirtual() {
+        return is(new AndroidVirtual());
+    }
+
+    /**
      * Check whether {@linkplain WebDriver} for a browser on iOS or Android.
      *
      * @return true if it's a browser on iOS or Android
@@ -332,6 +350,15 @@ public abstract class WebDriverChecker {
      */
     public static boolean isMobileNative() {
         return is(new MobileNative());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running on iOS simulator or Android emulator.
+     *
+     * @return true if it's running on mobile virtual device
+     */
+    public static boolean isMobileVirtual() {
+        return is(new MobileVirtual());
     }
 
     // ------------------------------------------------
@@ -634,6 +661,16 @@ public abstract class WebDriverChecker {
     }
 
     /**
+     * Check whether {@linkplain WebDriver} is running on iOS simulator.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's running on iOS virtual device
+     */
+    public static boolean isIOSVirtual(WebDriver wd) {
+        return is(new IOSVirtual(), wd);
+    }
+
+    /**
      * Check whether {@linkplain WebDriver} for a browser on Android.
      *
      * @param wd is current {@linkplain WebDriver}
@@ -654,6 +691,16 @@ public abstract class WebDriverChecker {
     }
 
     /**
+     * Check whether {@linkplain WebDriver} is running on Android emulator.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's running on Android virtual device
+     */
+    public static boolean isAndroidVirtual(WebDriver wd) {
+        return is(new AndroidVirtual(), wd);
+    }
+
+    /**
      * Check whether {@linkplain WebDriver} for a browser on iOS or Android.
      *
      * @param wd is current {@linkplain WebDriver}
@@ -671,6 +718,16 @@ public abstract class WebDriverChecker {
      */
     public static boolean isMobileNative(WebDriver wd) {
         return is(new MobileNative(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running on iOS simulator or Android emulator.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's running on mobile virtual device
+     */
+    public static boolean isMobileVirtual(WebDriver wd) {
+        return is(new MobileVirtual(), wd);
     }
 
     // ------------------------------------------------
@@ -744,6 +801,16 @@ public abstract class WebDriverChecker {
     protected String getAppPackage(Object... args) {
         String value = getCapability("appPackage", args);
         return value.toLowerCase();
+    }
+
+    protected String getDeviceId(Object... args) {
+        if (is(new IOS(), args)) {
+            return getCapability("appium:udid", args);
+        }
+        if (is(new Android(), args)) {
+            return getCapability("appium:deviceUDID", args);
+        }
+        return "";
     }
 
     protected URL getServerURL(Object... args) {
