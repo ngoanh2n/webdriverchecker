@@ -59,6 +59,9 @@ public class AppiumTest {
         //assertFalse(WebDriverChecker.isMacOSNative());
         //assertFalse(WebDriverChecker.isWindowsNative());
 
+        assertTrue(WebDriverChecker.isLocalServer());
+        assertFalse(WebDriverChecker.isRemoteServer());
+
         //assertFalse(WebDriverChecker.isIOS());
         //assertFalse(WebDriverChecker.isIOSBrowser());
         //assertFalse(WebDriverChecker.isIOSNative());
