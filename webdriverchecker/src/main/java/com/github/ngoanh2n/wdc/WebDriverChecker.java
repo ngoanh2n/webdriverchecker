@@ -263,6 +263,24 @@ public abstract class WebDriverChecker {
     }
 
     /**
+     * Check whether {@linkplain WebDriver} is connecting to a local server.
+     *
+     * @return true if it's connecting to a local server
+     */
+    public static boolean isLocalServer() {
+        return is(new LocalServer());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is connecting to a remote server.
+     *
+     * @return true if it's connecting to a remote server
+     */
+    public static boolean isRemoteServer() {
+        return is(new RemoteServer());
+    }
+
+    /**
      * Check whether {@linkplain WebDriver} for a browser on iOS.
      *
      * @return true if it's a browser on iOS
@@ -573,6 +591,26 @@ public abstract class WebDriverChecker {
      */
     public static boolean isWindowsNative(WebDriver wd) {
         return is(new WindowsNative(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is connecting to a local server.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's connecting to a local server
+     */
+    public static boolean isLocalServer(WebDriver wd) {
+        return is(new LocalServer(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is connecting to a remote server.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's connecting to a remote server
+     */
+    public static boolean isRemoteServer(WebDriver wd) {
+        return is(new RemoteServer(), wd);
     }
 
     /**

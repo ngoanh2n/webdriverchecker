@@ -1,6 +1,8 @@
 package com.github.ngoanh2n.wdc;
 
 import org.openqa.selenium.remote.CommandExecutor;
+import org.openqa.selenium.remote.HttpCommandExecutor;
+import org.openqa.selenium.remote.TracedCommandExecutor;
 import org.openqa.selenium.remote.service.DriverCommandExecutor;
 
 import java.net.InetAddress;
@@ -266,6 +268,34 @@ class WDCType {
         @Override
         protected boolean check(Object... args) {
             return is(new Windows(), args) && is(new Native(), args);
+        }
+    }
+
+    // ------------------------------------------------
+
+    static class LocalServer extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            if (is(new Local(), args)) {
+                CommandExecutor ce = getWD(args).getCommandExecutor();
+                if (ce instanceof DriverCommandExecutor) {
+                    return true;
+                }
+                String aceName = "io.appium.java_client.remote.AppiumCommandExecutor";
+                return ce.getClass().getName().equals(aceName);
+            }
+            return false;
+        }
+    }
+
+    static class RemoteServer extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            if (!is(new Local(), args)) {
+                CommandExecutor ce = getWD(args).getCommandExecutor();
+                return ce instanceof HttpCommandExecutor || ce instanceof TracedCommandExecutor;
+            }
+            return false;
         }
     }
 
