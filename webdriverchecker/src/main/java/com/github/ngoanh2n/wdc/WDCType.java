@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.service.DriverCommandExecutor;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -315,6 +316,13 @@ class WDCType {
         }
     }
 
+    static class IOSVirtual extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            return is(new IOS(), args) && is(new AndroidVirtual(), args);
+        }
+    }
+
     // ------------------------------------------------
 
     static class AndroidBrowser extends WebDriverChecker {
@@ -331,6 +339,13 @@ class WDCType {
         }
     }
 
+    static class AndroidVirtual extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            return is(new Android(), args) && is(new MobileVirtual(), args);
+        }
+    }
+
     // ------------------------------------------------
 
     static class MobileBrowser extends WebDriverChecker {
@@ -344,6 +359,44 @@ class WDCType {
         @Override
         protected boolean check(Object... args) {
             return is(new Mobile(), args) && is(new Native(), args);
+        }
+    }
+
+    static class MobileVirtual extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            if (is(new Mobile(), args)) {
+                String deviceId = getDeviceId(args);
+                String[] connectedDeviceIds = getConnectedVDIds(args);
+                return Arrays.asList(connectedDeviceIds).contains(deviceId);
+            }
+            return false;
+        }
+
+        protected String[] getConnectedVDIds(Object... args) {
+            String command = is(new Android(), args)
+                    ? "adb devices"
+                    : "xcrun simctl list";
+            String regex = is(new Android(), args)
+                    ? "^(emulator-\\d{4})(.*)$"
+                    : "^(.*) \\((.*)\\) \\((Booted)\\)$";
+
+            String[] outputs = runShell(command);
+            LinkedList<String> deviceIds = new LinkedList<>();
+
+            for (String output : outputs) {
+                if (output.trim().matches(regex)) {
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(output.trim());
+
+                    if (matcher.matches()) {
+                        int position = is(new Android(), args) ? 1 : 2;
+                        String deviceId = matcher.group(position);
+                        deviceIds.add(deviceId);
+                    }
+                }
+            }
+            return deviceIds.toArray(new String[]{});
         }
     }
 }

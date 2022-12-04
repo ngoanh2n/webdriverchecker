@@ -65,14 +65,17 @@ public class AppiumTest {
         //assertFalse(WebDriverChecker.isIOS());
         //assertFalse(WebDriverChecker.isIOSBrowser());
         //assertFalse(WebDriverChecker.isIOSNative());
+        //assertFalse(WebDriverChecker.isIOSVirtual());
 
         //assertFalse(WebDriverChecker.isAndroid());
         //assertFalse(WebDriverChecker.isAndroidBrowser());
         //assertFalse(WebDriverChecker.isAndroidNative());
+        //assertFalse(WebDriverChecker.isAndroidVirtual());
 
         //assertFalse(WebDriverChecker.isMobile());
         //assertFalse(WebDriverChecker.isMobileBrowser());
         //assertFalse(WebDriverChecker.isMobileNative());
+        //assertFalse(WebDriverChecker.isMobileVirtual());
 
         WebDriverRunner.closeWebDriver();
         assertFalse(WebDriverChecker.isAlive());
@@ -99,12 +102,15 @@ public class AppiumTest {
 
         assertFalse(WebDriverChecker.isIOSBrowser());
         assertTrue(WebDriverChecker.isIOSNative());
+        assertTrue(WebDriverChecker.isIOSVirtual());
 
         assertFalse(WebDriverChecker.isAndroidBrowser());
         assertFalse(WebDriverChecker.isAndroidNative());
+        assertFalse(WebDriverChecker.isAndroidVirtual());
 
         assertFalse(WebDriverChecker.isMobileBrowser());
         assertTrue(WebDriverChecker.isMobileNative());
+        assertTrue(WebDriverChecker.isMobileVirtual());
     }
 
     @Test
@@ -128,12 +134,15 @@ public class AppiumTest {
 
         assertTrue(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
+        assertTrue(WebDriverChecker.isIOSVirtual());
 
         assertFalse(WebDriverChecker.isAndroidBrowser());
         assertFalse(WebDriverChecker.isAndroidNative());
+        assertFalse(WebDriverChecker.isAndroidVirtual());
 
         assertTrue(WebDriverChecker.isMobileBrowser());
         assertFalse(WebDriverChecker.isMobileNative());
+        assertTrue(WebDriverChecker.isMobileVirtual());
     }
 
     @Test
@@ -157,12 +166,15 @@ public class AppiumTest {
 
         assertFalse(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
+        assertFalse(WebDriverChecker.isIOSVirtual());
 
         assertFalse(WebDriverChecker.isAndroidBrowser());
         assertTrue(WebDriverChecker.isAndroidNative());
+        assertTrue(WebDriverChecker.isAndroidVirtual());
 
         assertFalse(WebDriverChecker.isMobileBrowser());
         assertTrue(WebDriverChecker.isMobileNative());
+        assertTrue(WebDriverChecker.isMobileVirtual());
     }
 
     @Test
@@ -186,12 +198,15 @@ public class AppiumTest {
 
         assertFalse(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
+        assertFalse(WebDriverChecker.isIOSVirtual());
 
         assertTrue(WebDriverChecker.isAndroidBrowser());
         assertFalse(WebDriverChecker.isAndroidNative());
+        assertTrue(WebDriverChecker.isAndroidVirtual());
 
         assertFalse(WebDriverChecker.isMobileBrowser());
         assertFalse(WebDriverChecker.isMobileNative());
+        assertFalse(WebDriverChecker.isMobileVirtual());
     }
 
     @Test
@@ -215,11 +230,14 @@ public class AppiumTest {
 
         assertFalse(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
+        assertFalse(WebDriverChecker.isIOSVirtual());
 
         assertFalse(WebDriverChecker.isAndroidBrowser());
         assertFalse(WebDriverChecker.isAndroidNative());
+        assertFalse(WebDriverChecker.isAndroidVirtual());
 
         assertFalse(WebDriverChecker.isMobileBrowser());
         assertFalse(WebDriverChecker.isMobileNative());
+        assertFalse(WebDriverChecker.isMobileVirtual());
     }
 }

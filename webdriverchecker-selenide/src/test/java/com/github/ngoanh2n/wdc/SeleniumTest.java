@@ -61,14 +61,17 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isIOS());
         assertFalse(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
+        assertFalse(WebDriverChecker.isIOSVirtual());
 
         assertFalse(WebDriverChecker.isAndroid());
         assertFalse(WebDriverChecker.isAndroidBrowser());
         assertFalse(WebDriverChecker.isAndroidNative());
+        assertFalse(WebDriverChecker.isAndroidVirtual());
 
         assertFalse(WebDriverChecker.isMobile());
         assertFalse(WebDriverChecker.isMobileBrowser());
         assertFalse(WebDriverChecker.isMobileNative());
+        assertFalse(WebDriverChecker.isMobileVirtual());
 
         Selenide.closeWebDriver();
         assertFalse(WebDriverChecker.isAlive());
