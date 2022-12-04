@@ -25,234 +25,83 @@ public class SeleniumTest {
 
     @AfterEach
     void closeDriver() {
+        //assertFalse(WebDriverChecker.isMacOS());
+        //assertFalse(WebDriverChecker.isLinux());
+        //assertFalse(WebDriverChecker.isWindows());
+        assertTrue(WebDriverChecker.isPC());
+        assertFalse(WebDriverChecker.isIOS());
+        assertFalse(WebDriverChecker.isAndroid());
+        assertFalse(WebDriverChecker.isMobile());
+
+        assertTrue(WebDriverChecker.isAlive());
+        assertFalse(WebDriverChecker.isRemote());
+        assertTrue(WebDriverChecker.isBrowser());
+        assertFalse(WebDriverChecker.isNative());
+
+        //assertFalse(WebDriverChecker.isChrome());
+        //assertFalse(WebDriverChecker.isSafari());
+        //assertFalse(WebDriverChecker.isFirefox());
+        //assertFalse(WebDriverChecker.isEdge());
+        //assertFalse(WebDriverChecker.isOpera());
+        //assertFalse(WebDriverChecker.isIE());
+        assertFalse(WebDriverChecker.isEdgeLegacy());
+        assertFalse(WebDriverChecker.isFirefoxLegacy());
+
+        assertTrue(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCNative());
+
+        assertFalse(WebDriverChecker.isMacOSNative());
+        assertFalse(WebDriverChecker.isWindowsNative());
+
+        assertFalse(WebDriverChecker.isIOS());
+        assertFalse(WebDriverChecker.isIOSWeb());
+        assertFalse(WebDriverChecker.isIOSNative());
+
+        assertFalse(WebDriverChecker.isAndroid());
+        assertFalse(WebDriverChecker.isAndroidWeb());
+        assertFalse(WebDriverChecker.isAndroidNative());
+
+        assertFalse(WebDriverChecker.isMobile());
+        assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileNative());
+
         Selenide.closeWebDriver();
+        assertFalse(WebDriverChecker.isAlive());
     }
 
     @Test
     @ExecuteOnTarget("chrome")
     void isChrome() {
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
-
         assertTrue(WebDriverChecker.isChrome());
-        assertFalse(WebDriverChecker.isSafari());
-        assertFalse(WebDriverChecker.isFirefox());
-        assertFalse(WebDriverChecker.isEdge());
-        assertFalse(WebDriverChecker.isOpera());
-        assertFalse(WebDriverChecker.isIE());
-
-        assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSWeb());
-        assertFalse(WebDriverChecker.isIOSSafari());
-        assertFalse(WebDriverChecker.isIOSNative());
-
-        assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidWeb());
-        assertFalse(WebDriverChecker.isAndroidChrome());
-        assertFalse(WebDriverChecker.isAndroidNative());
-
-        assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileWeb());
-        assertFalse(WebDriverChecker.isMobileNative());
-
-        assertTrue(WebDriverChecker.isPC());
-        assertTrue(WebDriverChecker.isPCWeb());
-        assertFalse(WebDriverChecker.isPCNative());
-
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
-        assertFalse(WebDriverChecker.isEdgeLegacy());
-        assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
 
     @Test
     @ExecuteOnTarget("safari")
     void isSafari() {
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
-
-        assertFalse(WebDriverChecker.isChrome());
         assertTrue(WebDriverChecker.isSafari());
-        assertFalse(WebDriverChecker.isFirefox());
-        assertFalse(WebDriverChecker.isEdge());
-        assertFalse(WebDriverChecker.isOpera());
-        assertFalse(WebDriverChecker.isIE());
-
-        assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSWeb());
-        assertFalse(WebDriverChecker.isIOSSafari());
-        assertFalse(WebDriverChecker.isIOSNative());
-
-        assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidWeb());
-        assertFalse(WebDriverChecker.isAndroidChrome());
-        assertFalse(WebDriverChecker.isAndroidNative());
-
-        assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileWeb());
-        assertFalse(WebDriverChecker.isMobileNative());
-
-        assertTrue(WebDriverChecker.isPC());
-        assertTrue(WebDriverChecker.isPCWeb());
-        assertFalse(WebDriverChecker.isPCNative());
-
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
-        assertFalse(WebDriverChecker.isEdgeLegacy());
-        assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
 
     @Test
     @ExecuteOnTarget("firefox")
     void isFirefox() {
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
-
-        assertFalse(WebDriverChecker.isChrome());
-        assertFalse(WebDriverChecker.isSafari());
         assertTrue(WebDriverChecker.isFirefox());
-        assertFalse(WebDriverChecker.isEdge());
-        assertFalse(WebDriverChecker.isOpera());
-        assertFalse(WebDriverChecker.isIE());
-
-        assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSWeb());
-        assertFalse(WebDriverChecker.isIOSSafari());
-        assertFalse(WebDriverChecker.isIOSNative());
-
-        assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidWeb());
-        assertFalse(WebDriverChecker.isAndroidChrome());
-        assertFalse(WebDriverChecker.isAndroidNative());
-
-        assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileWeb());
-        assertFalse(WebDriverChecker.isMobileNative());
-
-        assertTrue(WebDriverChecker.isPC());
-        assertTrue(WebDriverChecker.isPCWeb());
-        assertFalse(WebDriverChecker.isPCNative());
-
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
-        assertFalse(WebDriverChecker.isEdgeLegacy());
-        assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
 
     @Test
     @ExecuteOnTarget("edge")
     void isEdge() {
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
-
-        assertFalse(WebDriverChecker.isChrome());
-        assertFalse(WebDriverChecker.isSafari());
-        assertFalse(WebDriverChecker.isFirefox());
         assertTrue(WebDriverChecker.isEdge());
-        assertFalse(WebDriverChecker.isOpera());
-        assertFalse(WebDriverChecker.isIE());
-
-        assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSWeb());
-        assertFalse(WebDriverChecker.isIOSSafari());
-        assertFalse(WebDriverChecker.isIOSNative());
-
-        assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidWeb());
-        assertFalse(WebDriverChecker.isAndroidChrome());
-        assertFalse(WebDriverChecker.isAndroidNative());
-
-        assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileWeb());
-        assertFalse(WebDriverChecker.isMobileNative());
-
-        assertTrue(WebDriverChecker.isPC());
-        assertTrue(WebDriverChecker.isPCWeb());
-        assertFalse(WebDriverChecker.isPCNative());
-
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
-        assertFalse(WebDriverChecker.isEdgeLegacy());
-        assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
 
     @Test
     @ExecuteOnTarget("opera")
     void isOpera() {
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
-
-        assertFalse(WebDriverChecker.isChrome());
-        assertFalse(WebDriverChecker.isSafari());
-        assertFalse(WebDriverChecker.isFirefox());
-        assertFalse(WebDriverChecker.isEdge());
         assertTrue(WebDriverChecker.isOpera());
-        assertFalse(WebDriverChecker.isIE());
-
-        assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSWeb());
-        assertFalse(WebDriverChecker.isIOSSafari());
-        assertFalse(WebDriverChecker.isIOSNative());
-
-        assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidWeb());
-        assertFalse(WebDriverChecker.isAndroidChrome());
-        assertFalse(WebDriverChecker.isAndroidNative());
-
-        assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileWeb());
-        assertFalse(WebDriverChecker.isMobileNative());
-
-        assertTrue(WebDriverChecker.isPC());
-        assertTrue(WebDriverChecker.isPCWeb());
-        assertFalse(WebDriverChecker.isPCNative());
-
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
-        assertFalse(WebDriverChecker.isEdgeLegacy());
-        assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
 
     @Test
     @ExecuteOnTarget("ie")
     void isIE() {
-        assertTrue(WebDriverChecker.isAlive());
-        assertFalse(WebDriverChecker.isRemote());
-        
-        assertFalse(WebDriverChecker.isChrome());
-        assertFalse(WebDriverChecker.isSafari());
-        assertFalse(WebDriverChecker.isFirefox());
-        assertFalse(WebDriverChecker.isEdge());
-        assertFalse(WebDriverChecker.isOpera());
         assertTrue(WebDriverChecker.isIE());
-
-        assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSWeb());
-        assertFalse(WebDriverChecker.isIOSSafari());
-        assertFalse(WebDriverChecker.isIOSNative());
-
-        assertFalse(WebDriverChecker.isAndroid());
-        assertFalse(WebDriverChecker.isAndroidWeb());
-        assertFalse(WebDriverChecker.isAndroidChrome());
-        assertFalse(WebDriverChecker.isAndroidNative());
-
-        assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileWeb());
-        assertFalse(WebDriverChecker.isMobileNative());
-
-        assertTrue(WebDriverChecker.isPC());
-        assertTrue(WebDriverChecker.isPCWeb());
-        assertFalse(WebDriverChecker.isPCNative());
-
-        assertFalse(WebDriverChecker.isMacOSNative());
-        assertFalse(WebDriverChecker.isWindowsNative());
-
-        assertFalse(WebDriverChecker.isEdgeLegacy());
-        assertFalse(WebDriverChecker.isFirefoxLegacy());
     }
 }

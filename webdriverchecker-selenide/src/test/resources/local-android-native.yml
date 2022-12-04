@@ -1,0 +1,8 @@
+### https://github.com/appium/appium-uiautomator2-driver#capabilities
+platformName: android
+appium:automationName: uiautomator2
+appium:newCommandTimeout: 180
+appium:app: https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk
+appium:appWaitDuration: 60000
+appium:adbExecTimeout: 50000
+appium:autoGrantPermissions: true

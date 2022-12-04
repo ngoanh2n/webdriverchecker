@@ -1,0 +1,7 @@
+### https://github.com/appium/appium-xcuitest-driver#capabilities
+platformName: ios
+appium:deviceName: iPhone 11
+appium:platformVersion: "15.5"
+appium:automationName: xcuitest
+appium:newCommandTimeout: 180
+appium:app: https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip

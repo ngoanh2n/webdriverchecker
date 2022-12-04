@@ -1,9 +1,0 @@
-### https://github.com/appium/appium-uiautomator2-driver#capabilities
-platformName: android
-automationName: uiautomator2
-newCommandTimeout: 180
-browserName: chrome
-noReset: false
-adbExecTimeout: 180000
-autoGrantPermissions: true
-uiautomator2ServerInstallTimeout: 180000
