@@ -3,6 +3,12 @@ package com.github.ngoanh2n.wdc;
 import org.openqa.selenium.remote.CommandExecutor;
 import org.openqa.selenium.remote.service.DriverCommandExecutor;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static com.github.ngoanh2n.wdc.WDCEx.NoSuchWebDriverSession;
 
 /**
@@ -86,11 +92,67 @@ class WDCType {
         }
     }
 
+    static class Local extends WebDriverChecker {
+        private String host;
+
+        Local() {
+        }
+
+        Local(String host) {
+            this.host = host;
+        }
+
+        @Override
+        protected boolean check(Object... args) {
+            host = host == null ? getServerURL(args).getHost() : host;
+            try {
+                InetAddress address = InetAddress.getByName(host);
+                if (address.isAnyLocalAddress() || address.isLoopbackAddress()) {
+                    return true;
+                }
+                return NetworkInterface.getByInetAddress(address) != null;
+            } catch (Exception ignored) {
+                return false;
+            }
+        }
+    }
+
     static class Remote extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
             CommandExecutor ce = getWD(args).getCommandExecutor();
             return !(ce instanceof DriverCommandExecutor);
+        }
+    }
+
+    static class Docker extends WebDriverChecker {
+        @Override
+        protected boolean check(Object... args) {
+            if (isRunning() && is(new Local(), args)) {
+                String regex = String.format("^(map.*)(0.0.0.0 %s)(.*)$", getServerURL(args).getPort());
+                String[] outputs = runShell("docker inspect -f {{.NetworkSettings.Ports}} $(docker ps -aq)");
+
+                for (String output : outputs) {
+                    if (output.trim().matches(regex)) {
+                        Pattern pattern = Pattern.compile(regex);
+                        Matcher matcher = pattern.matcher(output.trim());
+
+                        if (matcher.matches()) {
+                            String host = matcher.group(2).split("\\s+")[0];
+                            return is(new Local(host), args);
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        protected boolean isRunning() {
+            if (Arrays.toString(runShell("docker -v")).contains("Docker version")) {
+                String[] outputs = runShell("docker inspect -f {{.State.Status}} $(docker ps -aq)");
+                return outputs[0].matches("(exited|running)");
+            }
+            return false;
         }
     }
 
