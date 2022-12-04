@@ -84,7 +84,7 @@ public class AppiumCloudTest {
     @Test
     @ExecuteOnTarget("saucelabs")
     void sauceLabsAndroidChrome() {
-        CloudDriverProvider.caps.setValue("saucelabs-android-chrome.yml");
+        CloudDriverProvider.caps.setValue("cloud-saucelabs-android-chrome.yml");
         Selenide.open();
 
         assertFalse(WebDriverChecker.isPC());

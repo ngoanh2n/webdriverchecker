@@ -86,7 +86,7 @@ public class SeleniumCloudTest {
     @Test
     @ExecuteOnTarget("lambdatest")
     void lambdaTest() {
-        CloudDriverProvider.caps.setValue("lambdatest-windows-chrome.yml");
+        CloudDriverProvider.caps.setValue("cloud-lambdatest-windows-chrome.yml");
         Selenide.open();
 
         assertFalse(WebDriverChecker.isMacOS());
@@ -107,7 +107,7 @@ public class SeleniumCloudTest {
     @Test
     @ExecuteOnTarget("browserstack")
     void browserStack() {
-        CloudDriverProvider.caps.setValue("browserstack-macos-safari.yml");
+        CloudDriverProvider.caps.setValue("cloud-browserstack-macos-safari.yml");
         Selenide.open();
 
         assertTrue(WebDriverChecker.isMacOS());
@@ -128,7 +128,7 @@ public class SeleniumCloudTest {
     @Test
     @ExecuteOnTarget("saucelabs")
     void sauceLabs() {
-        CloudDriverProvider.caps.setValue("saucelabs-linux-firefox.yml");
+        CloudDriverProvider.caps.setValue("cloud-saucelabs-linux-firefox.yml");
         Selenide.open();
 
         assertFalse(WebDriverChecker.isMacOS());
@@ -149,7 +149,7 @@ public class SeleniumCloudTest {
     @Test
     @ExecuteOnTarget("testingbot")
     void testingBot() {
-        CloudDriverProvider.caps.setValue("testingbot-windows-edge.yml");
+        CloudDriverProvider.caps.setValue("cloud-testingbot-windows-edge.yml");
         Selenide.open();
 
         assertFalse(WebDriverChecker.isMacOS());

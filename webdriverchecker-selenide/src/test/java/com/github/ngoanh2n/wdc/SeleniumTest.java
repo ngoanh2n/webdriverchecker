@@ -20,7 +20,6 @@ public class SeleniumTest {
     void openDriver() {
         Configuration.timeout = 10 * 1000;
         Configuration.pollingInterval = 500;
-        Selenide.open();
     }
 
     @AfterEach
@@ -83,38 +82,86 @@ public class SeleniumTest {
     }
 
     @Test
-    @ExecuteOnTarget("chrome")
+    @ExecuteOnTarget({"macos", "linux", "windows"})
     void isChrome() {
+        Configuration.browser = "chrome";
+        Selenide.open();
+
         assertTrue(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isSafari());
+        assertFalse(WebDriverChecker.isFirefox());
+        assertFalse(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
+        assertFalse(WebDriverChecker.isIE());
     }
 
     @Test
-    @ExecuteOnTarget("safari")
+    @ExecuteOnTarget("macos")
     void isSafari() {
+        Configuration.browser = "safari";
+        Selenide.open();
+
+        assertFalse(WebDriverChecker.isChrome());
         assertTrue(WebDriverChecker.isSafari());
+        assertFalse(WebDriverChecker.isFirefox());
+        assertFalse(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
+        assertFalse(WebDriverChecker.isIE());
     }
 
     @Test
-    @ExecuteOnTarget("firefox")
+    @ExecuteOnTarget({"macos", "linux", "windows"})
     void isFirefox() {
+        Configuration.browser = "firefox";
+        Selenide.open();
+
+        assertFalse(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isSafari());
         assertTrue(WebDriverChecker.isFirefox());
+        assertFalse(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
+        assertFalse(WebDriverChecker.isIE());
     }
 
     @Test
-    @ExecuteOnTarget("edge")
+    @ExecuteOnTarget({"macos", "linux", "windows"})
     void isEdge() {
+        Configuration.browser = "edge";
+        Selenide.open();
+
+        assertFalse(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isSafari());
+        assertFalse(WebDriverChecker.isFirefox());
         assertTrue(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
+        assertFalse(WebDriverChecker.isIE());
     }
 
     @Test
-    @ExecuteOnTarget("opera")
+    @ExecuteOnTarget({"macos", "windows"})
     void isOpera() {
+        Configuration.browser = "opera";
+        Selenide.open();
+
+        assertFalse(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isSafari());
+        assertFalse(WebDriverChecker.isFirefox());
+        assertFalse(WebDriverChecker.isEdge());
         assertTrue(WebDriverChecker.isOpera());
+        assertFalse(WebDriverChecker.isIE());
     }
 
     @Test
-    @ExecuteOnTarget("ie")
+    @ExecuteOnTarget("windows")
     void isIE() {
+        Configuration.browser = "ie";
+        Selenide.open();
+
+        assertFalse(WebDriverChecker.isChrome());
+        assertFalse(WebDriverChecker.isSafari());
+        assertFalse(WebDriverChecker.isFirefox());
+        assertFalse(WebDriverChecker.isEdge());
+        assertFalse(WebDriverChecker.isOpera());
         assertTrue(WebDriverChecker.isIE());
     }
 }
