@@ -225,7 +225,7 @@ class WDCType {
 
     // ------------------------------------------------
 
-    static class AndroidWeb extends WebDriverChecker {
+    static class AndroidBrowser extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
             return is(new Android(), args) && is(new Browser(), args);
