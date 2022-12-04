@@ -54,7 +54,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isWindowsNative());
 
         assertFalse(WebDriverChecker.isIOS());
-        assertFalse(WebDriverChecker.isIOSWeb());
+        assertFalse(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroid());

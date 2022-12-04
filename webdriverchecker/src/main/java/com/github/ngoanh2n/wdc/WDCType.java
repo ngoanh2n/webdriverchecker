@@ -209,7 +209,7 @@ class WDCType {
 
     // ------------------------------------------------
 
-    static class IOSWeb extends WebDriverChecker {
+    static class IOSBrowser extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
             return is(new IOS(), args) && is(new Browser(), args);

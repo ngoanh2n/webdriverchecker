@@ -239,8 +239,8 @@ public abstract class WebDriverChecker {
      *
      * @return true if it's a browser on iOS
      */
-    public static boolean isIOSWeb() {
-        return is(new IOSWeb());
+    public static boolean isIOSBrowser() {
+        return is(new IOSBrowser());
     }
 
     /**
@@ -533,8 +533,8 @@ public abstract class WebDriverChecker {
      * @param wd is current {@linkplain WebDriver}
      * @return true if it's a browser on iOS
      */
-    public static boolean isIOSWeb(WebDriver wd) {
-        return is(new IOSWeb(), wd);
+    public static boolean isIOSBrowser(WebDriver wd) {
+        return is(new IOSBrowser(), wd);
     }
 
     /**
