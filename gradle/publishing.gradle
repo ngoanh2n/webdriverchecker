@@ -26,8 +26,8 @@ if (project.hasProperty("signing.keyId")) {
                             ? property("WebDriverChecker")
                             : property("WebDriverChecker for Selenide")
                     description = !project.name.endsWith("selenide")
-                            ? property("Selenium WebDriver characteristics and environment checking")
-                            : property("Selenium WebDriver characteristics and environment checking for Selenide")
+                            ? property("Selenium WebDriver characteristics and environment")
+                            : property("Selenium WebDriver characteristics and environment for Selenide")
                     url = "https://github.com/ngoanh2n/webdriverchecker"
 
                     licenses {
