@@ -39,5 +39,10 @@ import org.openqa.selenium.WebDriver;
  * @since 2021-04-10
  */
 public interface WebDriverService {
+    /**
+     * Provider {@linkplain WebDriver} to {@linkplain WebDriverChecker}.
+     *
+     * @return driver you have set up
+     */
     WebDriver serve();
 }
