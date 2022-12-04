@@ -73,6 +73,11 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isMobileNative());
         assertFalse(WebDriverChecker.isMobileVirtual());
 
+        assertFalse(WebDriverChecker.isLambdaTest());
+        assertFalse(WebDriverChecker.isBrowserStack());
+        assertFalse(WebDriverChecker.isSauceLabs());
+        assertFalse(WebDriverChecker.isTestingBot());
+
         Selenide.closeWebDriver();
         assertFalse(WebDriverChecker.isAlive());
     }

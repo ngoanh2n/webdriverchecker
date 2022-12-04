@@ -2,16 +2,16 @@ package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.Commons;
 import com.google.common.io.CharStreams;
+import io.netty.handler.codec.http.HttpRequest;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.CommandExecutor;
-import org.openqa.selenium.remote.HttpCommandExecutor;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.TracedCommandExecutor;
+import org.openqa.selenium.remote.*;
+import org.openqa.selenium.remote.http.HttpMethod;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.ServiceLoader;
 
 import static com.github.ngoanh2n.wdc.WDCEx.*;
+import static com.github.ngoanh2n.wdc.WDCType.Browser;
 import static com.github.ngoanh2n.wdc.WDCType.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.ServiceLoader.load;
@@ -359,6 +360,42 @@ public abstract class WebDriverChecker {
      */
     public static boolean isMobileVirtual() {
         return is(new MobileVirtual());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running on LambdaTest.
+     *
+     * @return true if it's running on LambdaTest
+     */
+    public static boolean isLambdaTest() {
+        return is(new LambdaTest());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running on BrowserStack.
+     *
+     * @return true if it's running on BrowserStack
+     */
+    public static boolean isBrowserStack() {
+        return is(new BrowserStack());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running on SauceLabs.
+     *
+     * @return true if it's running on SauceLabs
+     */
+    public static boolean isSauceLabs() {
+        return is(new SauceLabs());
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running on TestingBot.
+     *
+     * @return true if it's running on TestingBot
+     */
+    public static boolean isTestingBot() {
+        return is(new TestingBot());
     }
 
     // ------------------------------------------------
@@ -730,6 +767,46 @@ public abstract class WebDriverChecker {
         return is(new MobileVirtual(), wd);
     }
 
+    /**
+     * Check whether {@linkplain WebDriver} is running on LambdaTest.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's running on LambdaTest
+     */
+    public static boolean isLambdaTest(WebDriver wd) {
+        return is(new LambdaTest(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running on BrowserStack.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's running on BrowserStack
+     */
+    public static boolean isBrowserStack(WebDriver wd) {
+        return is(new BrowserStack(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running on SauceLabs.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's running on SauceLabs
+     */
+    public static boolean isSauceLabs(WebDriver wd) {
+        return is(new SauceLabs(), wd);
+    }
+
+    /**
+     * Check whether {@linkplain WebDriver} is running on TestingBot.
+     *
+     * @param wd is current {@linkplain WebDriver}
+     * @return true if it's running on TestingBot
+     */
+    public static boolean isTestingBot(WebDriver wd) {
+        return is(new TestingBot(), wd);
+    }
+
     // ------------------------------------------------
 
     protected static boolean is(WebDriverChecker wdc, Object... args) {
@@ -819,6 +896,23 @@ public abstract class WebDriverChecker {
             ce = Commons.getPrivateField(TracedCommandExecutor.class, "delegate", ce);
         }
         return Commons.getPrivateField(HttpCommandExecutor.class, "remoteServer", ce);
+    }
+
+    protected Response runCommand(Command command, CommandInfo info, Object... args) {
+        String url = Commons.getPrivateField(CommandInfo.class, "url", info);
+        HttpMethod method = Commons.getPrivateField(CommandInfo.class, "method", info);
+        getCommandCodec(args).defineCommand(command.getName(), method, url);
+
+        try {
+            return getWD(args).getCommandExecutor().execute(command);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected CommandCodec<HttpRequest> getCommandCodec(Object... args) {
+        CommandExecutor ce = getWD(args).getCommandExecutor();
+        return Commons.getPrivateField(HttpCommandExecutor.class, "commandCodec", ce);
     }
 
     protected String getCapability(String name, Object... args) {

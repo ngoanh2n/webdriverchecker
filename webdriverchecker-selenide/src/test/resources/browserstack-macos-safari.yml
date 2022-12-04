@@ -1,0 +1,8 @@
+browserName: safari
+browserVersion: "15.0"
+
+### https://www.browserstack.com/automate/capabilities
+### https://www.browserstack.com/app-automate/capabilities
+bstack:options:
+  os: OS X
+  osVersion: Monterey
