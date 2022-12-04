@@ -177,7 +177,7 @@ class WDCType {
 
     // ------------------------------------------------
 
-    static class PCWeb extends WebDriverChecker {
+    static class PCBrowser extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
             return is(new PC(), args) && is(new Browser(), args);

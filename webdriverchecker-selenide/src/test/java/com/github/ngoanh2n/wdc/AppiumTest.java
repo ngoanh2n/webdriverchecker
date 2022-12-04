@@ -51,7 +51,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
 
-        assertFalse(WebDriverChecker.isPCWeb());
+        assertFalse(WebDriverChecker.isPCBrowser());
         //assertFalse(WebDriverChecker.isPCNative());
 
         //assertFalse(WebDriverChecker.isMacOSNative());

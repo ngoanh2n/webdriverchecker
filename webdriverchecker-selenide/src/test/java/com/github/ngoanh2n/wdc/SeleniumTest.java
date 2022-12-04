@@ -47,7 +47,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isEdgeLegacy());
         assertFalse(WebDriverChecker.isFirefoxLegacy());
 
-        assertTrue(WebDriverChecker.isPCWeb());
+        assertTrue(WebDriverChecker.isPCBrowser());
         assertFalse(WebDriverChecker.isPCNative());
 
         assertFalse(WebDriverChecker.isMacOSNative());
