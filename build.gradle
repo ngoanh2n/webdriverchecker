@@ -3,8 +3,8 @@
  * @since 2021-04-09
  */
 allprojects {
-    group(property("prj.groupId"))
-    version(property("prj.version"))
+    group("com.github.ngoanh2n")
+    version("2.2.0")
 
     repositories {
         mavenCentral()
@@ -22,4 +22,9 @@ subprojects {
     apply from: rootProject.file("gradle/compiling.gradle")
     apply from: rootProject.file("gradle/publishing.gradle")
     apply from: rootProject.file("gradle/dependencies.gradle")
+
+    clean.doFirst {
+        delete project.file("out")
+        delete rootProject.files("build")
+    }
 }

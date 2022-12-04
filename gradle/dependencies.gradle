@@ -3,5 +3,8 @@
  * @since 2021-04-09
  */
 dependencies {
+    testImplementation("io.appium:java-client:${VERSION_APPIUM}")
+    testImplementation("org.slf4j:slf4j-log4j12:${VERSION_SLF4J}")
+    testImplementation("com.github.ngoanh2n:utilities:${VERSION_UTILITIES}")
     testImplementation("org.junit.jupiter:junit-jupiter:${VERSION_JUNIT5_JUPITER}")
 }
