@@ -275,8 +275,8 @@ public abstract class WebDriverChecker {
      *
      * @return true if it's a browser on iOS or Android
      */
-    public static boolean isMobileWeb() {
-        return is(new MobileWeb());
+    public static boolean isMobileBrowser() {
+        return is(new MobileBrowser());
     }
 
     /**
@@ -573,8 +573,8 @@ public abstract class WebDriverChecker {
      * @param wd is current {@linkplain WebDriver}
      * @return true if it's a browser on iOS or Android
      */
-    public static boolean isMobileWeb(WebDriver wd) {
-        return is(new MobileWeb(), wd);
+    public static boolean isMobileBrowser(WebDriver wd) {
+        return is(new MobileBrowser(), wd);
     }
 
     /**
