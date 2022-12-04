@@ -241,7 +241,7 @@ class WDCType {
 
     // ------------------------------------------------
 
-    static class MobileWeb extends WebDriverChecker {
+    static class MobileBrowser extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
             return is(new Mobile(), args) && is(new Browser(), args);

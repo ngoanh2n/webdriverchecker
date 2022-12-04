@@ -66,7 +66,7 @@ public class AppiumTest {
         //assertFalse(WebDriverChecker.isAndroidNative());
 
         //assertFalse(WebDriverChecker.isMobile());
-        //assertFalse(WebDriverChecker.isMobileWeb());
+        //assertFalse(WebDriverChecker.isMobileBrowser());
         //assertFalse(WebDriverChecker.isMobileNative());
 
         WebDriverRunner.closeWebDriver();
@@ -98,7 +98,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isAndroidBrowser());
         assertFalse(WebDriverChecker.isAndroidNative());
 
-        assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileBrowser());
         assertTrue(WebDriverChecker.isMobileNative());
     }
 
@@ -127,7 +127,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isAndroidBrowser());
         assertFalse(WebDriverChecker.isAndroidNative());
 
-        assertTrue(WebDriverChecker.isMobileWeb());
+        assertTrue(WebDriverChecker.isMobileBrowser());
         assertFalse(WebDriverChecker.isMobileNative());
     }
 
@@ -156,7 +156,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isAndroidBrowser());
         assertTrue(WebDriverChecker.isAndroidNative());
 
-        assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileBrowser());
         assertTrue(WebDriverChecker.isMobileNative());
     }
 
@@ -185,7 +185,7 @@ public class AppiumTest {
         assertTrue(WebDriverChecker.isAndroidBrowser());
         assertFalse(WebDriverChecker.isAndroidNative());
 
-        assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileBrowser());
         assertFalse(WebDriverChecker.isMobileNative());
     }
 
@@ -214,7 +214,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isAndroidBrowser());
         assertFalse(WebDriverChecker.isAndroidNative());
 
-        assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileBrowser());
         assertFalse(WebDriverChecker.isMobileNative());
     }
 }

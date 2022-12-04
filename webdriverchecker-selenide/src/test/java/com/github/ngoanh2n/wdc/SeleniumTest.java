@@ -62,7 +62,7 @@ public class SeleniumTest {
         assertFalse(WebDriverChecker.isAndroidNative());
 
         assertFalse(WebDriverChecker.isMobile());
-        assertFalse(WebDriverChecker.isMobileWeb());
+        assertFalse(WebDriverChecker.isMobileBrowser());
         assertFalse(WebDriverChecker.isMobileNative());
 
         Selenide.closeWebDriver();
