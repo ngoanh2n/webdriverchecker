@@ -23,11 +23,11 @@ if (project.hasProperty("signing.keyId")) {
 
                 pom {
                     name = !project.name.endsWith("selenide")
-                            ? property("prj.name")
-                            : property("prj.name.selenide")
+                            ? property("WebDriverChecker")
+                            : property("WebDriverChecker for Selenide")
                     description = !project.name.endsWith("selenide")
-                            ? property("prj.desc")
-                            : property("prj.desc.selenide")
+                            ? property("Selenium WebDriver characteristics and environment checking")
+                            : property("Selenium WebDriver characteristics and environment checking for Selenide")
                     url = "https://github.com/ngoanh2n/webdriverchecker"
 
                     licenses {
