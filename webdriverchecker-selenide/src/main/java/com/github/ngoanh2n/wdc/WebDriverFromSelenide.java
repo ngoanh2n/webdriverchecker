@@ -9,13 +9,15 @@ import org.openqa.selenium.WebDriver;
  * @since 2021-04-10
  */
 public class WebDriverFromSelenide implements WebDriverService {
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WebDriver serve() {
         try {
             return WebDriverRunner.getWebDriver();
         } catch (IllegalStateException ignored) {
-            throw new WDCException.NoSuchWDSession();
+            throw new WDCEx.NoSuchWebDriverSession();
         }
     }
 }
