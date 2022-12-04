@@ -58,7 +58,7 @@ public class AppiumTest {
         //assertFalse(WebDriverChecker.isWindowsNative());
 
         //assertFalse(WebDriverChecker.isIOS());
-        //assertFalse(WebDriverChecker.isIOSWeb());
+        //assertFalse(WebDriverChecker.isIOSBrowser());
         //assertFalse(WebDriverChecker.isIOSNative());
 
         //assertFalse(WebDriverChecker.isAndroid());
@@ -92,7 +92,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
-        assertFalse(WebDriverChecker.isIOSWeb());
+        assertFalse(WebDriverChecker.isIOSBrowser());
         assertTrue(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroidWeb());
@@ -121,7 +121,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
-        assertTrue(WebDriverChecker.isIOSWeb());
+        assertTrue(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroidWeb());
@@ -150,7 +150,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
-        assertFalse(WebDriverChecker.isIOSWeb());
+        assertFalse(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroidWeb());
@@ -179,7 +179,7 @@ public class AppiumTest {
         assertFalse(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
-        assertFalse(WebDriverChecker.isIOSWeb());
+        assertFalse(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
 
         assertTrue(WebDriverChecker.isAndroidWeb());
@@ -208,7 +208,7 @@ public class AppiumTest {
         assertTrue(WebDriverChecker.isMacOSNative());
         assertFalse(WebDriverChecker.isWindowsNative());
 
-        assertFalse(WebDriverChecker.isIOSWeb());
+        assertFalse(WebDriverChecker.isIOSBrowser());
         assertFalse(WebDriverChecker.isIOSNative());
 
         assertFalse(WebDriverChecker.isAndroidWeb());
