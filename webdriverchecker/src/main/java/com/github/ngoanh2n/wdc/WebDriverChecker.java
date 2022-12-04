@@ -257,8 +257,8 @@ public abstract class WebDriverChecker {
      *
      * @return true if it's a browser on Android
      */
-    public static boolean isAndroidWeb() {
-        return is(new AndroidWeb());
+    public static boolean isAndroidBrowser() {
+        return is(new AndroidBrowser());
     }
 
     /**
@@ -553,8 +553,8 @@ public abstract class WebDriverChecker {
      * @param wd is current {@linkplain WebDriver}
      * @return true if it's a browser on Android
      */
-    public static boolean isAndroidWeb(WebDriver wd) {
-        return is(new AndroidWeb(), wd);
+    public static boolean isAndroidBrowser(WebDriver wd) {
+        return is(new AndroidBrowser(), wd);
     }
 
     /**
