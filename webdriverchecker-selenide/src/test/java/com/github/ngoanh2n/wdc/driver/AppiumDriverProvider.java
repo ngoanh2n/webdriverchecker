@@ -1,4 +1,4 @@
-package com.github.ngoanh2n.wdc;
+package com.github.ngoanh2n.wdc.driver;
 
 import com.codeborne.selenide.WebDriverProvider;
 import com.github.ngoanh2n.Prop;
@@ -26,20 +26,12 @@ import java.util.Map;
 public class AppiumDriverProvider implements WebDriverProvider {
     private static final Logger logger = LoggerFactory.getLogger(AppiumDriverProvider.class);
 
-    @Nonnull
-    @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
-        AppiumDriverLocalService localService = startAppiumServer();
-        Capabilities caps = readAppiumCapabilities();
-        return new AppiumDriver(localService, caps);
-    }
+    public static Prop<String> caps = new Prop<>("ngoanh2n.caps", String.class);
 
-    private static Capabilities readAppiumCapabilities() {
+    public static Capabilities readCaps() {
         DesiredCapabilities caps = new DesiredCapabilities();
-        Prop<String> capsProp = new Prop<>("ngoanh2n.caps", String.class);
-        Map<String, Object> capsMap = YamlData.toMapFromResource(capsProp.getValue());
-        capsMap.forEach(caps::setCapability);
-        logger.debug("Reading capabilities");
+        Map<String, Object> providedCaps = YamlData.toMapFromResource(AppiumDriverProvider.caps.getValue());
+        providedCaps.forEach(caps::setCapability);
         return caps;
     }
 
@@ -57,6 +49,14 @@ public class AppiumDriverProvider implements WebDriverProvider {
             logger.debug("Starting Appium server");
         }
         return localService;
+    }
+
+    @Nonnull
+    @Override
+    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+        AppiumDriverLocalService localService = startAppiumServer();
+        Capabilities caps = readCaps();
+        return new AppiumDriver(localService, caps);
     }
 
     private final static class StopAppiumServerThread extends Thread {
