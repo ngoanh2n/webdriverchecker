@@ -21,7 +21,7 @@ Use WebDriverChecker to make it more convenient!
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker:2.1.0")
+implementation("com.github.ngoanh2n:webdriverchecker:2.2.0")
 ```
 
 ## Maven Project
@@ -30,7 +30,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker</artifactId>
-    <version>2.1.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
@@ -38,7 +38,7 @@ Add to `pom.xml`
 ## Gradle Project
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker-selenide:2.1.0")
+implementation("com.github.ngoanh2n:webdriverchecker-selenide:2.2.0")
 ```
 
 ## Maven Project
@@ -47,14 +47,26 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker-selenide</artifactId>
-    <version>2.1.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
 # Usages
 ```java
+WebDriverChecker.isMacOS()
+WebDriverChecker.isLinux()
+WebDriverChecker.isWindows()
+WebDriverChecker.isPC()
+WebDriverChecker.isIOS()
+WebDriverChecker.isAndroid()
+WebDriverChecker.isMobile()
+
 WebDriverChecker.isAlive()
+WebDriverChecker.isLocal()
 WebDriverChecker.isRemote()
+WebDriverChecker.isDocker()
+WebDriverChecker.isBrowser()
+WebDriverChecker.isNative()
 
 WebDriverChecker.isChrome()
 WebDriverChecker.isSafari()
@@ -62,28 +74,32 @@ WebDriverChecker.isFirefox()
 WebDriverChecker.isEdge()
 WebDriverChecker.isOpera()
 WebDriverChecker.isIE()
+WebDriverChecker.isLegacyEdge()
+WebDriverChecker.isLegacyFirefox()
 
-WebDriverChecker.isIOS()
-WebDriverChecker.isIOSWeb()
-WebDriverChecker.isIOSSafari()
-WebDriverChecker.isIOSNative()
-
-WebDriverChecker.isAndroid()
-WebDriverChecker.isAndroidWeb()
-WebDriverChecker.isAndroidChrome()
-WebDriverChecker.isAndroidNative()
-
-WebDriverChecker.isMobile()
-WebDriverChecker.isMobileWeb()
-WebDriverChecker.isMobileNative()
-
-WebDriverChecker.isPC()
-WebDriverChecker.isPCWeb()
+WebDriverChecker.isPCBrowser()
 WebDriverChecker.isPCNative()
 
 WebDriverChecker.isMacOSNative()
 WebDriverChecker.isWindowsNative()
 
-WebDriverChecker.isEdgeLegacy()
-WebDriverChecker.isFirefoxLegacy()
+WebDriverChecker.isLocalServer()
+WebDriverChecker.isRemoteServer()
+
+WebDriverChecker.isIOSBrowser()
+WebDriverChecker.isIOSNative()
+WebDriverChecker.isIOSVirtual()
+
+WebDriverChecker.isAndroidBrowser()
+WebDriverChecker.isAndroidNative()
+WebDriverChecker.isAndroidVirtual()
+
+WebDriverChecker.isMobileBrowser()
+WebDriverChecker.isMobileNative()
+WebDriverChecker.isMobileVirtual()
+
+WebDriverChecker.isLambdaTest()
+WebDriverChecker.isBrowserStack()
+WebDriverChecker.isSauceLabs()
+WebDriverChecker.isTestingBot()
 ```
