@@ -1,0 +1,17 @@
+### https://github.com/appium/appium-uiautomator2-driver#capabilities
+platformName: android
+browserName: chrome
+appium:platformVersion: 12
+appium:deviceName: Google Pixel 4 GoogleAPI Emulator
+appium:automationName: uiautomator2
+appium:newCommandTimeout: 180
+appium:appWaitDuration: 60000
+appium:adbExecTimeout: 50000
+appium:autoGrantPermissions: true
+
+### https://saucelabs.com/platform/platform-configurator
+sauce:options:
+  appiumVersion: 1.22.1
+  idleTimeout: 180
+  build: wdc
+  name: android-native

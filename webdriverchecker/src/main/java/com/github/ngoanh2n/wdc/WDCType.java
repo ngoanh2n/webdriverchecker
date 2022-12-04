@@ -7,6 +7,7 @@ import org.openqa.selenium.remote.service.DriverCommandExecutor;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
@@ -397,6 +398,50 @@ class WDCType {
                 }
             }
             return deviceIds.toArray(new String[]{});
+        }
+    }
+
+    // ------------------------------------------------
+
+    static class LambdaTest extends Cloud {
+        @Override
+        String regex() {
+            return "^(hub.)(lambdatest.com)$";
+        }
+    }
+
+    static class BrowserStack extends Cloud {
+        @Override
+        String regex() {
+            return "^(hub.)(browserstack.com)$";
+        }
+    }
+
+    static class SauceLabs extends Cloud {
+        @Override
+        String regex() {
+            return "^(ondemand.)(.*)(.saucelabs.com)$";
+        }
+    }
+
+    static class TestingBot extends Cloud {
+        @Override
+        String regex() {
+            return "^(hub.)(testingbot.com)$";
+        }
+    }
+
+    static abstract class Cloud extends WebDriverChecker {
+
+        abstract String regex();
+
+        @Override
+        protected boolean check(Object... args) {
+            if (is(new Remote(), args)) {
+                URL serverURL = getServerURL(args);
+                return serverURL.getHost().matches(regex());
+            }
+            return false;
         }
     }
 }

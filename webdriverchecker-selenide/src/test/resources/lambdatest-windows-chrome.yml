@@ -1,0 +1,11 @@
+platformName: windows
+browserName: chrome
+
+### https://www.lambdatest.com/capabilities-generator/
+lt:options:
+  w3c: true
+  visual: true
+  network: true
+  video: true
+  console: true
+#  isRealMobile: true

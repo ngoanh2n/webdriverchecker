@@ -77,6 +77,11 @@ public class AppiumTest {
         //assertFalse(WebDriverChecker.isMobileNative());
         //assertFalse(WebDriverChecker.isMobileVirtual());
 
+        assertFalse(WebDriverChecker.isLambdaTest());
+        assertFalse(WebDriverChecker.isBrowserStack());
+        assertFalse(WebDriverChecker.isSauceLabs());
+        assertFalse(WebDriverChecker.isTestingBot());
+
         WebDriverRunner.closeWebDriver();
         assertFalse(WebDriverChecker.isAlive());
     }
