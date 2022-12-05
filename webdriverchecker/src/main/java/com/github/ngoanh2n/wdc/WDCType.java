@@ -320,7 +320,7 @@ class WDCType {
     static class IOSVirtual extends WebDriverChecker {
         @Override
         protected boolean check(Object... args) {
-            return is(new IOS(), args) && is(new AndroidVirtual(), args);
+            return is(new IOS(), args) && is(new MobileVirtual(), args);
         }
     }
 
