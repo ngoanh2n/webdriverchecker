@@ -845,7 +845,11 @@ public abstract class WebDriverChecker {
 
         if (platform.equals(Platform.ANY)) {
             value = getCapability("platform", args);
-            platform = Platform.valueOf(value);
+            try {
+                platform = Platform.valueOf(value);
+            } catch (IllegalArgumentException ignored) {
+                platform = Platform.fromString(value);
+            }
         }
 
         if (platform.family() != null && !platform.equals(Platform.LINUX)) {

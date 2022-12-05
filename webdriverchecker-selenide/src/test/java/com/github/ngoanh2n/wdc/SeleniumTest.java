@@ -3,9 +3,8 @@ package com.github.ngoanh2n.wdc;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.github.ngoanh2n.ExecuteOnTarget;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @version 1.0.0
  * @since 2021-04-10
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SeleniumTest {
     @BeforeEach
     void openDriver() {
@@ -82,6 +82,7 @@ public class SeleniumTest {
     }
 
     @Test
+    @Order(1)
     @ExecuteOnTarget({"macos", "linux", "windows"})
     void isChrome() {
         Configuration.browser = "chrome";
@@ -96,6 +97,7 @@ public class SeleniumTest {
     }
 
     @Test
+    @Order(2)
     @ExecuteOnTarget("macos")
     void isSafari() {
         Configuration.browser = "safari";
@@ -110,6 +112,7 @@ public class SeleniumTest {
     }
 
     @Test
+    @Order(3)
     @ExecuteOnTarget({"macos", "linux", "windows"})
     void isFirefox() {
         Configuration.browser = "firefox";
@@ -124,6 +127,7 @@ public class SeleniumTest {
     }
 
     @Test
+    @Order(4)
     @ExecuteOnTarget({"macos", "linux", "windows"})
     void isEdge() {
         Configuration.browser = "edge";
@@ -138,8 +142,14 @@ public class SeleniumTest {
     }
 
     @Test
+    @Order(5)
     @ExecuteOnTarget({"macos", "windows"})
     void isOpera() {
+        WebDriverManager wdm = WebDriverManager.operadriver();
+        wdm.setup();
+        String binPath = wdm.getDownloadedDriverPath();
+        System.setProperty("webdriver.opera.driver", binPath);
+
         Configuration.browser = "opera";
         Selenide.open();
 
@@ -152,6 +162,7 @@ public class SeleniumTest {
     }
 
     @Test
+    @Order(6)
     @ExecuteOnTarget("windows")
     void isIE() {
         Configuration.browser = "ie";
