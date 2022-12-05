@@ -897,14 +897,14 @@ public abstract class WebDriverChecker {
     protected URL getServerURL(Object... args) {
         CommandExecutor ce = getWD(args).getCommandExecutor();
         if (ce instanceof TracedCommandExecutor) {
-            ce = Commons.getPrivateField(TracedCommandExecutor.class, "delegate", ce);
+            ce = Commons.getPrivateValue(TracedCommandExecutor.class, ce, "delegate");
         }
-        return Commons.getPrivateField(HttpCommandExecutor.class, "remoteServer", ce);
+        return Commons.getPrivateValue(HttpCommandExecutor.class, ce, "remoteServer");
     }
 
     protected Response runCommand(Command command, CommandInfo info, Object... args) {
-        String url = Commons.getPrivateField(CommandInfo.class, "url", info);
-        HttpMethod method = Commons.getPrivateField(CommandInfo.class, "method", info);
+        String url = Commons.getPrivateValue(CommandInfo.class, info, "url");
+        HttpMethod method = Commons.getPrivateValue(CommandInfo.class, info, "method");
         getCommandCodec(args).defineCommand(command.getName(), method, url);
 
         try {
@@ -916,7 +916,7 @@ public abstract class WebDriverChecker {
 
     protected CommandCodec<HttpRequest> getCommandCodec(Object... args) {
         CommandExecutor ce = getWD(args).getCommandExecutor();
-        return Commons.getPrivateField(HttpCommandExecutor.class, "commandCodec", ce);
+        return Commons.getPrivateValue(HttpCommandExecutor.class, ce, "commandCodec");
     }
 
     protected String getCapability(String name, Object... args) {
