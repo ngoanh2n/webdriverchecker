@@ -15,9 +15,9 @@ import java.net.URL;
  * @since 2022-08-20
  */
 public class CloudDriverProvider extends AppiumDriverProvider {
-    public static Prop<String> key = new Prop<>("ngoanh2n.key", String.class);
-    public static Prop<String> token = new Prop<>("ngoanh2n.token", String.class);
-    public static Prop<String> domain = new Prop<>("ngoanh2n.domain", String.class);
+    public static Prop<String> key = new Prop<>("wdc.key", String.class);
+    public static Prop<String> token = new Prop<>("wdc.token", String.class);
+    public static Prop<String> domain = new Prop<>("wdc.domain", String.class);
 
     @Nonnull
     @Override
