@@ -26,7 +26,7 @@ import java.util.Map;
 public class AppiumDriverProvider implements WebDriverProvider {
     private static final Logger logger = LoggerFactory.getLogger(AppiumDriverProvider.class);
 
-    public static Prop<String> caps = new Prop<>("ngoanh2n.caps", String.class);
+    public static Prop<String> caps = new Prop<>("wdc.caps", String.class);
 
     public static Capabilities readCaps() {
         DesiredCapabilities caps = new DesiredCapabilities();
