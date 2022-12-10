@@ -32,6 +32,12 @@ public class AppiumDriverProvider implements WebDriverProvider {
         DesiredCapabilities caps = new DesiredCapabilities();
         Map<String, Object> providedCaps = YamlData.toMapFromResource(AppiumDriverProvider.caps.getValue());
         providedCaps.forEach(caps::setCapability);
+
+        System.getProperties().forEach((key, value) -> {
+            if (String.valueOf(key).startsWith("appium:")) {
+                caps.setCapability(String.valueOf(key), String.valueOf(value));
+            }
+        });
         return caps;
     }
 
