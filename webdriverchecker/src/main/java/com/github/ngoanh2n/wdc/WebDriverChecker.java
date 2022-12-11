@@ -26,6 +26,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.ServiceLoader.load;
 
 /**
+ * Check characteristics and environment for current {@linkplain WebDriver}.
+ *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 1.0.0
  * @since 2021-04-10

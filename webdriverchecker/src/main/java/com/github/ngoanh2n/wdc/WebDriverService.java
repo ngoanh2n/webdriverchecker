@@ -40,7 +40,7 @@ import org.openqa.selenium.WebDriver;
  */
 public interface WebDriverService {
     /**
-     * Provider {@linkplain WebDriver} to {@linkplain WebDriverChecker}.
+     * Provide {@linkplain WebDriver} to {@linkplain WebDriverChecker}.
      *
      * @return driver you have set up
      */
