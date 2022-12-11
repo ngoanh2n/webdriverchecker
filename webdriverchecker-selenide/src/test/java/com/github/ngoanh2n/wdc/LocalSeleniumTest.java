@@ -20,9 +20,9 @@ public class LocalSeleniumTest {
     void openDriver() {
         Configuration.timeout = 10 * 1000;
         Configuration.pollingInterval = 500;
-        Configuration.browser = Prop.string("selenide.browser").getValue();
+        Configuration.browser = Prop.string("wdc.browser").getValue();
 
-        if (Prop.string("selenide.browser").getValue().equals("opera")) {
+        if (Configuration.browser.equals("opera")) {
             WebDriverManager wdm = WebDriverManager.operadriver();
             wdm.setup();
             String binPath = wdm.getDownloadedDriverPath();
@@ -33,7 +33,7 @@ public class LocalSeleniumTest {
 
     @Test
     @RunOnProp(name = "wdc.os", value = {"macos", "linux", "windows"})
-    @RunOnProp(name = "selenide.browser", value = "chrome")
+    @RunOnProp(name = "wdc.browser", value = "chrome")
     void isChrome() {
         Assertions.assertTrue(WebDriverChecker.isChrome());
         Assertions.assertFalse(WebDriverChecker.isSafari());
@@ -45,7 +45,7 @@ public class LocalSeleniumTest {
 
     @Test
     @RunOnProp(name = "wdc.os", value = "macos")
-    @RunOnProp(name = "selenide.browser", value = "safari")
+    @RunOnProp(name = "wdc.browser", value = "safari")
     void isSafari() {
         Assertions.assertFalse(WebDriverChecker.isChrome());
         Assertions.assertTrue(WebDriverChecker.isSafari());
@@ -57,7 +57,7 @@ public class LocalSeleniumTest {
 
     @Test
     @RunOnProp(name = "wdc.os", value = {"macos", "linux", "windows"})
-    @RunOnProp(name = "selenide.browser", value = "firefox")
+    @RunOnProp(name = "wdc.browser", value = "firefox")
     void isFirefox() {
         Assertions.assertFalse(WebDriverChecker.isChrome());
         Assertions.assertFalse(WebDriverChecker.isSafari());
@@ -69,7 +69,7 @@ public class LocalSeleniumTest {
 
     @Test
     @RunOnProp(name = "wdc.os", value = {"macos", "linux", "windows"})
-    @RunOnProp(name = "selenide.browser", value = "edge")
+    @RunOnProp(name = "wdc.browser", value = "edge")
     void isEdge() {
         Assertions.assertFalse(WebDriverChecker.isChrome());
         Assertions.assertFalse(WebDriverChecker.isSafari());
@@ -81,7 +81,7 @@ public class LocalSeleniumTest {
 
     @Test
     @RunOnProp(name = "wdc.os", value = {"macos", "windows"})
-    @RunOnProp(name = "selenide.browser", value = "opera")
+    @RunOnProp(name = "wdc.browser", value = "opera")
     void isOpera() {
         Assertions.assertFalse(WebDriverChecker.isChrome());
         Assertions.assertFalse(WebDriverChecker.isSafari());
@@ -93,7 +93,7 @@ public class LocalSeleniumTest {
 
     @Test
     @RunOnProp(name = "wdc.os", value = "windows")
-    @RunOnProp(name = "selenide.browser", value = "ie")
+    @RunOnProp(name = "wdc.browser", value = "ie")
     void isIE() {
         Assertions.assertFalse(WebDriverChecker.isChrome());
         Assertions.assertFalse(WebDriverChecker.isSafari());
