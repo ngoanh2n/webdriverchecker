@@ -215,7 +215,7 @@ jobs:
             --tests com.github.ngoanh2n.wdc.*
           arguments: >-
             -Dwdc.os=macos
-            -Dselenide.browser=<<parameters.browser>>
+            -Dwdc.browser=<<parameters.browser>>
       - artifact_save:
           report_name: macos_<<parameters.browser>>
   pc_linux_browser:
@@ -230,7 +230,7 @@ jobs:
             --tests com.github.ngoanh2n.wdc.*
           arguments: >-
             -Dwdc.os=linux
-            -Dselenide.browser=<<parameters.browser>>
+            -Dwdc.browser=<<parameters.browser>>
       - artifact_save:
           report_name: linux_<<parameters.browser>>
   pc_windows_browser:
@@ -245,7 +245,7 @@ jobs:
             --tests com.github.ngoanh2n.wdc.*
           arguments: >-
             -Dwdc.os=windows
-            -Dselenide.browser=<<parameters.browser>>
+            -Dwdc.browser=<<parameters.browser>>
       - artifact_save:
           report_name: windows_<<parameters.browser>>
   mobile_macos_ios:
