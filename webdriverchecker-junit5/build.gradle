@@ -4,4 +4,5 @@
  */
 dependencies {
     api(project(":webdriverchecker"))
+    implementation("org.seleniumhq.selenium:selenium-remote-driver:${VERSION_SELENIUM}")
 }
