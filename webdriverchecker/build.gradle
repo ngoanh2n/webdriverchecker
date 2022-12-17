@@ -4,5 +4,4 @@
  */
 dependencies {
     implementation("org.seleniumhq.selenium:selenium-remote-driver:${VERSION_SELENIUM}")
-    implementation("com.github.ngoanh2n:utilities:${VERSION_UTILITIES}")
 }
