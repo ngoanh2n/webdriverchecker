@@ -5,4 +5,7 @@
 dependencies {
     api(project(":webdriverchecker"))
     implementation("com.codeborne:selenide:${VERSION_SELENIDE}")
+
+    testImplementation("io.appium:java-client:${VERSION_APPIUM}")
+    testImplementation("org.junit.jupiter:junit-jupiter:${VERSION_JUNIT5_JUPITER}")
 }
