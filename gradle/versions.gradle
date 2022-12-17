@@ -4,9 +4,10 @@
  */
 ext {
     VERSION_SLF4J                   =   "2.0.5"
+    VERSION_UTILITIES               =   "2.3.7"
     VERSION_SELENIUM                =   "4.4.0"
     VERSION_SELENIDE                =   "6.7.2"
-    VERSION_UTILITIES               =   "2.3.7"
-    VERSION_APPIUM                  =   "8.1.1"
     VERSION_JUNIT5_JUPITER          =   "5.9.1"
+    VERSION_WEBDRIVER_MANAGER       =   "5.3.1"
+    VERSION_APPIUM                  =   "8.1.1"
 }
