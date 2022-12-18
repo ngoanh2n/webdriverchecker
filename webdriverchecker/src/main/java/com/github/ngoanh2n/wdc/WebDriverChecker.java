@@ -9,6 +9,8 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.remote.http.HttpMethod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -811,6 +813,8 @@ public abstract class WebDriverChecker {
 
     // ------------------------------------------------
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverChecker.class);
+
     protected static boolean is(WebDriverChecker wdc, Object... args) {
         if (!(wdc instanceof Alive)) {
             if (!is(new Alive(), args)) {
@@ -941,6 +945,7 @@ public abstract class WebDriverChecker {
                     .orElseThrow(NullArgumentWebDriver::new);
 
             if (!(value instanceof WebDriver)) {
+                LOGGER.error("WebDriver from args");
                 throw new NoneArgumentWebDriver();
             }
             return (RemoteWebDriver) value;
@@ -949,9 +954,20 @@ public abstract class WebDriverChecker {
             Iterator<WebDriverProvider> serviceLoaders = providers.iterator();
 
             if (!serviceLoaders.hasNext()) {
+                LOGGER.error("WebDriver from ServiceLoader");
                 throw new NoSuchWebDriverProvider();
             }
-            return (RemoteWebDriver) serviceLoaders.next().provide();
+
+            WebDriverProvider wdProvider = serviceLoaders.next();
+            WebDriver wd = wdProvider.provide();
+
+            if (wd == null) {
+                String msgService = "WebDriver from ServiceLoader {}";
+                String providerName = wdProvider.getClass().getName();
+                LOGGER.error(msgService, providerName);
+                throw new NoSuchWebDriverProvider();
+            }
+            return (RemoteWebDriver) wd;
         }
     }
 

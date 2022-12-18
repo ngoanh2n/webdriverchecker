@@ -33,6 +33,12 @@ public class WDCEx extends WebDriverException {
         }
     }
 
+    public static class NullServiceLoaderWebDriver extends WDCEx {
+        public NullServiceLoaderWebDriver() {
+            super("Null WebDriver provided by service loader");
+        }
+    }
+
     public static class NoneArgumentWebDriver extends WDCEx {
         public NoneArgumentWebDriver() {
             super("None WebDriver implementation provided by argument");
