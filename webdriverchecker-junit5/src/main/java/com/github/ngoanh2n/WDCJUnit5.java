@@ -104,7 +104,7 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
 
     private void findDriver(ReflectiveInvocationContext<Method> context, String aspect) throws IllegalAccessException {
         Class<?> clazz = context.getTargetClass();
-        Field[] fields = clazz.getDeclaredFields();
+        Field[] fields = FieldUtils.getAllFields(clazz);
 
         for (Field field : fields) {
             field.setAccessible(true);
