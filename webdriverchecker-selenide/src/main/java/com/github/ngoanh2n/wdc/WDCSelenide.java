@@ -1,7 +1,10 @@
 package com.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.WebDriverRunner;
+import com.github.ngoanh2n.RuntimeError;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Provide WebDriver from {@linkplain WebDriverRunner} to {@linkplain WebDriverChecker}.
@@ -11,6 +14,8 @@ import org.openqa.selenium.WebDriver;
  * @since 2021-04-10
  */
 public class WDCSelenide implements WebDriverProvider {
+    private static final Logger LOGGER = LoggerFactory.getLogger(WDCSelenide.class);
+
     /**
      * {@inheritDoc}
      */
@@ -19,7 +24,9 @@ public class WDCSelenide implements WebDriverProvider {
         try {
             return WebDriverRunner.getWebDriver();
         } catch (IllegalStateException ignored) {
-            throw new WDCEx.NoSuchWebDriverSession();
+            String msg = "WebDriver session is closed";
+            LOGGER.error(msg);
+            throw new RuntimeError(msg);
         }
     }
 }

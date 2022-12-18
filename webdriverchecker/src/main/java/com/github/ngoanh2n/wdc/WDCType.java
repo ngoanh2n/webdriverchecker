@@ -1,5 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
+import com.github.ngoanh2n.RuntimeError;
 import org.openqa.selenium.remote.CommandExecutor;
 import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.TracedCommandExecutor;
@@ -12,8 +13,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static com.github.ngoanh2n.wdc.WDCEx.NoSuchWebDriverSession;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
@@ -87,7 +86,7 @@ class WDCType {
         protected boolean check(Object... args) {
             try {
                 return getWD(args).getSessionId() != null;
-            } catch (NoSuchWebDriverSession exception) {
+            } catch (RuntimeError exception) {
                 if (directed) {
                     return false;
                 }
