@@ -2,8 +2,8 @@
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @since 2021-04-09
  */
-rootProject.name = "wdc"
+rootProject.setName("wdc")
 
-include "webdriverchecker"
-include "webdriverchecker-junit5"
-include "webdriverchecker-selenide"
+include("webdriverchecker")
+include("webdriverchecker-junit5")
+include("webdriverchecker-selenide")
