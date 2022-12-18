@@ -10,12 +10,12 @@ import org.openqa.selenium.WebDriver;
  * @version 1.0.0
  * @since 2021-04-10
  */
-public class WDCSelenide implements WebDriverService {
+public class WDCSelenide implements WebDriverProvider {
     /**
      * {@inheritDoc}
      */
     @Override
-    public WebDriver serve() {
+    public WebDriver provide() {
         try {
             return WebDriverRunner.getWebDriver();
         } catch (IllegalStateException ignored) {

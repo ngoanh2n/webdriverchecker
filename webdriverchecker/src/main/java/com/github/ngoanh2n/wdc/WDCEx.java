@@ -16,32 +16,32 @@ public class WDCEx extends WebDriverException {
 
     public static class NoSuchCapabilities extends WDCEx {
         public NoSuchCapabilities() {
-            super("WebDriver is not implemented HasCapabilities.");
+            super("WebDriver is not implemented HasCapabilities");
 
         }
     }
 
-    public static class NoSuchServiceWebDriver extends WDCEx {
-        public NoSuchServiceWebDriver() {
-            super("No implementation of WebDriverService.");
+    public static class NoSuchWebDriverProvider extends WDCEx {
+        public NoSuchWebDriverProvider() {
+            super("No implementation of WebDriverProvider");
         }
     }
 
     public static class NullArgumentWebDriver extends WDCEx {
         public NullArgumentWebDriver() {
-            super("Null WebDriver provided by argument.");
+            super("Null WebDriver provided by argument");
         }
     }
 
     public static class NoneArgumentWebDriver extends WDCEx {
         public NoneArgumentWebDriver() {
-            super("None WebDriver implementation provided by argument.");
+            super("None WebDriver implementation provided by argument");
         }
     }
 
     public static class NoSuchWebDriverSession extends WDCEx {
         public NoSuchWebDriverSession() {
-            super("WebDriver session is not created or closed.");
+            super("WebDriver session is not created or closed");
         }
     }
 }
