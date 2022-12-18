@@ -945,13 +945,13 @@ public abstract class WebDriverChecker {
             }
             return (RemoteWebDriver) value;
         } else {
-            ServiceLoader<WebDriverService> service = load(WebDriverService.class);
-            Iterator<WebDriverService> serviceLoaders = service.iterator();
+            ServiceLoader<WebDriverProvider> providers = load(WebDriverProvider.class);
+            Iterator<WebDriverProvider> serviceLoaders = providers.iterator();
 
             if (!serviceLoaders.hasNext()) {
-                throw new NoSuchServiceWebDriver();
+                throw new NoSuchWebDriverProvider();
             }
-            return (RemoteWebDriver) serviceLoaders.next().serve();
+            return (RemoteWebDriver) serviceLoaders.next().provide();
         }
     }
 

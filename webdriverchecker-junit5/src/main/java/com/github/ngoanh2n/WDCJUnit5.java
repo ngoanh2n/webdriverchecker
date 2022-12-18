@@ -1,7 +1,7 @@
 package com.github.ngoanh2n;
 
 import com.github.ngoanh2n.wdc.WebDriverChecker;
-import com.github.ngoanh2n.wdc.WebDriverService;
+import com.github.ngoanh2n.wdc.WebDriverProvider;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
  * @version 2.3.0
  * @since 2022-12-18
  */
-public class WDCJUnit5 implements InvocationInterceptor, WebDriverService {
+public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     private static final String PRE = "BE";
     private static final String POST = "AF";
     private static final Logger LOGGER = LoggerFactory.getLogger(WDCJUnit5.class);
@@ -96,7 +96,7 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverService {
      * {@inheritDoc}
      */
     @Override
-    public WebDriver serve() {
+    public WebDriver provide() {
         return driver;
     }
 
