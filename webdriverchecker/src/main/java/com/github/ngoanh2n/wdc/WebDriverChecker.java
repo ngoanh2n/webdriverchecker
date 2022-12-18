@@ -1,6 +1,7 @@
 package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.Commons;
+import com.github.ngoanh2n.RuntimeError;
 import com.google.common.io.CharStreams;
 import io.netty.handler.codec.http.HttpRequest;
 import org.openqa.selenium.Capabilities;
@@ -21,7 +22,6 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
-import static com.github.ngoanh2n.wdc.WDCEx.*;
 import static com.github.ngoanh2n.wdc.WDCType.Browser;
 import static com.github.ngoanh2n.wdc.WDCType.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -818,7 +818,9 @@ public abstract class WebDriverChecker {
     protected static boolean is(WebDriverChecker wdc, Object... args) {
         if (!(wdc instanceof Alive)) {
             if (!is(new Alive(), args)) {
-                throw new NoSuchWebDriverSession();
+                String msg = "WebDriver session is closed";
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
             }
         }
         return wdc.check(args);
@@ -932,40 +934,39 @@ public abstract class WebDriverChecker {
 
     protected Capabilities getCapabilities(Object... args) {
         WebDriver wd = getWD(args);
-        if (wd == null) {
-            throw new NoSuchCapabilities();
-        }
         return ((HasCapabilities) wd).getCapabilities();
     }
 
     protected RemoteWebDriver getWD(Object... args) {
         if (args.length != 0) {
-            Object value = Optional
-                    .ofNullable(args[0])
-                    .orElseThrow(NullArgumentWebDriver::new);
-
+            Object value = args[0];
+            if (value == null) {
+                String msg = "wd is NULL";
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
+            }
             if (!(value instanceof WebDriver)) {
-                LOGGER.error("WebDriver from args");
-                throw new NoneArgumentWebDriver();
+                String msg = "wd is NOT a WebDriver implementation";
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
             }
             return (RemoteWebDriver) value;
         } else {
+            String providerName = WebDriverProvider.class.getName();
             ServiceLoader<WebDriverProvider> providers = load(WebDriverProvider.class);
             Iterator<WebDriverProvider> serviceLoaders = providers.iterator();
 
             if (!serviceLoaders.hasNext()) {
-                LOGGER.error("WebDriver from ServiceLoader");
-                throw new NoSuchWebDriverProvider();
+                String msg = String.format("%s implementation NOT found", providerName);
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
             }
 
-            WebDriverProvider wdProvider = serviceLoaders.next();
-            WebDriver wd = wdProvider.provide();
-
+            WebDriver wd = serviceLoaders.next().provide();
             if (wd == null) {
-                String msgService = "WebDriver from ServiceLoader {}";
-                String providerName = wdProvider.getClass().getName();
-                LOGGER.error(msgService, providerName);
-                throw new NoSuchWebDriverProvider();
+                String msg = String.format("%s implementation provided NULL", providerName);
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
             }
             return (RemoteWebDriver) wd;
         }
