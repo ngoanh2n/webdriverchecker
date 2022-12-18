@@ -957,14 +957,14 @@ public abstract class WebDriverChecker {
             Iterator<WebDriverProvider> serviceLoaders = providers.iterator();
 
             if (!serviceLoaders.hasNext()) {
-                String msg = String.format("%s implementation NOT found", providerName);
+                String msg = String.format("Implementation of %s NOT found", providerName);
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
 
             WebDriver wd = serviceLoaders.next().provide();
             if (wd == null) {
-                String msg = String.format("%s implementation provided NULL", providerName);
+                String msg = String.format("Implementation of %s returned NULL WebDriver", providerName);
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
