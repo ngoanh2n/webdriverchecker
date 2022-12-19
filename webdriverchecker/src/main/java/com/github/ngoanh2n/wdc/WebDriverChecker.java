@@ -965,7 +965,7 @@ public abstract class WebDriverChecker {
 
             WebDriver wd = serviceLoaders.next().provide();
             if (wd == null) {
-                String msg = String.format("Implementation of %s returned null WebDriver", providerName);
+                String msg = String.format("Implementation of %s returned null", providerName);
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
