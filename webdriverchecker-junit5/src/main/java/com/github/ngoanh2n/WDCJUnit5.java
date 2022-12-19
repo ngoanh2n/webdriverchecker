@@ -3,16 +3,13 @@ package com.github.ngoanh2n;
 import com.github.ngoanh2n.wdc.WebDriverChecker;
 import com.github.ngoanh2n.wdc.WebDriverProvider;
 import org.apache.commons.lang3.reflect.FieldUtils;
-import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.InvocationInterceptor;
 import org.junit.jupiter.api.extension.ReflectiveInvocationContext;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -116,25 +113,8 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
             }
         }
 
-        Method method = (Method) FieldUtils.readField(context, "method", true);
-        String annotation = getSignatureAnnotationName(method);
+        Method method = Commons.readField(context, "method");
+        String annotation = Commons.getJUnit5SignatureAnnotation(context).getSimpleName();
         LOGGER.debug("{} @{} {} -> {}", aspect, annotation, method, driver);
-    }
-
-    private String getSignatureAnnotationName(Method method) {
-        Class<?>[] signatures = new Class[]{
-                BeforeAll.class, BeforeEach.class, Test.class, RepeatedTest.class,
-                ParameterizedTest.class, TestFactory.class, TestTemplate.class
-        };
-        Annotation[] declarations = method.getDeclaredAnnotations();
-
-        for (Class<?> signature : signatures) {
-            for (Annotation declaration : declarations) {
-                if (signature.getName().equals(declaration.annotationType().getName())) {
-                    return signature.getSimpleName();
-                }
-            }
-        }
-        return "UnknownSignature";
     }
 }
