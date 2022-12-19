@@ -34,9 +34,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public void interceptBeforeAllMethod(Invocation<Void> invocation,
                                          ReflectiveInvocationContext<Method> invocationContext,
                                          ExtensionContext extensionContext) throws Throwable {
-        findDriver(invocationContext, PRE);
+        findWD(invocationContext, PRE);
         invocation.proceed();
-        findDriver(invocationContext, POST);
+        findWD(invocationContext, POST);
     }
 
     /**
@@ -46,9 +46,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public void interceptBeforeEachMethod(Invocation<Void> invocation,
                                           ReflectiveInvocationContext<Method> invocationContext,
                                           ExtensionContext extensionContext) throws Throwable {
-        findDriver(invocationContext, PRE);
+        findWD(invocationContext, PRE);
         invocation.proceed();
-        findDriver(invocationContext, POST);
+        findWD(invocationContext, POST);
     }
 
     /**
@@ -58,9 +58,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public void interceptTestMethod(Invocation<Void> invocation,
                                     ReflectiveInvocationContext<Method> invocationContext,
                                     ExtensionContext extensionContext) throws Throwable {
-        findDriver(invocationContext, PRE);
+        findWD(invocationContext, PRE);
         invocation.proceed();
-        findDriver(invocationContext, POST);
+        findWD(invocationContext, POST);
     }
 
     /**
@@ -70,9 +70,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public <T> T interceptTestFactoryMethod(Invocation<T> invocation,
                                             ReflectiveInvocationContext<Method> invocationContext,
                                             ExtensionContext extensionContext) throws Throwable {
-        findDriver(invocationContext, PRE);
+        findWD(invocationContext, PRE);
         T result = invocation.proceed();
-        findDriver(invocationContext, POST);
+        findWD(invocationContext, POST);
         return result;
     }
 
@@ -83,9 +83,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public void interceptTestTemplateMethod(Invocation<Void> invocation,
                                             ReflectiveInvocationContext<Method> invocationContext,
                                             ExtensionContext extensionContext) throws Throwable {
-        findDriver(invocationContext, PRE);
+        findWD(invocationContext, PRE);
         invocation.proceed();
-        findDriver(invocationContext, POST);
+        findWD(invocationContext, POST);
     }
 
     /**
@@ -98,7 +98,7 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
 
     //===============================================================================//
 
-    private void findDriver(ReflectiveInvocationContext<Method> context, String aspect) throws IllegalAccessException {
+    private void findWD(ReflectiveInvocationContext<Method> context, String aspect) throws IllegalAccessException {
         Class<?> clazz = context.getTargetClass();
         Field[] fields = FieldUtils.getAllFields(clazz);
 
