@@ -403,7 +403,7 @@ public abstract class WebDriverChecker {
         return is(new TestingBot());
     }
 
-    // ------------------------------------------------
+    //===============================================================================//
 
     /**
      * Check whether {@linkplain WebDriver} on macOS.
@@ -812,20 +812,9 @@ public abstract class WebDriverChecker {
         return is(new TestingBot(), wd);
     }
 
-    // ------------------------------------------------
+    //===============================================================================//
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverChecker.class);
-
-    protected static boolean is(WebDriverChecker wdc, Object... args) {
-        if (!(wdc instanceof Alive)) {
-            if (!is(new Alive(), args)) {
-                String msg = "WebDriver is null or closed";
-                LOGGER.error(msg);
-                throw new RuntimeError(msg);
-            }
-        }
-        return wdc.check(args);
-    }
 
     protected static String[] runShell(String command) {
         try {
@@ -846,7 +835,56 @@ public abstract class WebDriverChecker {
         }
     }
 
-    // ------------------------------------------------
+    protected static RemoteWebDriver getWD(Object... args) {
+        if (args.length != 0) {
+            Object value = args[0];
+            if (value == null) {
+                String msg = "wd is null";
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
+            }
+            if (!(value instanceof WebDriver)) {
+                String msg = "wd is not a WebDriver implementation";
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
+            }
+            return (RemoteWebDriver) value;
+        } else {
+            String wdpName = WebDriverProvider.class.getName();
+            ServiceLoader<WebDriverProvider> serviceLoader = load(WebDriverProvider.class);
+            Iterator<WebDriverProvider> serviceLoaders = serviceLoader.iterator();
+
+            if (!serviceLoaders.hasNext()) {
+                String msg = String.format("%s implementation not found", wdpName);
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
+            }
+
+            WebDriverProvider wdp = serviceLoaders.next();
+            WebDriver wd = wdp.provide();
+            LOGGER.debug("{} implementation is {}", wdpName, wdp.getClass().getName());
+
+            if (wd == null | !(is(new Alive(), wd))) {
+                String msg = String.format("%s implementation returns null", wdpName);
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
+            }
+            return (RemoteWebDriver) wd;
+        }
+    }
+
+    protected static boolean is(WebDriverChecker wdc, Object... args) {
+        if (!(wdc instanceof Alive)) {
+            if (!is(new Alive(), args)) {
+                String msg = "WebDriver is null or quit";
+                LOGGER.error(msg);
+                throw new RuntimeError(msg);
+            }
+        }
+        return wdc.check(args);
+    }
+
+    //===============================================================================//
 
     protected String getPlatformName(Object... args) {
         String value = getCapability("platformName", args);
@@ -911,7 +949,22 @@ public abstract class WebDriverChecker {
         return Commons.readField(ce, "remoteServer");
     }
 
-    protected Response runCommand(Command command, CommandInfo info, Object... args) throws IllegalAccessException {
+    protected String getCapability(String name, Object... args) {
+        Object value = getCapabilities(args).getCapability(name);
+        return String.valueOf(Optional.ofNullable(value).orElse(""));
+    }
+
+    protected Capabilities getCapabilities(Object... args) {
+        WebDriver wd = getWD(args);
+        return ((HasCapabilities) wd).getCapabilities();
+    }
+
+    protected CommandCodec<HttpRequest> getCommandCodec(Object... args) {
+        CommandExecutor ce = getWD(args).getCommandExecutor();
+        return Commons.readField(ce, "commandCodec");
+    }
+
+    protected Response runCommand(Command command, CommandInfo info, Object... args) {
         String url = Commons.readField(info, "url");
         HttpMethod method = Commons.readField(info, "method");
         getCommandCodec(args).defineCommand(command.getName(), method, url);
@@ -923,57 +976,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    protected CommandCodec<HttpRequest> getCommandCodec(Object... args) {
-        CommandExecutor ce = getWD(args).getCommandExecutor();
-        return Commons.readField(ce, "commandCodec");
-    }
-
-    protected String getCapability(String name, Object... args) {
-        Object value = getCapabilities(args).getCapability(name);
-        return String.valueOf(Optional.ofNullable(value).orElse(""));
-    }
-
-    protected Capabilities getCapabilities(Object... args) {
-        WebDriver wd = getWD(args);
-        return ((HasCapabilities) wd).getCapabilities();
-    }
-
-    protected RemoteWebDriver getWD(Object... args) {
-        if (args.length != 0) {
-            Object value = args[0];
-            if (value == null) {
-                String msg = "wd is null";
-                LOGGER.error(msg);
-                throw new RuntimeError(msg);
-            }
-            if (!(value instanceof WebDriver)) {
-                String msg = "wd is not a WebDriver implementation";
-                LOGGER.error(msg);
-                throw new RuntimeError(msg);
-            }
-            return (RemoteWebDriver) value;
-        } else {
-            String providerName = WebDriverProvider.class.getName();
-            ServiceLoader<WebDriverProvider> providers = load(WebDriverProvider.class);
-            Iterator<WebDriverProvider> serviceLoaders = providers.iterator();
-
-            if (!serviceLoaders.hasNext()) {
-                String msg = String.format("Implementation of %s not found", providerName);
-                LOGGER.error(msg);
-                throw new RuntimeError(msg);
-            }
-
-            WebDriver wd = serviceLoaders.next().provide();
-            if (wd == null) {
-                String msg = String.format("Implementation of %s returned null", providerName);
-                LOGGER.error(msg);
-                throw new RuntimeError(msg);
-            }
-            return (RemoteWebDriver) wd;
-        }
-    }
-
-    // ------------------------------------------------
+    //===============================================================================//
 
     protected abstract boolean check(Object... args);
 }
