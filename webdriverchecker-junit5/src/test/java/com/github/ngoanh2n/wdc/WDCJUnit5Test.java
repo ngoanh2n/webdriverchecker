@@ -1,6 +1,5 @@
 package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.wdc.WebDriverChecker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -18,13 +17,14 @@ public abstract class WDCJUnit5Test {
 
     @AfterEach
     void afterEach() {
-        Assertions.assertDoesNotThrow(() -> WebDriverChecker.isChrome());
+        Assertions.assertDoesNotThrow(() -> WebDriverChecker.getWD());
     }
 
     @AfterAll
     static void afterAll() {
-        Assertions.assertDoesNotThrow(() -> WebDriverChecker.isChrome());
+        Assertions.assertDoesNotThrow(() -> WebDriverChecker.getWD());
         driver.quit();
+        driver = null;
     }
 
     static WebDriver createWebDriver() {

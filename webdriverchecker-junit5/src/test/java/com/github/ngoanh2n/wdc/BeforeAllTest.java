@@ -15,16 +15,16 @@ public class BeforeAllTest extends WDCJUnit5Test {
     @BeforeAll
     static void beforeAll() {
         driver = createWebDriver();
-        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::isChrome);
+        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
     }
 
     @BeforeEach
     void beforeEach() {
-        Assertions.assertDoesNotThrow(() -> WebDriverChecker.isChrome());
+        Assertions.assertDoesNotThrow(() -> WebDriverChecker.getWD());
     }
 
     @Test
     void test() {
-        Assertions.assertDoesNotThrow(() -> WebDriverChecker.isChrome());
+        Assertions.assertDoesNotThrow(() -> WebDriverChecker.getWD());
     }
 }
