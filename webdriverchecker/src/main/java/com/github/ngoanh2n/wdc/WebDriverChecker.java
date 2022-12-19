@@ -1,9 +1,9 @@
 package com.github.ngoanh2n.wdc;
 
+import com.github.ngoanh2n.Commons;
 import com.github.ngoanh2n.RuntimeError;
 import com.google.common.io.CharStreams;
 import io.netty.handler.codec.http.HttpRequest;
-import org.apache.commons.lang3.reflect.FieldUtils;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.Platform;
@@ -819,7 +819,7 @@ public abstract class WebDriverChecker {
     protected static boolean is(WebDriverChecker wdc, Object... args) {
         if (!(wdc instanceof Alive)) {
             if (!is(new Alive(), args)) {
-                String msg = "WebDriver session is closed";
+                String msg = "WebDriver is null or closed";
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
@@ -843,16 +843,6 @@ public abstract class WebDriverChecker {
             return CharStreams.toString(isr).split("\r?\n|\r");
         } catch (Exception e) {
             return new String[]{};
-        }
-    }
-
-    protected static <T> T readField(Object object, String fieldName) {
-        try {
-            return (T) FieldUtils.readField(object, fieldName, true);
-        } catch (IllegalAccessException e) {
-            String msg = "Read private value [%s, %s]";
-            LOGGER.error(String.format(msg, object.getClass().getName(), fieldName));
-            throw new RuntimeError(e);
         }
     }
 
@@ -916,14 +906,14 @@ public abstract class WebDriverChecker {
     protected URL getServerURL(Object... args) {
         CommandExecutor ce = getWD(args).getCommandExecutor();
         if (ce instanceof TracedCommandExecutor) {
-            ce = readField(ce, "delegate");
+            ce = Commons.readField(ce, "delegate");
         }
-        return readField(ce, "remoteServer");
+        return Commons.readField(ce, "remoteServer");
     }
 
     protected Response runCommand(Command command, CommandInfo info, Object... args) throws IllegalAccessException {
-        String url = readField(info, "url");
-        HttpMethod method = readField(info, "method");
+        String url = Commons.readField(info, "url");
+        HttpMethod method = Commons.readField(info, "method");
         getCommandCodec(args).defineCommand(command.getName(), method, url);
 
         try {
@@ -935,7 +925,7 @@ public abstract class WebDriverChecker {
 
     protected CommandCodec<HttpRequest> getCommandCodec(Object... args) {
         CommandExecutor ce = getWD(args).getCommandExecutor();
-        return readField(ce, "commandCodec");
+        return Commons.readField(ce, "commandCodec");
     }
 
     protected String getCapability(String name, Object... args) {
@@ -952,12 +942,12 @@ public abstract class WebDriverChecker {
         if (args.length != 0) {
             Object value = args[0];
             if (value == null) {
-                String msg = "wd is NULL";
+                String msg = "wd is null";
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
             if (!(value instanceof WebDriver)) {
-                String msg = "wd is NOT a WebDriver implementation";
+                String msg = "wd is not a WebDriver implementation";
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
@@ -968,14 +958,14 @@ public abstract class WebDriverChecker {
             Iterator<WebDriverProvider> serviceLoaders = providers.iterator();
 
             if (!serviceLoaders.hasNext()) {
-                String msg = String.format("Implementation of %s NOT found", providerName);
+                String msg = String.format("Implementation of %s not found", providerName);
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
 
             WebDriver wd = serviceLoaders.next().provide();
             if (wd == null) {
-                String msg = String.format("Implementation of %s returned NULL WebDriver", providerName);
+                String msg = String.format("Implementation of %s returned null WebDriver", providerName);
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
