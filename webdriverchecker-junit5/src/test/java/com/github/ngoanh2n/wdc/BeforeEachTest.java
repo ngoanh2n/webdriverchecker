@@ -14,17 +14,17 @@ import org.junit.jupiter.api.Test;
 public class BeforeEachTest extends WDCJUnit5Test {
     @BeforeAll
     static void beforeAll() {
-        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::isChrome);
+        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
     }
 
     @BeforeEach
     void beforeEach() {
         driver = createWebDriver();
-        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::isChrome);
+        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
     }
 
     @Test
     void test() {
-        Assertions.assertDoesNotThrow(() -> WebDriverChecker.isChrome());
+        Assertions.assertDoesNotThrow(() -> WebDriverChecker.getWD());
     }
 }
