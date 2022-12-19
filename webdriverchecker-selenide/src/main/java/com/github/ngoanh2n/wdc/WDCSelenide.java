@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 public class WDCSelenide implements WebDriverProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(WDCSelenide.class);
 
+    //===============================================================================//
+
     /**
      * {@inheritDoc}
      */
