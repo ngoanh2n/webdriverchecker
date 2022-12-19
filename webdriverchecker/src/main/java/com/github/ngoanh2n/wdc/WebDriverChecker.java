@@ -1,9 +1,9 @@
 package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.Commons;
 import com.github.ngoanh2n.RuntimeError;
 import com.google.common.io.CharStreams;
 import io.netty.handler.codec.http.HttpRequest;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.Platform;
@@ -34,6 +34,7 @@ import static java.util.ServiceLoader.load;
  * @version 1.0.0
  * @since 2021-04-10
  */
+@SuppressWarnings("unchecked")
 public abstract class WebDriverChecker {
     /**
      * Check whether {@linkplain WebDriver} on macOS.
@@ -845,6 +846,16 @@ public abstract class WebDriverChecker {
         }
     }
 
+    protected static <T> T readField(Object object, String fieldName) {
+        try {
+            return (T) FieldUtils.readField(object, fieldName, true);
+        } catch (IllegalAccessException e) {
+            String msg = "Read private value [%s, %s]";
+            LOGGER.error(String.format(msg, object.getClass().getName(), fieldName));
+            throw new RuntimeError(e);
+        }
+    }
+
     // ------------------------------------------------
 
     protected String getPlatformName(Object... args) {
@@ -905,14 +916,14 @@ public abstract class WebDriverChecker {
     protected URL getServerURL(Object... args) {
         CommandExecutor ce = getWD(args).getCommandExecutor();
         if (ce instanceof TracedCommandExecutor) {
-            ce = Commons.getPrivateValue(TracedCommandExecutor.class, ce, "delegate");
+            ce = readField(ce, "delegate");
         }
-        return Commons.getPrivateValue(HttpCommandExecutor.class, ce, "remoteServer");
+        return readField(ce, "remoteServer");
     }
 
-    protected Response runCommand(Command command, CommandInfo info, Object... args) {
-        String url = Commons.getPrivateValue(CommandInfo.class, info, "url");
-        HttpMethod method = Commons.getPrivateValue(CommandInfo.class, info, "method");
+    protected Response runCommand(Command command, CommandInfo info, Object... args) throws IllegalAccessException {
+        String url = readField(info, "url");
+        HttpMethod method = readField(info, "method");
         getCommandCodec(args).defineCommand(command.getName(), method, url);
 
         try {
@@ -924,7 +935,7 @@ public abstract class WebDriverChecker {
 
     protected CommandCodec<HttpRequest> getCommandCodec(Object... args) {
         CommandExecutor ce = getWD(args).getCommandExecutor();
-        return Commons.getPrivateValue(HttpCommandExecutor.class, ce, "commandCodec");
+        return readField(ce, "commandCodec");
     }
 
     protected String getCapability(String name, Object... args) {
