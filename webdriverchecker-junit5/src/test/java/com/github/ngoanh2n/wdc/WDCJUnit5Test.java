@@ -1,4 +1,4 @@
-package com.github.ngoanh2n;
+package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.wdc.WebDriverChecker;
 import io.github.bonigarcia.wdm.WebDriverManager;

@@ -1,6 +1,6 @@
-package com.github.ngoanh2n;
+package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.wdc.WebDriverChecker;
+import com.github.ngoanh2n.RuntimeError;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

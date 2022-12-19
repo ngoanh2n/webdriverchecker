@@ -1,7 +1,6 @@
-package com.github.ngoanh2n;
+package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.wdc.WebDriverChecker;
-import com.github.ngoanh2n.wdc.WebDriverProvider;
+import com.github.ngoanh2n.Commons;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.InvocationInterceptor;
