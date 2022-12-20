@@ -839,12 +839,12 @@ public abstract class WebDriverChecker {
         if (args.length != 0) {
             Object value = args[0];
             if (value == null) {
-                String msg = "wd is null";
+                String msg = "WebDriver is null";
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
             if (!(value instanceof WebDriver)) {
-                String msg = "wd is not a WebDriver implementation";
+                String msg = "WebDriver is invalid";
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
@@ -862,10 +862,10 @@ public abstract class WebDriverChecker {
 
             WebDriverProvider wdp = serviceLoaders.next();
             WebDriver wd = wdp.provide();
-            LOGGER.debug("{} implementation is {}", wdpName, wdp.getClass().getName());
 
             if (wd == null | !(is(new Alive(), wd))) {
-                String msg = String.format("%s implementation returns null", wdpName);
+                wdpName = wdp.getClass().getName();
+                String msg = String.format("%s provides null", wdpName);
                 LOGGER.error(msg);
                 throw new RuntimeError(msg);
             }
