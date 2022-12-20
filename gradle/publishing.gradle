@@ -22,14 +22,21 @@ if (project.hasProperty("signing.keyId")) {
                 artifact javadocJar
 
                 pom {
-                    name = !project.name.endsWith("selenide")
-                            ? "WebDriverChecker"
-                            : "WebDriverChecker for Selenide"
-                    description = !project.name.endsWith("selenide")
-                            ? "Selenium WebDriver characteristics and environment"
-                            : "Selenium WebDriver characteristics and environment for Selenide"
-                    url = "https://github.com/ngoanh2n/webdriverchecker"
+                    def prjName = "WebDriverChecker"
+                    def prjDesc = "Selenium WebDriver characteristics and environment"
 
+                    if (project.name.endsWith("junit5")) {
+                        name = prjName + " for JUnit5"
+                        description = prjDesc + " for JUnit5";
+                    } else if (project.name.endsWith("selenide")) {
+                        name = prjName + " for Selenide"
+                        description = prjDesc + " for Selenide";
+                    } else {
+                        name = prjName
+                        description = prjDesc
+                    }
+
+                    url = "https://github.com/ngoanh2n/webdriverchecker"
                     licenses {
                         license {
                             name = "MIT"
