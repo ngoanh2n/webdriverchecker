@@ -20,11 +20,11 @@ public class BeforeEachTest extends WDCJUnit5Test {
     @BeforeEach
     void beforeEach() {
         driver = createWebDriver();
-        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
+        Assertions.assertNotNull(WebDriverChecker.getWD());
     }
 
     @Test
     void test() {
-        Assertions.assertDoesNotThrow(() -> WebDriverChecker.getWD());
+        Assertions.assertNotNull(WebDriverChecker.getWD());
     }
 }

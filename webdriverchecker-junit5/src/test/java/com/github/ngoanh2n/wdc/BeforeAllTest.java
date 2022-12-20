@@ -14,17 +14,18 @@ import org.junit.jupiter.api.Test;
 public class BeforeAllTest extends WDCJUnit5Test {
     @BeforeAll
     static void beforeAll() {
-        driver = createWebDriver();
         Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
+        driver = createWebDriver();
+        Assertions.assertNotNull(WebDriverChecker.getWD());
     }
 
     @BeforeEach
     void beforeEach() {
-        Assertions.assertDoesNotThrow(() -> WebDriverChecker.getWD());
+        Assertions.assertNotNull(WebDriverChecker.getWD());
     }
 
     @Test
     void test() {
-        Assertions.assertDoesNotThrow(() -> WebDriverChecker.getWD());
+        Assertions.assertNotNull(WebDriverChecker.getWD());
     }
 }
