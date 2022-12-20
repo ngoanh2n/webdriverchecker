@@ -1,6 +1,7 @@
 package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.Commons;
+import com.github.ngoanh2n.RuntimeError;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.InvocationInterceptor;
@@ -20,10 +21,12 @@ import java.lang.reflect.Method;
  * @since 2022-12-18
  */
 public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
-    private static final String PRE = "BE";
-    private static final String POST = "AF";
+    private static final String BE = "BE";
+    private static final String BO = "BO";
+    private static final String AF = "AF";
     private static final Logger LOGGER = LoggerFactory.getLogger(WDCJUnit5.class);
     private static WebDriver driver;
+    private static ReflectiveInvocationContext<Method> invocationContext;
 
     //===============================================================================//
 
@@ -34,9 +37,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public void interceptBeforeAllMethod(Invocation<Void> invocation,
                                          ReflectiveInvocationContext<Method> invocationContext,
                                          ExtensionContext extensionContext) throws Throwable {
-        findWD(invocationContext, PRE);
+        getWD(invocationContext, BE);
         invocation.proceed();
-        findWD(invocationContext, POST);
+        getWD(invocationContext, AF);
     }
 
     /**
@@ -46,9 +49,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public void interceptBeforeEachMethod(Invocation<Void> invocation,
                                           ReflectiveInvocationContext<Method> invocationContext,
                                           ExtensionContext extensionContext) throws Throwable {
-        findWD(invocationContext, PRE);
+        getWD(invocationContext, BE);
         invocation.proceed();
-        findWD(invocationContext, POST);
+        getWD(invocationContext, AF);
     }
 
     /**
@@ -58,9 +61,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public void interceptTestMethod(Invocation<Void> invocation,
                                     ReflectiveInvocationContext<Method> invocationContext,
                                     ExtensionContext extensionContext) throws Throwable {
-        findWD(invocationContext, PRE);
+        getWD(invocationContext, BE);
         invocation.proceed();
-        findWD(invocationContext, POST);
+        getWD(invocationContext, AF);
     }
 
     /**
@@ -70,9 +73,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public <T> T interceptTestFactoryMethod(Invocation<T> invocation,
                                             ReflectiveInvocationContext<Method> invocationContext,
                                             ExtensionContext extensionContext) throws Throwable {
-        findWD(invocationContext, PRE);
+        getWD(invocationContext, BE);
         T result = invocation.proceed();
-        findWD(invocationContext, POST);
+        getWD(invocationContext, AF);
         return result;
     }
 
@@ -83,9 +86,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     public void interceptTestTemplateMethod(Invocation<Void> invocation,
                                             ReflectiveInvocationContext<Method> invocationContext,
                                             ExtensionContext extensionContext) throws Throwable {
-        findWD(invocationContext, PRE);
+        getWD(invocationContext, BE);
         invocation.proceed();
-        findWD(invocationContext, POST);
+        getWD(invocationContext, AF);
     }
 
     /**
@@ -93,18 +96,32 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
      */
     @Override
     public WebDriver provide() {
+        if (invocationContext != null) {
+            getWD(invocationContext, BO);
+        }
         return driver;
     }
 
     //===============================================================================//
 
-    private void findWD(ReflectiveInvocationContext<Method> context, String aspect) throws IllegalAccessException {
+    private void getWD(ReflectiveInvocationContext<Method> context, String aspect) {
+        invocationContext = context;
         Class<?> clazz = context.getTargetClass();
         Field[] fields = FieldUtils.getAllFields(clazz);
 
         for (Field field : fields) {
             field.setAccessible(true);
-            Object value = field.get(clazz);
+            Object value;
+
+            try {
+                value = field.get(clazz);
+            } catch (IllegalAccessException e) {
+                String fieldName = field.getName();
+                String clazzName = clazz.getName();
+                String msg = String.format("Read field %s in class %s", fieldName, clazzName);
+                LOGGER.error(msg);
+                throw new RuntimeError(msg, e);
+            }
 
             if (value instanceof WebDriver) {
                 driver = (WebDriver) value;
