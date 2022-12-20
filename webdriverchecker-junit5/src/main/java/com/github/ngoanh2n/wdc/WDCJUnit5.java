@@ -25,8 +25,10 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     private static final String BO = "BO";
     private static final String AF = "AF";
     private static final Logger LOGGER = LoggerFactory.getLogger(WDCJUnit5.class);
-    private static WebDriver driver;
+
+    //===============================================================================//
     private static ReflectiveInvocationContext<Method> invocationContext;
+    private WebDriver driver;
 
     //===============================================================================//
 
