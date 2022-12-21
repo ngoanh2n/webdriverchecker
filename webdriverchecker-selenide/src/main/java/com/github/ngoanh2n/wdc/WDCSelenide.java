@@ -26,7 +26,7 @@ public class WDCSelenide implements WebDriverProvider {
         try {
             return WebDriverRunner.getWebDriver();
         } catch (IllegalStateException ignored) {
-            String msg = "WebDriver session is closed";
+            String msg = "WebDriver is quit";
             LOGGER.error(msg);
             throw new RuntimeError(msg);
         }
