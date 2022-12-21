@@ -19,7 +19,7 @@ import org.openqa.selenium.WebDriver;
  *      import org.openqa.selenium.WebDriver;
  *      import com.github.ngoanh2n.wdc.WebDriverProvider;
  *
- *      public class MyWebDriverService implements WebDriverProvider {
+ *      public class MyWebDriverProvider implements WebDriverProvider {
  *          public WebDriver serve() {
  *              WebDriver driver = MyStaticDriver.getDriver();
  *              return driver;
@@ -30,7 +30,7 @@ import org.openqa.selenium.WebDriver;
  *      <ul>
  *          <li>Location: {@code resources/META-INF/services}
  *          <li>Name: {@code com.github.ngoanh2n.wdc.WebDriverProvider}
- *          <li>Content: {@code com.company.project.impl.MyWebDriverService}
+ *          <li>Content: {@code com.company.project.impl.MyWebDriverProvider}
  *      </ul>
  * </ul>
  *
