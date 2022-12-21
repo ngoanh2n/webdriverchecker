@@ -6,7 +6,7 @@ Your automation project is using JUnit5 Jupiter as a testing framework, `webdriv
 
 It automatically gets WebDriver instance from the current running test by using `org.junit.jupiter.api.extension.InvocationInterceptor` extension.
 
-Therefore, you don't need to pass the WebDriver instance to the argument of checker methods.
+You don't need to pass the WebDriver instance to the argument of checker methods.
 
 | webdriverchecker   	            | webdriverchecker-junit5     |
 |---	                            |---	                      |

@@ -16,8 +16,8 @@
   - [Checks](#checks)
   - [Versions (Selenium WebDriver 4)](#versions-selenium-webdriver-4)
 - [Extensions](#extensions)
-    - [WebDriverChecker for Selenide](#webdriverchecker-for-selenide)
     - [WebDriverChecker for JUnit5](#webdriverchecker-for-junit5)
+    - [WebDriverChecker for Selenide](#webdriverchecker-for-selenide)
 - [Delarations](#delarations)
   - [Gradle](#gradle)
   - [Maven](#maven)
@@ -45,11 +45,15 @@ Use WebDriverChecker to make it more convenient!
 - Selenide: 6.7.2
 
 # Extensions
-### [WebDriverChecker for Selenide](webdriverchecker-selenide/README.md)
-When your automation project is using `Selenide` directly.
+It automatically provides the current WebDriver instance to `com.github.ngoanh2n.wdc.WebDriverChecker`.
+
+You don't need to pass the WebDriver instance to the argument of checker methods.
 
 ### [WebDriverChecker for JUnit5](webdriverchecker-junit5/README.md)
 When your automation project is using `JUnit5 Jupiter` as a testing framework.
+
+### [WebDriverChecker for Selenide](webdriverchecker-selenide/README.md)
+When your automation project is using `Selenide` directly.
 
 # Delarations
 ## Gradle

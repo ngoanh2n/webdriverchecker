@@ -6,7 +6,7 @@ Your automation project is using Selenide directly, `webdriverchecker-selenide` 
 
 It automatically gets WebDriver instance from `com.codeborne.selenide.impl.WebDriverContainer` via `com.codeborne.selenide.WebDriverRunner.getWebDriver()` method.
 
-Therefore, you don't need to pass the WebDriver instance to the argument of checker methods.
+You don't need to pass the WebDriver instance to the argument of checker methods.
 
 | webdriverchecker   	            | webdriverchecker-selenide   |
 |---	                            |---	                      |
