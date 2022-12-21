@@ -5,6 +5,7 @@
 dependencies {
     api(project(":webdriverchecker"))
     implementation("org.seleniumhq.selenium:selenium-remote-driver:$VERSION_SELENIUM")
+    implementation("org.testng:testng:$VERSION_TESTNG")
 
     testImplementation("org.seleniumhq.selenium:selenium-java:$VERSION_SELENIUM")
     testImplementation("io.github.bonigarcia:webdrivermanager:$VERSION_WEBDRIVER_MANAGER")
