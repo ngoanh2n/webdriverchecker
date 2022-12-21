@@ -1,3 +1,25 @@
+ext {
+    getArtifactName = { ->
+        if (project.name.endsWith("junit5")) {
+            return property("prj.name.junit5")
+        } else if (project.name.endsWith("selenide")) {
+            return property("prj.name.selenide")
+        } else {
+            return property("prj.name")
+        }
+    }
+
+    getArtifactDesc = { ->
+        if (project.name.endsWith("junit5")) {
+            return property("prj.desc.junit5")
+        } else if (project.name.endsWith("selenide")) {
+            return property("prj.desc.selenide")
+        } else {
+            return property("prj.desc")
+        }
+    }
+}
+
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
     archiveClassifier = "sources"
@@ -22,21 +44,10 @@ if (project.hasProperty("signing.keyId")) {
                 artifact javadocJar
 
                 pom {
-                    def prjName = "WebDriverChecker"
-                    def prjDesc = "Selenium WebDriver characteristics and environment"
-
-                    if (project.name.endsWith("junit5")) {
-                        name = prjName + " for JUnit5"
-                        description = prjDesc + " for JUnit5";
-                    } else if (project.name.endsWith("selenide")) {
-                        name = prjName + " for Selenide"
-                        description = prjDesc + " for Selenide";
-                    } else {
-                        name = prjName
-                        description = prjDesc
-                    }
-
+                    name = getArtifactName()
+                    description = getArtifactDesc()
                     url = "https://github.com/ngoanh2n/webdriverchecker"
+
                     licenses {
                         license {
                             name = "MIT"
