@@ -6,7 +6,10 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.*;
+import org.testng.IInvokedMethod;
+import org.testng.IInvokedMethodListener;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.internal.BaseTestMethod;
 import org.testng.internal.ConstructorOrMethod;
@@ -22,29 +25,22 @@ import java.lang.reflect.Method;
  * @version 2.4.0
  * @since 2022-12-21
  */
-public class WDCTestNG implements IClassListener, IInvokedMethodListener, WebDriverProvider {
+public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
     private static final String BE = "BE";
     private static final String BO = "BO";
     private static final String AF = "AF";
     private static final Logger LOGGER = LoggerFactory.getLogger(WDCTestNG.class);
-    private static ITestClass iTestClass;
     private static ITestResult iTestResult;
     private WebDriver driver;
 
     //===============================================================================//
-
-    @Override
-    public void onBeforeClass(ITestClass testClass) {
-        iTestClass = testClass;
-    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
-        iTestResult = testResult;
-        getWD(iTestClass, BE);
+        getWD(testResult, BE);
     }
 
     /**
@@ -52,8 +48,7 @@ public class WDCTestNG implements IClassListener, IInvokedMethodListener, WebDri
      */
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
-        iTestResult = testResult;
-        getWD(iTestClass, AF);
+        getWD(testResult, AF);
     }
 
     /**
@@ -61,17 +56,18 @@ public class WDCTestNG implements IClassListener, IInvokedMethodListener, WebDri
      */
     @Override
     public WebDriver provide() {
-        if (iTestClass != null) {
-            getWD(iTestClass, BO);
+        if (iTestResult != null) {
+            getWD(iTestResult, BO);
         }
         return driver;
     }
 
     //===============================================================================//
 
-    private void getWD(ITestClass testClass, String aspect) {
-        iTestClass = testClass;
-        Class<?> clazz = Commons.readField(iTestClass, "m_testClass");
+    private void getWD(ITestResult testResult, String aspect) {
+        iTestResult = testResult;
+        Object instance = testResult.getInstance();
+        Class<?> clazz = instance.getClass();
         Field[] fields = FieldUtils.getAllFields(clazz);
 
         for (Field field : fields) {
@@ -79,7 +75,7 @@ public class WDCTestNG implements IClassListener, IInvokedMethodListener, WebDri
             Object value;
 
             try {
-                value = field.get(clazz);
+                value = field.get(instance);
             } catch (IllegalAccessException e) {
                 String fieldName = field.getName();
                 String clazzName = clazz.getName();
