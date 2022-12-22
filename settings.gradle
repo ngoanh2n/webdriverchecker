@@ -5,6 +5,6 @@
 rootProject.setName("wdc")
 
 include("webdriverchecker")
-include("webdriverchecker-testng")
-include("webdriverchecker-junit5")
 include("webdriverchecker-selenide")
+include("webdriverchecker-junit5")
+include("webdriverchecker-testng")
