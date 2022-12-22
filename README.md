@@ -14,10 +14,10 @@
 
 - [WebDriverChecker](#webdriverchecker)
   - [Checks](#checks)
-  - [Versions (Selenium WebDriver 4)](#versions-selenium-webdriver-4)
+  - [Versions](#versions)
 - [Extensions](#extensions)
-    - [WebDriverChecker for JUnit5](#webdriverchecker-for-junit5)
-    - [WebDriverChecker for Selenide](#webdriverchecker-for-selenide)
+    - [Selenide](#selenide)
+    - [JUnit5](#junit5)
 - [Delarations](#delarations)
   - [Gradle](#gradle)
   - [Maven](#maven)
@@ -40,20 +40,22 @@ Use WebDriverChecker to make it more convenient!
 - Platforms: MacOS, Linux, Windows, iOS, Android
 - States: Alive, Local, Remote, Web, Native, Docker, Virtual Device, Cloud
 
-## Versions (Selenium WebDriver 4)
+## Versions
 - Selenium: 4.4.0
 - Selenide: 6.7.2
+- JUnit5: 5.9.1
+- TestNG: 7.7.0
 
 # Extensions
 It automatically provides the current WebDriver instance to `com.github.ngoanh2n.wdc.WebDriverChecker`.
 
 You don't need to pass the WebDriver instance to the argument of checker methods.
 
-### [WebDriverChecker for JUnit5](webdriverchecker-junit5)
-When your automation project is using `JUnit5 Jupiter` as a testing framework.
-
-### [WebDriverChecker for Selenide](webdriverchecker-selenide)
+### [Selenide](webdriverchecker-selenide)
 When your automation project is using `Selenide` directly.
+
+### [JUnit5](webdriverchecker-junit5)
+When your automation project is using `JUnit Jupiter` as a testing framework.
 
 # Delarations
 ## Gradle
