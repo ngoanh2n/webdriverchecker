@@ -156,4 +156,28 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
         LOGGER.error(msg);
         throw new RuntimeError("msg");
     }
+
+    /*
+     * Lifecycle Callbacks: https://www.baeldung.com/junit-5-extensions
+     * 01. BeforeAllCallback.beforeAll
+     * 02. InvocationInterceptor.interceptBeforeAllMethod
+     * 03. @BeforeAll
+     *
+     * 04. BeforeEachCallback.beforeEach
+     * 05. InvocationInterceptor.interceptBeforeEachMethod
+     * 06. @BeforeEach
+     *
+     * 07. BeforeTestExecutionCallback.beforeTestExecution
+     * 08. InvocationInterceptor.interceptTestMethod
+     * 09. @Test
+     * 10. AfterTestExecutionCallback.afterTestExecution
+     *
+     * 11. AfterEachCallback.afterEach
+     * 12. InvocationInterceptor.interceptAfterEachMethod
+     * 13. @BeforeEach
+     *
+     * 14. @AfterAll
+     * 15. InvocationInterceptor.interceptAfterAllMethod
+     * 16. AfterAllCallback.afterAll
+     * */
 }
