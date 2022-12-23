@@ -1,6 +1,5 @@
 package com.github.ngoanh2n.wdc.driver;
 
-import com.codeborne.selenide.WebDriverProvider;
 import com.github.ngoanh2n.Prop;
 import com.github.ngoanh2n.YamlData;
 import io.appium.java_client.AppiumDriver;
@@ -13,8 +12,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Map;
 
 /**
@@ -22,10 +19,8 @@ import java.util.Map;
  * @version 1.0.0
  * @since 2021-04-10
  */
-@ParametersAreNonnullByDefault
-public class AppiumDriverProvider implements WebDriverProvider {
-    private static final Logger logger = LoggerFactory.getLogger(AppiumDriverProvider.class);
-
+public class AppiumDriverProvider {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AppiumDriverProvider.class);
     public static Prop<String> caps = new Prop<>("wdc.caps", String.class);
 
     public static Capabilities readCaps() {
@@ -52,14 +47,12 @@ public class AppiumDriverProvider implements WebDriverProvider {
 
         if (!localService.isRunning()) {
             localService.start();
-            logger.debug("Starting Appium server");
+            LOGGER.debug("Starting Appium server");
         }
         return localService;
     }
 
-    @Nonnull
-    @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+    public static WebDriver createDriver() {
         AppiumDriverLocalService localService = startAppiumServer();
         Capabilities caps = readCaps();
         return new AppiumDriver(localService, caps);
@@ -76,7 +69,7 @@ public class AppiumDriverProvider implements WebDriverProvider {
         public void run() {
             if (service.isRunning()) {
                 service.stop();
-                logger.debug("Stopping Appium server");
+                LOGGER.debug("Stopping Appium server");
             }
         }
     }

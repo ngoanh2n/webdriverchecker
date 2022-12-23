@@ -5,7 +5,6 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -19,15 +18,13 @@ public class CloudDriverProvider extends AppiumDriverProvider {
     public static Prop<String> token = new Prop<>("wdc.token", String.class);
     public static Prop<String> domain = new Prop<>("wdc.domain", String.class);
 
-    @Nonnull
-    @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+    public static WebDriver createDriver() {
         Capabilities caps = readCaps();
         URL address = createRemoteAddress();
         return new RemoteWebDriver(address, caps);
     }
 
-    private URL createRemoteAddress() {
+    private static URL createRemoteAddress() {
         String address = "https://" + key.getValue() + ":" + token.getValue() + "@" + domain.getValue();
         try {
             return new URL(address);
