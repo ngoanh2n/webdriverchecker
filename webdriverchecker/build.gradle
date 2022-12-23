@@ -5,6 +5,5 @@
 dependencies {
     implementation("org.seleniumhq.selenium:selenium-remote-driver:$VERSION_SELENIUM")
 
-    testImplementation("io.appium:java-client:$VERSION_APPIUM")
-    testImplementation("org.junit.jupiter:junit-api:$VERSION_JUNIT5_JUPITER")
+    testImplementation("org.junit.jupiter:junit-jupiter:$VERSION_JUNIT5_JUPITER")
 }
