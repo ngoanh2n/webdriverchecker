@@ -4,4 +4,6 @@
  */
 dependencies {
     implementation("org.seleniumhq.selenium:selenium-remote-driver:$VERSION_SELENIUM")
+
+    testImplementation("io.appium:java-client:$VERSION_APPIUM")
 }
