@@ -18,7 +18,8 @@
 - [Extensions](#extensions)
     - [Selenide](#selenide)
     - [JUnit5](#junit5)
-- [Delarations](#delarations)
+    - [TestNG](#testng)
+- [Declarations](#declarations)
   - [Gradle](#gradle)
   - [Maven](#maven)
 - [Usages](#usages)
@@ -44,7 +45,7 @@ Use WebDriverChecker to make it more convenient!
 - Selenium: 4.4.0
 - Selenide: 6.7.2
 - JUnit5: 5.9.1
-- TestNG: 7.7.0
+- TestNG: 7.5
 
 # Extensions
 It automatically provides the current WebDriver instance to `com.github.ngoanh2n.wdc.WebDriverChecker`.
@@ -57,7 +58,10 @@ When your automation project is using `Selenide` directly.
 ### [JUnit5](webdriverchecker-junit5)
 When your automation project is using `JUnit Jupiter` as a testing framework.
 
-# Delarations
+### [TestNG](webdriverchecker-testng)
+When your automation project is using `TestNG` as a testing framework.
+
+# Declarations
 ## Gradle
 Add to `build.gradle`
 ```gradle
