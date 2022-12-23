@@ -2,6 +2,9 @@
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @since 2021-04-09
  */
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
 compileJava {
     options.debug = true
     options.encoding = "UTF-8"
