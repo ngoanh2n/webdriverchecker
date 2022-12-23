@@ -1,5 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
+import com.github.ngoanh2n.RuntimeError;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,6 +25,7 @@ public abstract class WDCTestNGTest {
     void afterClass() {
         Assert.assertNotNull(WebDriverChecker.getWD());
         driver.quit();
+        Assert.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
     }
 
     static WebDriver createWebDriver() {
