@@ -1,5 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
+import com.github.ngoanh2n.RuntimeError;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -24,6 +25,7 @@ public abstract class WDCJUnit5Test {
     static void afterAll() {
         Assertions.assertNotNull(WebDriverChecker.getWD());
         driver.quit();
+        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
     }
 
     static WebDriver createWebDriver() {
