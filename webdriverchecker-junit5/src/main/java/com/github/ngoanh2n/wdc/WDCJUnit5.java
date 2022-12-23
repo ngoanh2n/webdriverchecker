@@ -174,8 +174,9 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
 
     public static Class<?> getSignatureAnnotation(Method method) {
         Class<?>[] signatures = new Class[]{
-                BeforeAll.class, BeforeEach.class, Test.class, RepeatedTest.class, ParameterizedTest.class,
-                TestFactory.class, TestTemplate.class, AfterEach.class, AfterAll.class
+                BeforeAll.class, BeforeEach.class,
+                Test.class, ParameterizedTest.class, TestFactory.class, RepeatedTest.class, TestTemplate.class,
+                AfterEach.class, AfterAll.class
         };
         Annotation[] declarations = method.getDeclaredAnnotations();
 
