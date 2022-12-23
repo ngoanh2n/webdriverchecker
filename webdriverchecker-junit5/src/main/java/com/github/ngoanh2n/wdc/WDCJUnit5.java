@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Optional;
 
 /**
  * Provide WebDriver from current test to {@linkplain WebDriverChecker}.
@@ -98,6 +99,30 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
      * {@inheritDoc}
      */
     @Override
+    public void interceptAfterEachMethod(Invocation<Void> invocation,
+                                         ReflectiveInvocationContext<Method> invocationContext,
+                                         ExtensionContext extensionContext) throws Throwable {
+        getWD(invocationContext, BE);
+        invocation.proceed();
+        getWD(invocationContext, AF);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void interceptAfterAllMethod(Invocation<Void> invocation,
+                                        ReflectiveInvocationContext<Method> invocationContext,
+                                        ExtensionContext extensionContext) throws Throwable {
+        getWD(invocationContext, BE);
+        invocation.proceed();
+        getWD(invocationContext, AF);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public WebDriver provide() {
         if (invocationContext != null) {
             getWD(invocationContext, BO);
@@ -109,15 +134,25 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
 
     private void getWD(ReflectiveInvocationContext<Method> context, String aspect) {
         invocationContext = context;
-        Class<?> clazz = context.getTargetClass();
-        Field[] fields = FieldUtils.getAllFields(clazz);
+        Optional<Object> optInstance = context.getTarget();
+        Object instance;
+        Class<?> clazz;
 
+        if (optInstance.isPresent()) {
+            instance = optInstance.get();
+            clazz = instance.getClass();
+        } else {
+            instance = context.getTargetClass();
+            clazz = context.getTargetClass();
+        }
+
+        Field[] fields = FieldUtils.getAllFields(clazz);
         for (Field field : fields) {
             field.setAccessible(true);
             Object value;
 
             try {
-                value = field.get(clazz);
+                value = field.get(instance);
             } catch (IllegalAccessException e) {
                 String fieldName = field.getName();
                 String clazzName = clazz.getName();
@@ -139,8 +174,8 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
 
     public static Class<?> getSignatureAnnotation(Method method) {
         Class<?>[] signatures = new Class[]{
-                BeforeAll.class, BeforeEach.class, Test.class, RepeatedTest.class,
-                ParameterizedTest.class, TestFactory.class, TestTemplate.class
+                BeforeAll.class, BeforeEach.class, Test.class, RepeatedTest.class, ParameterizedTest.class,
+                TestFactory.class, TestTemplate.class, AfterEach.class, AfterAll.class
         };
         Annotation[] declarations = method.getDeclaredAnnotations();
 
@@ -154,7 +189,7 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
 
         String msg = String.format("Get signature annotation at %s", method);
         LOGGER.error(msg);
-        throw new RuntimeError("msg");
+        throw new RuntimeError(msg);
     }
 
     /*
@@ -163,21 +198,23 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
      * 02. InvocationInterceptor.interceptBeforeAllMethod
      * 03. @BeforeAll
      *
-     * 04. BeforeEachCallback.beforeEach
-     * 05. InvocationInterceptor.interceptBeforeEachMethod
-     * 06. @BeforeEach
+     * 04. InvocationInterceptor.interceptTestClassConstructor
      *
-     * 07. BeforeTestExecutionCallback.beforeTestExecution
-     * 08. InvocationInterceptor.interceptTestMethod
-     * 09. @Test
-     * 10. AfterTestExecutionCallback.afterTestExecution
+     * 05. BeforeEachCallback.beforeEach
+     * 06. InvocationInterceptor.interceptBeforeEachMethod
+     * 07. @BeforeEach
      *
-     * 11. AfterEachCallback.afterEach
-     * 12. InvocationInterceptor.interceptAfterEachMethod
-     * 13. @BeforeEach
+     * 08. BeforeTestExecutionCallback.beforeTestExecution
+     * 09. InvocationInterceptor.interceptTestMethod
+     * 10. @Test
+     * 11. AfterTestExecutionCallback.afterTestExecution
      *
-     * 14. @AfterAll
-     * 15. InvocationInterceptor.interceptAfterAllMethod
-     * 16. AfterAllCallback.afterAll
+     * 12. AfterEachCallback.afterEach
+     * 13. InvocationInterceptor.interceptAfterEachMethod
+     * 14. @BeforeEach
+     *
+     * 15. @AfterAll
+     * 16. InvocationInterceptor.interceptAfterAllMethod
+     * 17. AfterAllCallback.afterAll
      * */
 }
