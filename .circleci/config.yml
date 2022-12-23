@@ -83,7 +83,7 @@ commands:
 
               ### Download private testing apps
               # if [[ $BROWSER == native ]]; then
-              #   APP_LOCATION=webdriverchecker-selenide/app
+              #   APP_LOCATION=webdriverchecker/app
 
               #   mkdir -p $APP_LOCATION
               #   cd $APP_LOCATION
@@ -179,12 +179,12 @@ commands:
       - run:
           name: Compress JUnit report
           command: |
-            cd webdriverchecker-selenide/build/reports
+            cd webdriverchecker/build/reports
             zip -r <<parameters.report_name>>.zip tests/test/*
       - run:
           name: Compress JUnit report
           command: |
-            cd webdriverchecker-selenide/build/reports
+            cd webdriverchecker/build/reports
             zip -r <<parameters.report_name>>.zip tests/test/*
   test_execute:
     parameters:
