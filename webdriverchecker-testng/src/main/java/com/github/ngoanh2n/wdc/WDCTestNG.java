@@ -100,8 +100,9 @@ public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
 
     private Class<?> getSignatureAnnotation(Method method) {
         Class<?>[] signatures = new Class[]{
-                BeforeClass.class, AfterClass.class,
-                BeforeMethod.class, AfterMethod.class, Test.class
+                BeforeClass.class, BeforeMethod.class,
+                Test.class,
+                AfterClass.class, AfterMethod.class
         };
         Annotation[] declarations = method.getDeclaredAnnotations();
 
@@ -115,7 +116,7 @@ public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
 
         String msg = String.format("Get signature annotation at %s", method);
         LOGGER.error(msg);
-        throw new RuntimeError("msg");
+        throw new RuntimeError(msg);
     }
 
     /*
