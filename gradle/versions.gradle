@@ -3,7 +3,7 @@
  * @since 2021-04-09
  */
 ext {
-    VERSION_UTILITIES               =   "2.3.10"
+    VERSION_UTILITIES               =   "2.3.12"
     VERSION_SELENIUM                =   "4.4.0"
     VERSION_SELENIDE                =   "6.7.2"
     VERSION_TESTNG                  =   "7.5"
