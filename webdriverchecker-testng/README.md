@@ -28,3 +28,20 @@ Add to `pom.xml`
     <version>2.3.0</version>
 </dependency>
 ```
+
+# Test Structure
+1. Must declare a field of WebDriver type with any modifiers at current class or parent/abstract class.
+2. WebDriverChecker will find WebDriver instance after the field is assigned a value.
+
+```java
+public class MyTest {
+    private WebDriver driver;
+
+    @BeforeClass
+    public void beforeClass() {
+        driver = new ChromeDriver();
+        // WebDriverChecker can find WebDriver instance from here.
+        // WebDriverChecker.isChrome(driver) <=> WebDriverChecker.isChrome()
+    }
+}
+```
