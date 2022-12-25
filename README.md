@@ -65,7 +65,7 @@ When your automation project is using `TestNG` as a testing framework.
 ## Gradle
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker:2.3.0")
+implementation("com.github.ngoanh2n:webdriverchecker:2.4.0")
 ```
 
 ## Maven
@@ -74,7 +74,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker</artifactId>
-    <version>2.3.0</version>
+    <version>2.4.0</version>
 </dependency>
 ```
 
