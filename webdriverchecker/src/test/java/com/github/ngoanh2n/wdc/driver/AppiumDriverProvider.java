@@ -23,6 +23,12 @@ public class AppiumDriverProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(AppiumDriverProvider.class);
     public static Prop<String> caps = new Prop<>("wdc.caps", String.class);
 
+    public static WebDriver createDriver() {
+        AppiumDriverLocalService localService = startAppiumServer();
+        Capabilities caps = readCaps();
+        return new AppiumDriver(localService, caps);
+    }
+
     public static Capabilities readCaps() {
         DesiredCapabilities caps = new DesiredCapabilities();
         Map<String, Object> providedCaps = YamlData.toMapFromResource(AppiumDriverProvider.caps.getValue());
@@ -50,12 +56,6 @@ public class AppiumDriverProvider {
             LOGGER.debug("Starting Appium server");
         }
         return localService;
-    }
-
-    public static WebDriver createDriver() {
-        AppiumDriverLocalService localService = startAppiumServer();
-        Capabilities caps = readCaps();
-        return new AppiumDriver(localService, caps);
     }
 
     private final static class StopAppiumServerThread extends Thread {
