@@ -248,6 +248,14 @@ jobs:
             -Dwdc.browser=<<parameters.browser>>
       - artifact_save:
           report_name: windows_<<parameters.browser>>
+  pc_windows_extension:
+    executor: runner_windows
+    steps:
+      - env_prepare:
+          browser: chrome
+      - test_execute
+      - artifact_save:
+          report_name: windows_extension
   mobile_macos_ios:
     parameters:
       browser: { type: string }
@@ -327,6 +335,12 @@ workflows:
                 - <<pipeline.parameters.browser_firefox>>
                 - <<pipeline.parameters.browser_edge>>
                 - <<pipeline.parameters.browser_opera>>
+      - pc_windows_extension:
+          name: <<pipeline.parameters.os_windows>>/extension
+          filters:
+            branches:
+              only:
+                - master
       - mobile_macos_ios:
           name: <<pipeline.parameters.os_macos>>/ios/<<matrix.browser>>
           filters:
