@@ -13,14 +13,14 @@ import java.net.URL;
  * @version 1.0.0
  * @since 2022-08-20
  */
-public class CloudDriverProvider extends AppiumDriverProvider {
+public class CloudDriverProvider {
     public static Prop<String> key = new Prop<>("wdc.key", String.class);
     public static Prop<String> token = new Prop<>("wdc.token", String.class);
     public static Prop<String> domain = new Prop<>("wdc.domain", String.class);
 
     public static WebDriver createDriver() {
-        Capabilities caps = readCaps();
         URL address = createRemoteAddress();
+        Capabilities caps = AppiumDriverProvider.readCaps();
         return new RemoteWebDriver(address, caps);
     }
 
