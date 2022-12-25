@@ -19,6 +19,11 @@ public class WDCSelenide implements WebDriverProvider {
     //===============================================================================//
 
     /**
+     * Default constructor.
+     */
+    public WDCSelenide() { /* No implementation necessary */ }
+
+    /**
      * {@inheritDoc}
      */
     @Override

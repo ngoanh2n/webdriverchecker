@@ -35,6 +35,11 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     //===============================================================================//
 
     /**
+     * Default constructor.
+     */
+    public WDCJUnit5() { /* No implementation necessary */ }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -172,7 +177,7 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
         LOGGER.debug("{} @{} {} -> {}", aspect, annotation, method, driver);
     }
 
-    public static Class<?> getSignatureAnnotation(Method method) {
+    private static Class<?> getSignatureAnnotation(Method method) {
         Class<?>[] signatures = new Class[]{
                 BeforeAll.class, BeforeEach.class,
                 Test.class, ParameterizedTest.class, TestFactory.class, RepeatedTest.class, TestTemplate.class,
