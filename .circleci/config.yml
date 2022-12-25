@@ -181,11 +181,10 @@ commands:
           command: |
             cd webdriverchecker/build/reports
             zip -r <<parameters.report_name>>.zip tests/test/*
-      - run:
-          name: Compress JUnit report
-          command: |
-            cd webdriverchecker/build/reports
-            zip -r <<parameters.report_name>>.zip tests/test/*
+      - store_artifacts:
+          name: Store JUnit report
+          path: webdriverchecker/build/reports/<<parameters.report_name>>.zip
+          destination: <<parameters.report_name>>
   test_execute:
     parameters:
       options: { type: string, default: "" }
