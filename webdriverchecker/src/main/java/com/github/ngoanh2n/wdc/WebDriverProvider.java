@@ -42,7 +42,7 @@ public interface WebDriverProvider {
     /**
      * Provide {@linkplain WebDriver} to {@linkplain WebDriverChecker}.
      *
-     * @return driver you have set up
+     * @return WebDriver instance you have set up.
      */
     WebDriver provide();
 }

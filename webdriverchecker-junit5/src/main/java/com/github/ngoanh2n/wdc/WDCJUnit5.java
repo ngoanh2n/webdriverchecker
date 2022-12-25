@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 import java.util.Optional;
 
 /**
- * Provide WebDriver from current test to {@linkplain WebDriverChecker}.
+ * Provides {@linkplain WebDriver} from current test to {@linkplain WebDriverChecker}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 2.3.0
