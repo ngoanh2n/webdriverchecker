@@ -36,6 +36,11 @@ public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
     //===============================================================================//
 
     /**
+     * Default constructor.
+     */
+    public WDCTestNG() { /* No implementation necessary */ }
+
+    /**
      * {@inheritDoc}
      */
     @Override

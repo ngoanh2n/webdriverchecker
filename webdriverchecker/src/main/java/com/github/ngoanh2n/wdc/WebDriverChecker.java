@@ -888,6 +888,8 @@ public abstract class WebDriverChecker {
     }
 
     /**
+     * Checks logic of {@code WebDriverChecker} implementation.
+     *
      * @param wdc  A {@code WebDriverChecker} implementation.
      * @param args {@linkplain WebDriver} for the first argument, and can be empty.
      * @return Boolean result.
@@ -904,6 +906,11 @@ public abstract class WebDriverChecker {
     }
 
     //===============================================================================//
+
+    /**
+     * Default constructor.
+     */
+    protected WebDriverChecker() { /* No implementation necessary */ }
 
     /**
      * Gets platform name of {@linkplain WebDriver} is running on.
