@@ -19,7 +19,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * Provide WebDriver from current test to {@linkplain WebDriverChecker}.
+ * Provides {@linkplain WebDriver} from current test to {@linkplain WebDriverChecker}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  * @version 2.4.0
