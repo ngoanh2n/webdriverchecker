@@ -1,19 +1,23 @@
 ext {
     getArtifactName = { ->
-        if (project.name.endsWith("junit5")) {
-            return property("prj.name.junit5")
-        } else if (project.name.endsWith("selenide")) {
+        if (project.name.endsWith("selenide")) {
             return property("prj.name.selenide")
+        } else if (project.name.endsWith("junit5")) {
+            return property("prj.name.junit5")
+        } else if (project.name.endsWith("testng")) {
+            return property("prj.name.testng")
         } else {
             return property("prj.name")
         }
     }
 
     getArtifactDesc = { ->
-        if (project.name.endsWith("junit5")) {
-            return property("prj.desc.junit5")
-        } else if (project.name.endsWith("selenide")) {
+        if (project.name.endsWith("selenide")) {
             return property("prj.desc.selenide")
+        } else if (project.name.endsWith("junit5")) {
+            return property("prj.desc.junit5")
+        } else if (project.name.endsWith("testng")) {
+            return property("prj.desc.testng")
         } else {
             return property("prj.desc")
         }
