@@ -1,25 +1,25 @@
 ext {
     getArtifactName = { ->
         if (project.name.endsWith("selenide")) {
-            return property("prj.name.selenide")
+            return property("artifact.name.selenide")
         } else if (project.name.endsWith("junit5")) {
-            return property("prj.name.junit5")
+            return property("artifact.name.junit5")
         } else if (project.name.endsWith("testng")) {
-            return property("prj.name.testng")
+            return property("artifact.name.testng")
         } else {
-            return property("prj.name")
+            return property("artifact.name")
         }
     }
 
     getArtifactDesc = { ->
         if (project.name.endsWith("selenide")) {
-            return property("prj.desc.selenide")
+            return property("artifact.desc.selenide")
         } else if (project.name.endsWith("junit5")) {
-            return property("prj.desc.junit5")
+            return property("artifact.desc.junit5")
         } else if (project.name.endsWith("testng")) {
-            return property("prj.desc.testng")
+            return property("artifact.desc.testng")
         } else {
-            return property("prj.desc")
+            return property("artifact.desc")
         }
     }
 }
@@ -48,8 +48,8 @@ if (project.hasProperty("signing.keyId")) {
                 artifact javadocJar
 
                 pom {
-                    name = getArtifactName()
-                    description = getArtifactDesc()
+                    name = property("artifact.name")
+                    description = property("artifact.desc")
                     url = "https://github.com/ngoanh2n/webdriverchecker"
 
                     licenses {
