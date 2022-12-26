@@ -1,29 +1,3 @@
-ext {
-    getArtifactName = { ->
-        if (project.name.endsWith("selenide")) {
-            return property("artifact.name.selenide")
-        } else if (project.name.endsWith("junit5")) {
-            return property("artifact.name.junit5")
-        } else if (project.name.endsWith("testng")) {
-            return property("artifact.name.testng")
-        } else {
-            return property("artifact.name")
-        }
-    }
-
-    getArtifactDesc = { ->
-        if (project.name.endsWith("selenide")) {
-            return property("artifact.desc.selenide")
-        } else if (project.name.endsWith("junit5")) {
-            return property("artifact.desc.junit5")
-        } else if (project.name.endsWith("testng")) {
-            return property("artifact.desc.testng")
-        } else {
-            return property("artifact.desc")
-        }
-    }
-}
-
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
     archiveClassifier = "sources"
@@ -34,46 +8,42 @@ task javadocJar(type: Jar) {
     archiveClassifier = "javadoc"
 }
 
-if (project.hasProperty("signing.keyId")) {
-    apply plugin: "signing"
-    apply plugin: "java-library"
-    apply plugin: "maven-publish"
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = project.name
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
 
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                artifactId = project.name
-                from components.java
-                artifact sourcesJar
-                artifact javadocJar
+            pom {
+                name = property("artifact.name")
+                description = property("artifact.desc")
+                url = "https://github.com/ngoanh2n/webdriverchecker"
 
-                pom {
-                    name = property("artifact.name")
-                    description = property("artifact.desc")
+                licenses {
+                    license {
+                        name = "MIT"
+                        url = "https://opensource.org/licenses/MIT"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "ngoanh2n"
+                        name = "Ho Huu Ngoan"
+                        email = "ngoanh2n@gmail.com"
+                        organizationUrl = "https://github.com/ngoanh2n"
+                    }
+                }
+                scm {
                     url = "https://github.com/ngoanh2n/webdriverchecker"
-
-                    licenses {
-                        license {
-                            name = "MIT"
-                            url = "https://opensource.org/licenses/MIT"
-                        }
-                    }
-                    developers {
-                        developer {
-                            id = "ngoanh2n"
-                            name = "Ho Huu Ngoan"
-                            email = "ngoanh2n@gmail.com"
-                            organizationUrl = "https://github.com/ngoanh2n"
-                        }
-                    }
-                    scm {
-                        url = "https://github.com/ngoanh2n/webdriverchecker"
-                        connection = "scm:git:git://github.com/ngoanh2n/webdriverchecker.git"
-                        developerConnection = "scm:git:ssh://github.com/ngoanh2n/webdriverchecker.git"
-                    }
+                    connection = "scm:git:git://github.com/ngoanh2n/webdriverchecker.git"
+                    developerConnection = "scm:git:ssh://github.com/ngoanh2n/webdriverchecker.git"
                 }
             }
         }
+    }
+    if (project.hasProperty("signing.keyId")) {
         repositories {
             maven {
                 def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
@@ -87,14 +57,16 @@ if (project.hasProperty("signing.keyId")) {
             }
         }
     }
+}
 
+if (project.hasProperty("signing.keyId")) {
     signing {
         sign publishing.publications.mavenJava
     }
+}
 
-    javadoc {
-        if (JavaVersion.current().isJava9Compatible()) {
-            options.addBooleanOption("html5", true)
-        }
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption("html5", true)
     }
 }
