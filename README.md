@@ -130,9 +130,3 @@ WebDriverChecker.isBrowserStack(driver)
 WebDriverChecker.isSauceLabs(driver)
 WebDriverChecker.isTestingBot(driver)
 ```
-
-<p>
-  <a href="https://www.buymeacoffee.com/ngoanh2n">
-    <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210"/>
-  </a>
-</p>
