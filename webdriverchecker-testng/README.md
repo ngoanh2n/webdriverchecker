@@ -12,7 +12,7 @@ You don't need to pass the WebDriver instance to the argument of checker methods
 |---	                              |---	                        |
 | WebDriverChecker.isChrome(driver) | WebDriverChecker.isChrome() |
 
-# Delarations
+# Declarations
 ## Gradle
 Add to `build.gradle`
 ```gradle
