@@ -16,9 +16,9 @@ import org.openqa.selenium.safari.SafariDriver;
  * @since 2021-04-10
  */
 public abstract class SeleniumDriverProvider {
-    static String browser = Prop.string("wdc.browser").getValue();
-
     public static WebDriver createDriver() {
+        String browser = Prop.string("wdc.browser").getValue();
+
         switch (browser) {
             case "chrome":
             case "opera":
