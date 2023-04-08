@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 2.3.0
- * @since 2022-12-18
  */
 public class BeforeEachTest extends WDCJUnit5Test {
     @BeforeAll

@@ -16,11 +16,9 @@ import java.util.Map;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 1.0.0
- * @since 2021-04-10
  */
 public class AppiumDriverProvider {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AppiumDriverProvider.class);
+    private static final Logger log = LoggerFactory.getLogger(AppiumDriverProvider.class);
     public static Prop<String> caps = new Prop<>("wdc.caps", String.class);
 
     public static WebDriver createDriver() {
@@ -53,7 +51,7 @@ public class AppiumDriverProvider {
 
         if (!localService.isRunning()) {
             localService.start();
-            LOGGER.debug("Starting Appium server");
+            log.debug("Starting Appium server");
         }
         return localService;
     }
@@ -69,7 +67,7 @@ public class AppiumDriverProvider {
         public void run() {
             if (service.isRunning()) {
                 service.stop();
-                LOGGER.debug("Stopping Appium server");
+                log.debug("Stopping Appium server");
             }
         }
     }

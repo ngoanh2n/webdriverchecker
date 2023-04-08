@@ -10,8 +10,6 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 1.0.0
- * @since 2022-08-23
  */
 public class CloudAppiumTest {
     private WebDriver wd;

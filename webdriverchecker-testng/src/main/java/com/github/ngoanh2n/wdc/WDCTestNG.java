@@ -22,14 +22,12 @@ import java.lang.reflect.Method;
  * Provides {@linkplain WebDriver} from current test to {@linkplain WebDriverChecker}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 2.4.0
- * @since 2022-12-21
  */
 public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
     private static final String BE = "BE";
     private static final String BO = "BO";
     private static final String AF = "AF";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WDCTestNG.class);
+    private static final Logger log = LoggerFactory.getLogger(WDCTestNG.class);
     private static ITestResult iTestResult;
     private WebDriver driver;
 
@@ -85,7 +83,7 @@ public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
                 String fieldName = field.getName();
                 String clazzName = clazz.getName();
                 String msg = String.format("Read field %s in class %s", fieldName, clazzName);
-                LOGGER.error(msg);
+                log.error(msg);
                 throw new RuntimeError(msg, e);
             }
 
@@ -100,7 +98,7 @@ public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
 
         Method method = Commons.readField(com, "m_method");
         String annotation = getSignatureAnnotation(method).getSimpleName();
-        LOGGER.debug("{} @{} {} -> {}", aspect, annotation, method, driver);
+        log.debug("{} @{} {} -> {}", aspect, annotation, method, driver);
     }
 
     private Class<?> getSignatureAnnotation(Method method) {
@@ -120,7 +118,7 @@ public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
         }
 
         String msg = String.format("Get signature annotation at %s", method);
-        LOGGER.error(msg);
+        log.error(msg);
         throw new RuntimeError(msg);
     }
 

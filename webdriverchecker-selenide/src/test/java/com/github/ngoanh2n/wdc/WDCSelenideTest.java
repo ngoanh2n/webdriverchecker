@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 2.4.0
- * @since 2022-12-23
  */
 public class WDCSelenideTest {
     @BeforeAll
