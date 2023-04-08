@@ -24,14 +24,14 @@ import java.lang.reflect.Method;
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
 public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
+    private static final Logger log = LoggerFactory.getLogger(WDCTestNG.class);
     private static final String BE = "BE";
     private static final String BO = "BO";
     private static final String AF = "AF";
-    private static final Logger log = LoggerFactory.getLogger(WDCTestNG.class);
     private static ITestResult iTestResult;
     private WebDriver driver;
 
-    //===============================================================================//
+    //-------------------------------------------------------------------------------//
 
     /**
      * Default constructor.
@@ -65,7 +65,7 @@ public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
         return driver;
     }
 
-    //===============================================================================//
+    //-------------------------------------------------------------------------------//
 
     private void getWD(ITestResult testResult, String aspect) {
         iTestResult = testResult;
@@ -74,18 +74,7 @@ public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
         Field[] fields = FieldUtils.getAllFields(clazz);
 
         for (Field field : fields) {
-            field.setAccessible(true);
-            Object value;
-
-            try {
-                value = field.get(instance);
-            } catch (IllegalAccessException e) {
-                String fieldName = field.getName();
-                String clazzName = clazz.getName();
-                String msg = String.format("Read field %s in class %s", fieldName, clazzName);
-                log.error(msg);
-                throw new RuntimeError(msg, e);
-            }
+            Object value = Commons.readField(instance, field.getName());
 
             if (value instanceof WebDriver) {
                 driver = (WebDriver) value;
