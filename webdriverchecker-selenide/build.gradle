@@ -4,7 +4,7 @@
  */
 dependencies {
     api(project(":webdriverchecker"))
-    implementation("com.codeborne:selenide:$VERSION_SELENIDE")
+    implementation("com.codeborne:selenide:$versionSelenide")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:$VERSION_JUNIT5_JUPITER")
+    testImplementation("org.junit.jupiter:junit-jupiter:$versionJunitJupiter")
 }

@@ -4,9 +4,9 @@
  */
 dependencies {
     api(project(":webdriverchecker"))
-    implementation("org.seleniumhq.selenium:selenium-remote-driver:$VERSION_SELENIUM")
-    implementation("org.junit.jupiter:junit-jupiter:$VERSION_JUNIT5_JUPITER")
+    implementation("org.seleniumhq.selenium:selenium-remote-driver:$versionSelenium")
+    implementation("org.junit.jupiter:junit-jupiter:$versionJunitJupiter")
 
-    testImplementation("org.seleniumhq.selenium:selenium-java:$VERSION_SELENIUM")
-    testImplementation("io.github.bonigarcia:webdrivermanager:$VERSION_WEBDRIVER_MANAGER")
+    testImplementation("org.seleniumhq.selenium:selenium-java:$versionSelenium")
+    testImplementation("io.github.bonigarcia:webdrivermanager:$versionWebDriverManager")
 }
