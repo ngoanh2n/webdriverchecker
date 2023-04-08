@@ -6,7 +6,7 @@ ext {
     versionSelenium                 =   "4.8.3"
     versionSelenide                 =   "6.13.0"
     versionTestNG                   =   "7.7.1"
-    versionJunitJupiter             =   "5.9.1"
+    versionJunitJupiter             =   "5.9.2"
     versionSlf4j                    =   "2.0.6"
     versionAppium                   =   "8.1.1"
     versionWebDriverManager         =   "5.3.1"
