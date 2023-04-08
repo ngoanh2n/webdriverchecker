@@ -14,12 +14,12 @@ import org.slf4j.LoggerFactory;
 public class WDCSelenide implements WebDriverProvider {
     private static final Logger log = LoggerFactory.getLogger(WDCSelenide.class);
 
-    //===============================================================================//
-
     /**
      * Default constructor.
      */
     public WDCSelenide() { /* No implementation necessary */ }
+
+    //-------------------------------------------------------------------------------//
 
     /**
      * {@inheritDoc}

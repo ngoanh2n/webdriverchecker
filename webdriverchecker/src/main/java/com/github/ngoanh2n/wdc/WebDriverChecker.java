@@ -401,7 +401,7 @@ public abstract class WebDriverChecker {
         return is(new TestingBot());
     }
 
-    //===============================================================================//
+    //-------------------------------------------------------------------------------//
 
     /**
      * Checks whether {@linkplain WebDriver} on macOS.
@@ -810,7 +810,7 @@ public abstract class WebDriverChecker {
         return is(new TestingBot(), wd);
     }
 
-    //===============================================================================//
+    //-------------------------------------------------------------------------------//
 
     private static final Logger log = LoggerFactory.getLogger(WebDriverChecker.class);
 
@@ -902,7 +902,7 @@ public abstract class WebDriverChecker {
         return wdc.check(args);
     }
 
-    //===============================================================================//
+    //-------------------------------------------------------------------------------//
 
     /**
      * Default constructor.
@@ -1079,7 +1079,7 @@ public abstract class WebDriverChecker {
         }
     }
 
-    //===============================================================================//
+    //-------------------------------------------------------------------------------//
 
     /**
      * Checks logic of {@code WebDriverChecker} implementation.

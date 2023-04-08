@@ -31,12 +31,12 @@ public class WDCTestNG implements IInvokedMethodListener, WebDriverProvider {
     private static ITestResult iTestResult;
     private WebDriver driver;
 
-    //-------------------------------------------------------------------------------//
-
     /**
      * Default constructor.
      */
     public WDCTestNG() { /* No implementation necessary */ }
+
+    //-------------------------------------------------------------------------------//
 
     /**
      * {@inheritDoc}
