@@ -52,13 +52,13 @@ It automatically provides the current WebDriver instance to `com.github.ngoanh2n
 
 You don't need to pass the WebDriver instance to the argument of checker methods.
 
-### [Selenide](webdriverchecker-selenide)
+### [Selenide](webdriverchecker-selenide#readme)
 When your automation project is using `Selenide` directly.
 
-### [JUnit5](webdriverchecker-junit5)
+### [JUnit5](webdriverchecker-junit5#readme)
 When your automation project is using `JUnit Jupiter` as a testing framework.
 
-### [TestNG](webdriverchecker-testng)
+### [TestNG](webdriverchecker-testng#readme)
 When your automation project is using `TestNG` as a testing framework.
 
 # Declarations
