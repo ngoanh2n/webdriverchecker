@@ -10,8 +10,6 @@ import java.net.URL;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 1.0.0
- * @since 2022-08-20
  */
 public class CloudDriverProvider {
     public static Prop<String> key = new Prop<>("wdc.key", String.class);

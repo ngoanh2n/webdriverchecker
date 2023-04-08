@@ -21,14 +21,12 @@ import java.util.Optional;
  * Provides {@linkplain WebDriver} from current test to {@linkplain WebDriverChecker}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 2.3.0
- * @since 2022-12-18
  */
 public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
     private static final String BE = "BE";
     private static final String BO = "BO";
     private static final String AF = "AF";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WDCJUnit5.class);
+    private static final Logger log = LoggerFactory.getLogger(WDCJUnit5.class);
     private static ReflectiveInvocationContext<Method> invocationContext;
     private WebDriver driver;
 
@@ -162,7 +160,7 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
                 String fieldName = field.getName();
                 String clazzName = clazz.getName();
                 String msg = String.format("Read field %s in class %s", fieldName, clazzName);
-                LOGGER.error(msg);
+                log.error(msg);
                 throw new RuntimeError(msg, e);
             }
 
@@ -174,7 +172,7 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
 
         Method method = Commons.readField(context, "method");
         String annotation = getSignatureAnnotation(method).getSimpleName();
-        LOGGER.debug("{} @{} {} -> {}", aspect, annotation, method, driver);
+        log.debug("{} @{} {} -> {}", aspect, annotation, method, driver);
     }
 
     private static Class<?> getSignatureAnnotation(Method method) {
@@ -194,7 +192,7 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
         }
 
         String msg = String.format("Get signature annotation at %s", method);
-        LOGGER.error(msg);
+        log.error(msg);
         throw new RuntimeError(msg);
     }
 

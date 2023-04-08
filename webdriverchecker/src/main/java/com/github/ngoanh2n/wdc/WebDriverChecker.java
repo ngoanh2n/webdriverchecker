@@ -32,10 +32,7 @@ import static java.util.ServiceLoader.load;
  * Check characteristics and environment for current {@linkplain WebDriver}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 1.0.0
- * @since 2021-04-10
  */
-@SuppressWarnings("unchecked")
 public abstract class WebDriverChecker {
     /**
      * Checks whether {@linkplain WebDriver} on macOS.
@@ -815,7 +812,7 @@ public abstract class WebDriverChecker {
 
     //===============================================================================//
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverChecker.class);
+    private static final Logger log = LoggerFactory.getLogger(WebDriverChecker.class);
 
     /**
      * Runs a Shell command.
@@ -854,12 +851,12 @@ public abstract class WebDriverChecker {
             Object value = args[0];
             if (value == null) {
                 String msg = "WebDriver is null";
-                LOGGER.error(msg);
+                log.error(msg);
                 throw new RuntimeError(msg);
             }
             if (!(value instanceof WebDriver)) {
                 String msg = "WebDriver is invalid";
-                LOGGER.error(msg);
+                log.error(msg);
                 throw new RuntimeError(msg);
             }
             return (RemoteWebDriver) value;
@@ -870,7 +867,7 @@ public abstract class WebDriverChecker {
 
             if (!serviceLoaders.hasNext()) {
                 String msg = String.format("%s implementation not found", wdpName);
-                LOGGER.error(msg);
+                log.error(msg);
                 throw new RuntimeError(msg);
             }
 
@@ -880,7 +877,7 @@ public abstract class WebDriverChecker {
             if (wd == null | !(is(new Alive(), wd))) {
                 wdpName = wdp.getClass().getName();
                 String msg = String.format("%s provides null", wdpName);
-                LOGGER.error(msg);
+                log.error(msg);
                 throw new RuntimeError(msg);
             }
             return (RemoteWebDriver) wd;
@@ -898,7 +895,7 @@ public abstract class WebDriverChecker {
         if (!(wdc instanceof Alive)) {
             if (!is(new Alive(), args)) {
                 String msg = "WebDriver is null or quit";
-                LOGGER.error(msg);
+                log.error(msg);
                 throw new RuntimeError(msg);
             }
         }

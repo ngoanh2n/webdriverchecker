@@ -10,11 +10,9 @@ import org.slf4j.LoggerFactory;
  * Provides {@linkplain WebDriver} from {@linkplain WebDriverRunner} to {@linkplain WebDriverChecker}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 1.0.0
- * @since 2021-04-10
  */
 public class WDCSelenide implements WebDriverProvider {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WDCSelenide.class);
+    private static final Logger log = LoggerFactory.getLogger(WDCSelenide.class);
 
     //===============================================================================//
 
@@ -32,7 +30,7 @@ public class WDCSelenide implements WebDriverProvider {
             return WebDriverRunner.getWebDriver();
         } catch (IllegalStateException ignored) {
             String msg = "WebDriver is quit";
-            LOGGER.error(msg);
+            log.error(msg);
             throw new RuntimeError(msg);
         }
     }

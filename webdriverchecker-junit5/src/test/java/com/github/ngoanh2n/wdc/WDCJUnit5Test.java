@@ -10,8 +10,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @version 2.3.0
- * @since 2022-12-18
  */
 public abstract class WDCJUnit5Test {
     static WebDriver driver;
