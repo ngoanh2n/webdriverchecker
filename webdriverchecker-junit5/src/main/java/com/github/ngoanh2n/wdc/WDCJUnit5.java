@@ -23,19 +23,19 @@ import java.util.Optional;
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
 public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
+    private static final Logger log = LoggerFactory.getLogger(WDCJUnit5.class);
     private static final String BE = "BE";
     private static final String BO = "BO";
     private static final String AF = "AF";
-    private static final Logger log = LoggerFactory.getLogger(WDCJUnit5.class);
     private static ReflectiveInvocationContext<Method> invocationContext;
     private WebDriver driver;
-
-    //===============================================================================//
 
     /**
      * Default constructor.
      */
     public WDCJUnit5() { /* No implementation necessary */ }
+
+    //-------------------------------------------------------------------------------//
 
     /**
      * {@inheritDoc}
@@ -133,7 +133,7 @@ public class WDCJUnit5 implements InvocationInterceptor, WebDriverProvider {
         return driver;
     }
 
-    //===============================================================================//
+    //-------------------------------------------------------------------------------//
 
     private void getWD(ReflectiveInvocationContext<Method> context, String aspect) {
         invocationContext = context;
