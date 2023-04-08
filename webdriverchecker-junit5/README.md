@@ -16,7 +16,7 @@ You don't need to pass the WebDriver instance to the argument of checker methods
 ## Gradle
 Add to `build.gradle`
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker-junit5:2.4.0")
+implementation("com.github.ngoanh2n:webdriverchecker-junit5:2.5.0")
 ```
 
 ## Maven
@@ -25,7 +25,7 @@ Add to `pom.xml`
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker-junit5</artifactId>
-    <version>2.4.0</version>
+    <version>2.5.0</version>
 </dependency>
 ```
 
