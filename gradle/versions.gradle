@@ -9,5 +9,5 @@ ext {
     versionJunitJupiter             =   "5.9.2"
     versionSlf4j                    =   "2.0.6"
     versionAppium                   =   "8.1.1"
-    versionWebDriverManager         =   "5.3.1"
+    versionWebDriverManager         =   "5.3.2"
 }
