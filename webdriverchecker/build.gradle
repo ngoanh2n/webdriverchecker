@@ -3,10 +3,10 @@
  * @since 2021-04-09
  */
 dependencies {
-    implementation("org.seleniumhq.selenium:selenium-remote-driver:$VERSION_SELENIUM")
+    implementation("org.seleniumhq.selenium:selenium-remote-driver:$versionSelenium")
 
-    testImplementation("org.seleniumhq.selenium:selenium-java:$VERSION_SELENIUM")
-    testImplementation("io.appium:java-client:$VERSION_APPIUM")
-    testImplementation("io.github.bonigarcia:webdrivermanager:$VERSION_WEBDRIVER_MANAGER")
-    testImplementation("org.junit.jupiter:junit-jupiter:$VERSION_JUNIT5_JUPITER")
+    testImplementation("org.seleniumhq.selenium:selenium-java:$versionSelenium")
+    testImplementation("io.appium:java-client:$versionAppium")
+    testImplementation("io.github.bonigarcia:webdrivermanager:$versionWebDriverManager")
+    testImplementation("org.junit.jupiter:junit-jupiter:$versionJunitJupiter")
 }
