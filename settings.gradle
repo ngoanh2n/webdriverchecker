@@ -1,7 +1,3 @@
-/**
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
- * @since 2021-04-09
- */
 rootProject.setName("wdc")
 
 include("webdriverchecker")

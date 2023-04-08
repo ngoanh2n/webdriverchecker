@@ -1,9 +1,12 @@
-task sourcesJar(type: Jar) {
+/**
+ * Author: Ho Huu Ngoan (ngoanh2n@gmail.com)
+ */
+tasks.register("sourcesJar", Jar) {
     from sourceSets.main.allJava
     archiveClassifier = "sources"
 }
 
-task javadocJar(type: Jar) {
+tasks.register("javadocJar", Jar) {
     from javadoc
     archiveClassifier = "javadoc"
 }
