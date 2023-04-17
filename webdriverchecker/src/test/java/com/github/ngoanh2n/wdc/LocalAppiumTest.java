@@ -11,7 +11,7 @@ import java.io.File;
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
 public class LocalAppiumTest {
-    private static WebDriver wd;
+    private static WebDriver driver;
 
     @BeforeAll
     static void setAppWorkingDir() {
@@ -21,7 +21,7 @@ public class LocalAppiumTest {
 
     @BeforeEach
     void openDriver() {
-        wd = AppiumDriverProvider.createDriver();
+        driver = AppiumDriverProvider.createDriver();
     }
 
     @Test
@@ -29,33 +29,33 @@ public class LocalAppiumTest {
     @RunOnProp(name = "wdc.browser", value = "native")
     @RunOnProp(name = "wdc.caps", value = "local-ios-native.yml")
     void iosNative() {
-        Assertions.assertFalse(WebDriverChecker.isPC(wd));
-        Assertions.assertTrue(WebDriverChecker.isIOS(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroid(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobile(wd));
+        Assertions.assertFalse(WebDriverChecker.isPC(driver));
+        Assertions.assertTrue(WebDriverChecker.isIOS(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroid(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobile(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isBrowser(wd));
-        Assertions.assertTrue(WebDriverChecker.isNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isBrowser(driver));
+        Assertions.assertTrue(WebDriverChecker.isNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isChrome(wd));
-        Assertions.assertFalse(WebDriverChecker.isSafari(wd));
+        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
+        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isPCNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isPCNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isMacOSNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isWindowsNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isMacOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isWindowsNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(wd));
-        Assertions.assertTrue(WebDriverChecker.isIOSNative(wd));
-        Assertions.assertTrue(WebDriverChecker.isIOSVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(driver));
+        Assertions.assertTrue(WebDriverChecker.isIOSNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isIOSVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroidNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isMobileBrowser(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobileNative(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isMobileBrowser(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobileNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(driver));
     }
 
     @Test
@@ -63,33 +63,33 @@ public class LocalAppiumTest {
     @RunOnProp(name = "wdc.browser", value = "safari")
     @RunOnProp(name = "wdc.caps", value = "local-ios-safari.yml")
     void iosSafari() {
-        Assertions.assertFalse(WebDriverChecker.isPC(wd));
-        Assertions.assertTrue(WebDriverChecker.isIOS(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroid(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobile(wd));
+        Assertions.assertFalse(WebDriverChecker.isPC(driver));
+        Assertions.assertTrue(WebDriverChecker.isIOS(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroid(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobile(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isNative(wd));
+        Assertions.assertTrue(WebDriverChecker.isBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isChrome(wd));
-        Assertions.assertTrue(WebDriverChecker.isSafari(wd));
+        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
+        Assertions.assertTrue(WebDriverChecker.isSafari(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isPCNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isPCNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isMacOSNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isWindowsNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isMacOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isWindowsNative(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isIOSBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOSNative(wd));
-        Assertions.assertTrue(WebDriverChecker.isIOSVirtual(wd));
+        Assertions.assertTrue(WebDriverChecker.isIOSBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isIOSVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroidNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isMobileBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isMobileNative(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(wd));
+        Assertions.assertTrue(WebDriverChecker.isMobileBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isMobileNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(driver));
     }
 
     @Test
@@ -97,33 +97,33 @@ public class LocalAppiumTest {
     @RunOnProp(name = "wdc.browser", value = "native")
     @RunOnProp(name = "wdc.caps", value = "local-android-native.yml")
     void androidNative() {
-        Assertions.assertFalse(WebDriverChecker.isPC(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOS(wd));
-        Assertions.assertTrue(WebDriverChecker.isAndroid(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobile(wd));
+        Assertions.assertFalse(WebDriverChecker.isPC(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOS(driver));
+        Assertions.assertTrue(WebDriverChecker.isAndroid(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobile(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isBrowser(wd));
-        Assertions.assertTrue(WebDriverChecker.isNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isBrowser(driver));
+        Assertions.assertTrue(WebDriverChecker.isNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isChrome(wd));
-        Assertions.assertFalse(WebDriverChecker.isSafari(wd));
+        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
+        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isPCNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isPCNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isMacOSNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isWindowsNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isMacOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isWindowsNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOSNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(wd));
-        Assertions.assertTrue(WebDriverChecker.isAndroidNative(wd));
-        Assertions.assertTrue(WebDriverChecker.isAndroidVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(driver));
+        Assertions.assertTrue(WebDriverChecker.isAndroidNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isAndroidVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isMobileBrowser(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobileNative(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isMobileBrowser(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobileNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(driver));
     }
 
     @Test
@@ -131,33 +131,33 @@ public class LocalAppiumTest {
     @RunOnProp(name = "wdc.browser", value = "chrome")
     @RunOnProp(name = "wdc.caps", value = "local-android-chrome.yml")
     void androidChrome() {
-        Assertions.assertFalse(WebDriverChecker.isPC(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOS(wd));
-        Assertions.assertTrue(WebDriverChecker.isAndroid(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobile(wd));
+        Assertions.assertFalse(WebDriverChecker.isPC(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOS(driver));
+        Assertions.assertTrue(WebDriverChecker.isAndroid(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobile(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isNative(wd));
+        Assertions.assertTrue(WebDriverChecker.isBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isNative(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isChrome(wd));
-        Assertions.assertFalse(WebDriverChecker.isSafari(wd));
+        Assertions.assertTrue(WebDriverChecker.isChrome(driver));
+        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isPCNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isPCNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isMacOSNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isWindowsNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isMacOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isWindowsNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOSNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isAndroidBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroidNative(wd));
-        Assertions.assertTrue(WebDriverChecker.isAndroidVirtual(wd));
+        Assertions.assertTrue(WebDriverChecker.isAndroidBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isAndroidVirtual(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isMobileBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isMobileNative(wd));
-        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(wd));
+        Assertions.assertTrue(WebDriverChecker.isMobileBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isMobileNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(driver));
     }
 
     @Test
@@ -165,33 +165,33 @@ public class LocalAppiumTest {
     @RunOnProp(name = "wdc.browser", value = "native")
     @RunOnProp(name = "wdc.caps", value = "local-macos-native.yml")
     void macOSNative() {
-        Assertions.assertTrue(WebDriverChecker.isPC(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOS(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroid(wd));
-        Assertions.assertFalse(WebDriverChecker.isMobile(wd));
+        Assertions.assertTrue(WebDriverChecker.isPC(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOS(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroid(driver));
+        Assertions.assertFalse(WebDriverChecker.isMobile(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isBrowser(wd));
-        Assertions.assertTrue(WebDriverChecker.isNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isBrowser(driver));
+        Assertions.assertTrue(WebDriverChecker.isNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isChrome(wd));
-        Assertions.assertFalse(WebDriverChecker.isSafari(wd));
+        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
+        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isPCNative(wd));
+        Assertions.assertTrue(WebDriverChecker.isPCNative(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isMacOSNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isWindowsNative(wd));
+        Assertions.assertTrue(WebDriverChecker.isMacOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isWindowsNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOSNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroidNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isMobileBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isMobileNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isMobileVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isMobileBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isMobileNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isMobileVirtual(driver));
     }
 
     @Test
@@ -199,91 +199,91 @@ public class LocalAppiumTest {
     @RunOnProp(name = "wdc.browser", value = "native")
     @RunOnProp(name = "wdc.caps", value = "local-windows-native.yml")
     void windowsNative() {
-        Assertions.assertTrue(WebDriverChecker.isPC(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOS(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroid(wd));
-        Assertions.assertFalse(WebDriverChecker.isMobile(wd));
+        Assertions.assertTrue(WebDriverChecker.isPC(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOS(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroid(driver));
+        Assertions.assertFalse(WebDriverChecker.isMobile(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isBrowser(wd));
-        Assertions.assertTrue(WebDriverChecker.isNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isBrowser(driver));
+        Assertions.assertTrue(WebDriverChecker.isNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isChrome(wd));
-        Assertions.assertFalse(WebDriverChecker.isSafari(wd));
+        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
+        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isPCNative(wd));
+        Assertions.assertTrue(WebDriverChecker.isPCNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isMacOSNative(wd));
-        Assertions.assertTrue(WebDriverChecker.isWindowsNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isMacOSNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isWindowsNative(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOSNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroidNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isMobileBrowser(wd));
-        Assertions.assertFalse(WebDriverChecker.isMobileNative(wd));
-        Assertions.assertFalse(WebDriverChecker.isMobileVirtual(wd));
+        Assertions.assertFalse(WebDriverChecker.isMobileBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isMobileNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isMobileVirtual(driver));
     }
 
     @AfterEach
     void closeDriver() {
-        //Assertions.assertFalse(WebDriverChecker.isMacOS(wd));
-        //Assertions.assertFalse(WebDriverChecker.isLinux(wd));
-        //Assertions.assertFalse(WebDriverChecker.isWindows(wd));
-        //Assertions.assertFalse(WebDriverChecker.isPC(wd));
-        //Assertions.assertFalse(WebDriverChecker.isIOS(wd));
-        //Assertions.assertFalse(WebDriverChecker.isAndroid(wd));
-        //Assertions.assertTrue(WebDriverChecker.isMobile(wd));
+        //Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
+        //Assertions.assertFalse(WebDriverChecker.isLinux(driver));
+        //Assertions.assertFalse(WebDriverChecker.isWindows(driver));
+        //Assertions.assertFalse(WebDriverChecker.isPC(driver));
+        //Assertions.assertFalse(WebDriverChecker.isIOS(driver));
+        //Assertions.assertFalse(WebDriverChecker.isAndroid(driver));
+        //Assertions.assertTrue(WebDriverChecker.isMobile(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isAlive(wd));
-        Assertions.assertTrue(WebDriverChecker.isLocal(wd));
-        Assertions.assertTrue(WebDriverChecker.isRemote(wd));
-        Assertions.assertFalse(WebDriverChecker.isDocker(wd));
-        //Assertions.assertFalse(WebDriverChecker.isBrowser(wd));
-        //Assertions.assertFalse(WebDriverChecker.isNative(wd));
+        Assertions.assertTrue(WebDriverChecker.isAlive(driver));
+        Assertions.assertTrue(WebDriverChecker.isLocal(driver));
+        Assertions.assertTrue(WebDriverChecker.isRemote(driver));
+        Assertions.assertFalse(WebDriverChecker.isDocker(driver));
+        //Assertions.assertFalse(WebDriverChecker.isBrowser(driver));
+        //Assertions.assertFalse(WebDriverChecker.isNative(driver));
 
-        //Assertions.assertFalse(WebDriverChecker.isChrome(wd));
-        //Assertions.assertFalse(WebDriverChecker.isSafari(wd));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(wd));
-        Assertions.assertFalse(WebDriverChecker.isEdge(wd));
-        Assertions.assertFalse(WebDriverChecker.isOpera(wd));
-        Assertions.assertFalse(WebDriverChecker.isIE(wd));
-        Assertions.assertFalse(WebDriverChecker.isEdgeLegacy(wd));
-        Assertions.assertFalse(WebDriverChecker.isFirefoxLegacy(wd));
+        //Assertions.assertFalse(WebDriverChecker.isChrome(driver));
+        //Assertions.assertFalse(WebDriverChecker.isSafari(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
+        Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isOpera(driver));
+        Assertions.assertFalse(WebDriverChecker.isIE(driver));
+        Assertions.assertFalse(WebDriverChecker.isEdgeLegacy(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefoxLegacy(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isPCBrowser(wd));
-        //Assertions.assertFalse(WebDriverChecker.isPCNative(wd));
+        Assertions.assertFalse(WebDriverChecker.isPCBrowser(driver));
+        //Assertions.assertFalse(WebDriverChecker.isPCNative(driver));
 
-        //Assertions.assertFalse(WebDriverChecker.isMacOSNative(wd));
-        //Assertions.assertFalse(WebDriverChecker.isWindowsNative(wd));
+        //Assertions.assertFalse(WebDriverChecker.isMacOSNative(driver));
+        //Assertions.assertFalse(WebDriverChecker.isWindowsNative(driver));
 
-        Assertions.assertTrue(WebDriverChecker.isLocalServer(wd));
-        Assertions.assertFalse(WebDriverChecker.isRemoteServer(wd));
+        Assertions.assertTrue(WebDriverChecker.isLocalServer(driver));
+        Assertions.assertFalse(WebDriverChecker.isRemoteServer(driver));
 
-        //Assertions.assertFalse(WebDriverChecker.isIOS(wd));
-        //Assertions.assertFalse(WebDriverChecker.isIOSBrowser(wd));
-        //Assertions.assertFalse(WebDriverChecker.isIOSNative(wd));
-        //Assertions.assertFalse(WebDriverChecker.isIOSVirtual(wd));
+        //Assertions.assertFalse(WebDriverChecker.isIOS(driver));
+        //Assertions.assertFalse(WebDriverChecker.isIOSBrowser(driver));
+        //Assertions.assertFalse(WebDriverChecker.isIOSNative(driver));
+        //Assertions.assertFalse(WebDriverChecker.isIOSVirtual(driver));
 
-        //Assertions.assertFalse(WebDriverChecker.isAndroid(wd));
-        //Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(wd));
-        //Assertions.assertFalse(WebDriverChecker.isAndroidNative(wd));
-        //Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(wd));
+        //Assertions.assertFalse(WebDriverChecker.isAndroid(driver));
+        //Assertions.assertFalse(WebDriverChecker.isAndroidBrowser(driver));
+        //Assertions.assertFalse(WebDriverChecker.isAndroidNative(driver));
+        //Assertions.assertFalse(WebDriverChecker.isAndroidVirtual(driver));
 
-        //Assertions.assertFalse(WebDriverChecker.isMobile(wd));
-        //Assertions.assertFalse(WebDriverChecker.isMobileBrowser(wd));
-        //Assertions.assertFalse(WebDriverChecker.isMobileNative(wd));
-        //Assertions.assertFalse(WebDriverChecker.isMobileVirtual(wd));
+        //Assertions.assertFalse(WebDriverChecker.isMobile(driver));
+        //Assertions.assertFalse(WebDriverChecker.isMobileBrowser(driver));
+        //Assertions.assertFalse(WebDriverChecker.isMobileNative(driver));
+        //Assertions.assertFalse(WebDriverChecker.isMobileVirtual(driver));
 
-        Assertions.assertFalse(WebDriverChecker.isLambdaTest(wd));
-        Assertions.assertFalse(WebDriverChecker.isBrowserStack(wd));
-        Assertions.assertFalse(WebDriverChecker.isSauceLabs(wd));
-        Assertions.assertFalse(WebDriverChecker.isTestingBot(wd));
+        Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
+        Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
+        Assertions.assertFalse(WebDriverChecker.isSauceLabs(driver));
+        Assertions.assertFalse(WebDriverChecker.isTestingBot(driver));
 
-        wd.quit();
-        Assertions.assertFalse(WebDriverChecker.isAlive(wd));
+        driver.quit();
+        Assertions.assertFalse(WebDriverChecker.isAlive(driver));
     }
 }
