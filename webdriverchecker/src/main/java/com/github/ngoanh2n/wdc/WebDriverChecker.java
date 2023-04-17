@@ -37,777 +37,408 @@ public abstract class WebDriverChecker {
     /**
      * Checks whether {@linkplain WebDriver} on macOS.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's macOS.
      */
-    public static boolean isMacOS() {
-        return is(new MacOS());
+    public static boolean isMacOS(WebDriver... driver) {
+        return is(new MacOS(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} on Linux.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's Linux.
      */
-    public static boolean isLinux() {
-        return is(new Linux());
+    public static boolean isLinux(WebDriver... driver) {
+        return is(new Linux(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} on Windows.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's Windows.
      */
-    public static boolean isWindows() {
-        return is(new Windows());
+    public static boolean isWindows(WebDriver... driver) {
+        return is(new Windows(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} on any a PC platform
      * (a browser or native app on macOS, Linux or Windows).
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's PC platform.
      */
-    public static boolean isPC() {
-        return is(new PC());
+    public static boolean isPC(WebDriver... driver) {
+        return is(new PC(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} on iOS.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's iOS.
      */
-    public static boolean isIOS() {
-        return is(new IOS());
+    public static boolean isIOS(WebDriver... driver) {
+        return is(new IOS(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} on Android.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's Android.
      */
-    public static boolean isAndroid() {
-        return is(new Android());
+    public static boolean isAndroid(WebDriver... driver) {
+        return is(new Android(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} on iOS or Android.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's iOS or Android.
      */
-    public static boolean isMobile() {
-        return is(new Mobile());
+    public static boolean isMobile(WebDriver... driver) {
+        return is(new Mobile(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is alive.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's alive.
      */
-    public static boolean isAlive() {
-        return is(new Alive(true));
+    public static boolean isAlive(WebDriver... driver) {
+        return is(new Alive(true), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running locally.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running locally.
      */
-    public static boolean isLocal() {
-        return is(new Local());
+    public static boolean isLocal(WebDriver... driver) {
+        return is(new Local(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running remotely.
      * Client is connecting to cloud (BrowserStack, SauceLabs...), Selenium Grid, Appium Server.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running remotely.
      */
-    public static boolean isRemote() {
-        return is(new Remote());
+    public static boolean isRemote(WebDriver... driver) {
+        return is(new Remote(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running in local Docker.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running in local Docker.
      */
-    public static boolean isDocker() {
-        return is(new Docker());
+    public static boolean isDocker(WebDriver... driver) {
+        return is(new Docker(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for a browser.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a browser.
      */
-    public static boolean isBrowser() {
-        return is(new Browser());
+    public static boolean isBrowser(WebDriver... driver) {
+        return is(new Browser(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for native app.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a native app.
      */
-    public static boolean isNative() {
-        return is(new Native());
+    public static boolean isNative(WebDriver... driver) {
+        return is(new Native(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for Chrome browser
      * on any platform (Chrome on macOS, Linux, Windows, Android).
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's Chrome browser.
      */
-    public static boolean isChrome() {
-        return is(new Chrome());
+    public static boolean isChrome(WebDriver... driver) {
+        return is(new Chrome(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for Safari browser
      * on any platform (Safari on macOS, iOS).
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's Safari browser.
      */
-    public static boolean isSafari() {
-        return is(new Safari());
+    public static boolean isSafari(WebDriver... driver) {
+        return is(new Safari(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for Firefox browser
      * on any platform (Firefox on macOS, Linux, Windows).
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's Firefox browser.
      */
-    public static boolean isFirefox() {
-        return is(new Firefox());
+    public static boolean isFirefox(WebDriver... driver) {
+        return is(new Firefox(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for Edge browser
      * on any platform (Edge on macOS, Linux, Windows).
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's Edge browser.
      */
-    public static boolean isEdge() {
-        return is(new Edge());
+    public static boolean isEdge(WebDriver... driver) {
+        return is(new Edge(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for Opera browser
      * on any platform (Opera on macOS, Linux, Windows).
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's Opera browser.
      */
-    public static boolean isOpera() {
-        return is(new Opera());
+    public static boolean isOpera(WebDriver... driver) {
+        return is(new Opera(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for IE browser.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's IE browser.
      */
-    public static boolean isIE() {
-        return is(new IE());
+    public static boolean isIE(WebDriver... driver) {
+        return is(new IE(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for legacy {@code Edge} (Edge HTML) browser.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's legacy Edge browser.
      */
-    public static boolean isEdgeLegacy() {
-        return is(new LegacyEdge());
+    public static boolean isEdgeLegacy(WebDriver... driver) {
+        return is(new LegacyEdge(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for legacy {@code Firefox} (lower than version 48) browser.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's legacy Firefox browser.
      */
-    public static boolean isFirefoxLegacy() {
-        return is(new LegacyFirefox());
+    public static boolean isFirefoxLegacy(WebDriver... driver) {
+        return is(new LegacyFirefox(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for a browser on macOS, Linux or Windows.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a browser on macOS, Linux or Windows.
      */
-    public static boolean isPCBrowser() {
-        return is(new PCBrowser());
+    public static boolean isPCBrowser(WebDriver... driver) {
+        return is(new PCBrowser(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for a native app on macOS or Windows.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a native app on macOS or Windows.
      */
-    public static boolean isPCNative() {
-        return is(new PCNative());
+    public static boolean isPCNative(WebDriver... driver) {
+        return is(new PCNative(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for native app on macOS.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a native app on macOS.
      */
-    public static boolean isMacOSNative() {
-        return is(new MacOSNative());
+    public static boolean isMacOSNative(WebDriver... driver) {
+        return is(new MacOSNative(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for native app on Windows.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a native app on Windows.
      */
-    public static boolean isWindowsNative() {
-        return is(new WindowsNative());
+    public static boolean isWindowsNative(WebDriver... driver) {
+        return is(new WindowsNative(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is connecting to a local server.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's connecting to a local server.
      */
-    public static boolean isLocalServer() {
-        return is(new LocalServer());
+    public static boolean isLocalServer(WebDriver... driver) {
+        return is(new LocalServer(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is connecting to a remote server.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's connecting to a remote server.
      */
-    public static boolean isRemoteServer() {
-        return is(new RemoteServer());
+    public static boolean isRemoteServer(WebDriver... driver) {
+        return is(new RemoteServer(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for a browser on iOS.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a browser on iOS.
      */
-    public static boolean isIOSBrowser() {
-        return is(new IOSBrowser());
+    public static boolean isIOSBrowser(WebDriver... driver) {
+        return is(new IOSBrowser(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for native app on iOS.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a native app on iOS.
      */
-    public static boolean isIOSNative() {
-        return is(new IOSNative());
+    public static boolean isIOSNative(WebDriver... driver) {
+        return is(new IOSNative(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running on iOS simulator.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running on iOS virtual device.
      */
-    public static boolean isIOSVirtual() {
-        return is(new IOSVirtual());
+    public static boolean isIOSVirtual(WebDriver... driver) {
+        return is(new IOSVirtual(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for a browser on Android.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a browser on Android.
      */
-    public static boolean isAndroidBrowser() {
-        return is(new AndroidBrowser());
+    public static boolean isAndroidBrowser(WebDriver... driver) {
+        return is(new AndroidBrowser(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for native app on Android.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a native app on Android.
      */
-    public static boolean isAndroidNative() {
-        return is(new AndroidNative());
+    public static boolean isAndroidNative(WebDriver... driver) {
+        return is(new AndroidNative(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running on Android emulator.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running on Android virtual device.
      */
-    public static boolean isAndroidVirtual() {
-        return is(new AndroidVirtual());
+    public static boolean isAndroidVirtual(WebDriver... driver) {
+        return is(new AndroidVirtual(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for a browser on iOS or Android.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a browser on iOS or Android.
      */
-    public static boolean isMobileBrowser() {
-        return is(new MobileBrowser());
+    public static boolean isMobileBrowser(WebDriver... driver) {
+        return is(new MobileBrowser(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} for native app on iOS or Android.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's a native app on iOS or Android.
      */
-    public static boolean isMobileNative() {
-        return is(new MobileNative());
+    public static boolean isMobileNative(WebDriver... driver) {
+        return is(new MobileNative(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running on iOS simulator or Android emulator.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running on mobile virtual device.
      */
-    public static boolean isMobileVirtual() {
-        return is(new MobileVirtual());
+    public static boolean isMobileVirtual(WebDriver... driver) {
+        return is(new MobileVirtual(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running on LambdaTest.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running on LambdaTest.
      */
-    public static boolean isLambdaTest() {
-        return is(new LambdaTest());
+    public static boolean isLambdaTest(WebDriver... driver) {
+        return is(new LambdaTest(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running on BrowserStack.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running on BrowserStack.
      */
-    public static boolean isBrowserStack() {
-        return is(new BrowserStack());
+    public static boolean isBrowserStack(WebDriver... driver) {
+        return is(new BrowserStack(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running on SauceLabs.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running on SauceLabs.
      */
-    public static boolean isSauceLabs() {
-        return is(new SauceLabs());
+    public static boolean isSauceLabs(WebDriver... driver) {
+        return is(new SauceLabs(), driver);
     }
 
     /**
      * Checks whether {@linkplain WebDriver} is running on TestingBot.
      *
+     * @param driver The current {@linkplain WebDriver}.
      * @return true if it's running on TestingBot.
      */
-    public static boolean isTestingBot() {
-        return is(new TestingBot());
-    }
-
-    //-------------------------------------------------------------------------------//
-
-    /**
-     * Checks whether {@linkplain WebDriver} on macOS.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's macOS.
-     */
-    public static boolean isMacOS(WebDriver wd) {
-        return is(new MacOS(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} on Linux.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's Linux.
-     */
-    public static boolean isLinux(WebDriver wd) {
-        return is(new Linux(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} on Windows.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's Windows.
-     */
-    public static boolean isWindows(WebDriver wd) {
-        return is(new Windows(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} on any a PC platform
-     * (a browser or native app on macOS, Linux or Windows).
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's PC platform.
-     */
-    public static boolean isPC(WebDriver wd) {
-        return is(new PC(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} on iOS.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's iOS.
-     */
-    public static boolean isIOS(WebDriver wd) {
-        return is(new IOS(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} on Android.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's Android.
-     */
-    public static boolean isAndroid(WebDriver wd) {
-        return is(new Android(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} on iOS or Android.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's iOS or Android.
-     */
-    public static boolean isMobile(WebDriver wd) {
-        return is(new Mobile(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is alive.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's alive.
-     */
-    public static boolean isAlive(WebDriver wd) {
-        return is(new Alive(true), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running locally.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running locally.
-     */
-    public static boolean isLocal(WebDriver wd) {
-        return is(new Local(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running remotely.
-     * Client is connecting to cloud (BrowserStack, SauceLabs...), Selenium Grid, Appium Server.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running remotely.
-     */
-    public static boolean isRemote(WebDriver wd) {
-        return is(new Remote(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running in local Docker.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running in local Docker.
-     */
-    public static boolean isDocker(WebDriver wd) {
-        return is(new Docker(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for a browser.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a browser.
-     */
-    public static boolean isBrowser(WebDriver wd) {
-        return is(new Browser(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for native app.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a native app.
-     */
-    public static boolean isNative(WebDriver wd) {
-        return is(new Native(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for Chrome browser
-     * on any platform (Chrome on macOS, Linux, Windows, Android).
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's Chrome browser.
-     */
-    public static boolean isChrome(WebDriver wd) {
-        return is(new Chrome(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for Safari browser
-     * on any platform (Safari on macOS, iOS).
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's Safari browser.
-     */
-    public static boolean isSafari(WebDriver wd) {
-        return is(new Safari(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for Firefox browser
-     * on any platform (Firefox on macOS, Linux, Windows).
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's Firefox browser.
-     */
-    public static boolean isFirefox(WebDriver wd) {
-        return is(new Firefox(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for Edge browser
-     * on any platform (Edge on macOS, Linux, Windows).
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's Edge browser.
-     */
-    public static boolean isEdge(WebDriver wd) {
-        return is(new Edge(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for Opera browser
-     * on any platform (Opera on macOS, Linux, Windows).
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's Opera browser.
-     */
-    public static boolean isOpera(WebDriver wd) {
-        return is(new Opera(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for IE browser.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's IE browser.
-     */
-    public static boolean isIE(WebDriver wd) {
-        return is(new IE(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for legacy {@code Edge} (Edge HTML) browser.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's legacy Edge browser.
-     */
-    public static boolean isEdgeLegacy(WebDriver wd) {
-        return is(new LegacyEdge(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for legacy {@code Firefox} (lower than version 48) browser.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's legacy Firefox browser.
-     */
-    public static boolean isFirefoxLegacy(WebDriver wd) {
-        return is(new LegacyFirefox(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for a browser on macOS, Linux or Windows.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a browser on macOS, Linux or Windows.
-     */
-    public static boolean isPCBrowser(WebDriver wd) {
-        return is(new PCBrowser(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for a native app on macOS or Windows.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a native app on macOS or Windows.
-     */
-    public static boolean isPCNative(WebDriver wd) {
-        return is(new PCNative(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for native app on macOS.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a native app on macOS.
-     */
-    public static boolean isMacOSNative(WebDriver wd) {
-        return is(new MacOSNative(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for native app on Windows.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a native app on Windows.
-     */
-    public static boolean isWindowsNative(WebDriver wd) {
-        return is(new WindowsNative(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is connecting to a local server.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's connecting to a local server.
-     */
-    public static boolean isLocalServer(WebDriver wd) {
-        return is(new LocalServer(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is connecting to a remote server.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's connecting to a remote server.
-     */
-    public static boolean isRemoteServer(WebDriver wd) {
-        return is(new RemoteServer(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for a browser on iOS.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a browser on iOS.
-     */
-    public static boolean isIOSBrowser(WebDriver wd) {
-        return is(new IOSBrowser(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for native app on iOS.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a native app on iOS.
-     */
-    public static boolean isIOSNative(WebDriver wd) {
-        return is(new IOSNative(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running on iOS simulator.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running on iOS virtual device.
-     */
-    public static boolean isIOSVirtual(WebDriver wd) {
-        return is(new IOSVirtual(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for a browser on Android.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a browser on Android.
-     */
-    public static boolean isAndroidBrowser(WebDriver wd) {
-        return is(new AndroidBrowser(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for native app on Android.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a native app on Android.
-     */
-    public static boolean isAndroidNative(WebDriver wd) {
-        return is(new AndroidNative(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running on Android emulator.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running on Android virtual device.
-     */
-    public static boolean isAndroidVirtual(WebDriver wd) {
-        return is(new AndroidVirtual(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for a browser on iOS or Android.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a browser on iOS or Android.
-     */
-    public static boolean isMobileBrowser(WebDriver wd) {
-        return is(new MobileBrowser(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} for native app on iOS or Android.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's a native app on iOS or Android.
-     */
-    public static boolean isMobileNative(WebDriver wd) {
-        return is(new MobileNative(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running on iOS simulator or Android emulator.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running on mobile virtual device.
-     */
-    public static boolean isMobileVirtual(WebDriver wd) {
-        return is(new MobileVirtual(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running on LambdaTest.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running on LambdaTest.
-     */
-    public static boolean isLambdaTest(WebDriver wd) {
-        return is(new LambdaTest(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running on BrowserStack.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running on BrowserStack.
-     */
-    public static boolean isBrowserStack(WebDriver wd) {
-        return is(new BrowserStack(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running on SauceLabs.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running on SauceLabs.
-     */
-    public static boolean isSauceLabs(WebDriver wd) {
-        return is(new SauceLabs(), wd);
-    }
-
-    /**
-     * Checks whether {@linkplain WebDriver} is running on TestingBot.
-     *
-     * @param wd The current {@linkplain WebDriver}.
-     * @return true if it's running on TestingBot.
-     */
-    public static boolean isTestingBot(WebDriver wd) {
-        return is(new TestingBot(), wd);
+    public static boolean isTestingBot(WebDriver... driver) {
+        return is(new TestingBot(), driver);
     }
 
     //-------------------------------------------------------------------------------//
