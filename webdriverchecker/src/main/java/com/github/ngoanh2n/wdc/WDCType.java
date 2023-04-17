@@ -1,6 +1,7 @@
 package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.RuntimeError;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CommandExecutor;
 import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.TracedCommandExecutor;
@@ -20,50 +21,50 @@ import java.util.regex.Pattern;
 class WDCType {
     static class MacOS extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getPlatformName(args).equals("mac");
+        protected boolean check(WebDriver... driver) {
+            return getPlatformName(driver).equals("mac");
         }
     }
 
     static class Linux extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getPlatformName(args).equals("linux");
+        protected boolean check(WebDriver... driver) {
+            return getPlatformName(driver).equals("linux");
         }
     }
 
     static class Windows extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getPlatformName(args).equals("windows");
+        protected boolean check(WebDriver... driver) {
+            return getPlatformName(driver).equals("windows");
         }
     }
 
     static class PC extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new MacOS(), args) || is(new Linux(), args) || is(new Windows(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new MacOS(), driver) || is(new Linux(), driver) || is(new Windows(), driver);
         }
     }
 
     static class IOS extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getPlatformName(args).equals("ios");
+        protected boolean check(WebDriver... driver) {
+            return getPlatformName(driver).equals("ios");
         }
     }
 
     static class Android extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getPlatformName(args).equals("android");
+        protected boolean check(WebDriver... driver) {
+            return getPlatformName(driver).equals("android");
         }
     }
 
     static class Mobile extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new IOS(), args) || is(new Android(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new IOS(), driver) || is(new Android(), driver);
         }
     }
 
@@ -81,9 +82,9 @@ class WDCType {
         }
 
         @Override
-        protected boolean check(Object... args) {
+        protected boolean check(WebDriver... driver) {
             try {
-                return getWD(args).getSessionId() != null;
+                return getWD(driver).getSessionId() != null;
             } catch (RuntimeError exception) {
                 if (directed) {
                     return false;
@@ -104,8 +105,8 @@ class WDCType {
         }
 
         @Override
-        protected boolean check(Object... args) {
-            host = host == null ? getServerURL(args).getHost() : host;
+        protected boolean check(WebDriver... driver) {
+            host = host == null ? getServerURL(driver).getHost() : host;
             try {
                 InetAddress address = InetAddress.getByName(host);
                 if (address.isAnyLocalAddress() || address.isLoopbackAddress()) {
@@ -120,17 +121,17 @@ class WDCType {
 
     static class Remote extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            CommandExecutor ce = getWD(args).getCommandExecutor();
+        protected boolean check(WebDriver... driver) {
+            CommandExecutor ce = getWD(driver).getCommandExecutor();
             return !(ce instanceof DriverCommandExecutor);
         }
     }
 
     static class Docker extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            if (isRunning() && is(new Local(), args)) {
-                String regex = String.format("^(map.*)(0.0.0.0 %s)(.*)$", getServerURL(args).getPort());
+        protected boolean check(WebDriver... driver) {
+            if (isRunning() && is(new Local(), driver)) {
+                String regex = String.format("^(map.*)(0.0.0.0 %s)(.*)$", getServerURL(driver).getPort());
                 String[] outputs = runShell("docker inspect -f {{.NetworkSettings.Ports}} $(docker ps -aq)");
 
                 for (String output : outputs) {
@@ -140,7 +141,7 @@ class WDCType {
 
                         if (matcher.matches()) {
                             String host = matcher.group(2).split("\\s+")[0];
-                            return is(new Local(host), args);
+                            return is(new Local(host), driver);
                         }
                     }
                 }
@@ -159,20 +160,20 @@ class WDCType {
 
     static class Browser extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return !getBrowserName(args).isEmpty();
+        protected boolean check(WebDriver... driver) {
+            return !getBrowserName(driver).isEmpty();
         }
     }
 
     static class Native extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            if (!getApp(args).isEmpty()) {
+        protected boolean check(WebDriver... driver) {
+            if (!getApp(driver).isEmpty()) {
                 return true;
             }
-            if (!getAppPackage(args).isEmpty()) {
-                if (is(new Android(), args)) {
-                    return !getAppPackage(args).equals("com.android.chrome");
+            if (!getAppPackage(driver).isEmpty()) {
+                if (is(new Android(), driver)) {
+                    return !getAppPackage(driver).equals("com.android.chrome");
                 }
                 return true;
             }
@@ -184,57 +185,57 @@ class WDCType {
 
     static class Chrome extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getBrowserName(args).equals("chrome");
+        protected boolean check(WebDriver... driver) {
+            return getBrowserName(driver).equals("chrome");
         }
     }
 
     static class Safari extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getBrowserName(args).equals("safari");
+        protected boolean check(WebDriver... driver) {
+            return getBrowserName(driver).equals("safari");
         }
     }
 
     static class Firefox extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getBrowserName(args).equals("firefox");
+        protected boolean check(WebDriver... driver) {
+            return getBrowserName(driver).equals("firefox");
         }
     }
 
     static class Edge extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getBrowserName(args).equals("msedge");
+        protected boolean check(WebDriver... driver) {
+            return getBrowserName(driver).equals("msedge");
         }
     }
 
     static class Opera extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getBrowserName(args).equals("opera");
+        protected boolean check(WebDriver... driver) {
+            return getBrowserName(driver).equals("opera");
         }
     }
 
     static class IE extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getBrowserName(args).equals("internetexplorer");
+        protected boolean check(WebDriver... driver) {
+            return getBrowserName(driver).equals("internetexplorer");
         }
     }
 
     static class LegacyEdge extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getBrowserName(args).equals("microsoftedge");
+        protected boolean check(WebDriver... driver) {
+            return getBrowserName(driver).equals("microsoftedge");
         }
     }
 
     static class LegacyFirefox extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return getBrowserVersion(args) < 48 && is(new Firefox(), args);
+        protected boolean check(WebDriver... driver) {
+            return getBrowserVersion(driver) < 48 && is(new Firefox(), driver);
         }
     }
 
@@ -242,15 +243,15 @@ class WDCType {
 
     static class PCBrowser extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new PC(), args) && is(new Browser(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new PC(), driver) && is(new Browser(), driver);
         }
     }
 
     static class PCNative extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new PC(), args) && is(new Native(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new PC(), driver) && is(new Native(), driver);
         }
     }
 
@@ -258,15 +259,15 @@ class WDCType {
 
     static class MacOSNative extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new MacOS(), args) && is(new Native(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new MacOS(), driver) && is(new Native(), driver);
         }
     }
 
     static class WindowsNative extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new Windows(), args) && is(new Native(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new Windows(), driver) && is(new Native(), driver);
         }
     }
 
@@ -274,9 +275,9 @@ class WDCType {
 
     static class LocalServer extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            if (is(new Local(), args)) {
-                CommandExecutor ce = getWD(args).getCommandExecutor();
+        protected boolean check(WebDriver... driver) {
+            if (is(new Local(), driver)) {
+                CommandExecutor ce = getWD(driver).getCommandExecutor();
                 if (ce instanceof DriverCommandExecutor) {
                     return true;
                 }
@@ -289,9 +290,9 @@ class WDCType {
 
     static class RemoteServer extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            if (!is(new Local(), args)) {
-                CommandExecutor ce = getWD(args).getCommandExecutor();
+        protected boolean check(WebDriver... driver) {
+            if (!is(new Local(), driver)) {
+                CommandExecutor ce = getWD(driver).getCommandExecutor();
                 return ce instanceof HttpCommandExecutor || ce instanceof TracedCommandExecutor;
             }
             return false;
@@ -302,22 +303,22 @@ class WDCType {
 
     static class IOSBrowser extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new IOS(), args) && is(new Browser(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new IOS(), driver) && is(new Browser(), driver);
         }
     }
 
     static class IOSNative extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new IOS(), args) && is(new Native(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new IOS(), driver) && is(new Native(), driver);
         }
     }
 
     static class IOSVirtual extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new IOS(), args) && is(new MobileVirtual(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new IOS(), driver) && is(new MobileVirtual(), driver);
         }
     }
 
@@ -325,22 +326,22 @@ class WDCType {
 
     static class AndroidBrowser extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new Android(), args) && is(new Browser(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new Android(), driver) && is(new Browser(), driver);
         }
     }
 
     static class AndroidNative extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new Android(), args) && is(new Native(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new Android(), driver) && is(new Native(), driver);
         }
     }
 
     static class AndroidVirtual extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new Android(), args) && is(new MobileVirtual(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new Android(), driver) && is(new MobileVirtual(), driver);
         }
     }
 
@@ -348,34 +349,34 @@ class WDCType {
 
     static class MobileBrowser extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new Mobile(), args) && is(new Browser(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new Mobile(), driver) && is(new Browser(), driver);
         }
     }
 
     static class MobileNative extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            return is(new Mobile(), args) && is(new Native(), args);
+        protected boolean check(WebDriver... driver) {
+            return is(new Mobile(), driver) && is(new Native(), driver);
         }
     }
 
     static class MobileVirtual extends WebDriverChecker {
         @Override
-        protected boolean check(Object... args) {
-            if (is(new Mobile(), args)) {
-                String deviceId = getDeviceId(args);
-                String[] connectedDeviceIds = getConnectedVDIds(args);
+        protected boolean check(WebDriver... driver) {
+            if (is(new Mobile(), driver)) {
+                String deviceId = getDeviceId(driver);
+                String[] connectedDeviceIds = getConnectedVDIds(driver);
                 return Arrays.asList(connectedDeviceIds).contains(deviceId);
             }
             return false;
         }
 
-        protected String[] getConnectedVDIds(Object... args) {
-            String command = is(new Android(), args)
+        protected String[] getConnectedVDIds(WebDriver... driver) {
+            String command = is(new Android(), driver)
                     ? "adb devices"
                     : "xcrun simctl list";
-            String regex = is(new Android(), args)
+            String regex = is(new Android(), driver)
                     ? "^(emulator-\\d{4})(.*)$"
                     : "^(.*) \\((.*)\\) \\((Booted)\\)$";
 
@@ -388,7 +389,7 @@ class WDCType {
                     Matcher matcher = pattern.matcher(output.trim());
 
                     if (matcher.matches()) {
-                        int position = is(new Android(), args) ? 1 : 2;
+                        int position = is(new Android(), driver) ? 1 : 2;
                         String deviceId = matcher.group(position);
                         deviceIds.add(deviceId);
                     }
@@ -433,9 +434,9 @@ class WDCType {
         abstract String regex();
 
         @Override
-        protected boolean check(Object... args) {
-            if (is(new Remote(), args)) {
-                URL serverURL = getServerURL(args);
+        protected boolean check(WebDriver... driver) {
+            if (is(new Remote(), driver)) {
+                URL serverURL = getServerURL(driver);
                 return serverURL.getHost().matches(regex());
             }
             return false;

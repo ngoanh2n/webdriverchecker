@@ -843,19 +843,14 @@ public abstract class WebDriverChecker {
     /**
      * Gets current {@linkplain WebDriver}.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty.
      * @return The current {@linkplain WebDriver}.
      */
-    protected static RemoteWebDriver getWD(Object... args) {
-        if (args.length != 0) {
-            Object value = args[0];
+    protected static RemoteWebDriver getWD(WebDriver... driver) {
+        if (driver.length != 0) {
+            Object value = driver[0];
             if (value == null) {
                 String msg = "WebDriver is null";
-                log.error(msg);
-                throw new RuntimeError(msg);
-            }
-            if (!(value instanceof WebDriver)) {
-                String msg = "WebDriver is invalid";
                 log.error(msg);
                 throw new RuntimeError(msg);
             }
@@ -887,19 +882,23 @@ public abstract class WebDriverChecker {
     /**
      * Checks logic of {@code WebDriverChecker} implementation.
      *
-     * @param wdc  A {@code WebDriverChecker} implementation.
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty.
+     * @param wdc    A {@code WebDriverChecker} implementation.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty.
      * @return Boolean result.
      */
-    protected static boolean is(WebDriverChecker wdc, Object... args) {
+    protected static boolean is(WebDriverChecker wdc, WebDriver... driver) {
         if (!(wdc instanceof Alive)) {
-            if (!is(new Alive(), args)) {
+            if (!is(new Alive(), driver)) {
                 String msg = "WebDriver is null or quit";
                 log.error(msg);
                 throw new RuntimeError(msg);
             }
         }
-        return wdc.check(args);
+        if (driver.length == 0) {
+            return wdc.check();
+        } else {
+            return wdc.check(driver[0]);
+        }
     }
 
     //-------------------------------------------------------------------------------//
@@ -912,16 +911,16 @@ public abstract class WebDriverChecker {
     /**
      * Gets platform name of {@linkplain WebDriver} is running on.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Platform name.
      */
-    protected String getPlatformName(Object... args) {
-        String value = getCapability("platformName", args);
+    protected String getPlatformName(WebDriver... driver) {
+        String value = getCapability("platformName", driver);
         Platform platform = Platform.valueOf(value);
 
         if (platform.equals(Platform.ANY)) {
-            value = getCapability("platform", args);
+            value = getCapability("platform", driver);
             try {
                 platform = Platform.valueOf(value);
             } catch (IllegalArgumentException ignored) {
@@ -938,26 +937,26 @@ public abstract class WebDriverChecker {
     /**
      * Gets browser name of {@linkplain WebDriver} is running on.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Browser name.
      */
-    protected String getBrowserName(Object... args) {
-        String value = getCapability("browserName", args);
+    protected String getBrowserName(WebDriver... driver) {
+        String value = getCapability("browserName", driver);
         return value.replaceAll("\\s+", "").toLowerCase();
     }
 
     /**
      * Gets browser version of {@linkplain WebDriver} is running on.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Browser version.
      */
-    protected double getBrowserVersion(Object... args) {
-        String value = getCapability("browserVersion", args);
+    protected double getBrowserVersion(WebDriver... driver) {
+        String value = getCapability("browserVersion", driver);
         if (value.isEmpty()) {
-            value = getCapability("version", args);
+            value = getCapability("version", driver);
         }
         if (value.isEmpty()) {
             return 0;
@@ -968,40 +967,40 @@ public abstract class WebDriverChecker {
     /**
      * Gets app name or path of {@linkplain WebDriver} is running on.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return App name or path.
      */
-    protected String getApp(Object... args) {
-        String value = getCapability("app", args);
+    protected String getApp(WebDriver... driver) {
+        String value = getCapability("app", driver);
         return value.toLowerCase();
     }
 
     /**
      * Gets app package of {@linkplain WebDriver} is running on.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return App package.
      */
-    protected String getAppPackage(Object... args) {
-        String value = getCapability("appPackage", args);
+    protected String getAppPackage(WebDriver... driver) {
+        String value = getCapability("appPackage", driver);
         return value.toLowerCase();
     }
 
     /**
      * Gets device ID of {@linkplain WebDriver} is running on.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Device ID.
      */
-    protected String getDeviceId(Object... args) {
-        if (is(new IOS(), args)) {
-            return getCapability("appium:udid", args);
+    protected String getDeviceId(WebDriver... driver) {
+        if (is(new IOS(), driver)) {
+            return getCapability("appium:udid", driver);
         }
-        if (is(new Android(), args)) {
-            return getCapability("appium:deviceUDID", args);
+        if (is(new Android(), driver)) {
+            return getCapability("appium:deviceUDID", driver);
         }
         return "";
     }
@@ -1009,12 +1008,12 @@ public abstract class WebDriverChecker {
     /**
      * Gets server URL of {@linkplain WebDriver} is running on.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Server URL.
      */
-    protected URL getServerURL(Object... args) {
-        CommandExecutor ce = getWD(args).getCommandExecutor();
+    protected URL getServerURL(WebDriver... driver) {
+        CommandExecutor ce = getWD(driver).getCommandExecutor();
         if (ce instanceof TracedCommandExecutor) {
             ce = Commons.readField(ce, "delegate");
         }
@@ -1024,37 +1023,37 @@ public abstract class WebDriverChecker {
     /**
      * Gets a capability value of {@linkplain WebDriver} is running on.
      *
-     * @param name The capability to return.
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param name   The capability to return.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Capability value.
      */
-    protected String getCapability(String name, Object... args) {
-        Object value = getCapabilities(args).getCapability(name);
+    protected String getCapability(String name, WebDriver... driver) {
+        Object value = getCapabilities(driver).getCapability(name);
         return String.valueOf(Optional.ofNullable(value).orElse(""));
     }
 
     /**
      * Gets {@linkplain Capabilities} of {@linkplain WebDriver} is running on.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return {@linkplain Capabilities} object.
      */
-    protected Capabilities getCapabilities(Object... args) {
-        WebDriver wd = getWD(args);
+    protected Capabilities getCapabilities(WebDriver... driver) {
+        WebDriver wd = getWD(driver);
         return ((HasCapabilities) wd).getCapabilities();
     }
 
     /**
      * Gets {@linkplain CommandCodec} of {@linkplain WebDriver}.
      *
-     * @param args {@linkplain WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return {@linkplain CommandCodec} object.
      */
-    protected CommandCodec<HttpRequest> getCommandCodec(Object... args) {
-        CommandExecutor ce = getWD(args).getCommandExecutor();
+    protected CommandCodec<HttpRequest> getCommandCodec(WebDriver... driver) {
+        CommandExecutor ce = getWD(driver).getCommandExecutor();
         return Commons.readField(ce, "commandCodec");
     }
 
@@ -1063,17 +1062,17 @@ public abstract class WebDriverChecker {
      *
      * @param command {@linkplain Command} object to send to the server.
      * @param info    {@linkplain CommandInfo} object to provide URL and {@linkplain HttpMethod}.
-     * @param args    {@code WebDriver} for the first argument, and can be empty. <br>
+     * @param driver  {@code WebDriver} for the first argument, and can be empty. <br>
      *                {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return {@linkplain Response} object.
      */
-    protected Response runCommand(Command command, CommandInfo info, Object... args) {
+    protected Response runCommand(Command command, CommandInfo info, WebDriver... driver) {
         String url = Commons.readField(info, "url");
         HttpMethod method = Commons.readField(info, "method");
-        getCommandCodec(args).defineCommand(command.getName(), method, url);
+        getCommandCodec(driver).defineCommand(command.getName(), method, url);
 
         try {
-            return getWD(args).getCommandExecutor().execute(command);
+            return getWD(driver).getCommandExecutor().execute(command);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -1084,9 +1083,9 @@ public abstract class WebDriverChecker {
     /**
      * Checks logic of {@code WebDriverChecker} implementation.
      *
-     * @param args {@code WebDriver} for the first argument, and can be empty. <br>
-     *             {@code WebDriverChecker} doesn't care from the second argument onwards.
+     * @param driver {@code WebDriver} for the first argument, and can be empty. <br>
+     *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Boolean result.
      */
-    protected abstract boolean check(Object... args);
+    protected abstract boolean check(WebDriver... driver);
 }
