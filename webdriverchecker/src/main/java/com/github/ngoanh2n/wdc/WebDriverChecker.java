@@ -29,15 +29,15 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.ServiceLoader.load;
 
 /**
- * Check characteristics and environment for current {@linkplain WebDriver}.
+ * Check characteristics and environment for current {@link WebDriver}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
 public abstract class WebDriverChecker {
     /**
-     * Checks whether {@linkplain WebDriver} on macOS.
+     * Checks whether {@link WebDriver} on macOS.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's macOS.
      */
     public static boolean isMacOS(WebDriver... driver) {
@@ -45,9 +45,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} on Linux.
+     * Checks whether {@link WebDriver} on Linux.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's Linux.
      */
     public static boolean isLinux(WebDriver... driver) {
@@ -55,9 +55,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} on Windows.
+     * Checks whether {@link WebDriver} on Windows.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's Windows.
      */
     public static boolean isWindows(WebDriver... driver) {
@@ -65,10 +65,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} on any a PC platform
+     * Checks whether {@link WebDriver} on any a PC platform
      * (a browser or native app on macOS, Linux or Windows).
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's PC platform.
      */
     public static boolean isPC(WebDriver... driver) {
@@ -76,9 +76,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} on iOS.
+     * Checks whether {@link WebDriver} on iOS.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's iOS.
      */
     public static boolean isIOS(WebDriver... driver) {
@@ -86,9 +86,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} on Android.
+     * Checks whether {@link WebDriver} on Android.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's Android.
      */
     public static boolean isAndroid(WebDriver... driver) {
@@ -96,9 +96,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} on iOS or Android.
+     * Checks whether {@link WebDriver} on iOS or Android.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's iOS or Android.
      */
     public static boolean isMobile(WebDriver... driver) {
@@ -106,9 +106,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is alive.
+     * Checks whether {@link WebDriver} is alive.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's alive.
      */
     public static boolean isAlive(WebDriver... driver) {
@@ -116,9 +116,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running locally.
+     * Checks whether {@link WebDriver} is running locally.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running locally.
      */
     public static boolean isLocal(WebDriver... driver) {
@@ -126,10 +126,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running remotely.
+     * Checks whether {@link WebDriver} is running remotely.
      * Client is connecting to cloud (BrowserStack, SauceLabs...), Selenium Grid, Appium Server.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running remotely.
      */
     public static boolean isRemote(WebDriver... driver) {
@@ -137,9 +137,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running in local Docker.
+     * Checks whether {@link WebDriver} is running in local Docker.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running in local Docker.
      */
     public static boolean isDocker(WebDriver... driver) {
@@ -147,9 +147,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for a browser.
+     * Checks whether {@link WebDriver} for a browser.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a browser.
      */
     public static boolean isBrowser(WebDriver... driver) {
@@ -157,9 +157,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for native app.
+     * Checks whether {@link WebDriver} for native app.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a native app.
      */
     public static boolean isNative(WebDriver... driver) {
@@ -167,10 +167,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for Chrome browser
+     * Checks whether {@link WebDriver} for Chrome browser
      * on any platform (Chrome on macOS, Linux, Windows, Android).
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's Chrome browser.
      */
     public static boolean isChrome(WebDriver... driver) {
@@ -178,10 +178,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for Safari browser
+     * Checks whether {@link WebDriver} for Safari browser
      * on any platform (Safari on macOS, iOS).
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's Safari browser.
      */
     public static boolean isSafari(WebDriver... driver) {
@@ -189,10 +189,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for Firefox browser
+     * Checks whether {@link WebDriver} for Firefox browser
      * on any platform (Firefox on macOS, Linux, Windows).
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's Firefox browser.
      */
     public static boolean isFirefox(WebDriver... driver) {
@@ -200,10 +200,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for Edge browser
+     * Checks whether {@link WebDriver} for Edge browser
      * on any platform (Edge on macOS, Linux, Windows).
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's Edge browser.
      */
     public static boolean isEdge(WebDriver... driver) {
@@ -211,10 +211,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for Opera browser
+     * Checks whether {@link WebDriver} for Opera browser
      * on any platform (Opera on macOS, Linux, Windows).
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's Opera browser.
      */
     public static boolean isOpera(WebDriver... driver) {
@@ -222,9 +222,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for IE browser.
+     * Checks whether {@link WebDriver} for IE browser.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's IE browser.
      */
     public static boolean isIE(WebDriver... driver) {
@@ -232,9 +232,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for legacy {@code Edge} (Edge HTML) browser.
+     * Checks whether {@link WebDriver} for legacy {@code Edge} (Edge HTML) browser.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's legacy Edge browser.
      */
     public static boolean isEdgeLegacy(WebDriver... driver) {
@@ -242,9 +242,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for legacy {@code Firefox} (lower than version 48) browser.
+     * Checks whether {@link WebDriver} for legacy {@code Firefox} (lower than version 48) browser.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's legacy Firefox browser.
      */
     public static boolean isFirefoxLegacy(WebDriver... driver) {
@@ -252,9 +252,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for a browser on macOS, Linux or Windows.
+     * Checks whether {@link WebDriver} for a browser on macOS, Linux or Windows.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a browser on macOS, Linux or Windows.
      */
     public static boolean isPCBrowser(WebDriver... driver) {
@@ -262,9 +262,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for a native app on macOS or Windows.
+     * Checks whether {@link WebDriver} for a native app on macOS or Windows.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a native app on macOS or Windows.
      */
     public static boolean isPCNative(WebDriver... driver) {
@@ -272,9 +272,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for native app on macOS.
+     * Checks whether {@link WebDriver} for native app on macOS.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a native app on macOS.
      */
     public static boolean isMacOSNative(WebDriver... driver) {
@@ -282,9 +282,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for native app on Windows.
+     * Checks whether {@link WebDriver} for native app on Windows.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a native app on Windows.
      */
     public static boolean isWindowsNative(WebDriver... driver) {
@@ -292,9 +292,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is connecting to a local server.
+     * Checks whether {@link WebDriver} is connecting to a local server.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's connecting to a local server.
      */
     public static boolean isLocalServer(WebDriver... driver) {
@@ -302,9 +302,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is connecting to a remote server.
+     * Checks whether {@link WebDriver} is connecting to a remote server.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's connecting to a remote server.
      */
     public static boolean isRemoteServer(WebDriver... driver) {
@@ -312,9 +312,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for a browser on iOS.
+     * Checks whether {@link WebDriver} for a browser on iOS.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a browser on iOS.
      */
     public static boolean isIOSBrowser(WebDriver... driver) {
@@ -322,9 +322,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for native app on iOS.
+     * Checks whether {@link WebDriver} for native app on iOS.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a native app on iOS.
      */
     public static boolean isIOSNative(WebDriver... driver) {
@@ -332,9 +332,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running on iOS simulator.
+     * Checks whether {@link WebDriver} is running on iOS simulator.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running on iOS virtual device.
      */
     public static boolean isIOSVirtual(WebDriver... driver) {
@@ -342,9 +342,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for a browser on Android.
+     * Checks whether {@link WebDriver} for a browser on Android.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a browser on Android.
      */
     public static boolean isAndroidBrowser(WebDriver... driver) {
@@ -352,9 +352,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for native app on Android.
+     * Checks whether {@link WebDriver} for native app on Android.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a native app on Android.
      */
     public static boolean isAndroidNative(WebDriver... driver) {
@@ -362,9 +362,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running on Android emulator.
+     * Checks whether {@link WebDriver} is running on Android emulator.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running on Android virtual device.
      */
     public static boolean isAndroidVirtual(WebDriver... driver) {
@@ -372,9 +372,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for a browser on iOS or Android.
+     * Checks whether {@link WebDriver} for a browser on iOS or Android.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a browser on iOS or Android.
      */
     public static boolean isMobileBrowser(WebDriver... driver) {
@@ -382,9 +382,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} for native app on iOS or Android.
+     * Checks whether {@link WebDriver} for native app on iOS or Android.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's a native app on iOS or Android.
      */
     public static boolean isMobileNative(WebDriver... driver) {
@@ -392,9 +392,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running on iOS simulator or Android emulator.
+     * Checks whether {@link WebDriver} is running on iOS simulator or Android emulator.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running on mobile virtual device.
      */
     public static boolean isMobileVirtual(WebDriver... driver) {
@@ -402,9 +402,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running on LambdaTest.
+     * Checks whether {@link WebDriver} is running on LambdaTest.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running on LambdaTest.
      */
     public static boolean isLambdaTest(WebDriver... driver) {
@@ -412,9 +412,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running on BrowserStack.
+     * Checks whether {@link WebDriver} is running on BrowserStack.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running on BrowserStack.
      */
     public static boolean isBrowserStack(WebDriver... driver) {
@@ -422,9 +422,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running on SauceLabs.
+     * Checks whether {@link WebDriver} is running on SauceLabs.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running on SauceLabs.
      */
     public static boolean isSauceLabs(WebDriver... driver) {
@@ -432,9 +432,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Checks whether {@linkplain WebDriver} is running on TestingBot.
+     * Checks whether {@link WebDriver} is running on TestingBot.
      *
-     * @param driver The current {@linkplain WebDriver}.
+     * @param driver The current {@link WebDriver}.
      * @return true if it's running on TestingBot.
      */
     public static boolean isTestingBot(WebDriver... driver) {
@@ -472,10 +472,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets current {@linkplain WebDriver}.
+     * Gets current {@link WebDriver}.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty.
-     * @return The current {@linkplain WebDriver}.
+     * @param driver {@link WebDriver} for the first argument, and can be empty.
+     * @return The current {@link WebDriver}.
      */
     protected static RemoteWebDriver getWD(WebDriver... driver) {
         if (driver.length != 0) {
@@ -514,7 +514,7 @@ public abstract class WebDriverChecker {
      * Checks logic of {@code WebDriverChecker} implementation.
      *
      * @param wdc    A {@code WebDriverChecker} implementation.
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty.
+     * @param driver {@link WebDriver} for the first argument, and can be empty.
      * @return Boolean result.
      */
     protected static boolean is(WebDriverChecker wdc, WebDriver... driver) {
@@ -540,9 +540,9 @@ public abstract class WebDriverChecker {
     protected WebDriverChecker() { /* No implementation necessary */ }
 
     /**
-     * Gets platform name of {@linkplain WebDriver} is running on.
+     * Gets platform name of {@link WebDriver} is running on.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Platform name.
      */
@@ -566,9 +566,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets browser name of {@linkplain WebDriver} is running on.
+     * Gets browser name of {@link WebDriver} is running on.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Browser name.
      */
@@ -578,9 +578,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets browser version of {@linkplain WebDriver} is running on.
+     * Gets browser version of {@link WebDriver} is running on.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Browser version.
      */
@@ -596,9 +596,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets app name or path of {@linkplain WebDriver} is running on.
+     * Gets app name or path of {@link WebDriver} is running on.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return App name or path.
      */
@@ -608,9 +608,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets app package of {@linkplain WebDriver} is running on.
+     * Gets app package of {@link WebDriver} is running on.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return App package.
      */
@@ -620,9 +620,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets device ID of {@linkplain WebDriver} is running on.
+     * Gets device ID of {@link WebDriver} is running on.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Device ID.
      */
@@ -637,9 +637,9 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets server URL of {@linkplain WebDriver} is running on.
+     * Gets server URL of {@link WebDriver} is running on.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Server URL.
      */
@@ -652,10 +652,10 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets a capability value of {@linkplain WebDriver} is running on.
+     * Gets a capability value of {@link WebDriver} is running on.
      *
      * @param name   The capability to return.
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
      * @return Capability value.
      */
@@ -665,11 +665,11 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets {@linkplain Capabilities} of {@linkplain WebDriver} is running on.
+     * Gets {@link Capabilities} of {@link WebDriver} is running on.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
-     * @return {@linkplain Capabilities} object.
+     * @return {@link Capabilities} object.
      */
     protected Capabilities getCapabilities(WebDriver... driver) {
         WebDriver wd = getWD(driver);
@@ -677,11 +677,11 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Gets {@linkplain CommandCodec} of {@linkplain WebDriver}.
+     * Gets {@link CommandCodec} of {@link WebDriver}.
      *
-     * @param driver {@linkplain WebDriver} for the first argument, and can be empty. <br>
+     * @param driver {@link WebDriver} for the first argument, and can be empty. <br>
      *               {@code WebDriverChecker} doesn't care from the second argument onwards.
-     * @return {@linkplain CommandCodec} object.
+     * @return {@link CommandCodec} object.
      */
     protected CommandCodec<HttpRequest> getCommandCodec(WebDriver... driver) {
         CommandExecutor ce = getWD(driver).getCommandExecutor();
@@ -691,11 +691,11 @@ public abstract class WebDriverChecker {
     /**
      * Runs a Selenium command.
      *
-     * @param command {@linkplain Command} object to send to the server.
-     * @param info    {@linkplain CommandInfo} object to provide URL and {@linkplain HttpMethod}.
+     * @param command {@link Command} object to send to the server.
+     * @param info    {@link CommandInfo} object to provide URL and {@link HttpMethod}.
      * @param driver  {@code WebDriver} for the first argument, and can be empty. <br>
      *                {@code WebDriverChecker} doesn't care from the second argument onwards.
-     * @return {@linkplain Response} object.
+     * @return {@link Response} object.
      */
     protected Response runCommand(Command command, CommandInfo info, WebDriver... driver) {
         String url = Commons.readField(info, "url");

@@ -3,16 +3,16 @@ package com.github.ngoanh2n.wdc;
 import org.openqa.selenium.WebDriver;
 
 /**
- * Interface for using to serve current your {@linkplain WebDriver} to {@linkplain WebDriverChecker}.<br>
- * Therefore, you don't need to pass {@linkplain WebDriver} to the argument of static APIs.<br>
+ * Interface for using to serve current your {@link WebDriver} to {@link WebDriverChecker}.<br>
+ * Therefore, you don't need to pass {@link WebDriver} to the argument of static APIs.<br>
  * <ul>
- *     <li>When not using SPI {@linkplain WebDriverProvider}: <pre>{@code WebDriverChecker.isChrome(driver)}</pre>
- *     <li>When applying SPI {@linkplain WebDriverProvider}: <pre>{@code WebDriverChecker.isChrome()}</pre>
+ *     <li>When not using SPI {@link WebDriverProvider}: <pre>{@code WebDriverChecker.isChrome(driver)}</pre>
+ *     <li>When applying SPI {@link WebDriverProvider}: <pre>{@code WebDriverChecker.isChrome()}</pre>
  * </ul>
  * <p>
  * How to build the service provider:<br>
  * <ul>
- *      <li>1. Create a class that implements SPI {@linkplain WebDriverProvider}
+ *      <li>1. Create a class that implements SPI {@link WebDriverProvider}
  *      <pre>{@code
  *      package com.company.project.impl;
  *
@@ -38,7 +38,7 @@ import org.openqa.selenium.WebDriver;
  */
 public interface WebDriverProvider {
     /**
-     * Provide {@linkplain WebDriver} to {@linkplain WebDriverChecker}.
+     * Provide {@link WebDriver} to {@link WebDriverChecker}.
      *
      * @return WebDriver instance you have set up.
      */

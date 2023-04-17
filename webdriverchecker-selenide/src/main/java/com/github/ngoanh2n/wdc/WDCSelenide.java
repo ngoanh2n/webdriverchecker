@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Provides {@linkplain WebDriver} from {@linkplain WebDriverRunner} to {@linkplain WebDriverChecker}.
+ * Provides {@link WebDriver} from {@link WebDriverRunner} to {@link WebDriverChecker}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
