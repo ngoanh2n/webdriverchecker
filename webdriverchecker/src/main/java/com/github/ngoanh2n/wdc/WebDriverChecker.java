@@ -11,8 +11,6 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.remote.http.HttpMethod;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +24,6 @@ import java.util.ServiceLoader;
 import static com.github.ngoanh2n.wdc.WDCType.Browser;
 import static com.github.ngoanh2n.wdc.WDCType.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static java.util.ServiceLoader.load;
 
 /**
  * Check characteristics and environment for current {@link WebDriver}.
@@ -443,8 +440,6 @@ public abstract class WebDriverChecker {
 
     //-------------------------------------------------------------------------------//
 
-    private static final Logger log = LoggerFactory.getLogger(WebDriverChecker.class);
-
     /**
      * Runs a Shell command.
      *
@@ -474,61 +469,50 @@ public abstract class WebDriverChecker {
     /**
      * Gets current {@link WebDriver}.
      *
-     * @param driver {@link WebDriver} for the first argument, and can be empty.
+     * @param args {@link WebDriver} for the first argument, and can be empty.
      * @return The current {@link WebDriver}.
      */
-    protected static RemoteWebDriver getWD(WebDriver... driver) {
-        if (driver.length != 0) {
-            Object value = driver[0];
-            if (value == null) {
-                String msg = "WebDriver is null";
-                log.error(msg);
-                throw new RuntimeError(msg);
+    protected static RemoteWebDriver getWD(WebDriver... args) {
+        if (args.length != 0) {
+            if (args[0] != null) {
+                return (RemoteWebDriver) args[0];
             }
-            return (RemoteWebDriver) value;
+            throw new RuntimeError("You have passed a nullable WebDriver");
         } else {
-            String wdpName = WebDriverProvider.class.getName();
-            ServiceLoader<WebDriverProvider> serviceLoader = load(WebDriverProvider.class);
+            ServiceLoader<WebDriverProvider> serviceLoader = ServiceLoader.load(WebDriverProvider.class);
             Iterator<WebDriverProvider> serviceLoaders = serviceLoader.iterator();
 
-            if (!serviceLoaders.hasNext()) {
-                String msg = String.format("%s implementation not found", wdpName);
-                log.error(msg);
-                throw new RuntimeError(msg);
-            }
+            if (serviceLoaders.hasNext()) {
+                WebDriverProvider provider = serviceLoaders.next();
+                WebDriver driver = provider.provide();
 
-            WebDriverProvider wdp = serviceLoaders.next();
-            WebDriver wd = wdp.provide();
-
-            if (wd == null | !(is(new Alive(), wd))) {
-                wdpName = wdp.getClass().getName();
-                String msg = String.format("%s provides null", wdpName);
-                log.error(msg);
-                throw new RuntimeError(msg);
+                if (driver == null || !(is(new Alive(), driver))) {
+                    String providerName = provider.getClass().getName();
+                    throw new RuntimeError(providerName + " is providing nullable WebDriver");
+                }
+                return (RemoteWebDriver) serviceLoaders.next().provide();
             }
-            return (RemoteWebDriver) wd;
+            throw new RuntimeError("You have not implemented WebDriverProvider");
         }
     }
 
     /**
      * Checks logic of {@code WebDriverChecker} implementation.
      *
-     * @param wdc    A {@code WebDriverChecker} implementation.
-     * @param driver {@link WebDriver} for the first argument, and can be empty.
+     * @param wdc  A {@code WebDriverChecker} implementation.
+     * @param args {@link WebDriver} for the first argument, and can be empty.
      * @return Boolean result.
      */
-    protected static boolean is(WebDriverChecker wdc, WebDriver... driver) {
+    protected static boolean is(WebDriverChecker wdc, WebDriver... args) {
         if (!(wdc instanceof Alive)) {
-            if (!is(new Alive(), driver)) {
-                String msg = "WebDriver is null or quit";
-                log.error(msg);
-                throw new RuntimeError(msg);
+            if (!is(new Alive(), args)) {
+                throw new RuntimeError("WebDriver is null or quit");
             }
         }
-        if (driver.length == 0) {
+        if (args.length == 0) {
             return wdc.check();
         } else {
-            return wdc.check(driver[0]);
+            return wdc.check(args[0]);
         }
     }
 
