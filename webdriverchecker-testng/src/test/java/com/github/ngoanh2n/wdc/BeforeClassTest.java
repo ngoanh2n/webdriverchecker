@@ -12,18 +12,18 @@ import org.testng.annotations.Test;
 public class BeforeClassTest extends WDCTestNGTest {
     @BeforeClass
     void beforeClass() {
-        Assert.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
+        Assert.assertThrows(RuntimeError.class, WebDriverChecker::getDriver);
         driver = createWebDriver();
-        Assert.assertNotNull(WebDriverChecker.getWD());
+        Assert.assertNotNull(WebDriverChecker.getDriver());
     }
 
     @BeforeMethod
     void beforeMethod() {
-        Assert.assertNotNull(WebDriverChecker.getWD());
+        Assert.assertNotNull(WebDriverChecker.getDriver());
     }
 
     @Test
     void test() {
-        Assert.assertNotNull(WebDriverChecker.getWD());
+        Assert.assertNotNull(WebDriverChecker.getDriver());
     }
 }

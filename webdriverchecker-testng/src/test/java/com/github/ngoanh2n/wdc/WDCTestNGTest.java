@@ -16,14 +16,14 @@ public abstract class WDCTestNGTest {
 
     @AfterMethod
     void afterMethod() {
-        Assert.assertNotNull(WebDriverChecker.getWD());
+        Assert.assertNotNull(WebDriverChecker.getDriver());
     }
 
     @AfterClass
     void afterClass() {
-        Assert.assertNotNull(WebDriverChecker.getWD());
+        Assert.assertNotNull(WebDriverChecker.getDriver());
         driver.quit();
-        Assert.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
+        Assert.assertThrows(RuntimeError.class, WebDriverChecker::getDriver);
     }
 
     static WebDriver createWebDriver() {

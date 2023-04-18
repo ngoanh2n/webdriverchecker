@@ -14,19 +14,19 @@ import org.junit.jupiter.api.Test;
 public class WDCSelenideTest {
     @BeforeAll
     static void beforeAll() {
-        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
+        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getDriver);
         createWebDriver();
-        Assertions.assertNotNull(WebDriverChecker.getWD());
+        Assertions.assertNotNull(WebDriverChecker.getDriver());
     }
 
     @BeforeEach
     void beforeEach() {
-        Assertions.assertNotNull(WebDriverChecker.getWD());
+        Assertions.assertNotNull(WebDriverChecker.getDriver());
     }
 
     @Test
     void test() {
-        Assertions.assertNotNull(WebDriverChecker.getWD());
+        Assertions.assertNotNull(WebDriverChecker.getDriver());
     }
 
     private static void createWebDriver() {
