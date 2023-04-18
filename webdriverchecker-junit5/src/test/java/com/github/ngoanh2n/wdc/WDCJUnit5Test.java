@@ -16,14 +16,14 @@ public abstract class WDCJUnit5Test {
 
     @AfterEach
     void afterEach() {
-        Assertions.assertNotNull(WebDriverChecker.getWD());
+        Assertions.assertNotNull(WebDriverChecker.getDriver());
     }
 
     @AfterAll
     static void afterAll() {
-        Assertions.assertNotNull(WebDriverChecker.getWD());
+        Assertions.assertNotNull(WebDriverChecker.getDriver());
         driver.quit();
-        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getWD);
+        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getDriver);
     }
 
     static WebDriver createWebDriver() {

@@ -472,7 +472,7 @@ public abstract class WebDriverChecker {
      * @param args {@link WebDriver} for the first argument, and can be empty.
      * @return The current {@link WebDriver}.
      */
-    protected static RemoteWebDriver getWD(WebDriver... args) {
+    protected static RemoteWebDriver getDriver(WebDriver... args) {
         if (args.length != 0) {
             if (args[0] != null) {
                 return (RemoteWebDriver) args[0];
@@ -628,7 +628,7 @@ public abstract class WebDriverChecker {
      * @return Server URL.
      */
     protected URL getServerURL(WebDriver... driver) {
-        CommandExecutor ce = getWD(driver).getCommandExecutor();
+        CommandExecutor ce = getDriver(driver).getCommandExecutor();
         if (ce instanceof TracedCommandExecutor) {
             ce = Commons.readField(ce, "delegate");
         }
@@ -656,7 +656,7 @@ public abstract class WebDriverChecker {
      * @return {@link Capabilities} object.
      */
     protected Capabilities getCapabilities(WebDriver... driver) {
-        WebDriver wd = getWD(driver);
+        WebDriver wd = getDriver(driver);
         return ((HasCapabilities) wd).getCapabilities();
     }
 
@@ -668,7 +668,7 @@ public abstract class WebDriverChecker {
      * @return {@link CommandCodec} object.
      */
     protected CommandCodec<HttpRequest> getCommandCodec(WebDriver... driver) {
-        CommandExecutor ce = getWD(driver).getCommandExecutor();
+        CommandExecutor ce = getDriver(driver).getCommandExecutor();
         return Commons.readField(ce, "commandCodec");
     }
 
@@ -687,7 +687,7 @@ public abstract class WebDriverChecker {
         getCommandCodec(driver).defineCommand(command.getName(), method, url);
 
         try {
-            return getWD(driver).getCommandExecutor().execute(command);
+            return getDriver(driver).getCommandExecutor().execute(command);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

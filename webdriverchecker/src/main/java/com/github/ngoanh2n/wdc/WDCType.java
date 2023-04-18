@@ -84,7 +84,7 @@ class WDCType {
         @Override
         protected boolean check(WebDriver... driver) {
             try {
-                return getWD(driver).getSessionId() != null;
+                return getDriver(driver).getSessionId() != null;
             } catch (RuntimeError exception) {
                 if (directed) {
                     return false;
@@ -122,7 +122,7 @@ class WDCType {
     static class Remote extends WebDriverChecker {
         @Override
         protected boolean check(WebDriver... driver) {
-            CommandExecutor ce = getWD(driver).getCommandExecutor();
+            CommandExecutor ce = getDriver(driver).getCommandExecutor();
             return !(ce instanceof DriverCommandExecutor);
         }
     }
@@ -277,7 +277,7 @@ class WDCType {
         @Override
         protected boolean check(WebDriver... driver) {
             if (is(new Local(), driver)) {
-                CommandExecutor ce = getWD(driver).getCommandExecutor();
+                CommandExecutor ce = getDriver(driver).getCommandExecutor();
                 if (ce instanceof DriverCommandExecutor) {
                     return true;
                 }
@@ -292,7 +292,7 @@ class WDCType {
         @Override
         protected boolean check(WebDriver... driver) {
             if (!is(new Local(), driver)) {
-                CommandExecutor ce = getWD(driver).getCommandExecutor();
+                CommandExecutor ce = getDriver(driver).getCommandExecutor();
                 return ce instanceof HttpCommandExecutor || ce instanceof TracedCommandExecutor;
             }
             return false;
