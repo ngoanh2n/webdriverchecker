@@ -3,7 +3,7 @@
  */
 ext {
     versionCommons                  =   "1.0.0"
-    versionSelenium                 =   "4.8.3"
+    versionSelenium                 =   "4.9.1"
     versionSelenide                 =   "6.13.0"
     versionTestNG                   =   "7.7.1"
     versionJunitJupiter             =   "5.9.2"
