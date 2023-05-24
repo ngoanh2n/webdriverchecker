@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.wdc.driver;
 
-import com.github.ngoanh2n.Prop;
+import com.github.ngoanh2n.Property;
 import com.github.ngoanh2n.RuntimeError;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +15,7 @@ import org.openqa.selenium.safari.SafariDriver;
  */
 public abstract class SeleniumDriverProvider {
     public static WebDriver createDriver() {
-        String browser = Prop.string("wdc.browser").getValue();
+        String browser = Property.ofString("wdc.browser").getValue();
 
         switch (browser) {
             case "chrome":

@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.junit5.RunOnProp;
+import com.github.ngoanh2n.EnabledIfProperty;
 import com.github.ngoanh2n.wdc.driver.CloudDriverProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -79,8 +79,8 @@ public class CloudSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.target", value = "lambdatest")
-    @RunOnProp(name = "wdc.caps", value = "cloud-lambdatest-windows-chrome.yml")
+    @EnabledIfProperty(name = "wdc.target", value = "lambdatest")
+    @EnabledIfProperty(name = "wdc.caps", value = "cloud-lambdatest-windows-chrome.yml")
     void lambdaTest() {
         Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
         Assertions.assertFalse(WebDriverChecker.isLinux(driver));
@@ -98,8 +98,8 @@ public class CloudSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.target", value = "browserstack")
-    @RunOnProp(name = "wdc.caps", value = "cloud-browserstack-macos-safari.yml")
+    @EnabledIfProperty(name = "wdc.target", value = "browserstack")
+    @EnabledIfProperty(name = "wdc.caps", value = "cloud-browserstack-macos-safari.yml")
     void browserStack() {
         Assertions.assertTrue(WebDriverChecker.isMacOS(driver));
         Assertions.assertFalse(WebDriverChecker.isLinux(driver));
@@ -117,8 +117,8 @@ public class CloudSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.target", value = "saucelabs")
-    @RunOnProp(name = "wdc.caps", value = "cloud-saucelabs-linux-firefox.yml")
+    @EnabledIfProperty(name = "wdc.target", value = "saucelabs")
+    @EnabledIfProperty(name = "wdc.caps", value = "cloud-saucelabs-linux-firefox.yml")
     void sauceLabs() {
         Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
         Assertions.assertTrue(WebDriverChecker.isLinux(driver));
@@ -136,8 +136,8 @@ public class CloudSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.target", value = "testingbot")
-    @RunOnProp(name = "wdc.caps", value = "cloud-testingbot-windows-edge.yml")
+    @EnabledIfProperty(name = "wdc.target", value = "testingbot")
+    @EnabledIfProperty(name = "wdc.caps", value = "cloud-testingbot-windows-edge.yml")
     void testingBot() {
         Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
         Assertions.assertFalse(WebDriverChecker.isLinux(driver));

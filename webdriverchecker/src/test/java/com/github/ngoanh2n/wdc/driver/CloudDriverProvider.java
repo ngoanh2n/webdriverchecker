@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.wdc.driver;
 
-import com.github.ngoanh2n.Prop;
+import com.github.ngoanh2n.Property;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -12,9 +12,9 @@ import java.net.URL;
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
 public class CloudDriverProvider {
-    public static Prop<String> key = new Prop<>("wdc.key", String.class);
-    public static Prop<String> token = new Prop<>("wdc.token", String.class);
-    public static Prop<String> domain = new Prop<>("wdc.domain", String.class);
+    public static Property<String> key = Property.ofString("wdc.key");
+    public static Property<String> token = Property.ofString("wdc.token");
+    public static Property<String> domain = Property.ofString("wdc.domain");
 
     public static WebDriver createDriver() {
         URL address = createRemoteAddress();
