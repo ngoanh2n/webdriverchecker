@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.junit5.RunOnProp;
+import com.github.ngoanh2n.EnabledIfProperty;
 import com.github.ngoanh2n.wdc.driver.SeleniumDriverProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -20,8 +20,8 @@ public class LocalSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.os", value = {"macos", "linux", "windows"})
-    @RunOnProp(name = "wdc.browser", value = "chrome")
+    @EnabledIfProperty(name = "wdc.os", value = {"macos", "linux", "windows"})
+    @EnabledIfProperty(name = "wdc.browser", value = "chrome")
     void isChrome() {
         Assertions.assertTrue(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
@@ -32,8 +32,8 @@ public class LocalSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.os", value = "macos")
-    @RunOnProp(name = "wdc.browser", value = "safari")
+    @EnabledIfProperty(name = "wdc.os", value = "macos")
+    @EnabledIfProperty(name = "wdc.browser", value = "safari")
     void isSafari() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertTrue(WebDriverChecker.isSafari(driver));
@@ -44,8 +44,8 @@ public class LocalSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.os", value = {"macos", "linux", "windows"})
-    @RunOnProp(name = "wdc.browser", value = "firefox")
+    @EnabledIfProperty(name = "wdc.os", value = {"macos", "linux", "windows"})
+    @EnabledIfProperty(name = "wdc.browser", value = "firefox")
     void isFirefox() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
@@ -56,8 +56,8 @@ public class LocalSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.os", value = {"macos", "linux", "windows"})
-    @RunOnProp(name = "wdc.browser", value = "edge")
+    @EnabledIfProperty(name = "wdc.os", value = {"macos", "linux", "windows"})
+    @EnabledIfProperty(name = "wdc.browser", value = "edge")
     void isEdge() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
@@ -68,8 +68,8 @@ public class LocalSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.os", value = {"macos", "windows"})
-    @RunOnProp(name = "wdc.browser", value = "opera")
+    @EnabledIfProperty(name = "wdc.os", value = {"macos", "windows"})
+    @EnabledIfProperty(name = "wdc.browser", value = "opera")
     void isOpera() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
@@ -80,8 +80,8 @@ public class LocalSeleniumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.os", value = "windows")
-    @RunOnProp(name = "wdc.browser", value = "ie")
+    @EnabledIfProperty(name = "wdc.os", value = "windows")
+    @EnabledIfProperty(name = "wdc.browser", value = "ie")
     void isIE() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));

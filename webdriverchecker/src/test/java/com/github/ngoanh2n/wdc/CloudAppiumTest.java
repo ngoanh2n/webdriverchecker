@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.junit5.RunOnProp;
+import com.github.ngoanh2n.EnabledIfProperty;
 import com.github.ngoanh2n.wdc.driver.CloudDriverProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -76,8 +76,8 @@ public class CloudAppiumTest {
     }
 
     @Test
-    @RunOnProp(name = "wdc.target", value = "saucelabs")
-    @RunOnProp(name = "wdc.caps", value = "cloud-saucelabs-android-chrome.yml")
+    @EnabledIfProperty(name = "wdc.target", value = "saucelabs")
+    @EnabledIfProperty(name = "wdc.caps", value = "cloud-saucelabs-android-chrome.yml")
     void sauceLabs() {
         Assertions.assertFalse(WebDriverChecker.isPC(driver));
         Assertions.assertFalse(WebDriverChecker.isIOS(driver));

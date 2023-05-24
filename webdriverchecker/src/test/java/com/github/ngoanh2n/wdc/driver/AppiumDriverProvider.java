@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.wdc.driver;
 
-import com.github.ngoanh2n.Prop;
+import com.github.ngoanh2n.Property;
 import com.github.ngoanh2n.YamlData;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class AppiumDriverProvider {
     private static final Logger log = LoggerFactory.getLogger(AppiumDriverProvider.class);
-    public static Prop<String> caps = new Prop<>("wdc.caps", String.class);
+    public static Property<String> caps = Property.ofString("wdc.caps");
 
     public static WebDriver createDriver() {
         AppiumDriverLocalService localService = startAppiumServer();

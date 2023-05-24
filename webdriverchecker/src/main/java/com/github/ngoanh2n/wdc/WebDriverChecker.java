@@ -1,7 +1,7 @@
 package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.Commons;
-import com.github.ngoanh2n.Prop;
+import com.github.ngoanh2n.Property;
 import com.github.ngoanh2n.RuntimeError;
 import com.google.common.io.CharStreams;
 import io.netty.handler.codec.http.HttpRequest;
@@ -448,7 +448,7 @@ public abstract class WebDriverChecker {
      */
     protected static String[] runShell(String command) {
         try {
-            String os = Prop.string("os.name").getValue();
+            String os = Property.ofString("os.name").getValue();
             String[] commandArgs = os.contains("Windows")
                     ? new String[]{"cmd.exe", "/c", command}
                     : new String[]{"bash", "-c", command};
