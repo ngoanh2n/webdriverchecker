@@ -1,5 +1,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/webdriverchecker-testng/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/webdriverchecker-testng)
 [![javadoc](https://javadoc.io/badge2/com.github.ngoanh2n/webdriverchecker-testng/javadoc.svg)](https://javadoc.io/doc/com.github.ngoanh2n/webdriverchecker-testng)
+[![badge-jdk](https://img.shields.io/badge/jdk-11-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 # WebDriverChecker for TestNG
 Your automation project is using TestNG as a testing framework, `webdriverchecker-testng` should be used.
