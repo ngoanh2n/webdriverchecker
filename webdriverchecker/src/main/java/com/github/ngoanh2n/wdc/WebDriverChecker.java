@@ -21,8 +21,8 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
-import static com.github.ngoanh2n.wdc.WDCType.Browser;
-import static com.github.ngoanh2n.wdc.WDCType.*;
+import static com.github.ngoanh2n.wdc.CheckerType.Browser;
+import static com.github.ngoanh2n.wdc.CheckerType.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
