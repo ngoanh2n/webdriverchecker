@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
-class WDCType {
+class CheckerType {
     static class MacOS extends WebDriverChecker {
         @Override
         protected boolean check(WebDriver... driver) {
