@@ -4,7 +4,7 @@ import com.github.ngoanh2n.WebDriverJUnit5;
 import org.openqa.selenium.WebDriver;
 
 /**
- * Provides {@link WebDriver} from current test to {@link WebDriverChecker}.
+ * Provide {@link WebDriver} from the current JUnit5 test to {@link WebDriverChecker}.
  *
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
