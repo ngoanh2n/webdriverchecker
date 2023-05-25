@@ -1,7 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.github.ngoanh2n.RuntimeError;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ public class WDCSelenide implements WebDriverProvider {
         } catch (IllegalStateException ignored) {
             String msg = "WebDriver is quit";
             log.error(msg);
-            throw new RuntimeError(msg);
+            throw new CheckerException(msg);
         }
     }
 }
