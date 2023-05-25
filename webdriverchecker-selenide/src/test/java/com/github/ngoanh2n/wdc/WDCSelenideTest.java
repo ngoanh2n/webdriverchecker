@@ -2,7 +2,6 @@ package com.github.ngoanh2n.wdc;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import com.github.ngoanh2n.RuntimeError;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class WDCSelenideTest {
     @BeforeAll
     static void beforeAll() {
-        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getDriver);
+        Assertions.assertThrows(CheckerException.class, WebDriverChecker::getDriver);
         createWebDriver();
         Assertions.assertNotNull(WebDriverChecker.getDriver());
     }

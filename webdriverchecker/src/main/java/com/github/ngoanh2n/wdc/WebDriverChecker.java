@@ -2,7 +2,6 @@ package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.Commons;
 import com.github.ngoanh2n.Property;
-import com.github.ngoanh2n.RuntimeError;
 import com.google.common.io.CharStreams;
 import io.netty.handler.codec.http.HttpRequest;
 import org.openqa.selenium.Capabilities;
@@ -525,7 +524,7 @@ public abstract class WebDriverChecker {
             if (args[0] != null) {
                 return (RemoteWebDriver) args[0];
             }
-            throw new RuntimeError("You have passed a nullable WebDriver");
+            throw new CheckerException("You have passed a nullable WebDriver");
         } else {
             ServiceLoader<WebDriverProvider> serviceLoader = ServiceLoader.load(WebDriverProvider.class);
             Iterator<WebDriverProvider> serviceLoaders = serviceLoader.iterator();
@@ -536,11 +535,11 @@ public abstract class WebDriverChecker {
 
                 if (driver == null || !(is(new Alive(), driver))) {
                     String providerName = provider.getClass().getName();
-                    throw new RuntimeError(providerName + " is providing nullable WebDriver");
+                    throw new CheckerException(providerName + " is providing nullable WebDriver");
                 }
                 return (RemoteWebDriver) serviceLoaders.next().provide();
             }
-            throw new RuntimeError("You have not implemented WebDriverProvider");
+            throw new CheckerException("You have not implemented WebDriverProvider");
         }
     }
 
@@ -556,7 +555,7 @@ public abstract class WebDriverChecker {
     protected static boolean is(WebDriverChecker wdc, WebDriver... args) {
         if (!(wdc instanceof Alive)) {
             if (!is(new Alive(), args)) {
-                throw new RuntimeError("WebDriver is null or quit");
+                throw new CheckerException("WebDriver is null or quit");
             }
         }
         if (args.length == 0) {
