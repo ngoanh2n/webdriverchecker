@@ -1,6 +1,5 @@
 package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.RuntimeError;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -12,22 +11,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
  */
 public abstract class WDCJUnit5Test {
-    static WebDriver driver;
+    protected static WebDriver driver;
 
     @AfterEach
-    void afterEach() {
+    protected void afterEach() {
         Assertions.assertNotNull(WebDriverChecker.getDriver());
     }
 
     @AfterAll
-    static void afterAll() {
+    protected static void afterAll() {
         Assertions.assertNotNull(WebDriverChecker.getDriver());
         driver.quit();
-        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getDriver);
+        Assertions.assertThrows(CheckerException.class, WebDriverChecker::getDriver);
     }
 
-    static WebDriver createWebDriver() {
+    protected static void createWebDriver() {
         WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
+        driver = new ChromeDriver();
     }
 }

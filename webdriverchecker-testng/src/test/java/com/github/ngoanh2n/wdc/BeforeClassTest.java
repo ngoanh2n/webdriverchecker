@@ -1,6 +1,5 @@
 package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.RuntimeError;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -11,19 +10,19 @@ import org.testng.annotations.Test;
  */
 public class BeforeClassTest extends WDCTestNGTest {
     @BeforeClass
-    void beforeClass() {
-        Assert.assertThrows(RuntimeError.class, WebDriverChecker::getDriver);
-        driver = createWebDriver();
+    protected void beforeClass() {
+        Assert.assertThrows(CheckerException.class, WebDriverChecker::getDriver);
+        createWebDriver();
         Assert.assertNotNull(WebDriverChecker.getDriver());
     }
 
     @BeforeMethod
-    void beforeMethod() {
+    protected void beforeMethod() {
         Assert.assertNotNull(WebDriverChecker.getDriver());
     }
 
     @Test
-    void test() {
+    protected void test() {
         Assert.assertNotNull(WebDriverChecker.getDriver());
     }
 }
