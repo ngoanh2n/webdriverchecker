@@ -1,6 +1,5 @@
 package com.github.ngoanh2n.wdc;
 
-import com.github.ngoanh2n.RuntimeError;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,12 +11,12 @@ import org.junit.jupiter.api.Test;
 public class BeforeEachTest extends WDCJUnit5Test {
     @BeforeAll
     static void beforeAll() {
-        Assertions.assertThrows(RuntimeError.class, WebDriverChecker::getDriver);
+        Assertions.assertThrows(CheckerException.class, WebDriverChecker::getDriver);
     }
 
     @BeforeEach
     void beforeEach() {
-        driver = createWebDriver();
+        createWebDriver();
         Assertions.assertNotNull(WebDriverChecker.getDriver());
     }
 
