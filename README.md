@@ -42,10 +42,10 @@ Use WebDriverChecker to make it more convenient!
 - States: Alive, Local, Remote, Web, Native, Docker, Virtual Device, Cloud
 
 ## Versions
-- Selenium: 4.8.3
-- Selenide: 6.13.0
-- JUnit5: 5.9.2
-- TestNG: 7.7.1
+- Selenium: 4.9.1
+- Selenide: 6.14.1
+- JUnit5: 5.9.3
+- TestNG: 7.8.0
 
 # Extensions
 It automatically provides the current WebDriver instance to `com.github.ngoanh2n.wdc.WebDriverChecker`.
