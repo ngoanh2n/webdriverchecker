@@ -524,7 +524,7 @@ public abstract class WebDriverChecker {
             if (args[0] != null) {
                 return (RemoteWebDriver) args[0];
             }
-            throw new CheckerException("You have passed a nullable WebDriver");
+            throw new CheckerException.NullDriverPassed();
         } else {
             ServiceLoader<WebDriverProvider> serviceLoader = ServiceLoader.load(WebDriverProvider.class);
             Iterator<WebDriverProvider> serviceLoaders = serviceLoader.iterator();
@@ -533,14 +533,16 @@ public abstract class WebDriverChecker {
                 WebDriverProvider provider = serviceLoaders.next();
                 WebDriver driver = provider.provide();
 
-                if (driver == null || !(is(new Alive(), driver))) {
-                    String providerName = provider.getClass().getName();
-                    throw new CheckerException(providerName + " is providing nullable WebDriver");
+                if (driver == null) {
+                    throw new CheckerException.NullDriverProvided();
                 }
-                return (RemoteWebDriver) serviceLoaders.next().provide();
+                if (!(is(new Alive(true), driver))) {
+                    throw new CheckerException.ClosedDriverProvided();
+                }
+                return (RemoteWebDriver) driver;
             }
-            throw new CheckerException("You have not implemented WebDriverProvider");
         }
+        throw new CheckerException.NoneDriver();
     }
 
     //-------------------------------------------------------------------------------//
@@ -555,7 +557,7 @@ public abstract class WebDriverChecker {
     protected static boolean is(WebDriverChecker wdc, WebDriver... args) {
         if (!(wdc instanceof Alive)) {
             if (!is(new Alive(), args)) {
-                throw new CheckerException("WebDriver is null or quit");
+                throw new CheckerException.ClosedDriver();
             }
         }
         if (args.length == 0) {
