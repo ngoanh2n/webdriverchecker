@@ -575,7 +575,7 @@ public abstract class WebDriverChecker {
      * @return Platform name.
      */
     protected String getPlatformName(WebDriver... driver) {
-        String value = getCapability("platformName", driver);
+        String value = getCapability("platformName", driver).toUpperCase();
         Platform platform = Platform.valueOf(value);
 
         if (platform.equals(Platform.ANY)) {
