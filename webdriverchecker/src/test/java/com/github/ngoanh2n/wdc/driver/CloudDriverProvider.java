@@ -1,6 +1,7 @@
 package com.github.ngoanh2n.wdc.driver;
 
 import com.github.ngoanh2n.Property;
+import com.github.ngoanh2n.wdc.CheckerException;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -27,7 +28,7 @@ public class CloudDriverProvider {
         try {
             return new URL(address);
         } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
+            throw new CheckerException(e);
         }
     }
 }
