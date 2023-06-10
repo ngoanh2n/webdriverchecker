@@ -27,7 +27,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * Check characteristics and environment for the current {@link WebDriver}.
  *
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @author ngoanh2n
  */
 public abstract class WebDriverChecker {
     /**

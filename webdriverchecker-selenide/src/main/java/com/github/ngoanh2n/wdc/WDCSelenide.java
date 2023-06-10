@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Provide {@link WebDriver} from {@link WebDriverRunner} to {@link WebDriverChecker}.
  *
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @author ngoanh2n
  */
 public class WDCSelenide implements WebDriverProvider {
     private static final Logger log = LoggerFactory.getLogger(WDCSelenide.class);
