@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 
 /**
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @author ngoanh2n
  */
 public class LocalAppiumTest {
     private static WebDriver driver;

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Runtime exception for {@link WebDriverChecker}.
  *
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @author ngoanh2n
  */
 public class CheckerException extends RuntimeError {
     /**

@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 /**
- * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @author ngoanh2n
  */
 public class AppiumDriverProvider {
     private static final Logger log = LoggerFactory.getLogger(AppiumDriverProvider.class);
