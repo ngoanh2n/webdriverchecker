@@ -8,23 +8,20 @@
 [![badge-jdk](https://img.shields.io/badge/jdk-8-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [WebDriverChecker](#webdriverchecker)
-  - [Checks](#checks)
-  - [Versions](#versions)
-- [Extensions](#extensions)
-    - [Selenide](#selenide)
-    - [JUnit5](#junit5)
-    - [TestNG](#testng)
-- [Declarations](#declarations)
-  - [Gradle](#gradle)
-  - [Maven](#maven)
-- [Usages](#usages)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+**Table of Contents**
+<!-- TOC -->
+* [WebDriverChecker](#webdriverchecker)
+  * [Check](#check)
+  * [Version](#version)
+* [Extension](#extension)
+  * [Selenide](#selenide)
+  * [JUnit5](#junit5)
+  * [TestNG](#testng)
+* [Declaration](#declaration)
+  * [Gradle](#gradle)
+  * [Maven](#maven)
+* [Usage](#usage)
+<!-- TOC -->
 
 # WebDriverChecker
 You are writing automation test scripts for multiple browsers such as:
@@ -32,44 +29,46 @@ You are writing automation test scripts for multiple browsers such as:
 - Safari & native application on iOS
 - Chrome & native application on Android
 
-And somewhere, you have to check type of browser or platform to navigate your scripts.
+And somewhere, you have to check type of browser or platform to navigate your scripts.<br>
+Use `WebDriverChecker` to make it more convenient!
 
-Use WebDriverChecker to make it more convenient!
+## Check
+- Browser: Chrome, Firefox, Edge, Opera, Safari, IE
+- Platform: MacOS, Linux, Windows, iOS, Android
+- State: Alive, Local, Remote, Web, Native, Docker, Virtual Device, Cloud
 
-## Checks
-- Browsers: Chrome, Firefox, Edge, Opera, Safari, IE
-- Platforms: MacOS, Linux, Windows, iOS, Android
-- States: Alive, Local, Remote, Web, Native, Docker, Virtual Device, Cloud
-
-## Versions
+## Version
 - Selenium: 4.9.1
 - Selenide: 6.14.1
 - JUnit5: 5.9.3
 - TestNG: 7.8.0
 
-# Extensions
-It automatically provides the current WebDriver instance to `com.github.ngoanh2n.wdc.WebDriverChecker`.
+# Extension
+It automatically provides the current `WebDriver` instance to `com.github.ngoanh2n.wdc.WebDriverChecker`.<br>
+You don't need to pass the `WebDriver` instance to the argument of checker methods.
 
-You don't need to pass the WebDriver instance to the argument of checker methods.
+| With extension                 | Without extension                    |
+|:-------------------------------|:-------------------------------------|
+| `WebDriverChecker.isChrome()`  | `WebDriverChecker.isChrome(driver)`  |
 
-### [Selenide](webdriverchecker-selenide#readme)
-When your automation project is using `Selenide` directly.
+## [Selenide](webdriverchecker-selenide#readme)
+When using `Selenide` directly.
 
-### [JUnit5](webdriverchecker-junit5#readme)
-When your automation project is using `JUnit Jupiter` as a testing framework.
+## [JUnit5](webdriverchecker-junit5#readme)
+When using `JUnit Jupiter` as a testing framework.
 
-### [TestNG](webdriverchecker-testng#readme)
-When your automation project is using `TestNG` as a testing framework.
+## [TestNG](webdriverchecker-testng#readme)
+When using `TestNG` as a testing framework.
 
-# Declarations
+# Declaration
 ## Gradle
-Add to `build.gradle`
+Add to `build.gradle`.
 ```gradle
 implementation("com.github.ngoanh2n:webdriverchecker:2.6.0")
 ```
 
 ## Maven
-Add to `pom.xml`
+Add to `pom.xml`.
 ```xml
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
@@ -78,55 +77,49 @@ Add to `pom.xml`
 </dependency>
 ```
 
-# Usages
-```java
-WebDriverChecker.isMacOS(driver)
-WebDriverChecker.isLinux(driver)
-WebDriverChecker.isWindows(driver)
-WebDriverChecker.isPC(driver)
-WebDriverChecker.isIOS(driver)
-WebDriverChecker.isAndroid(driver)
-WebDriverChecker.isMobile(driver)
-
-WebDriverChecker.isAlive(driver)
-WebDriverChecker.isLocal(driver)
-WebDriverChecker.isRemote(driver)
-WebDriverChecker.isDocker(driver)
-WebDriverChecker.isBrowser(driver)
-WebDriverChecker.isNative(driver)
-
-WebDriverChecker.isChrome(driver)
-WebDriverChecker.isSafari(driver)
-WebDriverChecker.isFirefox(driver)
-WebDriverChecker.isEdge(driver)
-WebDriverChecker.isOpera(driver)
-WebDriverChecker.isIE(driver)
-WebDriverChecker.isLegacyEdge(driver)
-WebDriverChecker.isLegacyFirefox(driver)
-
-WebDriverChecker.isPCBrowser(driver)
-WebDriverChecker.isPCNative(driver)
-
-WebDriverChecker.isMacOSNative(driver)
-WebDriverChecker.isWindowsNative(driver)
-
-WebDriverChecker.isLocalServer(driver)
-WebDriverChecker.isRemoteServer(driver)
-
-WebDriverChecker.isIOSBrowser(driver)
-WebDriverChecker.isIOSNative(driver)
-WebDriverChecker.isIOSVirtual(driver)
-
-WebDriverChecker.isAndroidBrowser(driver)
-WebDriverChecker.isAndroidNative(driver)
-WebDriverChecker.isAndroidVirtual(driver)
-
-WebDriverChecker.isMobileBrowser(driver)
-WebDriverChecker.isMobileNative(driver)
-WebDriverChecker.isMobileVirtual(driver)
-
-WebDriverChecker.isLambdaTest(driver)
-WebDriverChecker.isBrowserStack(driver)
-WebDriverChecker.isSauceLabs(driver)
-WebDriverChecker.isTestingBot(driver)
-```
+# Usage
+- Browser
+  - `WebDriverChecker.isChrome(driver)`
+  - `WebDriverChecker.isSafari(driver)`
+  - `WebDriverChecker.isFirefox(driver)`
+  - `WebDriverChecker.isEdge(driver)`
+  - `WebDriverChecker.isOpera(driver)`
+  - `WebDriverChecker.isIE(driver)`
+  - `WebDriverChecker.isLegacyEdge(driver)`
+  - `WebDriverChecker.isLegacyFirefox(driver)`
+- Platform
+  - `WebDriverChecker.isLinux(driver)`
+  - `WebDriverChecker.isMacOS(driver)`
+  - `WebDriverChecker.isWindows(driver)`
+  - `WebDriverChecker.isPC(driver)`
+  - `WebDriverChecker.isIOS(driver)`
+  - `WebDriverChecker.isAndroid(driver)`
+  - `WebDriverChecker.isMobile(driver)`
+- State
+  - `WebDriverChecker.isAlive(driver)`
+  - `WebDriverChecker.isLocal(driver)`
+  - `WebDriverChecker.isRemote(driver)`
+  - `WebDriverChecker.isDocker(driver)`
+  - `WebDriverChecker.isBrowser(driver)`
+  - `WebDriverChecker.isNative(driver)`
+- Cloud
+  - `WebDriverChecker.isLambdaTest(driver)`
+  - `WebDriverChecker.isBrowserStack(driver)`
+  - `WebDriverChecker.isSauceLabs(driver)`
+  - `WebDriverChecker.isTestingBot(driver)`
+- Combination
+  - `WebDriverChecker.isLocalServer(driver)`
+  - `WebDriverChecker.isRemoteServer(driver)`
+  - `WebDriverChecker.isPCBrowser(driver)`
+  - `WebDriverChecker.isPCNative(driver)`
+  - `WebDriverChecker.isMacOSNative(driver)`
+  - `WebDriverChecker.isWindowsNative(driver)`
+  - `WebDriverChecker.isIOSBrowser(driver)`
+  - `WebDriverChecker.isIOSNative(driver)`
+  - `WebDriverChecker.isIOSVirtual(driver)`
+  - `WebDriverChecker.isAndroidBrowser(driver)`
+  - `WebDriverChecker.isAndroidNative(driver)`
+  - `WebDriverChecker.isAndroidVirtual(driver)`
+  - `WebDriverChecker.isMobileBrowser(driver)`
+  - `WebDriverChecker.isMobileNative(driver)`
+  - `WebDriverChecker.isMobileVirtual(driver)`
