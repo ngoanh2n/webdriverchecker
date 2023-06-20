@@ -25,15 +25,61 @@ import static com.github.ngoanh2n.wdc.CheckerType.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
- * Check characteristics and environment for the current {@link WebDriver}.
+ * Check {@link WebDriver} characteristics and environment.
+ * <ul>
+ *     <li>Browsers
+ *          <ul>
+ *              <li>{@code boolean result = WebDriverChecker.isChrome(driver)}</li>
+ *              <li>{@code boolean result = WebDriverChecker.isSafari(driver)}</li>
+ *              <li>{@code boolean result = WebDriverChecker.isOpera(driver)}</li>
+ *              <li>{@code ...}</li>
+ *          </ul>
+ *     </li>
+ *     <li>Platforms
+ *          <ul>
+ *              <li>{@code boolean result = WebDriverChecker.isWindows(driver)}</li>
+ *              <li>{@code boolean result = WebDriverChecker.isAndroid(driver)}</li>
+ *              <li>{@code boolean result = WebDriverChecker.isMobile(driver)}</li>
+ *              <li>{@code ...}</li>
+ *          </ul>
+ *     </li>
+ *     <li>States
+ *          <ul>
+ *              <li>{@code boolean result = WebDriverChecker.isNative(driver)}</li>
+ *              <li>{@code boolean result = WebDriverChecker.isDocker(driver)}</li>
+ *              <li>{@code boolean result = WebDriverChecker.isRemote(driver)}</li>
+ *              <li>{@code ...}</li>
+ *          </ul>
+ *     </li>
+ * </ul>
+ *
+ * <b>Extension</b><br>
+ * <ul>
+ *     <li><em>Selenide: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/webdriverchecker-selenide">com.github.ngoanh2n:webdriverchecker-selenide</a></em></li>
+ *     <li><em>JUnit5: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/webdriverchecker-junit5">com.github.ngoanh2n:webdriverchecker-junit5</a></em></li>
+ *     <li><em>TestNG: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/webdriverchecker-testng">com.github.ngoanh2n:webdriverchecker-testng</a></em></li>
+ * </ul>
+ * It automatically provides the current {@link WebDriver} instance to {@link WebDriverChecker}.<br>
+ * You don't need to pass the {@link WebDriver} instance to the argument of shooting methods.<br>
+ * <ul>
+ *     <li>With extension <pre>{@code WebDriverChecker.isChrome()}</pre></li>
+ *     <li>Without extension <pre>{@code WebDriverChecker.isChrome(driver)}</pre></li>
+ * </ul>
+ *
+ * <em>Repository:</em>
+ * <ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/webdriverchecker">ngoanh2n/webdriverchecker</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/webdriverchecker">com.github.ngoanh2n:webdriverchecker</a></em></li>
+ * </ul>
  *
  * @author ngoanh2n
+ * @since 2020
  */
 public abstract class WebDriverChecker {
     /**
      * Default constructor.
      */
-    protected WebDriverChecker() { /* No implementation necessary */ }
+    protected WebDriverChecker() { /**/ }
 
     //-------------------------------------------------------------------------------//
 
