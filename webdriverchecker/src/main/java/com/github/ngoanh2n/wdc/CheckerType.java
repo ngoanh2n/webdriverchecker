@@ -16,7 +16,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * List of {@link WebDriverChecker} implementations.<br><br>
+ *
+ * <em>Repository:</em>
+ * <ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/webdriverchecker">ngoanh2n/webdriverchecker</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/webdriverchecker">com.github.ngoanh2n:webdriverchecker</a></em></li>
+ * </ul>
+ *
  * @author ngoanh2n
+ * @since 2020
  */
 class CheckerType {
     static class MacOS extends WebDriverChecker {

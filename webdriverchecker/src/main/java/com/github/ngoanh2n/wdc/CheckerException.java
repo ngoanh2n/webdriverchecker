@@ -4,9 +4,16 @@ import com.github.ngoanh2n.RuntimeError;
 import org.openqa.selenium.WebDriver;
 
 /**
- * Runtime exception for {@link WebDriverChecker}.
+ * Runtime exception for {@link WebDriverChecker}.<br><br>
+ *
+ * <em>Repository:</em>
+ * <ul>
+ *     <li><em>GitHub: <a href="https://github.com/ngoanh2n/webdriverchecker">ngoanh2n/webdriverchecker</a></em></li>
+ *     <li><em>Maven: <a href="https://mvnrepository.com/artifact/com.github.ngoanh2n/webdriverchecker">com.github.ngoanh2n:webdriverchecker</a></em></li>
+ * </ul>
  *
  * @author ngoanh2n
+ * @since 2020
  */
 public class CheckerException extends RuntimeError {
     /**
