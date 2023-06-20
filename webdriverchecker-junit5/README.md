@@ -4,25 +4,31 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 # WebDriverChecker for JUnit5
-Your automation project is using JUnit Jupiter as a testing framework, `webdriverchecker-junit5` should be used.
+**Table of Contents**
+<!-- TOC -->
+* [Declaration](#declaration)
+    * [Gradle](#gradle)
+    * [Maven](#maven)
+* [Test Structure](#test-structure)
+<!-- TOC -->
 
-It automatically gets WebDriver instance from the current running test by using `org.junit.jupiter.api.extension.InvocationInterceptor` extension.
+When using JUnit Jupiter as a testing framework, `webdriverchecker-junit5` should be used.
+- `WebDriverChecker` automatically get `WebDriver` instance from the current running test by using `org.junit.jupiter.api.extension.InvocationInterceptor` extension.
+- You don't need to pass the `WebDriver` instance to the argument of checker methods.
 
-You don't need to pass the WebDriver instance to the argument of checker methods.
+| webdriverchecker                     | webdriverchecker-junit5        |
+|:-------------------------------------|:-------------------------------|
+| `WebDriverChecker.isChrome(driver)`  | `WebDriverChecker.isChrome()`  |
 
-| webdriverchecker   	              | webdriverchecker-junit5     |
-|---	                              |---	                        |
-| WebDriverChecker.isChrome(driver) | WebDriverChecker.isChrome() |
-
-# Declarations
+# Declaration
 ## Gradle
-Add to `build.gradle`
+Add to `build.gradle`.
 ```gradle
 implementation("com.github.ngoanh2n:webdriverchecker-junit5:2.6.0")
 ```
 
 ## Maven
-Add to `pom.xml`
+Add to `pom.xml`.
 ```xml
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
@@ -32,8 +38,8 @@ Add to `pom.xml`
 ```
 
 # Test Structure
-1. Must declare a field of WebDriver type with any modifiers at current class or parent/abstract class.
-2. WebDriverChecker will find WebDriver instance after the field is assigned a value.
+1. Must declare a field of `WebDriver` type with any modifiers at current class or parent/abstract class.
+2. `WebDriverChecker` can detect `WebDriver` instance after the field is assigned a value.
 
 ```java
 public class MyTest {
@@ -42,7 +48,7 @@ public class MyTest {
     @BeforeAll
     public static void beforeAll() {
         driver = new ChromeDriver();
-        // WebDriverChecker can find WebDriver instance from here.
+        // WebDriverChecker could find WebDriver instance from here.
         // WebDriverChecker.isChrome(driver) <=> WebDriverChecker.isChrome()
     }
 }
