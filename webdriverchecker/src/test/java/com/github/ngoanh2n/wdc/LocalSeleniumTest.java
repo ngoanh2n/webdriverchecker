@@ -1,6 +1,7 @@
 package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.EnabledIfProperty;
+import com.github.ngoanh2n.SetProperty;
 import com.github.ngoanh2n.wdc.driver.SeleniumDriverProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * @author ngoanh2n
  */
+@EnabledIfProperty(name = "wdc.group", value = "selenium-local")
 public class LocalSeleniumTest {
     private WebDriver driver;
 

@@ -10,6 +10,7 @@ import java.io.File;
 /**
  * @author ngoanh2n
  */
+@EnabledIfProperty(name = "wdc.group", value = "appium-local")
 public class LocalAppiumTest {
     private static WebDriver driver;
 
@@ -26,7 +27,6 @@ public class LocalAppiumTest {
 
     @Test
     @EnabledIfProperty(name = "wdc.os", value = "macos")
-    @EnabledIfProperty(name = "wdc.browser", value = "native")
     @EnabledIfProperty(name = "wdc.caps", value = "local-ios-native.yml")
     void iosNative() {
         Assertions.assertFalse(WebDriverChecker.isPC(driver));
@@ -60,7 +60,6 @@ public class LocalAppiumTest {
 
     @Test
     @EnabledIfProperty(name = "wdc.os", value = "macos")
-    @EnabledIfProperty(name = "wdc.browser", value = "safari")
     @EnabledIfProperty(name = "wdc.caps", value = "local-ios-safari.yml")
     void iosSafari() {
         Assertions.assertFalse(WebDriverChecker.isPC(driver));
@@ -94,7 +93,6 @@ public class LocalAppiumTest {
 
     @Test
     @EnabledIfProperty(name = "wdc.os", value = {"windows", "linux"})
-    @EnabledIfProperty(name = "wdc.browser", value = "native")
     @EnabledIfProperty(name = "wdc.caps", value = "local-android-native.yml")
     void androidNative() {
         Assertions.assertFalse(WebDriverChecker.isPC(driver));
@@ -128,7 +126,6 @@ public class LocalAppiumTest {
 
     @Test
     @EnabledIfProperty(name = "wdc.os", value = {"windows", "linux"})
-    @EnabledIfProperty(name = "wdc.browser", value = "chrome")
     @EnabledIfProperty(name = "wdc.caps", value = "local-android-chrome.yml")
     void androidChrome() {
         Assertions.assertFalse(WebDriverChecker.isPC(driver));
@@ -162,7 +159,6 @@ public class LocalAppiumTest {
 
     @Test
     @EnabledIfProperty(name = "wdc.os", value = "macos")
-    @EnabledIfProperty(name = "wdc.browser", value = "native")
     @EnabledIfProperty(name = "wdc.caps", value = "local-macos-native.yml")
     void macOSNative() {
         Assertions.assertTrue(WebDriverChecker.isPC(driver));
@@ -196,7 +192,6 @@ public class LocalAppiumTest {
 
     @Test
     @EnabledIfProperty(name = "wdc.os", value = "windows")
-    @EnabledIfProperty(name = "wdc.browser", value = "native")
     @EnabledIfProperty(name = "wdc.caps", value = "local-windows-native.yml")
     void windowsNative() {
         Assertions.assertTrue(WebDriverChecker.isPC(driver));

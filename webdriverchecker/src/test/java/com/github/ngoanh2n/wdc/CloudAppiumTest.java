@@ -1,6 +1,7 @@
 package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.EnabledIfProperty;
+import com.github.ngoanh2n.SetProperty;
 import com.github.ngoanh2n.wdc.driver.CloudDriverProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -11,12 +12,43 @@ import org.openqa.selenium.WebDriver;
 /**
  * @author ngoanh2n
  */
+@EnabledIfProperty(name = "wdc.group", value = "appium-cloud")
 public class CloudAppiumTest {
     private WebDriver driver;
 
     @BeforeEach
     void openDriver() {
         driver = CloudDriverProvider.createDriver();
+    }
+
+    @Test
+    @EnabledIfProperty(name = "wdc.cloud", value = "saucelabs")
+    @SetProperty(name = "wdc.caps", value = "cloud-saucelabs-android-chrome.yml")
+    void sauceLabs() {
+        Assertions.assertFalse(WebDriverChecker.isPC(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOS(driver));
+        Assertions.assertTrue(WebDriverChecker.isAndroid(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobile(driver));
+
+        Assertions.assertTrue(WebDriverChecker.isChrome(driver));
+        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
+
+        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSNative(driver));
+        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(driver));
+
+        Assertions.assertTrue(WebDriverChecker.isAndroidBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isAndroidNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isAndroidVirtual(driver));
+
+        Assertions.assertTrue(WebDriverChecker.isMobileBrowser(driver));
+        Assertions.assertFalse(WebDriverChecker.isMobileNative(driver));
+        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(driver));
+
+        Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
+        Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
+        Assertions.assertTrue(WebDriverChecker.isSauceLabs(driver));
+        Assertions.assertFalse(WebDriverChecker.isTestingBot(driver));
     }
 
     @AfterEach
@@ -73,35 +105,5 @@ public class CloudAppiumTest {
 
         driver.quit();
         Assertions.assertFalse(WebDriverChecker.isAlive(driver));
-    }
-
-    @Test
-    @EnabledIfProperty(name = "wdc.target", value = "saucelabs")
-    @EnabledIfProperty(name = "wdc.caps", value = "cloud-saucelabs-android-chrome.yml")
-    void sauceLabs() {
-        Assertions.assertFalse(WebDriverChecker.isPC(driver));
-        Assertions.assertFalse(WebDriverChecker.isIOS(driver));
-        Assertions.assertTrue(WebDriverChecker.isAndroid(driver));
-        Assertions.assertTrue(WebDriverChecker.isMobile(driver));
-
-        Assertions.assertTrue(WebDriverChecker.isChrome(driver));
-        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-
-        Assertions.assertFalse(WebDriverChecker.isIOSBrowser(driver));
-        Assertions.assertFalse(WebDriverChecker.isIOSNative(driver));
-        Assertions.assertFalse(WebDriverChecker.isIOSVirtual(driver));
-
-        Assertions.assertTrue(WebDriverChecker.isAndroidBrowser(driver));
-        Assertions.assertFalse(WebDriverChecker.isAndroidNative(driver));
-        Assertions.assertTrue(WebDriverChecker.isAndroidVirtual(driver));
-
-        Assertions.assertTrue(WebDriverChecker.isMobileBrowser(driver));
-        Assertions.assertFalse(WebDriverChecker.isMobileNative(driver));
-        Assertions.assertTrue(WebDriverChecker.isMobileVirtual(driver));
-
-        Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
-        Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
-        Assertions.assertTrue(WebDriverChecker.isSauceLabs(driver));
-        Assertions.assertFalse(WebDriverChecker.isTestingBot(driver));
     }
 }

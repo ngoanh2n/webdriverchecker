@@ -2,7 +2,6 @@ package com.github.ngoanh2n.wdc;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -12,6 +11,10 @@ import org.testng.annotations.AfterMethod;
  */
 public abstract class WDCTestNGTest {
     protected static WebDriver driver;
+
+    protected static void createWebDriver() {
+        driver = WebDriverManager.chromedriver().create();
+    }
 
     @AfterMethod
     protected void afterMethod() {
@@ -24,10 +27,5 @@ public abstract class WDCTestNGTest {
         driver.quit();
         Assert.assertThrows(CheckerException.ClosedDriverProvided.class, WebDriverChecker::getDriver);
         driver = null;
-    }
-
-    protected static void createWebDriver() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
     }
 }

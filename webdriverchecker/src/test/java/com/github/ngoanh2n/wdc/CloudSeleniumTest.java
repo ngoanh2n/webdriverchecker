@@ -1,6 +1,7 @@
 package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.EnabledIfProperty;
+import com.github.ngoanh2n.SetProperty;
 import com.github.ngoanh2n.wdc.driver.CloudDriverProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -11,12 +12,89 @@ import org.openqa.selenium.WebDriver;
 /**
  * @author ngoanh2n
  */
+@EnabledIfProperty(name = "wdc.group", value = "selenium-cloud")
 public class CloudSeleniumTest {
     private WebDriver driver;
 
     @BeforeEach
     void openDriver() {
         driver = CloudDriverProvider.createDriver();
+    }
+
+    @Test
+    @EnabledIfProperty(name = "wdc.cloud", value = "lambdatest")
+    @SetProperty(name = "wdc.caps", value = "cloud-lambdatest-windows-chrome.yml")
+    void lambdaTest() {
+        Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
+        Assertions.assertFalse(WebDriverChecker.isLinux(driver));
+        Assertions.assertTrue(WebDriverChecker.isWindows(driver));
+
+        Assertions.assertTrue(WebDriverChecker.isChrome(driver));
+        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
+        Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+
+        Assertions.assertTrue(WebDriverChecker.isLambdaTest(driver));
+        Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
+        Assertions.assertFalse(WebDriverChecker.isSauceLabs(driver));
+        Assertions.assertFalse(WebDriverChecker.isTestingBot(driver));
+    }
+
+    @Test
+    @EnabledIfProperty(name = "wdc.cloud", value = "browserstack")
+    @SetProperty(name = "wdc.caps", value = "cloud-browserstack-macos-safari.yml")
+    void browserStack() {
+        Assertions.assertTrue(WebDriverChecker.isMacOS(driver));
+        Assertions.assertFalse(WebDriverChecker.isLinux(driver));
+        Assertions.assertFalse(WebDriverChecker.isWindows(driver));
+
+        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
+        Assertions.assertTrue(WebDriverChecker.isSafari(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
+        Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+
+        Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
+        Assertions.assertTrue(WebDriverChecker.isBrowserStack(driver));
+        Assertions.assertFalse(WebDriverChecker.isSauceLabs(driver));
+        Assertions.assertFalse(WebDriverChecker.isTestingBot(driver));
+    }
+
+    @Test
+    @EnabledIfProperty(name = "wdc.cloud", value = "saucelabs")
+    @SetProperty(name = "wdc.caps", value = "cloud-saucelabs-linux-firefox.yml")
+    void sauceLabs() {
+        Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
+        Assertions.assertTrue(WebDriverChecker.isLinux(driver));
+        Assertions.assertFalse(WebDriverChecker.isWindows(driver));
+
+        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
+        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
+        Assertions.assertTrue(WebDriverChecker.isFirefox(driver));
+        Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+
+        Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
+        Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
+        Assertions.assertTrue(WebDriverChecker.isSauceLabs(driver));
+        Assertions.assertFalse(WebDriverChecker.isTestingBot(driver));
+    }
+
+    @Test
+    @EnabledIfProperty(name = "wdc.cloud", value = "testingbot")
+    @SetProperty(name = "wdc.caps", value = "cloud-testingbot-windows-edge.yml")
+    void testingBot() {
+        Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
+        Assertions.assertFalse(WebDriverChecker.isLinux(driver));
+        Assertions.assertTrue(WebDriverChecker.isWindows(driver));
+
+        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
+        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
+        Assertions.assertTrue(WebDriverChecker.isEdge(driver));
+
+        Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
+        Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
+        Assertions.assertFalse(WebDriverChecker.isSauceLabs(driver));
+        Assertions.assertTrue(WebDriverChecker.isTestingBot(driver));
     }
 
     @AfterEach
@@ -76,81 +154,5 @@ public class CloudSeleniumTest {
 
         driver.quit();
         Assertions.assertFalse(WebDriverChecker.isAlive(driver));
-    }
-
-    @Test
-    @EnabledIfProperty(name = "wdc.target", value = "lambdatest")
-    @EnabledIfProperty(name = "wdc.caps", value = "cloud-lambdatest-windows-chrome.yml")
-    void lambdaTest() {
-        Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
-        Assertions.assertFalse(WebDriverChecker.isLinux(driver));
-        Assertions.assertTrue(WebDriverChecker.isWindows(driver));
-
-        Assertions.assertTrue(WebDriverChecker.isChrome(driver));
-        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
-        Assertions.assertFalse(WebDriverChecker.isEdge(driver));
-
-        Assertions.assertTrue(WebDriverChecker.isLambdaTest(driver));
-        Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
-        Assertions.assertFalse(WebDriverChecker.isSauceLabs(driver));
-        Assertions.assertFalse(WebDriverChecker.isTestingBot(driver));
-    }
-
-    @Test
-    @EnabledIfProperty(name = "wdc.target", value = "browserstack")
-    @EnabledIfProperty(name = "wdc.caps", value = "cloud-browserstack-macos-safari.yml")
-    void browserStack() {
-        Assertions.assertTrue(WebDriverChecker.isMacOS(driver));
-        Assertions.assertFalse(WebDriverChecker.isLinux(driver));
-        Assertions.assertFalse(WebDriverChecker.isWindows(driver));
-
-        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
-        Assertions.assertTrue(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
-        Assertions.assertFalse(WebDriverChecker.isEdge(driver));
-
-        Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
-        Assertions.assertTrue(WebDriverChecker.isBrowserStack(driver));
-        Assertions.assertFalse(WebDriverChecker.isSauceLabs(driver));
-        Assertions.assertFalse(WebDriverChecker.isTestingBot(driver));
-    }
-
-    @Test
-    @EnabledIfProperty(name = "wdc.target", value = "saucelabs")
-    @EnabledIfProperty(name = "wdc.caps", value = "cloud-saucelabs-linux-firefox.yml")
-    void sauceLabs() {
-        Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
-        Assertions.assertTrue(WebDriverChecker.isLinux(driver));
-        Assertions.assertFalse(WebDriverChecker.isWindows(driver));
-
-        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
-        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertTrue(WebDriverChecker.isFirefox(driver));
-        Assertions.assertFalse(WebDriverChecker.isEdge(driver));
-
-        Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
-        Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
-        Assertions.assertTrue(WebDriverChecker.isSauceLabs(driver));
-        Assertions.assertFalse(WebDriverChecker.isTestingBot(driver));
-    }
-
-    @Test
-    @EnabledIfProperty(name = "wdc.target", value = "testingbot")
-    @EnabledIfProperty(name = "wdc.caps", value = "cloud-testingbot-windows-edge.yml")
-    void testingBot() {
-        Assertions.assertFalse(WebDriverChecker.isMacOS(driver));
-        Assertions.assertFalse(WebDriverChecker.isLinux(driver));
-        Assertions.assertTrue(WebDriverChecker.isWindows(driver));
-
-        Assertions.assertFalse(WebDriverChecker.isChrome(driver));
-        Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
-        Assertions.assertTrue(WebDriverChecker.isEdge(driver));
-
-        Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
-        Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
-        Assertions.assertFalse(WebDriverChecker.isSauceLabs(driver));
-        Assertions.assertTrue(WebDriverChecker.isTestingBot(driver));
     }
 }
