@@ -46,110 +46,111 @@ executors:
       OS: <<pipeline.parameters.os_windows>>
 
 commands:
-  env_prepare:
-    parameters:
-      browser: { type: string, default: "" }
-      is_appium: { type: boolean, default: false }
+  env_checkout:
     steps:
       - checkout
       - run:
           name: Make gradlew executable
           command: chmod +x gradlew
+  env_prepare_browser:
+    parameters:
+      browser: { type: string, default: "" }
+    steps:
+      - run:
+          name: Prepare environment
+          command:
+            if [[ $OS == <<pipeline.parameters.os_macos>> ]]; then
+              brew update
+              brew install zip
+              
+              case $BROWSER in
+                <<pipeline.parameters.browser_chrome>>) brew install --cask google-chrome ;;
+                <<pipeline.parameters.browser_firefox>>) brew install --cask firefox ;;
+                <<pipeline.parameters.browser_edge>>) brew install --cask microsoft-edge ;;
+                <<pipeline.parameters.browser_opera>>) brew install --cask opera ;;
+              esac
+            
+            elif [[ $OS == <<pipeline.parameters.os_linux>> ]]; then
+              sudo apt update
+              sudo apt install zip
+              
+              case $BROWSER in
+                <<pipeline.parameters.browser_chrome>>)
+                  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+                  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+                  sudo apt update
+                  sudo apt install google-chrome-stable
+                ;;
+                <<pipeline.parameters.browser_firefox>>)
+                  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
+                  sudo apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu focal main"
+                  sudo apt update
+                  sudo apt install firefox
+                ;;
+                <<pipeline.parameters.browser_edge>>)
+                  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+                  sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+                  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+                  sudo rm microsoft.gpg
+                  sudo apt update
+                  sudo apt install microsoft-edge-stable
+                ;;
+              esac
+            
+            elif [[ $OS == <<pipeline.parameters.os_windows>> ]]; then
+              choco feature enable -n allowGlobalConfirmation
+              choco install zip
+              
+              case $BROWSER in
+                <<pipeline.parameters.browser_chrome>>) choco install googlechrome ;;
+                <<pipeline.parameters.browser_firefox>>) choco install firefox ;;
+                <<pipeline.parameters.browser_edge>>) choco install microsoft-edge ;;
+                <<pipeline.parameters.browser_opera>>) choco install opera ;;
+              esac
+            fi
+  env_prepare_appium:
+    parameters:
+      browser: { type: string, default: "" }
+    steps:
       - run:
           name: Prepare environment
           command: |
             BROWSER=<<parameters.browser>>
-            IS_APPIUM=<<parameters.is_appium>>
-
-            ### Appium Mobile
-            if $IS_APPIUM; then
-              case $OS in
-                <<pipeline.parameters.os_macos>>) brew install node ;;
-                <<pipeline.parameters.os_linux>>) sudo apt install nodejs ;;
-              esac
-
-              npm install appium -g
-              npm install appium-doctor -g
-
-              case $OS in
-                <<pipeline.parameters.os_macos>>)
-                  brew install carthage
-                  brew install ios-deploy
-                ;;
-                <<pipeline.parameters.os_linux>>)
-                  adb devices
-                ;;
-              esac
-
-              ### Download private testing apps
-              # if [[ $BROWSER == native ]]; then
-              #   APP_LOCATION=webdriverchecker/app
-
-              #   mkdir -p $APP_LOCATION
-              #   cd $APP_LOCATION
-
-              #   curl -H 'Authorization: token $GH_ACCESS_TOKEN' \
-              #     -H 'Accept: application/vnd.github.v3.raw' \
-              #     -O \
-              #     -L https://api.github.com/repos/$GH_APP_PATH.apk
-              #   md5sum blursut.apk
-              # fi
-
-              ### Check appium environment
-              appium-doctor
             
-            ### PC Browser
-            else
-              if [[ $OS == <<pipeline.parameters.os_macos>> ]]; then
-                brew update
-                brew install zip
+            case $OS in
+              <<pipeline.parameters.os_macos>>) brew install node ;;
+              <<pipeline.parameters.os_linux>>) sudo apt install nodejs ;;
+            esac
 
-                case $BROWSER in
-                  <<pipeline.parameters.browser_chrome>>) brew install --cask google-chrome ;;
-                  <<pipeline.parameters.browser_firefox>>) brew install --cask firefox ;;
-                  <<pipeline.parameters.browser_edge>>) brew install --cask microsoft-edge ;;
-                  <<pipeline.parameters.browser_opera>>) brew install --cask opera ;;
-                esac
+            npm install appium -g
+            npm install appium-doctor -g
 
-              elif [[ $OS == <<pipeline.parameters.os_linux>> ]]; then
-                sudo apt update
-                sudo apt install zip
+            case $OS in
+              <<pipeline.parameters.os_macos>>)
+                brew install carthage
+                brew install ios-deploy
+              ;;
+              <<pipeline.parameters.os_linux>>)
+                adb devices
+              ;;
+            esac
 
-                case $BROWSER in
-                  <<pipeline.parameters.browser_chrome>>)
-                    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
-                    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-                    sudo apt update
-                    sudo apt install google-chrome-stable
-                  ;;
-                  <<pipeline.parameters.browser_firefox>>)
-                    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A6DCF7707EBC211F
-                    sudo apt-add-repository "deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu focal main"
-                    sudo apt update
-                    sudo apt install firefox
-                  ;;
-                  <<pipeline.parameters.browser_edge>>)
-                    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-                    sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-                    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
-                    sudo rm microsoft.gpg
-                    sudo apt update
-                    sudo apt install microsoft-edge-stable
-                  ;;
-                esac
+            ### Download private testing apps
+            # if [[ $BROWSER == native ]]; then
+            #   APP_LOCATION=webdriverchecker/app
 
-              elif [[ $OS == <<pipeline.parameters.os_windows>> ]]; then
-                choco feature enable -n allowGlobalConfirmation
-                choco install zip
+            #   mkdir -p $APP_LOCATION
+            #   cd $APP_LOCATION
 
-                case $BROWSER in
-                  <<pipeline.parameters.browser_chrome>>) choco install googlechrome ;;
-                  <<pipeline.parameters.browser_firefox>>) choco install firefox ;;
-                  <<pipeline.parameters.browser_edge>>) choco install microsoft-edge ;;
-                  <<pipeline.parameters.browser_opera>>) choco install opera ;;
-                esac
-              fi
-            fi
+            #   curl -H 'Authorization: token $GH_ACCESS_TOKEN' \
+            #     -H 'Accept: application/vnd.github.v3.raw' \
+            #     -O \
+            #     -L https://api.github.com/repos/$GH_APP_PATH.apk
+            #   md5sum blursut.apk
+            # fi
+
+            ### Check Appium environment
+            appium-doctor
   env_emulator:
     steps:
       - run:
@@ -207,12 +208,14 @@ jobs:
       browser: { type: string }
     executor: runner_macos
     steps:
-      - env_prepare:
+      - env_checkout
+      - env_prepare_browser:
           browser: <<parameters.browser>>
       - test_execute:
           options: >-
             --tests com.github.ngoanh2n.wdc.*
           arguments: >-
+            -Dwdc.group=selenium-local
             -Dwdc.os=macos
             -Dwdc.browser=<<parameters.browser>>
       - artifact_save:
@@ -222,12 +225,14 @@ jobs:
       browser: { type: string }
     executor: runner_linux
     steps:
-      - env_prepare:
+      - env_checkout
+      - env_prepare_browser:
           browser: <<parameters.browser>>
       - test_execute:
           options: >-
             --tests com.github.ngoanh2n.wdc.*
           arguments: >-
+            -Dwdc.group=selenium-local
             -Dwdc.os=linux
             -Dwdc.browser=<<parameters.browser>>
       - artifact_save:
@@ -237,12 +242,14 @@ jobs:
       browser: { type: string }
     executor: runner_windows
     steps:
-      - env_prepare:
+      - env_checkout
+      - env_prepare_browser:
           browser: <<parameters.browser>>
       - test_execute:
           options: >-
             --tests com.github.ngoanh2n.wdc.*
           arguments: >-
+            -Dwdc.group=selenium-local
             -Dwdc.os=windows
             -Dwdc.browser=<<parameters.browser>>
       - artifact_save:
@@ -250,9 +257,15 @@ jobs:
   pc_windows_extension:
     executor: runner_windows
     steps:
-      - env_prepare:
+      - env_checkout
+      - env_prepare_browser:
           browser: chrome
-      - test_execute
+      - test_execute:
+          options: >-
+            --tests com.github.ngoanh2n.wdc.*
+          arguments: >-
+            -Dwdc.group=extension-local
+            -Dwdc.os=windows
       - artifact_save:
           report_name: windows_extension
   mobile_macos_ios:
@@ -261,15 +274,15 @@ jobs:
       caps: { type: string }
     executor: runner_macos
     steps:
-      - env_prepare:
+      - env_checkout
+      - env_prepare_appium:
           browser: <<parameters.browser>>
-          is_appium: true
       - test_execute:
           options: >-
             --tests com.github.ngoanh2n.wdc.*
           arguments: >-
+            -Dwdc.group=appium-local
             -Dwdc.os=$OS
-            -Dwdc.browser=<<parameters.browser>>
             -Dwdc.caps=<<parameters.caps>>
       - artifact_save:
           report_name: <<pipeline.parameters.os_macos>>_ios_<<parameters.browser>>
@@ -279,16 +292,16 @@ jobs:
       caps: { type: string }
     executor: runner_linux
     steps:
-      - env_prepare:
+      - env_checkout
+      - env_prepare_appium:
           browser: <<parameters.browser>>
-          is_appium: true
       - env_emulator
       - test_execute:
           options: >-
             --tests com.github.ngoanh2n.wdc.*
           arguments: >-
+            -Dwdc.group=appium-local
             -Dwdc.os=$OS
-            -Dwdc.browser=<<parameters.browser>>
             -Dwdc.caps=<<parameters.caps>>
       - artifact_save:
           report_name: <<pipeline.parameters.os_linux>>_android_<<parameters.browser>>
