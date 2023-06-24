@@ -13,9 +13,9 @@ import java.net.URL;
  * @author ngoanh2n
  */
 public class CloudDriverProvider {
-    public static Property<String> key = Property.ofString("wdc.key");
-    public static Property<String> token = Property.ofString("wdc.token");
-    public static Property<String> domain = Property.ofString("wdc.domain");
+    public static Property<String> key = Property.ofString("wdc.cloud.key");
+    public static Property<String> token = Property.ofString("wdc.cloud.token");
+    public static Property<String> domain = Property.ofString("wdc.cloud.domain");
 
     public static WebDriver createDriver() {
         URL address = createRemoteAddress();
