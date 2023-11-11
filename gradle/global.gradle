@@ -2,12 +2,14 @@
  * Author: ngoanh2n
  */
 ext {
-    versionCommons                  =   "1.2.0"
-    versionSelenium                 =   "4.10.0"
-    versionSelenide                 =   "6.15.0"
-    versionJunitJupiter             =   "5.9.3"
-    versionTestNG                   =   "7.8.0"
-    versionAppium                   =   "8.5.1"
-    versionSlf4j                    =   "2.0.7"
-    versionWebDriverManager         =   "5.4.0"
+    versions = [
+            cms     : { -> return "1.2.0" },
+            selenium: { -> return "4.10.0" },
+            selenide: { -> return "6.15.0" },
+            jupiter : { -> return "5.9.3" },
+            testng  : { -> return "7.8.0" },
+            slf4j   : { -> return "2.0.7" },
+            appium  : { -> return "8.5.1" },
+            wdm     : { -> return "5.4.0" },
+    ]
 }
