@@ -4,16 +4,16 @@
  */
 ext {
     wdc = [
-            dir   : { -> return rootDir.toPath() },
+            dir   : { -> return getRootDir().toPath() },
             gradle: { -> return wdc.dir().resolve("gradle") },
     ]
     gradle = [
             config: { -> return wdc.gradle().resolve("config") },
     ]
     config = [
-            test       : { -> return gradle.config().resolve("test.gradle") },
-            compilation: { -> return gradle.config().resolve("compilation.gradle") },
-            publication: { -> return gradle.config().resolve("publication.gradle") },
+            test        : { -> return gradle.config().resolve("test.gradle") },
+            compilation : { -> return gradle.config().resolve("compilation.gradle") },
+            publication : { -> return gradle.config().resolve("publication.gradle") },
             dependencies: { -> return gradle.config().resolve("dependencies.gradle") },
     ]
 }

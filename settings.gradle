@@ -1,4 +1,4 @@
-rootProject.setName("wdc")
+getRootProject().setName("wdc")
 
 include("webdriverchecker")
 include("webdriverchecker-selenide")
