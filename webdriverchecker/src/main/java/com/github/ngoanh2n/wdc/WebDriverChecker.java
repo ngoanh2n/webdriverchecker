@@ -3,13 +3,13 @@ package com.github.ngoanh2n.wdc;
 import com.github.ngoanh2n.Commons;
 import com.github.ngoanh2n.Property;
 import com.google.common.io.CharStreams;
-import io.netty.handler.codec.http.HttpRequest;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.remote.http.HttpMethod;
+import org.openqa.selenium.remote.http.HttpRequest;
 
 import java.io.File;
 import java.io.IOException;
