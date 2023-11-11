@@ -9,7 +9,7 @@ ext {
             jupiter : { -> return "5.10.0" },
             testng  : { -> return "7.8.0" },
             slf4j   : { -> return "2.0.9" },
-            appium  : { -> return "8.5.1" },
+            appium  : { -> return "9.0.0" },
             wdm     : { -> return "5.4.0" },
     ]
 }
