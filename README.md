@@ -38,9 +38,9 @@ Use `WebDriverChecker` to make it more convenient!
 - State: Alive, Local, Remote, Web, Native, Docker, Virtual Device, Cloud
 
 ## Version
-- Selenium: 4.9.1
-- Selenide: 6.14.1
-- JUnit5: 5.9.3
+- Selenium: 4.15.0
+- Selenide: 7.0.2
+- JUnit5: 5.10.0
 - TestNG: 7.8.0
 
 # Extension
