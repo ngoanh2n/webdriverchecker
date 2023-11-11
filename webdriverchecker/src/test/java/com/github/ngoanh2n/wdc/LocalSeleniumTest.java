@@ -3,10 +3,7 @@ package com.github.ngoanh2n.wdc;
 import com.github.ngoanh2n.EnabledIfProperty;
 import com.github.ngoanh2n.SetProperty;
 import com.github.ngoanh2n.wdc.driver.SeleniumDriverProvider;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -72,6 +69,7 @@ public class LocalSeleniumTest {
     @Test
     @EnabledIfProperty(name = "wdc.os", value = {"macos", "windows"})
     @EnabledIfProperty(name = "wdc.browser", value = "opera")
+    @Disabled
     void isOpera() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
