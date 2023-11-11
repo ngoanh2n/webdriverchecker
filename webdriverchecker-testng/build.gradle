@@ -1,9 +1,6 @@
 /**
  * Author: ngoanh2n
  */
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
-
 dependencies {
     api(project(":webdriverchecker"))
     implementation("com.github.ngoanh2n:commons-testng:$versions.cms")
