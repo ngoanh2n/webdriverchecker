@@ -1,0 +1,10 @@
+//file:noinspection GroovyAssignabilityCheck
+/**
+ * Author: ngoanh2n
+ */
+ext {
+    wdc = [
+            dir   : { -> return rootDir.toPath() },
+            gradle: { -> return wdc.dir().resolve("gradle") },
+    ]
+}
