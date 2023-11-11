@@ -24,7 +24,7 @@ When using Selenide directly, `webdriverchecker-selenide` should be used.
 ## Gradle
 Add to `build.gradle`.
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker-selenide:2.7.0")
+implementation("com.github.ngoanh2n:webdriverchecker-selenide:2.8.0")
 ```
 
 ## Maven
@@ -33,7 +33,7 @@ Add to `pom.xml`.
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker-selenide</artifactId>
-    <version>2.7.0</version>
+    <version>2.8.0</version>
 </dependency>
 ```
 
