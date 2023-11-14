@@ -1,5 +1,6 @@
 ###
-### author: ngoanh2n
+### Author: ngoanh2n
+### https://circleci.com/docs
 ###
 version: 2.1
 
@@ -21,26 +22,31 @@ parameters:
 
 executors:
   runner_macos:
+    # https://circleci.com/docs/using-macos
     macos:
-      xcode: 13.4.1
+      xcode: 15.0.0
+      resource_class: macos.x86.medium.gen2
     shell: /bin/bash
-    resource_class: medium
     working_directory: ~/project
     environment:
       OS: <<pipeline.parameters.os_macos>>
   runner_linux:
+    # https://circleci.com/docs/android-machine-image/
+    # https://circleci.com/developer/machine/image/android
     machine:
-      image: android:202102-01
+      image: android:2023.11.1
+      resource_class: medium
     shell: /bin/bash
-    resource_class: medium
     working_directory: ~/project
     environment:
       OS: <<pipeline.parameters.os_linux>>
   runner_windows:
+    # https://circleci.com/docs/using-windows
+    # https://circleci.com/developer/machine/image/windows-server-2022-gui
     machine:
       image: windows-server-2022-gui:current
+      resource_class: windows.medium
     shell: bash.exe
-    resource_class: windows.medium
     working_directory: ~/project
     environment:
       OS: <<pipeline.parameters.os_windows>>
@@ -314,7 +320,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - local
           matrix:
             parameters:
               browser:
@@ -327,7 +333,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - local
           matrix:
             parameters:
               browser: 
@@ -339,7 +345,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - local
           matrix:
             parameters:
               browser: 
@@ -352,7 +358,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - local
       - mobile_macos_ios:
           name: <<pipeline.parameters.os_macos>>/ios/<<matrix.browser>>
           filters:
