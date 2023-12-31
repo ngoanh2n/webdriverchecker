@@ -253,18 +253,6 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@link WebDriver} for Firefox browser
-     * on any platform (Firefox on macOS, Linux, Windows).
-     *
-     * @param driver The {@link WebDriver} for the first argument, and can be empty.<br>
-     *               {@link WebDriverChecker} doesn't care from the second argument onwards.
-     * @return true if it's Firefox browser.
-     */
-    public static boolean isFirefox(WebDriver... driver) {
-        return is(new Firefox(), driver);
-    }
-
-    /**
      * Check whether {@link WebDriver} for Edge browser
      * on any platform (Edge on macOS, Linux, Windows).
      *
@@ -274,6 +262,18 @@ public abstract class WebDriverChecker {
      */
     public static boolean isEdge(WebDriver... driver) {
         return is(new Edge(), driver);
+    }
+
+    /**
+     * Check whether {@link WebDriver} for Firefox browser
+     * on any platform (Firefox on macOS, Linux, Windows).
+     *
+     * @param driver The {@link WebDriver} for the first argument, and can be empty.<br>
+     *               {@link WebDriverChecker} doesn't care from the second argument onwards.
+     * @return true if it's Firefox browser.
+     */
+    public static boolean isFirefox(WebDriver... driver) {
+        return is(new Firefox(), driver);
     }
 
     /**

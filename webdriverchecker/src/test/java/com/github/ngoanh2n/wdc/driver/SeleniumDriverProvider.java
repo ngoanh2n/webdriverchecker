@@ -18,8 +18,8 @@ public abstract class SeleniumDriverProvider {
         return switch (browser) {
             case "chrome" -> new ChromeDriver();
             case "safari" -> new SafariDriver();
-            case "firefox" -> new FirefoxDriver();
             case "edge" -> new EdgeDriver();
+            case "firefox" -> new FirefoxDriver();
             case "ie" -> new InternetExplorerDriver();
             default -> throw new RuntimeError("Unknown browser: " + browser);
         };

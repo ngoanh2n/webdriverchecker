@@ -70,8 +70,8 @@ public class CloudAppiumTest {
 
         //Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         //Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         Assertions.assertFalse(WebDriverChecker.isIE(driver));
 

@@ -23,8 +23,8 @@ public class LocalSeleniumTest {
     void isChrome() {
         Assertions.assertTrue(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         Assertions.assertFalse(WebDriverChecker.isIE(driver));
     }
@@ -35,8 +35,8 @@ public class LocalSeleniumTest {
     void isSafari() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertTrue(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         Assertions.assertFalse(WebDriverChecker.isIE(driver));
     }
@@ -47,8 +47,8 @@ public class LocalSeleniumTest {
     void isFirefox() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertTrue(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertTrue(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         Assertions.assertFalse(WebDriverChecker.isIE(driver));
     }
@@ -59,8 +59,8 @@ public class LocalSeleniumTest {
     void isEdge() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertTrue(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         Assertions.assertFalse(WebDriverChecker.isIE(driver));
     }
@@ -72,8 +72,8 @@ public class LocalSeleniumTest {
     void isOpera() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertTrue(WebDriverChecker.isOpera(driver));
         Assertions.assertFalse(WebDriverChecker.isIE(driver));
     }
@@ -84,8 +84,8 @@ public class LocalSeleniumTest {
     void isIE() {
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         Assertions.assertTrue(WebDriverChecker.isIE(driver));
     }
@@ -109,8 +109,8 @@ public class LocalSeleniumTest {
 
         //Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         //Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        //Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         //Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        //Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         //Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         //Assertions.assertFalse(WebDriverChecker.isIE(driver));
 

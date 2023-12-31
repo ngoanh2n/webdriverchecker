@@ -31,8 +31,8 @@ public class CloudSeleniumTest {
 
         Assertions.assertTrue(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
 
         Assertions.assertTrue(WebDriverChecker.isLambdaTest(driver));
         Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
@@ -50,8 +50,8 @@ public class CloudSeleniumTest {
 
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertTrue(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
 
         Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
         Assertions.assertTrue(WebDriverChecker.isBrowserStack(driver));
@@ -69,8 +69,8 @@ public class CloudSeleniumTest {
 
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertTrue(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        Assertions.assertTrue(WebDriverChecker.isFirefox(driver));
 
         Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
         Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
@@ -88,8 +88,8 @@ public class CloudSeleniumTest {
 
         Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertTrue(WebDriverChecker.isEdge(driver));
+        Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
 
         Assertions.assertFalse(WebDriverChecker.isLambdaTest(driver));
         Assertions.assertFalse(WebDriverChecker.isBrowserStack(driver));
@@ -116,8 +116,8 @@ public class CloudSeleniumTest {
 
         //Assertions.assertFalse(WebDriverChecker.isChrome(driver));
         //Assertions.assertFalse(WebDriverChecker.isSafari(driver));
-        //Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         //Assertions.assertFalse(WebDriverChecker.isEdge(driver));
+        //Assertions.assertFalse(WebDriverChecker.isFirefox(driver));
         Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         Assertions.assertFalse(WebDriverChecker.isIE(driver));
 
