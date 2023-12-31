@@ -3,12 +3,11 @@
  */
 dependencies {
     api(project(":webdriverchecker"))
-    implementation("com.github.ngoanh2n:commons-junit5:$versions.cms")
-    implementation("org.junit.jupiter:junit-jupiter:$versions.jupiter")
     implementation("org.seleniumhq.selenium:selenium-remote-driver:$versions.selenium")
+    implementation("org.junit.jupiter:junit-jupiter:$versions.jupiter")
+    implementation("com.github.ngoanh2n:commons-junit5:$versions.cms")
 
     testImplementation("org.seleniumhq.selenium:selenium-java:$versions.selenium")
-    testImplementation("io.github.bonigarcia:webdrivermanager:$versions.wdm")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$versions.jupiter")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$versions.jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
