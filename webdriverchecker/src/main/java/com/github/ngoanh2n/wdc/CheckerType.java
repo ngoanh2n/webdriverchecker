@@ -12,6 +12,7 @@ import java.net.NetworkInterface;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -216,7 +217,8 @@ class CheckerType {
     static class Edge extends WebDriverChecker {
         @Override
         protected boolean check(WebDriver... driver) {
-            return getBrowserName(driver).equals("msedge");
+            List<String> names = Arrays.asList("msedge", "microsoftedge");
+            return names.contains(getBrowserName(driver));
         }
     }
 
@@ -231,13 +233,6 @@ class CheckerType {
         @Override
         protected boolean check(WebDriver... driver) {
             return getBrowserName(driver).equals("internetexplorer");
-        }
-    }
-
-    static class LegacyEdge extends WebDriverChecker {
-        @Override
-        protected boolean check(WebDriver... driver) {
-            return getBrowserName(driver).equals("microsoftedge");
         }
     }
 

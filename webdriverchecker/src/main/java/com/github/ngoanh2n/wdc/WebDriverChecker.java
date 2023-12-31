@@ -300,17 +300,6 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@link WebDriver} for legacy {@code Edge} (Edge HTML) browser.
-     *
-     * @param driver The {@link WebDriver} for the first argument, and can be empty.<br>
-     *               {@link WebDriverChecker} doesn't care from the second argument onwards.
-     * @return true if it's legacy Edge browser.
-     */
-    public static boolean isEdgeLegacy(WebDriver... driver) {
-        return is(new LegacyEdge(), driver);
-    }
-
-    /**
      * Check whether {@link WebDriver} for a browser on macOS, Linux or Windows.
      *
      * @param driver The {@link WebDriver} for the first argument, and can be empty.<br>
