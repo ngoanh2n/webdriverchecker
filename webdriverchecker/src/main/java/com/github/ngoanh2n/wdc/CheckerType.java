@@ -241,13 +241,6 @@ class CheckerType {
         }
     }
 
-    static class LegacyFirefox extends WebDriverChecker {
-        @Override
-        protected boolean check(WebDriver... driver) {
-            return getBrowserVersion(driver) < 48 && is(new Firefox(), driver);
-        }
-    }
-
     //-------------------------------------------------------------------------------//
 
     static class PCBrowser extends WebDriverChecker {

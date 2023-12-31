@@ -121,7 +121,6 @@ public class CloudSeleniumTest {
         Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         Assertions.assertFalse(WebDriverChecker.isIE(driver));
         Assertions.assertFalse(WebDriverChecker.isEdgeLegacy(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefoxLegacy(driver));
 
         Assertions.assertTrue(WebDriverChecker.isPCBrowser(driver));
         Assertions.assertFalse(WebDriverChecker.isPCNative(driver));

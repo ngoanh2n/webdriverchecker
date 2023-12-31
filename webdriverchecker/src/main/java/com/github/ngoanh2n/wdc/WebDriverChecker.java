@@ -311,17 +311,6 @@ public abstract class WebDriverChecker {
     }
 
     /**
-     * Check whether {@link WebDriver} for legacy {@code Firefox} (lower than version 48) browser.
-     *
-     * @param driver The {@link WebDriver} for the first argument, and can be empty.<br>
-     *               {@link WebDriverChecker} doesn't care from the second argument onwards.
-     * @return true if it's legacy Firefox browser.
-     */
-    public static boolean isFirefoxLegacy(WebDriver... driver) {
-        return is(new LegacyFirefox(), driver);
-    }
-
-    /**
      * Check whether {@link WebDriver} for a browser on macOS, Linux or Windows.
      *
      * @param driver The {@link WebDriver} for the first argument, and can be empty.<br>

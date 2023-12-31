@@ -247,7 +247,6 @@ public class LocalAppiumTest {
         Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         Assertions.assertFalse(WebDriverChecker.isIE(driver));
         Assertions.assertFalse(WebDriverChecker.isEdgeLegacy(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefoxLegacy(driver));
 
         Assertions.assertFalse(WebDriverChecker.isPCBrowser(driver));
         //Assertions.assertFalse(WebDriverChecker.isPCNative(driver));

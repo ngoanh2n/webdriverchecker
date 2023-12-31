@@ -1,7 +1,6 @@
 package com.github.ngoanh2n.wdc;
 
 import com.github.ngoanh2n.EnabledIfProperty;
-import com.github.ngoanh2n.SetProperty;
 import com.github.ngoanh2n.wdc.driver.SeleniumDriverProvider;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -115,7 +114,6 @@ public class LocalSeleniumTest {
         //Assertions.assertFalse(WebDriverChecker.isOpera(driver));
         //Assertions.assertFalse(WebDriverChecker.isIE(driver));
         Assertions.assertFalse(WebDriverChecker.isEdgeLegacy(driver));
-        Assertions.assertFalse(WebDriverChecker.isFirefoxLegacy(driver));
 
         Assertions.assertTrue(WebDriverChecker.isPCBrowser(driver));
         Assertions.assertFalse(WebDriverChecker.isPCNative(driver));
