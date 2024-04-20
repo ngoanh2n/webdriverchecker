@@ -2,7 +2,7 @@
 # Author: ngoanh2n
 #
 [versions]
-selenium       = "4.16.1"
+selenium       = "4.19.1"
 selenide       = "7.0.4"
 junit-jupiter  = "5.10.1"
 testng         = "7.9.0"
