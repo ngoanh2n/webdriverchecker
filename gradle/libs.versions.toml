@@ -4,7 +4,7 @@
 [versions]
 selenium       = "4.16.1"
 selenide       = "7.0.4"
-junit-jupiter  = "5.10.1"
+junit-jupiter  = "5.10.2"
 testng         = "7.9.0"
 commons        = "1.4.0"
 appium         = "9.0.0"
