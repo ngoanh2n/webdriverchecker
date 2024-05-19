@@ -3,7 +3,7 @@
 #
 [versions]
 selenium       = "4.16.1"
-selenide       = "7.0.4"
+selenide       = "7.3.2"
 junit-jupiter  = "5.10.1"
 testng         = "7.9.0"
 commons        = "1.4.0"
