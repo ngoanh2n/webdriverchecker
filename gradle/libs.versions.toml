@@ -7,7 +7,7 @@ selenide       = "7.0.4"
 junit-jupiter  = "5.10.1"
 testng         = "7.9.0"
 commons        = "1.4.0"
-appium         = "9.0.0"
+appium         = "9.2.3"
 slf4j          = "2.0.10"
 junit-platform = "1.10.2"
 
