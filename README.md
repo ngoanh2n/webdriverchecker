@@ -38,10 +38,10 @@ Use `WebDriverChecker` to make it more convenient!
 - State: Alive, Local, Remote, Web, Native, Docker, Virtual Device, Cloud
 
 ## Version
-- Selenium: 4.15.0
-- Selenide: 7.0.2
-- JUnit5: 5.10.0
-- TestNG: 7.8.0
+- Selenium: 4.24.0
+- Selenide: 7.4.3
+- JUnit5: 5.11.0
+- TestNG: 7.10.2
 
 # Extension
 It automatically provides the current `WebDriver` instance to `com.github.ngoanh2n.wdc.WebDriverChecker`.<br>
@@ -64,7 +64,7 @@ When using `TestNG` as a testing framework.
 ## Gradle
 Add to `build.gradle`.
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker:2.8.0")
+implementation("com.github.ngoanh2n:webdriverchecker:2.9.0")
 ```
 
 ## Maven
@@ -73,7 +73,7 @@ Add to `pom.xml`.
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker</artifactId>
-    <version>2.8.0</version>
+    <version>2.9.0</version>
 </dependency>
 ```
 

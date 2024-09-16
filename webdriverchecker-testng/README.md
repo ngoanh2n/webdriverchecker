@@ -24,7 +24,7 @@ When using TestNG as a testing framework, `webdriverchecker-testng` should be us
 ## Gradle
 Add to `build.gradle`.
 ```gradle
-implementation("com.github.ngoanh2n:webdriverchecker-testng:2.8.0")
+implementation("com.github.ngoanh2n:webdriverchecker-testng:2.9.0")
 ```
 
 ## Maven
@@ -33,7 +33,7 @@ Add to `pom.xml`.
 <dependency>
     <groupId>com.github.ngoanh2n</groupId>
     <artifactId>webdriverchecker-testng</artifactId>
-    <version>2.8.0</version>
+    <version>2.9.0</version>
 </dependency>
 ```
 
