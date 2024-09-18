@@ -2,7 +2,7 @@
 ### Author: ngoanh2n
 ###
 [versions]
-commons        = "1.6.0"
+commons        = "1.7.0"
 selenium       = "4.24.0"
 appium         = "9.3.0"
 selenide       = "7.4.3"
