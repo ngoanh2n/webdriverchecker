@@ -1,7 +1,6 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/webdriverchecker-junit5/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ngoanh2n/webdriverchecker-junit5)
-[![javadoc](https://javadoc.io/badge2/com.github.ngoanh2n/webdriverchecker-junit5/javadoc.svg)](https://javadoc.io/doc/com.github.ngoanh2n/webdriverchecker-junit5)
-[![badge-jdk](https://img.shields.io/badge/jdk-17-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
+[![Java](https://img.shields.io/badge/Java-17-orange)](https://adoptium.net)
+[![Maven](https://img.shields.io/maven-central/v/com.github.ngoanh2n/webdriverchecker-junit5?label=Maven)](https://mvnrepository.com/artifact/com.github.ngoanh2n/webdriverchecker-junit5)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/ngoanh2n/webdriverchecker/build.yml?logo=github&label=GitHub%20Actions)](https://github.com/ngoanh2n/webdriverchecker/actions/workflows/build.yml)
 
 # WebDriverChecker for JUnit5
 **Table of Contents**
